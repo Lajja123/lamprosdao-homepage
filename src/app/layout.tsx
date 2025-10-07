@@ -4,6 +4,7 @@ import "./globals.css";
 import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/HomeFooter";
+import DesktopOnly from "@/components/UI/DesktopOnly";
 
 const PPMori = localFont({
   src: "./fonts/PPMori-Regular.otf",
@@ -68,10 +69,13 @@ export default function RootLayout({
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen`}
       >
-        <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
-        <Navbar />
-        {children}
-        <Footer />
+        <DesktopOnly />
+        <div className="hidden md:block">
+          <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
+          <Navbar />
+          {children}
+          {/* <Footer /> */}
+        </div>
       </body>
     </html>
   );

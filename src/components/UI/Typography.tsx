@@ -27,6 +27,10 @@ interface TypographyProps {
     | "yellow"
     | "dark"
     | "gradient"
+    | "light-green"
+    | "light-purple"
+    | "light-gray"
+    | "dark-brown"
     | `#${string}`; // allow hex colors like #1a1a1a
   weight?: "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold";
   align?: "left" | "center" | "right" | "justify";
@@ -37,7 +41,7 @@ interface TypographyProps {
 // Typography styles mapping
 const getTypographyStyles = (variant: string) => {
   const styles = {
-    h1: "text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight",
+    h1: "text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tight",
     h2: "text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight",
     h3: "text-2xl md:text-3xl lg:text-4xl leading-snug tracking-tight",
     h4: "text-xl md:text-2xl lg:text-3xl leading-snug tracking-tight",
@@ -67,7 +71,12 @@ const getColorStyles = (color: string) => {
     accent: "text-[#A885CD]",
     offset: "text-[#F3FBD4]",
     white: "text-[#FFFFFF]",
-    yellow:"text=[#DFF48D]"
+    yellow: "text-[#DFF48D]",
+    // New button background colors
+    "light-green": "text-[#D0FFAC]",
+    "light-purple": "text-[#DFCDF2]",
+    "light-gray": "text-[#FFFFFF]",
+    "dark-brown": "text-[#2F2B2B]",
   };
 
   // If a hex color is provided, use tailwind arbitrary value syntax

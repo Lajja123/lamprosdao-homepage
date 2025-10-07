@@ -6,6 +6,8 @@ import telegram from "@/assests/Footer/telegram.svg";
 import medium from "@/assests/Footer/medium.svg";
 import discord from "@/assests/Footer/discord.svg";
 import notion from "@/assests/Footer/notion.svg";
+import logoLight from "@/assests/Footer/logo-light.svg";
+import logoDark from "@/assests/Footer/logo-dark.svg";
 import logo from "@/assests/Footer/logo.svg";
 import lampros from "@/assests/Footer/lampros-dao.png";
 import rectangle from "@/assests/Footer/Rectangle.svg";
@@ -13,14 +15,14 @@ import { Typography } from "@/components/UI/Typography";
 
 export default function HomeFooter() {
   return (
-    <footer className="w-full bg-[#000000] text-white ">
+    <footer className="w-full bg-[#FFFFFF] text-[#000000] ">
       <div
-        className="grid grid-cols-2 md:grid-cols-4 text-center border border-white divide-x md:divide-x divide-y md:divide-y-0 divide-white/60"
+        className="grid grid-cols-2 md:grid-cols-4 text-center border border-black divide-x md:divide-x divide-y md:divide-y-0 divide-white/60"
         style={{ fontFamily: "PP Mori" }}
       >
         <Typography
           variant="button"
-          color="secondary"
+          color="primary"
           align="center"
           className="p-2 md:p-5"
         >
@@ -28,7 +30,7 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="secondary"
+          color="primary"
           align="center"
           className="p-2 md:p-5"
         >
@@ -36,7 +38,7 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="secondary"
+          color="primary"
           align="center"
           className="p-2 md:p-5"
         >
@@ -44,14 +46,14 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="secondary"
+          color="primary"
           align="center"
           className="p-2 md:p-5"
         >
           Contribution
         </Typography>
       </div>
-      <div className="relative w-full border border-white p-5">
+      <div className="relative w-full border border-black p-5">
         <Image
           src={rectangle}
           alt={""}
@@ -61,7 +63,7 @@ export default function HomeFooter() {
         />
         <div className="absolute inset-0 flex items-center justify-center p-5">
           <Image
-            src={lampros}
+            src={logoLight}
             alt={""}
             width={1200}
             height={1200}
@@ -69,8 +71,8 @@ export default function HomeFooter() {
           />
         </div>
       </div>
-      <div className="border border-white flex flex-col md:flex-row items-stretch">
-        <div className="flex items-center justify-center w-full md:w-1/10 border-b md:border-b-0 md:border-r border-white p-2 md:p-3">
+      <div className="border border-black flex flex-col md:flex-row items-stretch">
+        <div className="flex items-center justify-center w-full md:w-1/10 border-b md:border-b-0 md:border-r border-black p-2 md:p-3">
           <Image
             src={logo}
             alt="Lampros light logo"
@@ -80,8 +82,8 @@ export default function HomeFooter() {
           />
         </div>
         <div className="flex-1 hidden md:block p-3" />
-        <div className="grid grid-cols-3 md:grid-cols-6 w-full md:w-1/5 text-center border-t md:border-t-0 md:border-l border-white">
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+        <div className="grid grid-cols-3 md:grid-cols-6 w-full md:w-1/5 text-center border-t md:border-t-0 md:border-l border-black">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={medium}
               alt="Medium"
@@ -90,7 +92,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={linkedin}
               alt="LinkedIn"
@@ -99,7 +101,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={discord}
               alt="Discord"
@@ -108,7 +110,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={notion}
               alt="Notion"
@@ -117,7 +119,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={telegram}
               alt="Telegram"
@@ -126,7 +128,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
             <Image
               src={twitter}
               alt="Twitter"

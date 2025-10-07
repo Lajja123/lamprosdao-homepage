@@ -5,9 +5,9 @@ import Journey from "@/components/About/Journey";
 export default function page() {
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <Ethos />
-      <Journey />
+      <Journey /> */}
     </>
   );
 }

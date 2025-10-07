@@ -4,8 +4,8 @@ import Reports from "@/components/Contributions/Reports";
 export default function page() {
   return (
     <div>
-      <Hero />
-      <Reports/>
+      {/* <Hero />
+      <Reports/> */}
     </div>
   );
 }
