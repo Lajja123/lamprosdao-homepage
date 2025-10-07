@@ -1,0 +1,94 @@
+"use client";
+import Image from "next/image";
+import about from "@/assests/AboutUs/about.svg";
+import Typography from "@/components/UI/Typography";
+import vision from "@/assests/AboutUs/vision.svg";
+import mission from "@/assests/AboutUs/mission.svg";
+
+export default function Hero() {
+  return (
+    <>
+      <div className="grid grid-cols-10 grid-rows-6  ">
+        <div className="col-span-4 row-span-6 w-full p-5 border border-black bg-[#D0FFAC]">
+          {" "}
+          <Image
+            src={about}
+            alt="Metallic sculpture"
+            className=" w-[50%] mx-auto"
+          />
+        </div>
+        <div className="col-span-6 row-span-6 col-start-5  border border-black">
+          2
+        </div>
+      </div>
+
+      <div className="grid grid-cols-10 grid-rows-8  bg-[#1A1A1A]">
+        <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-5"></div>
+        <div className="col-span-3 p-5 border border-[#FFFFFF] flex items-center justify-center">
+          <Typography
+            variant="h1"
+            weight="semibold"
+            align="center"
+            color="offset"
+            className="uppercase font-csbohemian tracking-wider leading-[0.95] text-[40px] md:text-[68px] lg:text-[76px]"
+          >
+            v<span className="uppercase font-bohemian wavy-letter">i</span>s
+            <span className="uppercase font-bohemian wavy-letter">i</span>on
+          </Typography>
+        </div>
+        <div className="col-span-5 row-span-4 col-start-5 border border-[#FFFFFF] p-5 w-full flex items-center justify-center">
+          <Image src={vision} alt="Metallic sculpture" />
+        </div>
+        <div className="row-span-4 col-start-10 border border-[#FFFFFF]"></div>
+        <div className="row-span-3 row-start-2 border "></div>
+        <div className="p-5 w-[80%] mx-auto col-span-3 row-span-3 row-start-2 flex items-center justify-center">
+          <Typography
+            variant="body1"
+            color="white"
+            weight="normal"
+            className="tracking-wider font-ppmori text-xl leading-1.5"
+          >
+            To be the global nexus where blockchain technology seamlessly
+            integrates into everyday life, creating a decentralized and
+            empowered future for all.
+          </Typography>
+        </div>
+        <div className="row-span-4 row-start-5 border border-[#FFFFFF]"></div>
+        <div className="col-span-3 row-span-4 row-start-5 border border-[#FFFFFF] flex items-center justify-center p-5">
+          <Image
+            src={mission}
+            alt="Metallic sculpture"
+            className=" w-full mx-auto"
+          />
+        </div>
+        <div className="col-span-5 col-start-5 row-start-5 border border-[#FFFFFF] flex items-center justify-center">
+          <Typography
+            variant="h1"
+            weight="semibold"
+            align="center"
+            color="offset"
+            className="uppercase tracking-wider leading-[0.95] text-[40px] md:text-[68px] lg:text-[76px]"
+          >
+            m<span className="uppercase font-bohemian wavy-letter">i</span>ss
+            <span className="uppercase font-bohemian wavy-letter">i</span>on
+          </Typography>
+        </div>
+        <div className=" w-[80%] mx-auto col-span-5 row-span-3 col-start-5 row-start-6  flex items-center justify-center">
+          <Typography
+            variant="body1"
+            color="white"
+            weight="normal"
+            className="tracking-wider font-ppmori text-xl leading-[0.90]"
+          >
+            Lampros DAO is dedicated to cultivating trailblazing web3 leaders,
+            amplifying open-source breakthroughs across multiple blockchain
+            terrains, and building a community bound by shared growth and
+            decentralized principles.
+          </Typography>
+        </div>
+        <div className="col-start-10 bg-[#DFCDF2] row-start-5 border border-[#FFFFFF]"></div>
+        <div className="row-span-3 col-start-10 row-start-6 border border-[#FFFFFF]"></div>
+      </div>
+    </>
+  );
+}

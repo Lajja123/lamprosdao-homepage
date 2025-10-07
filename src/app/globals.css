@@ -2,25 +2,76 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --breakpoint-bp-xs: 400px;
+  --breakpoint-xs: 480px;
+  --breakpoint-bp-sm: 540px;
+  --breakpoint-bp-md: 700px;
+  --breakpoint-bp-mx: 850px;
+  --breakpoint-bp-lg: 900px;
+  --breakpoint-bp-2xl: 1800px;
+  --font-csbohemian: "CSBohemian", sans-serif;
+  --font-ppmori: "PPMori", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #ffffff;
   }
 }
 
+/* Preload critical styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: optional;
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeSpeed;
+}
+
+/* Marquee animation */
+.marquee {
+  position: relative;
+}
+.marquee__track {
+  width: max-content;
+  animation: marquee-scroll linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Font utility classes using next/font CSS variables */
+.font-mori {
+  font-family: var(--font-pp-mori), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, sans-serif;
+}
+
+.font-bohemian {
+  font-family: var(--font-cs-bohemian), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, sans-serif;
+}
+
+.font-psygen {
+  font-family: var(--font-psygen), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Arial, sans-serif;
+}
+/* Wavy letter style (static, no animation) */
+.wavy-letter {
+  display: inline-block;
+  transform-origin: 50% 80%;
 }
