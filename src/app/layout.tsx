@@ -39,7 +39,7 @@ const CSBohemian = localFont({
 });
 
 const Psygen = localFont({
-  src: "./fonts/Psygen.otf",
+  src: "./fonts/Psygen-Regular.otf",
   display: "optional",
   variable: "--font-psygen",
   adjustFontFallback: false,
