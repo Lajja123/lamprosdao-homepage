@@ -8,8 +8,8 @@ export default function Homepage() {
     <>
       <Hero />
       <Section2 />
-      <Research />
-      <Faq />
+      {/* <Research /> */}
+      {/* <Faq /> */}
     </>
   );
 }

@@ -9,14 +9,14 @@ export default function Hero() {
   return (
     <section className="relative  text-center overflow-hidden">
       {/* Vector Background - Responsive */}
-      <div className="absolute -top-[300px] left-0  h-max w-full ">
+      {/* <div className="absolute -top-[300px] left-0  h-max w-full ">
         <Image
           src={vector1}
           alt="Vector graphic 1"
           className="object-contain object-center w-full h-auto aspect-auto"
           priority
         />
-      </div>
+      </div> */}
 
       {/* Content Container - Responsive */}
       <div className="w-full  my-30 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12">
