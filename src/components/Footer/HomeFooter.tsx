@@ -7,7 +7,7 @@ import medium from "@/assests/Footer/medium.svg";
 import discord from "@/assests/Footer/discord.svg";
 import notion from "@/assests/Footer/notion.svg";
 import logoLight from "@/assests/Footer/logo-light.svg";
-import logoDark from "@/assests/Footer/logo-dark.svg";
+import logoDark from "@/assests/Footer/lampros-dao.png";
 import logo from "@/assests/Footer/logo.svg";
 import lampros from "@/assests/Footer/lampros-dao.png";
 import rectangle from "@/assests/Footer/Rectangle.svg";
@@ -15,14 +15,14 @@ import { Typography } from "@/components/UI/Typography";
 
 export default function HomeFooter() {
   return (
-    <footer className="w-full bg-[#FFFFFF] text-[#000000] ">
+    <footer className="w-full bg-[#000000] text-[#FFFFFF] ">
       <div
-        className="grid grid-cols-2 md:grid-cols-4 text-center border border-black divide-x md:divide-x divide-y md:divide-y-0 divide-white/60"
+        className="grid grid-cols-2 md:grid-cols-4 text-center border border-white divide-x md:divide-x divide-y md:divide-y-0 divide-white/60"
         style={{ fontFamily: "PP Mori" }}
       >
         <Typography
           variant="button"
-          color="primary"
+          color="white"
           align="center"
           className="p-2 md:p-5"
         >
@@ -30,7 +30,7 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="primary"
+          color="white"
           align="center"
           className="p-2 md:p-5"
         >
@@ -38,7 +38,7 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="primary"
+          color="white"
           align="center"
           className="p-2 md:p-5"
         >
@@ -46,7 +46,7 @@ export default function HomeFooter() {
         </Typography>
         <Typography
           variant="button"
-          color="primary"
+          color="white"
           align="center"
           className="p-2 md:p-5"
         >
@@ -63,7 +63,7 @@ export default function HomeFooter() {
         />
         <div className="absolute inset-0 flex items-center justify-center p-5">
           <Image
-            src={logoLight}
+            src={logoDark}
             alt={""}
             width={1200}
             height={1200}
@@ -71,7 +71,7 @@ export default function HomeFooter() {
           />
         </div>
       </div>
-      <div className="border border-black flex flex-col md:flex-row items-stretch">
+      <div className="border border-white flex flex-col md:flex-row items-stretch">
         <div className="flex items-center justify-center w-full md:w-1/10 border-b md:border-b-0 md:border-r border-black p-2 md:p-3">
           <Image
             src={logo}
@@ -83,7 +83,7 @@ export default function HomeFooter() {
         </div>
         <div className="flex-1 hidden md:block p-3" />
         <div className="grid grid-cols-3 md:grid-cols-6 w-full md:w-1/5 text-center border-t md:border-t-0 md:border-l border-black">
-          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
             <Image
               src={medium}
               alt="Medium"
@@ -92,7 +92,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
             <Image
               src={linkedin}
               alt="LinkedIn"
@@ -101,7 +101,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
             <Image
               src={discord}
               alt="Discord"
@@ -119,7 +119,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
             <Image
               src={telegram}
               alt="Telegram"
@@ -128,7 +128,7 @@ export default function HomeFooter() {
               className="w-7 h-7"
             />
           </div>
-          <div className="border-l border-black flex items-center justify-center p-2 md:p-3">
+          <div className="border-l border-white flex items-center justify-center p-2 md:p-3">
             <Image
               src={twitter}
               alt="Twitter"

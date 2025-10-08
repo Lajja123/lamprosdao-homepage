@@ -95,9 +95,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
           <Image
             src={finalCenterContent.imageSrc}
             alt={finalCenterContent.imageAlt || "Center image"}
-            width={400}
-            height={200}
-            className="object-contain w-full max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl absolute -top-15"
+            className="object-contain w-full  absolute -top-15"
           />
         ) : (
           <Typography

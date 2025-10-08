@@ -34,7 +34,18 @@ export const commonStyles = {
   grid: {
     cols10: "grid grid-cols-10",
     cols12: "grid grid-cols-12",
+    cols6: "grid grid-cols-6",
     auto: "grid grid-cols-auto",
+    // Standard 10-column grid with borders
+    standard10: "grid grid-cols-10 border border-black",
+    // Grid container with overflow handling
+    container: "w-full overflow-x-auto",
+    // Responsive grid for different screen sizes
+    responsive:
+      "min-w-[768px] lg:min-w-[1024px] grid grid-cols-8 lg:grid-cols-10 border border-black",
+    // Research grid with 6 columns and 5 rows
+    research:
+      "min-w-[320px] sm:min-w-[640px] md:min-w-[768px] grid grid-cols-6 grid-rows-5 border border-white",
   },
 
   // Backgrounds
@@ -108,15 +119,45 @@ export const commonStyles = {
 
     // Grid cell styles
     gridCell: {
+      // Basic cell with standard border
+      basic: "border border-black ",
+      // Cell with height
+      withHeight: "border border-black h-30",
+      // Number cell
       number: "border border-[#000000] p-10 flex items-center justify-center",
+      // Content cell
       content:
         "col-span-9 border border-[#000000] p-10 flex flex-row justify-between items-center px-4 min-w-0",
+      // Title cell
       title:
         "col-span-4 row-start-4 border border-[#000000] flex justify-center items-center",
+      // Question cell
       question:
         "row-start-4 bg-[#CBE9FF] flex w-full justify-center items-center border border-[#000000]",
+      // Navigation cell
       navigation: "border border-[#000000] flex items-center justify-center",
+      // Clip cell
       clip: "col-span-3 col-start-7 row-start-4 border border-[#000000] w-full flex justify-center items-center",
+      // Spanned content cell
+      spannedContent:
+        "col-span-6 lg:col-span-8 row-span-4 border border-black flex items-center justify-center gap-4 lg:gap-8 p-6 lg:p-12 bg-white",
+      // Arrow cell
+      arrow:
+        "row-span-3 border border-black relative flex items-center justify-center",
+      // Icon cell
+      icon: "border border-black h-30 relative flex items-center justify-center",
+      // Research content cell
+      researchContent:
+        "col-span-3 row-span-4 border-l border-white flex items-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px]",
+      // Research image cell
+      researchImage:
+        "col-span-3 row-span-5 flex items-center min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[550px]",
+      // Research arrow cell
+      researchArrow:
+        "col-start-4 row-start-5 col-span-1 row-span-1 border border-white relative flex items-center justify-center",
+      // Research icon cell
+      researchIcon:
+        "col-span-1 row-span-1 border border-white flex items-center justify-center",
     },
   },
 
@@ -169,6 +210,39 @@ export const combineStyles = (...styles: (string | undefined)[]): string => {
 
 // Common style presets for specific use cases
 export const stylePresets = {
+  // Grid layout presets
+  grid: {
+    // Standard 10-column grid container
+    container: combineStyles(commonStyles.grid.container),
+    // Standard 10-column grid with borders
+    standard: combineStyles(commonStyles.grid.standard10),
+    // Responsive grid with minimum width
+    responsive: combineStyles(commonStyles.grid.responsive),
+    // Research grid with 6 columns
+    research: combineStyles(commonStyles.grid.research),
+  },
+
+  // Grid cell presets
+  cells: {
+    basic: combineStyles(commonStyles.components.gridCell.basic),
+    withHeight: combineStyles(commonStyles.components.gridCell.withHeight),
+    spannedContent: combineStyles(
+      commonStyles.components.gridCell.spannedContent
+    ),
+    arrow: combineStyles(commonStyles.components.gridCell.arrow),
+    icon: combineStyles(commonStyles.components.gridCell.icon),
+    researchContent: combineStyles(
+      commonStyles.components.gridCell.researchContent
+    ),
+    researchImage: combineStyles(
+      commonStyles.components.gridCell.researchImage
+    ),
+    researchArrow: combineStyles(
+      commonStyles.components.gridCell.researchArrow
+    ),
+    researchIcon: combineStyles(commonStyles.components.gridCell.researchIcon),
+  },
+
   // FAQ specific styles
   faq: {
     numberCell: combineStyles(commonStyles.components.gridCell.number),
@@ -177,6 +251,18 @@ export const stylePresets = {
     titleCell: combineStyles(commonStyles.components.gridCell.title),
     navCell: combineStyles(commonStyles.components.gridCell.navigation),
     clipCell: combineStyles(commonStyles.components.gridCell.clip),
+    // FAQ item container
+    itemContainer: "border border-black p-4 mb-2 bg-white",
+    // FAQ question with expand/collapse
+    questionRow:
+      "flex items-center justify-between cursor-pointer hover:bg-gray-50 p-4 border-b border-gray-200",
+    // FAQ answer with animation
+    answerRow:
+      "p-4 bg-gray-50 border-b border-gray-200 transition-all duration-300 ease-in-out",
+    // Expand/collapse icon
+    expandIcon: "w-6 h-6 transition-transform duration-300",
+    // FAQ grid container
+    gridContainer: "grid grid-cols-1 gap-4",
   },
 
   // Button presets

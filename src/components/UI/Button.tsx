@@ -62,44 +62,6 @@ export const Button: React.FC<ButtonProps> = ({
     );
   };
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const tlRef = useRef<gsap.core.Tween | null>(null);
-
-  useEffect(() => {
-    if (!buttonRef.current) return;
-    const el = buttonRef.current;
-
-    // set initial
-    gsap.set(el, { transformOrigin: "50% 50%" });
-
-    const enter = () => {
-      tlRef.current?.kill();
-      tlRef.current = gsap.to(el, {
-        duration: 0.35,
-        y: -2,
-        scale: 1.02,
-        boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
-        ease: "power2.out",
-      });
-    };
-
-    const leave = () => {
-      tlRef.current?.kill();
-      tlRef.current = gsap.to(el, {
-        duration: 0.35,
-        y: 0,
-        scale: 1,
-        boxShadow: "0 1px 0 rgba(0,0,0,0.06)",
-        ease: "power2.out",
-      });
-    };
-
-    el.addEventListener("mouseenter", enter);
-    el.addEventListener("mouseleave", leave);
-    return () => {
-      el.removeEventListener("mouseenter", enter);
-      el.removeEventListener("mouseleave", leave);
-    };
-  }, []);
 
   const base =
     "inline-flex items-center justify-center transition will-change-transform";

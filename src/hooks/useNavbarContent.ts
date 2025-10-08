@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import vector2 from "@/assests/common/Vector2.svg";
+import vector2 from "@/assests/common/clip.svg";
 import type { NavbarContent } from "@/types";
 
 export function useNavbarContent(): NavbarContent {
@@ -15,7 +15,7 @@ export function useNavbarContent(): NavbarContent {
       case "/contribution":
         return "Contribution";
       default:
-        return "LAMPROS DAO";
+        return "/";
     }
   };
 

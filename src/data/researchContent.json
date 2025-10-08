@@ -1,0 +1,39 @@
+{
+    "researchItems": [
+        {
+            "id": 1,
+            "title": "Governance & Research",
+            "description": "Empowering Web3 contributors through workshops, seminars, and hackathons. Learn, build, and engage with DAOs like Arbitrum & Optimism.",
+            "image": "/assests/HeroSection3/Clip.png",
+            "icon": "/assests/HeroSection3/Clip2.svg"
+        },
+        {
+            "id": 2,
+            "title": "DAO Governance",
+            "description": "Explore decentralized decision-making processes and voting mechanisms. Understand how DAOs operate and make collective decisions in the Web3 ecosystem.",
+            "image": "/assests/HeroSection3/Clip.png",
+            "icon": "/assests/HeroSection3/Clip2.svg"
+        },
+        {
+            "id": 3,
+            "title": "Research Initiatives",
+            "description": "Conducting cutting-edge research in blockchain technology, DeFi protocols, and governance mechanisms. Contributing to the advancement of Web3 knowledge.",
+            "image": "/assests/HeroSection3/Clip.png",
+            "icon": "/assests/HeroSection3/Clip2.svg"
+        },
+        {
+            "id": 4,
+            "title": "Community Building",
+            "description": "Fostering a vibrant community of researchers, developers, and governance enthusiasts. Building bridges between traditional academia and Web3 innovation.",
+            "image": "/assests/HeroSection3/Clip.png",
+            "icon": "/assests/HeroSection3/Clip2.svg"
+        },
+        {
+            "id": 5,
+            "title": "Educational Programs",
+            "description": "Developing comprehensive educational resources and training programs for Web3 governance. Making complex concepts accessible to everyone.",
+            "image": "/assests/HeroSection3/Clip.png",
+            "icon": "/assests/HeroSection3/Clip2.svg"
+        }
+    ]
+}
