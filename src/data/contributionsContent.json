@@ -1,0 +1,61 @@
+{
+    "arbitrum": {
+        "title": "Arbitrum",
+        "subtitle": "Strengthening Arbitrum's Governance and Research",
+        "description": "Lampros DAO is committed to enhancing governance, transparency, and community engagement within the Arbitrum ecosystem. Through in-depth research, interactive dashboards, and educational initiatives, we aim to empower delegates, developers, and users to make informed decisions. Our contributions focus on strengthening governance frameworks, improving incentive structures, and fostering participation in decentralized decision-making.",
+        "highlightedLetters": [
+            "A",
+            "I",
+            "M"
+        ],
+        "word": "Arbitrum"
+    },
+    "optimism": {
+        "title": "Optimism",
+        "subtitle": "Advancing Optimism's Collective Intelligence",
+        "description": "Lampros DAO actively contributes to Optimism's governance ecosystem by providing comprehensive research, data analysis, and community insights. We focus on understanding incentive mechanisms, delegate behavior, and governance participation patterns. Our work helps optimize the Collective's decision-making processes and ensures transparent, effective governance that benefits the entire Optimism community.",
+        "highlightedLetters": [
+            "O",
+            "I",
+            "M"
+        ],
+        "word": "Optimism"
+    },
+    "contributions": {
+        "header": "BELOW ARE SOME OF OUR KEY CONTRIBUTIONS TO ARBITRUM DAO",
+        "items": [
+            {
+                "id": "01",
+                "title": "LTIPP Incentive Programs",
+                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
+                "buttonLabel": "Read The Reports",
+                "buttonColor": "#DFCDF2",
+                "buttonTextColor": "#0B0B0B"
+            },
+            {
+                "id": "02",
+                "title": "LTIPP Incentive Programs",
+                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
+                "buttonLabel": "Read The Reports",
+                "buttonColor": "#DFCDF2",
+                "buttonTextColor": "#0B0B0B"
+            },
+            {
+                "id": "03",
+                "title": "LTIPP Incentive Programs",
+                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
+                "buttonLabel": "Read The Reports",
+                "buttonColor": "#DFCDF2",
+                "buttonTextColor": "#0B0B0B"
+            },
+            {
+                "id": "04",
+                "title": "LTIPP Incentive Programs",
+                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
+                "buttonLabel": "Read The Reports",
+                "buttonColor": "#DFCDF2",
+                "buttonTextColor": "#0B0B0B"
+            }
+        ]
+    }
+}

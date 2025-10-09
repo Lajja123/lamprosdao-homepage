@@ -2,16 +2,14 @@ import Faq from "@/components/Homepage/Faq";
 import Hero from "@/components/Homepage/Hero";
 import Research from "@/components/Homepage/Research";
 import Section2 from "@/components/Homepage/Section2";
-import HomeFooter from "../Footer/HomeFooter";
 
 export default function Homepage() {
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <Section2 />
       <Research />
       <Faq />
-      <HomeFooter />
     </>
   );
 }

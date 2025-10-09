@@ -63,7 +63,7 @@ export default function Section2() {
           <Typography
             variant="subtitle2"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="tracking-wide  font-ppmori"
           >
             In The Vibrant World Of Blockchain, Lampros DAO Stands As A Beacon,

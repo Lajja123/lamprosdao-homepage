@@ -11,13 +11,13 @@ export default function Hero() {
   return (
     <>
       <div className="w-full h-max  relative ">
-        <div className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[20%] lg:bottom-[25%] xl:bottom-[30%] w-full ">
+        <div className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[20%] lg:bottom-[25%] xl:bottom-[50%] w-full ">
           <Typography
             variant="h1"
             weight="normal"
             align="center"
             color="dark"
-            className="uppercase text-[28px] sm:text-[36px] md:text-[64px] lg:text-[88px] xl:text-[128px] leading-tight"
+            className="uppercase leading-tight"
           >
             The Be
             <span className="uppercase font-bohemian wavy-letter">a</span>

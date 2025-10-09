@@ -75,34 +75,32 @@ export default function Navbar({ centerContent }: NavbarProps) {
   }, [isMenuOpen]);
 
   return (
-    <nav className="relative p-10  flex items-start md:items-start justify-between ">
+    <nav className="relative   flex items-start md:items-start justify-between ">
       {/* Left: Logo */}
-      <div className=" flex ">
+      <div className="flex p-10">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
-            width={200}
-            height={200}
-            className="cursor-pointer"
+            className="cursor-pointer w-full"
           />
         </Link>
       </div>
 
       {/* Center: Dynamic Content */}
-      <div className="flex flex-1 justify-center items-center relative">
+      <div className="flex justify-center items-center ">
         {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
           <Image
             src={finalCenterContent.imageSrc}
             alt={finalCenterContent.imageAlt || "Center image"}
-            className="object-contain w-full  absolute -top-15"
+            className=" w-full "
           />
         ) : (
           <Typography
             variant="h1"
             weight="bold"
             color="primary"
-            className="text-center uppercase tracking-wider text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
+            className=" p-10 text-center uppercase tracking-wider text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
           >
             {finalCenterContent?.title
               ? (() => {
@@ -173,7 +171,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Right: Desktop Menu */}
-      <div className="hidden md:flex justify-end">
+      <div className="hidden md:flex justify-end p-10">
         <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] z-10 rounded-lg">
           {navigationItems.map((item) => {
             const isActive = isActiveRoute(item.href);

@@ -5,9 +5,9 @@ import RecentVotes from "@/components/Governance/RecentVotes";
 export default function page() {
   return (
     <div>
-      {/* <Hero />
-      <RecentVotes/>
-      <Delegate/> */}
+      <Hero />
+      <RecentVotes />
+      {/* <Delegate /> */}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Clip from "@/assests/HeroSection3/Clip.png";
+import Clip from "@/assests/HeroSection3/Clip.svg";
 import Clip2 from "@/assests/HeroSection3/Clip2.svg";
 import ArrowLeft from "@/assests/common/arrow1.svg";
 import ArrowRight from "@/assests/common/arrow1.svg";

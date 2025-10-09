@@ -38,26 +38,31 @@ interface TypographyProps {
   children: React.ReactNode;
 }
 
-// Typography styles mapping
+// Typography styles mapping with full responsive breakpoints
 const getTypographyStyles = (variant: string) => {
   const styles = {
-    h1: "text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tight",
-    h2: "text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight",
-    h3: "text-2xl md:text-3xl lg:text-4xl leading-snug tracking-tight",
-    h4: "text-xl md:text-2xl lg:text-3xl leading-snug tracking-tight",
-    h5: "text-lg md:text-xl lg:text-2xl leading-snug",
-    h6: "text-base md:text-lg lg:text-xl leading-snug",
-    subtitle1: "text-lg md:text-xl leading-relaxed tracking-wide",
+    h1: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight tracking-tight",
+    h2: "text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl leading-tight tracking-tight",
+    h3: "text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl leading-snug tracking-tight",
+    h4: "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl leading-snug tracking-tight",
+    h5: "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-snug",
+    h6: "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-snug",
+    subtitle1:
+      "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed tracking-wide",
     subtitle2:
-      "text-base md:text-md lg:text-md xl:text-lg leading-relaxed tracking-wide",
-    body1: "text-base leading-relaxed",
-    body2: "text-sm leading-relaxed",
-    caption: "text-xs leading-normal tracking-wide ",
-    overline: "text-xs leading-normal tracking-widest ",
+      "text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed tracking-wide",
+    body1: "text-xs sm:text-sm md:text-md 2xl:text-base leading-relaxed",
+    body2:
+      "text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl leading-relaxed",
+    caption:
+      "text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg leading-normal tracking-wide",
+    overline:
+      "text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm 2xl:text-base leading-normal tracking-widest",
     button:
-      "text-sm md:text-base leading-none tracking-wide uppercase font-medium font-ppmori",
-    logo: "text-2xl md:text-3xl lg:text-4xl leading-none tracking-wider font-light",
-    accent: "text-lg md:text-xl leading-relaxed tracking-wide",
+      "text-xs sm:text-sm md:text-sm 2xl:text-base  leading-none tracking-wide  font-ppmori",
+    logo: "text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl leading-none tracking-wider font-light",
+    accent:
+      "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed tracking-wide",
   };
 
   return styles[variant as keyof typeof styles] || styles.body1;

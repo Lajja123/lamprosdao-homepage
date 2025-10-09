@@ -1,54 +1,55 @@
-"use client"
-import React, { useState } from 'react';
-import up from "@/assests/common/left.svg"
-import down from "@/assests/common/right.svg"
-import Image from 'next/image';
+"use client";
+import React, { useState } from "react";
+import up from "@/assests/common/arrow1.svg";
+import down from "@/assests/common/arrow1.svg";
+import Image from "next/image";
 import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
-import Typography from '../UI/Typography';
-
+import vote1 from "@/assests/Governance/Vote.svg";
+import Typography from "../UI/Typography";
+import arbitrum from "@/assests/Governance/Arbitrum.svg";
+import op from "@/assests/Governance/optimism.svg";
 
 export default function RecentVotes() {
-  const [activeTab, setActiveTab] = useState('Arbitrum');
-  
+  const [activeTab, setActiveTab] = useState("Arbitrum");
+
   const votes = [
     {
-      id: '01',
-      status: 'Voted [ For ]',
-      title: '[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky',
-      tags: ['Arbitrum', 'Off-Chain Voting']
+      id: "01",
+      status: "Voted [ For ]",
+      title: "[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky",
+      tags: ["Arbitrum", "Off-Chain Voting"],
     },
     {
-      id: '02',
-      status: 'Voted [ For ]',
-      title: '[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky',
-      tags: ['Arbitrum', 'Off-Chain Voting']
+      id: "02",
+      status: "Voted [ For ]",
+      title: "[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky",
+      tags: ["Arbitrum", "Off-Chain Voting"],
     },
     {
-      id: '03',
-      status: 'Voted [ For ]',
-      title: '[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky',
-      tags: ['Arbitrum', 'Off-Chain Voting']
+      id: "03",
+      status: "Voted [ For ]",
+      title: "[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky",
+      tags: ["Arbitrum", "Off-Chain Voting"],
     },
     {
-      id: '04',
-      status: 'Voted [ For ]',
-      title: '[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky',
-      tags: ['Arbitrum', 'Off-Chain Voting']
-    }
+      id: "04",
+      status: "Voted [ For ]",
+      title: "[CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky",
+      tags: ["Arbitrum", "Off-Chain Voting"],
+    },
   ];
 
   return (
- <div className="grid grid-cols-10">
-      {/* Row 1 - Header Row */}
-      <div className='border border-black bg-[#C5D9E8] p-6 flex items-center justify-center'>
-        <div className="w-12 h-12 border-2 border-black rounded-lg flex items-center justify-center">
-          <div className="w-6 h-6 border border-black rounded"></div>
+    <div className="grid grid-cols-8 ">
+      <div className=" border border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
+        <div className="  flex items-center justify-center">
+          <Image src={vote1} alt="vote1" />
         </div>
       </div>
-      <div className="col-span-8 border border-black p-6 flex items-center justify-between">
-        <Typography 
-          variant="h2" 
-          color="primary" 
+      <div className="col-span-6 border border-black p-6 flex items-center justify-between">
+        <Typography
+          variant="h2"
+          color="primary"
           weight="light"
           className="tracking-wide"
         >
@@ -56,38 +57,28 @@ export default function RecentVotes() {
         </Typography>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setActiveTab('Arbitrum')}
-            className={`px-6 py-3 rounded-full transition-all flex items-center gap-2 ${
-              activeTab === 'Arbitrum'
-                ? 'bg-[#2D374B] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
+            onClick={() => setActiveTab("Arbitrum")}
+            className={`px-6 py-3 rounded-full bg-[#2F2B2B] text-white transition-all flex items-center gap-2 `}
           >
-            <div className="w-5 h-5 rounded-full bg-[#4A90E2] flex items-center justify-center text-xs text-white font-bold">
-              A
-            </div>
-            <Typography variant="button" className="normal-case">
+            <Image src={arbitrum} alt="arbitrum" className="w-7" />
+
+            <Typography variant="button" color="white" className="normal-case">
               Arbitrum
             </Typography>
           </button>
           <button
-            onClick={() => setActiveTab('Optimism')}
-            className={`px-6 py-3 rounded-full transition-all flex items-center gap-2 ${
-              activeTab === 'Optimism'
-                ? 'bg-[#FF0420] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
+            onClick={() => setActiveTab("Arbitrum")}
+            className={`px-6 py-3 rounded-full bg-[#2F2B2B] text-white transition-all flex items-center gap-2 `}
           >
-            <div className="w-5 h-5 rounded-full bg-[#FF0420] flex items-center justify-center text-xs text-white font-bold">
-              OP
-            </div>
-            <Typography variant="button" className="normal-case">
+            <Image src={op} alt="optimism" className="w-7" />
+
+            <Typography variant="button" color="white" className="normal-case">
               Optimism
             </Typography>
           </button>
         </div>
       </div>
-      <div className="col-start-10 border border-black"></div>
+      <div className=" col-start-8 border border-black"></div>
 
       {/* Row 2 - Vote 01 */}
       <div className="row-start-2 border border-black p-6 flex items-center justify-center">
@@ -101,7 +92,12 @@ export default function RecentVotes() {
         </Typography>
       </div>
       <div className="col-span-6 col-start-4 row-start-2 border border-black p-6">
-        <Typography variant="body1" color="primary" weight="normal" className="mb-3">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="normal"
+          className="mb-3"
+        >
           [CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky
         </Typography>
         <div className="flex gap-2">
@@ -113,9 +109,9 @@ export default function RecentVotes() {
           </span>
         </div>
       </div>
-      <div className="col-start-10 row-start-2 border border-black bg-[#2A2A2A] flex items-center justify-center">
+      <div className="col-start-8 row-start-2 border border-black bg-[#2A2A2A] flex items-center justify-center">
         <button className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-            <Image src={down} alt="down"/>
+          <Image src={down} alt="down" />
         </button>
       </div>
 
@@ -131,7 +127,12 @@ export default function RecentVotes() {
         </Typography>
       </div>
       <div className="col-span-6 col-start-4 row-start-3 border border-black p-6">
-        <Typography variant="body1" color="primary" weight="normal" className="mb-3">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="normal"
+          className="mb-3"
+        >
           [CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky
         </Typography>
         <div className="flex gap-2">
@@ -143,9 +144,9 @@ export default function RecentVotes() {
           </span>
         </div>
       </div>
-      <div className="col-start-10 row-start-3 border border-black bg-[#2A2A2A] flex items-center justify-center">
+      <div className="col-start-8 row-start-3 border border-black bg-[#2A2A2A] flex items-center justify-center">
         <button className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-              <Image src={down} alt="down"/>
+          <Image src={down} alt="down" />
         </button>
       </div>
 
@@ -161,7 +162,12 @@ export default function RecentVotes() {
         </Typography>
       </div>
       <div className="col-span-6 col-start-4 row-start-4 border border-black p-6">
-        <Typography variant="body1" color="primary" weight="normal" className="mb-3">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="normal"
+          className="mb-3"
+        >
           [CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky
         </Typography>
         <div className="flex gap-2">
@@ -173,9 +179,9 @@ export default function RecentVotes() {
           </span>
         </div>
       </div>
-      <div className="col-start-10 row-start-4 border border-black bg-[#2A2A2A] flex items-center justify-center">
+      <div className="col-start-8 row-start-4 border border-black bg-[#2A2A2A] flex items-center justify-center">
         <button className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-          <Image src={up} alt="up"/>
+          <Image src={up} alt="up" />
         </button>
       </div>
 
@@ -191,7 +197,12 @@ export default function RecentVotes() {
         </Typography>
       </div>
       <div className="col-span-6 col-start-4 row-start-5 border border-black p-6">
-        <Typography variant="body1" color="primary" weight="normal" className="mb-3">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="normal"
+          className="mb-3"
+        >
           [CONSTITUTIONAL] Proposal: For Arbitrum DAO To Register The Sky
         </Typography>
         <div className="flex gap-2">
@@ -203,9 +214,8 @@ export default function RecentVotes() {
           </span>
         </div>
       </div>
-      <div className="col-start-10 row-start-5 border border-black bg-[#2A2A2A] flex items-center justify-center">
-        <Image src={down} alt="down"/>
-
+      <div className="col-start-8 row-start-5 border border-black bg-[#2A2A2A] flex items-center justify-center">
+        <Image src={down} alt="down" />
       </div>
 
       {/* Footer Row */}
@@ -217,7 +227,6 @@ export default function RecentVotes() {
       </div>
       <div className="col-start-10 row-start-6 border border-black bg-[#E8F5A8]"></div>
     </div>
-  
 
     //  <div className="min-h-screen bg-white ">
     //   <div className="">
@@ -233,9 +242,9 @@ export default function RecentVotes() {
     //       {/* Title Column */}
     //       <div className="col-span-7 border-r border-black p-6 flex items-center justify-between">
     //         <div>
-    //         <Typography 
-    //           variant="h2" 
-    //           color="primary" 
+    //         <Typography
+    //           variant="h2"
+    //           color="primary"
     //           weight="light"
     //           className="tracking-wide"
     //         >

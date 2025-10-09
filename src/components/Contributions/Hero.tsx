@@ -1,12 +1,25 @@
+"use client";
 import clip from "@/assests/Contributions/clip.svg";
 import Image from "next/image";
 import bgImage1 from "@/assests/HeroSection2/arrow-bg.png";
-import clip2 from "@/assests/Contributions/clip2.svg";
+import clip2 from "@/assests/Contributions/clip2.png";
 import Typography from "../UI/Typography";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
+import { useState } from "react";
+import contributionsContent from "@/data/contributionsContent.json";
 
 export default function Hero() {
+  const [activeContent, setActiveContent] = useState<"arbitrum" | "optimism">(
+    "arbitrum"
+  );
+
+  const currentContent = contributionsContent[activeContent];
+
+  const handleButtonClick = (content: "arbitrum" | "optimism") => {
+    setActiveContent(content);
+  };
+
   return (
     <>
       <div className="grid grid-cols-10 ">
@@ -20,16 +33,14 @@ export default function Hero() {
             style={{
               backgroundImage: `url(${bgImage1.src})`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "top center",
               backgroundRepeat: "no-repeat",
             }}
           ></div>
           <Image
             src={clip}
             alt="clip"
-            width={100}
-            height={100}
-            className="relative w-full h-full object-contain p-2 mx-auto"
+            className="relative w-full h-full object-contain p-5 mx-auto"
           />{" "}
         </div>
         <div className="border border-black ">6</div>
@@ -37,12 +48,12 @@ export default function Hero() {
         <div className="border border-black ">8</div>
         <div className="border border-black ">9</div>
         <div className="border border-black ">10</div>
-        <div className="col-span-5 border border-black p-10">
+        <div className="col-span-5  p-10">
           <Typography
-            variant="subtitle2"
+            variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[600px]"
+            className="tracking-wider font-ppmori text-xl leading-1.5  mx-auto px-10 py-10"
           >
             At Lampros DAO, we actively contribute to both governance and
             research, ensuring that decentralized ecosystems remain transparent,
@@ -54,81 +65,108 @@ export default function Hero() {
             informed decisions.{" "}
           </Typography>
         </div>
-        <div className="col-span-5 col-start-6 border border-black bg-[#DFF48D] p-5 flex items-center justify-center ">
+        <div className="col-span-5 col-start-6 bg-[#DFF48D] p-5 flex items-center justify-center ">
           <Image
             src={clip2}
             alt="Metallic sculpture"
-            className=" w-[50%] mx-auto"
+            className=" w-1/2 mx-auto"
           />
         </div>
-        <div className="row-start-3 border border-white bg-[#1A1A1A]">13</div>
+
+        <div className="row-start-3 border border-white bg-[#1A1A1A]"></div>
         <div className="col-span-4 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
-          <div className="bg-white rounded-full  py-4 flex items-center gap-4 shadow-lg w-[200px] p-10 ">
-            <Image src={arbitrum} alt="arbitrum" className="w-5"/>
+          <div
+            className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
+              activeContent === "arbitrum"
+                ? "bg-white scale-105"
+                : "bg-gray-300 hover:bg-gray-200"
+            }`}
+            onClick={() => handleButtonClick("arbitrum")}
+          >
+            <Image src={arbitrum} alt="arbitrum" />
             <Typography
-              variant="body1"
+              variant="subtitle2"
               color="primary"
               weight="semibold"
-              className="font-ppmori text-2xl"
+              className="font-ppmori "
             >
               Arbitrum
             </Typography>
           </div>
         </div>
         <div className="col-span-4 col-start-6 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
-          {" "}
-          <div className="bg-white rounded-full  py-4 flex items-center gap-4 shadow-lg w-[200px] p-10">
-            <Image src={op} alt="optimism" className="w-5"/>
+          <div
+            className={`rounded-full my-10 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
+              activeContent === "optimism"
+                ? "bg-white scale-105"
+                : "bg-gray-300 hover:bg-gray-200"
+            }`}
+            onClick={() => handleButtonClick("optimism")}
+          >
+            <Image src={op} alt="optimism" />
             <Typography
-              variant="body1"
+              variant="subtitle2"
               color="primary"
               weight="semibold"
-              className="font-ppmori text-2xl"
+              className="font-ppmori "
             >
               Optimism
             </Typography>
           </div>
         </div>
-        <div className="col-start-10 row-start-3 border border-white bg-[#1A1A1A]">
-          
-        </div>
+        <div className="col-start-10 row-start-3 border border-white bg-[#1A1A1A]"></div>
       </div>
-      
-<div className="grid grid-cols-10 ">
-    <div className=" border border-black" ></div>
-    <div className="col-span-8  border border-black  flex items-center justify-center p-5">
-         <Typography
-                    variant="h2"
-                    color="primary"
-                    weight="light"
-                    className="tracking-wide uppercase"
-                  >
-Arbitrum                  </Typography>
-    </div>
-    <div className="col-start-10  border border-black">3</div>
-    <div className="row-start-2  border border-black">4</div>
-    <div className="col-span-8 row-start-2  border border-black bg-[#CBE9FF] flex items-center justify-center p-2">
-         <Typography
-                    variant="body2"
-                    color="primary"
-                    weight="light"
-                    className="tracking-wide "
-                  >
-Strengthening Arbitrum's Governance and Research                  </Typography>
-    </div>
-    <div className="col-start-10 row-start-2  border border-black">6</div>
-    <div className="col-span-10 row-start-3  border border-black flex items-center justify-center">
-         <Typography
-            variant="subtitle2"
+
+      <div className="grid grid-cols-10  ">
+        <div className=" border border-black"></div>
+        <div className="col-span-8  border border-black  flex items-center justify-center p-10">
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="light"
+            className="tracking-wide uppercase"
+          >
+            {currentContent.word.split("").map((letter, index) => {
+              const isHighlighted = currentContent.highlightedLetters.includes(
+                letter.toUpperCase()
+              );
+              return (
+                <span
+                  key={index}
+                  className={
+                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                  }
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </Typography>
+        </div>
+        <div className="col-start-10  border border-black">3</div>
+        <div className="row-start-2  border border-black">4</div>
+        <div className="col-span-8 row-start-2  border border-black bg-[#CBE9FF] flex items-center justify-center p-5">
+          <Typography
+            variant="body2"
+            color="primary"
+            weight="normal"
+            className="tracking-wider"
+          >
+            {currentContent.subtitle}
+          </Typography>
+        </div>
+        <div className="col-start-10 row-start-2  border border-black">6</div>
+        <div className="col-span-10 row-start-3  border border-black flex items-center justify-center p-5">
+          <Typography
+            variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[1200px] p-5"
+            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[1200px] p-5 mx-auto"
           >
-           Lampros DAO is committed to enhancing governance, transparency, and community engagement within the Arbitrum ecosystem. Through in-depth research, interactive dashboards, and educational initiatives, we aim to empower delegates, developers, and users to make informed decisions. Our contributions focus on strengthening governance frameworks, improving incentive structures, and fostering participation in decentralized decision-making.
+            {currentContent.description}
           </Typography>
-    </div>
-</div>
-    
+        </div>
+      </div>
     </>
   );
 }

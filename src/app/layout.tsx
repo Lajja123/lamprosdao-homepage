@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/HomeFooter";
 import DesktopOnly from "@/components/UI/DesktopOnly";
+import Footer from "@/components/Footer/Footer";
 
 const PPMori = localFont({
   src: "./fonts/PPMori-Regular.otf",
@@ -74,7 +74,7 @@ export default function RootLayout({
           <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </body>
     </html>
