@@ -10,8 +10,8 @@ import { Typography } from "@/components/UI/Typography"; // adjust path
 export default function Hero() {
   return (
     <>
-      <div className="w-full h-max min-h-[600px] relative ">
-        <div className="z-50 absolute bottom-[200px]   w-full ">
+      <div className="w-full h-max  relative ">
+        <div className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[20%] lg:bottom-[25%] xl:bottom-[30%] w-full ">
           <Typography
             variant="h1"
             weight="normal"
