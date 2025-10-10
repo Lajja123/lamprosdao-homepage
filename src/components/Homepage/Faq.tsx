@@ -295,7 +295,7 @@ export default function Faq() {
             onClick={handlePrevious}
           >
             <Arrow
-              direction={left}
+              direction="left"
               size={70}
               className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
             />{" "}
@@ -320,7 +320,7 @@ export default function Faq() {
             onClick={handleNext}
           >
             <Arrow
-              direction={right}
+              direction="right"
               size={70}
               className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
             />{" "}
