@@ -64,7 +64,7 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const base =
-    "inline-flex items-center justify-center transition will-change-transform";
+    "inline-flex items-center justify-center transition will-change-transform px-5";
   const radius = roundedClassMap[rounded];
 
   const style: React.CSSProperties = {};

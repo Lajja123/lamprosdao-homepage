@@ -222,7 +222,7 @@ export default function Reports() {
             label="See More"
             color="#D0FFAC"
             textColor="#0B0B0B"
-            className="px-5 "
+            className="px-10"
           />
         </div>
       </div>

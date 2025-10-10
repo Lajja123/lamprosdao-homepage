@@ -1,6 +1,6 @@
 import Typography from "../UI/Typography";
 import Image from "next/image";
-import delegate from "@/assests/Governance/Delegate.svg";
+import delegate from "@/assests/Governance/Delegate.png";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 
@@ -8,26 +8,26 @@ export default function Delegate() {
   return (
     <>
       <div className="grid grid-cols-10 bg-[#1A1A1A]">
-        <div className="border border-white"></div>
-        <div className="col-span-8 border border-black flex item-center justify-center p-5">
+        <div className="border-l border-r border-b border-white"></div>
+        <div className="col-span-8 border border-black flex item-center justify-center p-10">
           <Typography
             variant="h2"
             color="white"
             weight="light"
             className="tracking-wide uppercase"
           >
-            Delegate to Lampros DAO{" "}
+            <span className="uppercase font-bohemian wavy-letter">D</span>ele<span className="uppercase font-bohemian wavy-letter">g</span>ate to <span className="uppercase font-bohemian wavy-letter">L</span>am<span className="uppercase font-bohemian wavy-letter">P</span>ros D<span className="uppercase font-bohemian wavy-letter">A</span>O
           </Typography>
         </div>
         <div className="col-start-10 border border-white"></div>
-        <div className="row-span-4 row-start-2 border border-white flex items-end p-5 justify-center">
+        <div className="row-span-4 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
           <Typography
             variant="caption"
             color="white"
             weight="normal"
             className="[writing-mode:vertical-rl] rotate-180 tracking-[0.3em] "
           >
-            Your Delegation Matters !!
+            [ Your Delegation Matters !! ]
           </Typography>
         </div>
         <div className="col-span-4 p-5 row-span-3 row-start-2 border border-white flex items-center flex-col gap-5 justify-center">
@@ -57,7 +57,7 @@ export default function Delegate() {
         <div className="row-span-4 col-start-10 row-start-1 border border-black bg-[#CBE9FF]  ">
          
         </div>
-        <div className="col-span-4 col-start-2 gap-3 row-start-5 border border-black bg-white flex items-center flex-row justify-center p-5">
+        <div className="col-span-4 col-start-2 gap-3 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
           <Typography
             variant="body1"
@@ -68,7 +68,7 @@ export default function Delegate() {
             Delegate On Arbitrum
           </Typography>
         </div>
-        <div className="col-span-4 col-start-6 row-start-5 border border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
+        <div className="col-span-4 col-start-6 row-start-5 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
            <Image src={op} alt="arbitrum"  className="w-10"/>
           <div>
             <Typography
@@ -81,8 +81,12 @@ export default function Delegate() {
             </Typography>
           </div>
         </div>
-        <div className="col-span-10 row-start-6 border border-white"></div>
+        <div className="col-span-10 row-start-6 "></div>
+        
       </div>
+      <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-7 border border-black"></div>
+
+      
     </>
   );
 }

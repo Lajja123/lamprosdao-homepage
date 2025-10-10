@@ -97,8 +97,8 @@ export default function Navbar({ centerContent }: NavbarProps) {
           />
         ) : (
           <Typography
-            variant="h1"
-            weight="bold"
+            variant="h2"
+            weight="semibold"
             color="primary"
             className=" p-10 text-center uppercase tracking-wider text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
           >

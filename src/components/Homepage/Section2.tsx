@@ -35,20 +35,9 @@ export default function Section2() {
       {/* Row 2 - Left cell and main content start */}
       <GridCell type="basic" className="p-10" />
       <GridCell type="spannedContent">
-        {/* Background clip1 */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url(${clip1.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
-
-        {/* Clip/Star Image */}
+        
         <div className="flex-shrink-0 relative z-10">
-          <div className="relative w-full h-auto ">
+          <div className=" w-full h-auto ">
             {/* Placeholder for clip image */}
             <Image
               src={clip}

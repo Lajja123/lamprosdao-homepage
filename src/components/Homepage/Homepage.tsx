@@ -6,7 +6,7 @@ import Section2 from "@/components/Homepage/Section2";
 export default function Homepage() {
   return (
     <>
-      {/* <Hero /> */}
+      <Hero />
       <Section2 />
       <Research />
       <Faq />
