@@ -105,7 +105,7 @@ export default function Hero() {
       <div ref={heroRef} className="w-full h-max relative overflow-hidden">
         <div 
           ref={titleRef}
-          className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[35%] lg:bottom-[35%] xl:bottom-[40%] w-full"
+          className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[35%] lg:bottom-[35%] xl:bottom-[50%] w-full"
         >
           <Typography
             variant="h1"
