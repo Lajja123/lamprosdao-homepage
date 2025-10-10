@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import mediumIcon from "@/assests/Footer/medium.svg";
 import linkedinIcon from "@/assests/Footer/linkedin.svg";
 import discordIcon from "@/assests/Footer/discord.svg";
@@ -30,22 +31,33 @@ const socialIcons = {
   twitter: twitterIcon,
 };
 
+const socialLinks = {
+  medium: "https://mirror.xyz/0xF362eaCAf0a28651d6f6218e5fD0Faf360fa779F",
+  linkedin: "https://linkedin.com/company/lamprosdao",
+  discord: "https://discord.gg/5jxNq8bDt2",
+  notion: "https://warpcast.com/lamproslabsdao",
+  telegram: "https://t.me/+7I_N47MwS7VlMDJl",
+  twitter: "https://x.com/lamprosdao",
+};
+
 export default function SocialIcon({
   platform,
   color,
   className,
 }: SocialIconProps) {
   return (
-    <div
-      className={className}
-      style={{
-        display: "inline-block",
-        backgroundColor: color,
-        mask: `url(${socialIcons[platform].src}) no-repeat center`,
-        maskSize: "contain",
-        WebkitMask: `url(${socialIcons[platform].src}) no-repeat center`,
-        WebkitMaskSize: "contain",
-      }}
-    />
+    <Link href={socialLinks[platform]} target="_blank" rel="noopener noreferrer">
+      <div
+        className={className}
+        style={{
+          display: "inline-block",
+          backgroundColor: color,
+          mask: `url(${socialIcons[platform].src}) no-repeat center`,
+          maskSize: "contain",
+          WebkitMask: `url(${socialIcons[platform].src}) no-repeat center`,
+          WebkitMaskSize: "contain",
+        }}
+      />
+    </Link>
   );
 }

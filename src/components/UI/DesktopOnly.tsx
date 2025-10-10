@@ -5,12 +5,12 @@ import { useState } from "react";
 
 export default function DesktopOnly() {
   return (
-    <div className="md:hidden min-h-screen flex items-center justify-center bg-[#1A1A1A] p-8">
+    <div className="md:hidden min-h-screen flex items-center justify-center bg-[#FFFFFF] p-8">
       <div className="text-center max-w-2xl mx-auto">
         <div className="mb-8">
-          <div className="w-20 h-20 mx-auto mb-6 bg-[#FFFFFF] rounded-full flex items-center justify-center border border-[#000000] hover:scale-105 transition-transform">
+          <div className="w-20 h-20 mx-auto mb-6 bg-[#1a1a1a] rounded-full flex items-center justify-center border border-[#000000] hover:scale-105 transition-transform">
             <svg
-              className="w-10 h-10 text-[#1A1A1A]"
+              className="w-10 h-10 text-[#FFFFFF]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -26,24 +26,24 @@ export default function DesktopOnly() {
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF] p-6 rounded-xl border border-[#000000] mb-6 ">
+        <div className="bg-[#1a1a1a] p-6 rounded-xl border border-[#000000] mb-6 ">
           <Typography
             variant="body1"
             weight="semibold"
-            color="primary"
+            color="white"
             className="mb-2"
           >
             Switch to Desktop
           </Typography>
-          <Typography variant="body2" color="secondary">
+          <Typography variant="body2" color="white">
             Access from your computer for the complete experience
           </Typography>
         </div>
 
         <div className="text-center">
           <div className="inline-flex items-center space-x-2 text-sm">
-            <div className="w-2 h-2 bg-[#DFF48D] rounded-full"></div>
-            <Typography variant="body2" color="white">
+            <div className="w-2 h-2 bg-[#1a1a1a] rounded-full"></div>
+            <Typography variant="body2" color="primary">
               Mobile version coming soon
             </Typography>
           </div>

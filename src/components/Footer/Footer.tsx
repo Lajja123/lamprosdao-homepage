@@ -8,6 +8,7 @@ import logoDark from "@/assests/Footer/lampros-dark.png";
 import rectangle from "@/assests/Footer/Rectangle.png";
 import { Typography } from "@/components/UI/Typography";
 import SocialIcon from "@/components/UI/SocialIcon";
+import Link from "next/link";
 
 // Define color theme variants
 type FooterVariant = "light" | "dark";
@@ -124,14 +125,18 @@ export default function Footer({ variant }: FooterProps) {
         <div
           className={`border-r ${theme.customBorderColor} flex items-center justify-center w-full sm:w-auto sm:min-w-[80px] border-b sm:border-b-0 p-3 sm:p-4`}
         >
+          <Link href="/">
           <Image
             src={theme.logoIcon}
             alt="Lampros logo"
             width={40}
             height={40}
             className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
-          />
+            />
+            </Link>
+        
         </div>
+
 
         {/* Spacer for larger screens */}
         <div className="flex-1 hidden sm:block p-3" />
