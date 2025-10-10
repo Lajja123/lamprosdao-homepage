@@ -35,44 +35,43 @@ export default function Section2() {
       {/* Row 2 - Left cell and main content start */}
       <GridCell type="basic" className="p-10" />
       <GridCell type="spannedContent">
-        
-        <div className="flex-shrink-0 relative z-10">
-          <div className=" w-full h-auto ">
-            {/* Placeholder for clip image */}
+        <div className="flex items-center justify-between w-full h-full">
+          {/* Image Section - Takes 1/3 of the width */}
+          <div className="flex-shrink-0 w-1/3 h-full flex items-center justify-center">
             <Image
               src={clip}
               alt="clip"
               className="w-full h-full object-contain"
             />
           </div>
-        </div>
 
-        {/* Text Content */}
-        <div className="flex-1 space-y-4 lg:space-y-8 max-w-3xl relative z-10">
-          <Typography
-            variant="subtitle2"
-            color="primary"
-            weight="semibold"
-            className="tracking-wide  font-ppmori"
-          >
-            In The Vibrant World Of Blockchain, Lampros DAO Stands As A Beacon,
-            Illuminating The Path For Innovators, Dreamers, And Builders.
-            Founded With A Profound Vision To Seamlessly Merge Blockchain
-            Technology With Mainstream Applications, We&apos;ve Steadily Grown
-            Into A Robust Community Hub.
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            color="primary"
-            weight="bold"
-            className="tracking-wide  font-ppmori"
-          >
-            Our Ethos Is Rooted In Fostering Growth – Both Of The Individual And
-            The Collective. With Each Project We Support, Every Developer We
-            Guide, And Each Event We Host, We Inch Closer To A Future Where
-            Blockchain Isn&apos;t Just A Buzzword, But An Integral Part Of Our
-            Digital Tapestry.
-          </Typography>
+          {/* Text Content - Takes 2/3 of the width */}
+          <div className="flex-1 w-2/3 pl-8 space-y-4 lg:space-y-8">
+            <Typography
+              variant="subtitle2"
+              color="primary"
+              weight="semibold"
+              className="tracking-wide font-ppmori"
+            >
+              In The Vibrant World Of Blockchain, Lampros DAO Stands As A Beacon,
+              Illuminating The Path For Innovators, Dreamers, And Builders.
+              Founded With A Profound Vision To Seamlessly Merge Blockchain
+              Technology With Mainstream Applications, We&apos;ve Steadily Grown
+              Into A Robust Community Hub.
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              color="primary"
+              weight="bold"
+              className="tracking-wide font-ppmori"
+            >
+              Our Ethos Is Rooted In Fostering Growth – Both Of The Individual And
+              The Collective. With Each Project We Support, Every Developer We
+              Guide, And Each Event We Host, We Inch Closer To A Future Where
+              Blockchain Isn&apos;t Just A Buzzword, But An Integral Part Of Our
+              Digital Tapestry.
+            </Typography>
+          </div>
         </div>
       </GridCell>
       <GridCell type="basic" rowSpan={4} />

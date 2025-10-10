@@ -25,6 +25,11 @@ export default function Navbar({ centerContent }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLUListElement | null>(null);
+  const navbarRef = useRef<HTMLElement | null>(null);
+  const logoRef = useRef<HTMLDivElement | null>(null);
+  const centerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const wavyLettersRef = useRef<HTMLSpanElement[]>([]);
   const pathname = usePathname();
 
   // Helper function to check if a navigation item is active
@@ -35,6 +40,42 @@ export default function Navbar({ centerContent }: NavbarProps) {
     return pathname.startsWith(href);
   };
 
+  // Initial navbar animation
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate navbar elements on mount
+      gsap.fromTo([logoRef.current, centerRef.current, menuRef.current], 
+        { opacity: 0, y: -20 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8, 
+          stagger: 0.1, 
+          ease: "power2.out",
+          delay: 0.2
+        }
+      );
+
+      // Add wavy animation to special letters
+      wavyLettersRef.current.forEach((letter, index) => {
+        if (letter) {
+          gsap.to(letter, {
+            y: -8,
+            duration: 0.6,
+            ease: "power2.inOut",
+            repeat: -1,
+            yoyo: true,
+            delay: 1 + (index * 0.1)
+          });
+        }
+      });
+
+    }, navbarRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Menu toggle animation
   useEffect(() => {
     const panel = panelRef.current;
     const list = listRef.current;
@@ -75,20 +116,20 @@ export default function Navbar({ centerContent }: NavbarProps) {
   }, [isMenuOpen]);
 
   return (
-    <nav className="relative   flex items-start md:items-start justify-between ">
+    <nav ref={navbarRef} className="relative flex items-start md:items-start justify-between">
       {/* Left: Logo */}
-      <div className="flex p-10">
+      <div ref={logoRef} className="flex p-10">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
-            className="cursor-pointer w-full"
+            className="cursor-pointer w-full hover:scale-105 transition-transform duration-300"
           />
         </Link>
       </div>
 
       {/* Center: Dynamic Content */}
-      <div className="flex justify-center items-center ">
+      <div ref={centerRef} className="flex justify-center items-center">
         {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
           <Image
             src={finalCenterContent.imageSrc}
@@ -110,11 +151,17 @@ export default function Navbar({ centerContent }: NavbarProps) {
                     case "About Us":
                       return (
                         <>
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             A
                           </span>
                           bout{" "}
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             U
                           </span>
                           s
@@ -124,18 +171,30 @@ export default function Navbar({ centerContent }: NavbarProps) {
                       return (
                         <>
                           G
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             o
                           </span>
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             v
                           </span>
                           ern
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[2] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             a
                           </span>
                           nc
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[3] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             e
                           </span>
                         </>
@@ -144,18 +203,30 @@ export default function Navbar({ centerContent }: NavbarProps) {
                       return (
                         <>
                           C
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             o
                           </span>
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             nt
                           </span>
                           rib
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[2] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             u
                           </span>
                           t
-                          <span className="uppercase font-bohemian wavy-letter">
+                          <span 
+                            ref={el => { if (el) wavyLettersRef.current[3] = el; }}
+                            className="uppercase font-bohemian wavy-letter inline-block"
+                          >
                             i
                           </span>
                           on
@@ -171,9 +242,9 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Right: Desktop Menu */}
-      <div className="hidden md:flex justify-end p-10">
+      <div ref={menuRef} className="hidden md:flex justify-end p-10">
         <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] z-10 rounded-lg">
-          {navigationItems.map((item) => {
+          {navigationItems.map((item, index) => {
             const isActive = isActiveRoute(item.href);
             return (
               <li key={item.href}>
@@ -182,7 +253,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
                     variant="body1"
                     weight="medium"
                     color={isActive ? "accent" : "primary"}
-                    className={`uppercase tracking-wide transition-colors ${
+                    className={`uppercase tracking-wide transition-all duration-300 hover:scale-105 ${
                       isActive
                         ? "text-[#A885CD] font-semibold "
                         : "group-hover:text-[#A885CD]  "

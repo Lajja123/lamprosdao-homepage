@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { stylePresets } from "@/utils/commonStyles";
 
 interface GridProps {
@@ -46,13 +46,13 @@ export const Grid: React.FC<GridProps> = ({
   );
 };
 
-export const GridCell: React.FC<GridCellProps> = ({
+export const GridCell = forwardRef<HTMLDivElement, GridCellProps>(({
   children,
   className = "",
   colSpan,
   rowSpan,
   type = "basic",
-}) => {
+}, ref) => {
   const getCellClass = () => {
     switch (type) {
       case "withHeight":
@@ -81,10 +81,10 @@ export const GridCell: React.FC<GridCellProps> = ({
   if (rowSpan) spanClasses.push(`row-span-${rowSpan}`);
 
   return (
-    <div className={`${getCellClass()} ${spanClasses.join(" ")} ${className}`}>
+    <div ref={ref} className={`${getCellClass()} ${spanClasses.join(" ")} ${className}`}>
       {children}
     </div>
   );
-};
+});
 
 export default Grid;

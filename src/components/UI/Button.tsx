@@ -63,8 +63,57 @@ export const Button: React.FC<ButtonProps> = ({
   };
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (!button) return;
+
+    // Initial animation on mount
+    gsap.fromTo(button, 
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
+    );
+
+    // Hover animations
+    const handleMouseEnter = () => {
+      gsap.to(button, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+    };
+
+    // Click animation
+    const handleClick = () => {
+      gsap.to(button, {
+        scale: 0.95,
+        duration: 0.1,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 1
+      });
+    };
+
+    button.addEventListener('mouseenter', handleMouseEnter);
+    button.addEventListener('mouseleave', handleMouseLeave);
+    button.addEventListener('click', handleClick);
+
+    return () => {
+      button.removeEventListener('mouseenter', handleMouseEnter);
+      button.removeEventListener('mouseleave', handleMouseLeave);
+      button.removeEventListener('click', handleClick);
+    };
+  }, []);
+
   const base =
-    "inline-flex items-center justify-center transition will-change-transform px-5";
+    "inline-flex items-center justify-center transition will-change-transform px-5 cursor-pointer";
   const radius = roundedClassMap[rounded];
 
   const style: React.CSSProperties = {};
