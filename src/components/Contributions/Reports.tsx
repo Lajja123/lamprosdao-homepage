@@ -3,6 +3,8 @@ import { GridCell } from "../UI/Grid";
 import Typography from "../UI/Typography";
 import bgImage1 from "@/assests/Governance/reportbg.png";
 import contributionsData from "@/data/contributionsContent.json";
+import link from "@/assests/Governance/link.svg";
+import Image from "next/image";
 
 export default function Reports() {
   const { contributions } = contributionsData;
@@ -222,8 +224,10 @@ export default function Reports() {
             label="See More"
             color="#D0FFAC"
             textColor="#0B0B0B"
-            className="px-10"
-          />
+
+          >
+                      <Image src={link} alt="arrow" className="w-10 h-10" />
+</Button>
         </div>
       </div>
     </>

@@ -9,12 +9,11 @@ export default function Hero() {
   return (
     <>
       <div className="grid grid-cols-10 grid-rows-6  ">
-        <div className="col-span-4 row-span-6 w-full p-5 border border-black bg-[#D0FFAC]">
-          {" "}
+        <div className="col-span-4 row-span-6 w-full p-10 border border-black bg-[#D0FFAC]">
           <Image
             src={about}
             alt="Metallic sculpture"
-            className=" w-[50%] mx-auto"
+            className=" w-[80%] h-full mx-auto"
           />
         </div>
         <div className="col-span-6 row-span-6 col-start-5  border border-black">
@@ -26,7 +25,7 @@ export default function Hero() {
         <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-5"></div>
         <div className="col-span-3 p-5 border border-[#FFFFFF] flex items-center justify-center">
           <Typography
-            variant="h1"
+            variant="h3"
             weight="semibold"
             align="center"
             color="offset"
@@ -37,11 +36,11 @@ export default function Hero() {
           </Typography>
         </div>
         <div className="col-span-5 row-span-4 col-start-5 border border-[#FFFFFF] p-5 w-full flex items-center justify-center">
-          <Image src={vision} alt="Metallic sculpture" />
+          <Image src={vision} alt="Metallic sculpture"  />
         </div>
         <div className="row-span-4 col-start-10 border border-[#FFFFFF]"></div>
         <div className="row-span-3 row-start-2 border "></div>
-        <div className="p-5 w-[80%] mx-auto col-span-3 row-span-3 row-start-2 flex items-center justify-center">
+        <div className="w-[80%] mx-auto col-span-3 row-span-3  flex items-center justify-center">
           <Typography
             variant="body1"
             color="white"
@@ -58,12 +57,11 @@ export default function Hero() {
           <Image
             src={mission}
             alt="Metallic sculpture"
-            className=" w-full mx-auto"
           />
         </div>
         <div className="col-span-5 col-start-5 row-start-5 border border-[#FFFFFF] flex items-center justify-center">
           <Typography
-            variant="h1"
+            variant="h3"
             weight="semibold"
             align="center"
             color="offset"

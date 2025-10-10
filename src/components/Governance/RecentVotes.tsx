@@ -12,6 +12,9 @@ import bgImage1 from "@/assests/Governance/reportbg.png";
 import clip from "@/assests/Governance/Clip.png";
 import Arrow from "../UI/Arrow";
 import Button from "../UI/Button";
+import link from "@/assests/Governance/link.svg";
+import Link from "next/link";
+import linkLight from "@/assests/Governance/link-light.png";
 
 export default function RecentVotes() {
   const [activeTab, setActiveTab] = useState("Arbitrum");
@@ -266,13 +269,15 @@ export default function RecentVotes() {
 
       {/* Footer Row */}
       <div className="col-span-8 row-start-6 border border-black bg-[#E8F5A8] p-8 flex items-center justify-center">
-       
+        <Link href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642" target="_blank" rel="noopener noreferrer">
         <Button
             label="See More"
             color="#000000"
             textColor="#FFFFFF"
-            className="px-10"
-          />
+          >
+            <Image src={linkLight} alt="arrow" className="w-10 h-10" />
+          </Button>
+        </Link>
       </div>
       <div className="col-start-10 row-start-6 border border-black bg-[#E8F5A8]"></div>
     </div>

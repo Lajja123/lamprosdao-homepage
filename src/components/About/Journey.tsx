@@ -64,17 +64,17 @@ export default function Journey() {
         <div className="row-span-9 border border-[#FFFFFF]"></div>
         <div className="col-span-8 border border-[#FFFFFF] flex items-center justify-center p-5">
           <Typography
-            variant="h1"
+            variant="h2"
             color="white"
-            weight="bold"
-            className="uppercase text-6xl leading-none font-csbohemian tracking-wider "
+            className="uppercase font-ppmori tracking-wider "
           >
             O<span className="uppercase font-bohemian wavy-letter">U</span>r{" "}
             {""}
             <span className="uppercase font-bohemian wavy-letter">
               W
             </span>eb3 {""}
-            Jour<span className="uppercase font-bohemian wavy-letter">n</span>e
+            <span className=" uppercase font-bohemian wavy-letter">J</span>our
+            <span className="uppercase font-bohemian wavy-letter">n</span>e
             <span className="uppercase font-bohemian wavy-letter">y</span>
           </Typography>
         </div>
@@ -84,7 +84,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-6 row-start-2 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -94,7 +94,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[0].title}
@@ -122,7 +122,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-7 row-start-3 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -132,7 +132,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[1].title}
@@ -140,7 +140,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-2 row-start-4 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -150,7 +150,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[2].title}
@@ -175,9 +175,9 @@ export default function Journey() {
           className={`col-start-2 row-start-5 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[3].color}`}
         >
           <Typography
-            variant="h2"
+            variant="h5"
             color="primary"
-            weight="normal"
+            weight="light"
             className="font-psygen"
           >
             {journeyData[3].number}
@@ -185,7 +185,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-3 row-start-5 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -195,7 +195,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[3].title}
@@ -206,7 +206,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-6 row-start-6 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -216,7 +216,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[4].title}
@@ -248,7 +248,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-7 row-start-7 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -258,7 +258,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[5].title}
@@ -281,7 +281,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-2 row-start-8 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -291,7 +291,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[6].title}
@@ -311,7 +311,7 @@ export default function Journey() {
         </div>
         <div className="col-span-3 col-start-3 row-start-9 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h5"
             color="white"
             weight="bold"
             className="uppercase tracking-wider font-ppmori "
@@ -321,7 +321,7 @@ export default function Journey() {
           <Typography
             variant="body1"
             color="white"
-            weight="normal"
+            weight="light"
             className=" tracking-wide font-ppmori"
           >
             {journeyData[7].title}

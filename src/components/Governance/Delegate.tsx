@@ -13,7 +13,6 @@ export default function Delegate() {
           <Typography
             variant="h2"
             color="white"
-            weight="light"
             className="tracking-wide uppercase"
           >
             <span className="uppercase font-bohemian wavy-letter">D</span>ele<span className="uppercase font-bohemian wavy-letter">g</span>ate to <span className="uppercase font-bohemian wavy-letter">L</span>am<span className="uppercase font-bohemian wavy-letter">P</span>ros D<span className="uppercase font-bohemian wavy-letter">A</span>O

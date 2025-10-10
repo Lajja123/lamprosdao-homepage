@@ -39,12 +39,12 @@ export default function Ethos() {
   return (
     <>
       <div className="grid grid-cols-10 ">
-        <div className="col-span-5 row-span-3 w-full bg-[#CBE9FF] p-5 border border-[#000000] flex flex-row justify-around items-center h-86">
+        <div className="col-span-5 row-span-3 w-full bg-[#CBE9FF] p-5 border border-[#000000] flex flex-row justify-around items-center ">
           <div>
             <Typography
               variant="h1"
               color="primary"
-              weight="bold"
+              weight="medium"
               className="text-6xl leading-none font-csbohemian tracking-wider"
             >
               O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
@@ -60,17 +60,17 @@ export default function Ethos() {
             className="w-[300px] mx-auto"
           />
         </div>
-        <div className="col-span-4 border border-[#000000] px-15 py-5 flex items-center justify-center h-32">
+        <div className="col-span-4 border border-[#000000] px-15 py-5 flex items-center justify-center ">
           <Typography
-            variant="h4"
+            variant="h6"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
             {ethosData[0].title}
           </Typography>
         </div>
-        <div className="col-start-10 bg-[#DFF48D] flex items-center justify-center h-32">
+        <div className="col-start-10 bg-[#DFF48D] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -80,16 +80,17 @@ export default function Ethos() {
             {ethosData[0].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-6 row-start-2 border border-[#000000] flex items-center justify-center px-15 py-5 h-54">
+        <div className="col-span-5 row-span-2 col-start-6 row-start-2 border border-[#000000] flex items-center justify-center px-15 py-5 ">
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="primary"
-            className=" tracking-wide font-ppmori"
+            weight="medium"
+            className=" font-ppmori"
           >
             {ethosData[0].content}
           </Typography>
         </div>
-        <div className="col-start-5 row-start-4 px-15 py-5 bg-[#DFF48D] border border-[#000000] flex items-center justify-center h-32">
+        <div className="col-start-5 row-start-4 px-15 py-5 bg-[#DFF48D] border border-[#000000] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -99,36 +100,36 @@ export default function Ethos() {
             {ethosData[1].number}
           </Typography>
         </div>
-        <div className="col-span-4 col-start-1 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-5 h-32">
+        <div className="col-span-4 col-start-1 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h6"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
             {ethosData[1].title}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-1 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 h-54">
+        <div className="col-span-5 row-span-2 col-start-1 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 ">
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="primary"
-            className=" tracking-wide font-ppmori"
+            className=" font-ppmori"
           >
             {ethosData[1].content}
           </Typography>
         </div>
-        <div className="col-span-4 col-start-6 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-5 h-32">
+        <div className="col-span-4 col-start-6 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h6"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
             {ethosData[2].title}
           </Typography>
         </div>
-        <div className="col-start-10 row-start-4 border border-[#000000] bg-[#DFF48D] flex items-center justify-center h-32">
+        <div className="col-start-10 row-start-4 border border-[#000000] bg-[#DFF48D] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -138,26 +139,26 @@ export default function Ethos() {
             {ethosData[2].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-6 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 h-54">
+        <div className="col-span-5 row-span-2 col-start-6 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 ">
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="primary"
-            className=" tracking-wide font-ppmori"
+            className=" font-ppmori"
           >
             {ethosData[2].content}
           </Typography>
         </div>
-        <div className="col-span-4 row-start-7 border border-[#000000] flex items-center justify-start px-15 py-5 h-32">
+        <div className="col-span-4 row-start-7 border border-[#000000] flex items-center justify-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h6"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
             {ethosData[3].title}
           </Typography>
         </div>
-        <div className="col-start-5 row-start-7 bg-[#DFF48D] flex items-center justify-center h-32">
+        <div className="col-start-5 row-start-7 bg-[#DFF48D] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -167,26 +168,26 @@ export default function Ethos() {
             {ethosData[3].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-1 border border-[#000000] row-start-8 flex items-center justify-center px-15 py-5 h-54">
+        <div className="col-span-5 row-span-2 col-start-1 border border-[#000000] row-start-8 flex items-center justify-center px-15 py-5 ">
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="primary"
-            className=" tracking-wide font-ppmori"
+            className=" font-ppmori"
           >
             {ethosData[3].content}
           </Typography>
         </div>
-        <div className="col-span-4 col-start-6 border border-[#000000] row-start-7 flex items-center justify-start px-15 py-5 h-32">
+        <div className="col-span-4 col-start-6 border border-[#000000] row-start-7 flex items-center justify-start px-15 py-5 ">
           <Typography
-            variant="h4"
+            variant="h6"
             color="primary"
-            weight="bold"
+            weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
             {ethosData[4].title}
           </Typography>
         </div>
-        <div className="col-start-10 row-start-7 border border-[#000000] bg-[#DFF48D] flex items-center justify-center h-32">
+        <div className="col-start-10 row-start-7 px-15 py-5 border border-[#000000] bg-[#DFF48D] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -196,11 +197,11 @@ export default function Ethos() {
             {ethosData[4].number}
           </Typography>
         </div>
-        <div className="col-span-5 col-start-6 border flex items-center justify-center border-[#000000] px-15 py-5 h-54">
+        <div className="col-span-5 col-start-6 border flex items-center justify-center border-[#000000] px-15 py-5 ">
           <Typography
-            variant="subtitle1"
+            variant="subtitle2"
             color="primary"
-            className=" tracking-wide font-ppmori"
+            className=" font-ppmori"
           >
             {ethosData[4].content}
           </Typography>

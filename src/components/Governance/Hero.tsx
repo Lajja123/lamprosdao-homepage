@@ -2,16 +2,20 @@ import Image from "next/image";
 import clip from "@/assests/Governance/Clip.png";
 import Typography from "../UI/Typography";
 import Link from "next/link";
-import link from "@/assests/Governance/link.svg";
+
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import { Grid, GridCell } from "../UI/Grid";
+import euphoria from "@/assests/Governance/euphoria.jpg";
+import hirangi from "@/assests/Governance/hirangi.jpg";
+import chain from "@/assests/Governance/chain-l.jpg";
+import link from "@/assests/Governance/link.svg";
 
 export default function Hero() {
   const teamMembers = [
-    { name: "Euphoria", icon: "↗" },
-    { name: "Chain_L", icon: "↗" },
-    { name: "Hirangi", icon: "↗" },
+    { name: "Euphoria", icon: "↗", link: "https://x.com/Euphoria_0077" ,src: euphoria},
+    { name: "Chain_L", icon: "↗", link: "https://x.com/chain_haya",src: chain},
+    { name: "Hirangi", icon: "↗", link: "https://x.com/HirangiPandya" ,src: hirangi},
   ];
 
   return (
@@ -70,16 +74,26 @@ export default function Hero() {
               2 + index * 2
             } row-start-4 flex items-center justify-center p-8 gap-4`}
           >
-            <div className="w-12 h-12 rounded-full bg-[#E8B4A8] flex-shrink-0 border-1 border-black"></div>
-            <Typography
-              variant="body1"
-              color="primary"
-              weight="semibold"
-              className="font-ppmori "
+            <Link 
+              href={member.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 hover:opacity-80 transition-opacity duration-300"
             >
-              {member.name}
-            </Typography>
-            <Image src={link} alt="link" />
+              <div className="">
+              <Image src={member.src} alt="link" className="w-12 h-12 rounded-full border-1  border-black" />
+
+              </div>
+              <Typography
+                variant="body1"
+                color="primary"
+                weight="semibold" 
+                className="font-ppmori"
+              >
+                {member.name}
+              </Typography>
+              <Image src={link} alt="link" className="w-10" />
+            </Link>
           </GridCell>
         ))}
       </div>
@@ -94,7 +108,7 @@ export default function Hero() {
         >
           <Typography
             variant="h2"
-            className="tracking-wider font-ppmori text-4xl text-white"
+            className="tracking-wider font-ppmori  text-white"
           >
             O<span className="uppercase font-bohemian wavy-letter">U</span>R D
             <span className="uppercase font-bohemian wavy-letter">E</span>LEG
@@ -107,10 +121,12 @@ export default function Hero() {
 
         <GridCell
           colSpan={3}
-          className="col-start-2 row-start-2 flex items-center justify-center p-6 border- border-white"
+          className="col-start-2 row-start-2  p-6 border- border-white"
         >
+                      <Link href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642" target="_blank" rel="noopener noreferrer">
+
           <div
-            className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+            className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
           >
             <Image src={arbitrum} alt="arbitrum" className="w-10" />
             <Typography
@@ -121,15 +137,18 @@ export default function Hero() {
             >
               Arbitrum
             </Typography>
+           
           </div>
+          </Link>
         </GridCell>
 
         <GridCell
           colSpan={3}
-          className="col-start-5 row-start-2 flex items-center justify-center p-6"
+          className="col-start-5 row-start-2  p-6"
         >
+          <Link href="https://vote.optimism.io/delegates/lamprosdao.eth" target="_blank" rel="noopener noreferrer">
           <div
-            className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+            className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
           >
             <Image src={op} alt="optimism" className="w-10" />
             <Typography
@@ -138,9 +157,11 @@ export default function Hero() {
               weight="semibold"
               className="font-ppmori "
             >
-              Optimism
-            </Typography>
+                Optimism
+              </Typography>
+            
           </div>
+          </Link>
         </GridCell>
       </div>
     </>

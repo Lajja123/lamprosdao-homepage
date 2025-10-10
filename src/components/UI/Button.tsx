@@ -19,6 +19,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   rounded?: "none" | "sm" | "md" | "lg" | "xl" | "full";
   className?: string;
+  children?: React.ReactNode;
 }
 
 const roundedClassMap: Record<NonNullable<ButtonProps["rounded"]>, string> = {
@@ -37,6 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant = "solid",
   rounded = "full",
   className = "",
+  children,
   onMouseEnter,
   onMouseLeave,
   ...props
@@ -166,28 +168,31 @@ export const Button: React.FC<ButtonProps> = ({
       onMouseLeave={onMouseLeave}
       {...props}
     >
-      <Typography
-        variant="button"
-        color={
-          typographyColor as
-            | "primary"
-            | "secondary"
-            | "accent"
-            | "white"
-            | "dark"
-            | "gradient"
-            | `#${string}`
-            | "offset"
-            | undefined
-        }
-        align="center"
-        weight="medium"
-        className={["pointer-events-none select-none", variantClasses].join(
-          " "
-        )}
-      >
-        {label}
-      </Typography>
+      <div className="flex items-center gap-2">
+        <Typography
+          variant="button"
+          color={
+            typographyColor as
+              | "primary"
+              | "secondary"
+              | "accent"
+              | "white"
+              | "dark"
+              | "gradient"
+              | `#${string}`
+              | "offset"
+              | undefined
+          }
+          align="center"
+          weight="medium"
+          className={["pointer-events-none select-none", variantClasses].join(
+            " "
+          )}
+        >
+          {label}
+        </Typography>
+        {children}
+      </div>
     </button>
   );
 };

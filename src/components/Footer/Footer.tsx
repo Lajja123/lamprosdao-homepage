@@ -65,40 +65,48 @@ export default function Footer({ variant }: FooterProps) {
         className={`grid grid-cols-2 sm:grid-cols-4 text-center`}
         style={{ fontFamily: "PP Mori" }}
       >
+        <Link href="/" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
         <Typography
           variant="button"
           align="center"
           weight="bold"
-          className={`p-3 sm:p-4 md:p-5 border ${theme.borderColor} ${theme.textColor} text-sm sm:text-base`}
+          className={`${theme.textColor} text-sm sm:text-base`}
         >
           Home
         </Typography>
+        </Link>
+        <Link href="/about-us" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
         <Typography
           variant="button"
           align="center"
           weight="bold"
-          className={`p-3 sm:p-4 md:p-5 border ${theme.borderColor} ${theme.textColor} text-sm sm:text-base`}
+          className={` ${theme.textColor} text-sm sm:text-base`}
         >
-          About
+          About Us
         </Typography>
+        </Link>
+        <Link href="/governance" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
         <Typography
           variant="button"
           align="center"
           weight="bold"
-          className={`p-3 sm:p-4 md:p-5 border ${theme.borderColor} ${theme.textColor} text-sm sm:text-base`}
+          className={`${theme.textColor} text-sm sm:text-base`}
         >
           Governance
         </Typography>
+        </Link>
+        <Link href="/contribution" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
         <Typography
           variant="button"
           align="center"
           weight="bold"
-          className={`p-3 sm:p-4 md:p-5 border ${theme.borderColor} ${theme.textColor} text-sm sm:text-base`}
+          className={`${theme.textColor} text-sm sm:text-base`}
         >
           Contribution
         </Typography>
+        </Link>
       </div>
-
+          
       {/* Logo Section */}
       <div
         className={`border-r border-l border-white relative w-full p-3 sm:p-4 md:p-5`}

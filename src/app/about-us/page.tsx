@@ -31,8 +31,8 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      {/* <Hero /> */}
-      {/* <Ethos /> */}
+      <Hero />
+      <Ethos />
       <Journey />
     </>
   );
