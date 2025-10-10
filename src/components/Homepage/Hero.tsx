@@ -161,7 +161,7 @@ export default function Hero() {
       </div>
       <div 
         ref={subtitleRef}
-        className="flex items-center justify-center relative z-50 bottom-[40px] sm:bottom-[60px] md:bottom-[80px] lg:bottom-[100px] xl:bottom-[100px] w-full"
+        className="flex items-center justify-center relative z-50 bottom-[40px] sm:bottom-[60px] md:bottom-[80px] lg:bottom-[100px] xl:bottom-[140px] w-full"
       >
         <Typography
           variant="subtitle2"
