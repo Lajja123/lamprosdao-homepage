@@ -89,13 +89,23 @@ export default function RecentVotes() {
 
       {/* Row 2 - Vote 01 */}
       <div className="row-start-2 border border-black p-6 flex items-center justify-center">
-        <Typography variant="h4" color="primary" weight="light" className="font-psygen">
+        <Typography
+          variant="h4"
+          color="primary"
+          weight="light"
+          className="font-psygen"
+        >
           01
         </Typography>
       </div>
       <div className="col-span-2 row-start-2 border border-black p-6 flex items-center">
-        <Typography variant="body1" color="primary" weight="medium" className="font-ppmori">
-          Voted  [ For ]
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="medium"
+          className="font-ppmori"
+        >
+          Voted [ For ]
         </Typography>
       </div>
       <div className="col-span-6 col-start-4 row-start-2 border border-black p-6">
@@ -118,34 +128,44 @@ export default function RecentVotes() {
       </div>
       <div className=" relative col-start-8 row-start-2 border-b border-white bg-[#2A2A2A] flex items-center justify-center">
         <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${bgImage1.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-      <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${bgImage1.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${bgImage1.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${bgImage1.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
         <Arrow direction="down" />
       </div>
 
       {/* Row 3 - Vote 02 */}
       <div className="row-start-3 border border-black p-6 flex items-center justify-center">
-        <Typography variant="h4" color="primary" weight="light" className="font-psygen">
+        <Typography
+          variant="h4"
+          color="primary"
+          weight="light"
+          className="font-psygen"
+        >
           02
         </Typography>
       </div>
       <div className="col-span-2 row-start-3 border border-black p-6 flex items-center">
-        <Typography variant="body1" color="primary" weight="medium" className="font-ppmori">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="medium"
+          className="font-ppmori"
+        >
           Voted [ For ]
         </Typography>
       </div>
@@ -169,26 +189,35 @@ export default function RecentVotes() {
       </div>
       <div className=" relative col-start-8 row-start-3 border-b border-white bg-[#2A2A2A] flex items-center justify-center">
         <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${bgImage1.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${bgImage1.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
         <Arrow direction="down" />
-
       </div>
 
       {/* Row 4 - Vote 03 */}
       <div className="row-start-4 border border-black p-6 flex items-center justify-center">
-        <Typography variant="h4" color="primary" weight="light" className="font-psygen">
+        <Typography
+          variant="h4"
+          color="primary"
+          weight="light"
+          className="font-psygen"
+        >
           03
         </Typography>
       </div>
       <div className="col-span-2 row-start-4 border border-black p-6 flex items-center">
-        <Typography variant="body1" color="primary" weight="medium" className="font-ppmori">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="medium"
+          className="font-ppmori"
+        >
           Voted [ For ]
         </Typography>
       </div>
@@ -212,26 +241,35 @@ export default function RecentVotes() {
       </div>
       <div className=" relative col-start-8 row-start-4 border-b border-white bg-[#2A2A2A] flex items-center justify-center">
         <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${bgImage1.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${bgImage1.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
         <Arrow direction="down" />
-
       </div>
 
       {/* Row 5 - Vote 04 */}
       <div className="row-start-5 border border-black p-6 flex items-center justify-center">
-        <Typography variant="h4" color="primary" weight="light" className="font-psygen">
+        <Typography
+          variant="h4"
+          color="primary"
+          weight="light"
+          className="font-psygen"
+        >
           04
         </Typography>
       </div>
       <div className="col-span-2 row-start-5 border border-black p-6 flex items-center">
-        <Typography variant="body1" color="primary" weight="medium" className="font-ppmori">
+        <Typography
+          variant="body1"
+          color="primary"
+          weight="medium"
+          className="font-ppmori"
+        >
           Voted [ For ]
         </Typography>
       </div>
@@ -255,33 +293,30 @@ export default function RecentVotes() {
       </div>
       <div className=" relative col-start-8 row-start-5 border-b border-white bg-[#2A2A2A] flex items-center justify-center">
         <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${bgImage1.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${bgImage1.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
         <Arrow direction="down" />
-
       </div>
 
       {/* Footer Row */}
       <div className="col-span-8 row-start-6 border border-black bg-[#E8F5A8] p-8 flex items-center justify-center">
-        <Link href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642" target="_blank" rel="noopener noreferrer">
-        <Button
-            label="See More"
-            color="#000000"
-            textColor="#FFFFFF"
-          >
+        <Link
+          href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button label="See More" color="#000000" textColor="#FFFFFF">
             <Image src={linkLight} alt="arrow" className="w-10 h-10" />
           </Button>
         </Link>
       </div>
       <div className="col-start-10 row-start-6 border border-black bg-[#E8F5A8]"></div>
     </div>
-
-    
   );
 }

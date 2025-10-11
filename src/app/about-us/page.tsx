@@ -10,21 +10,17 @@ export const metadata = {
     // description: "About Page Description...",
     url: "https://lamprosdao.vercel.app/about-us",
     siteName: "LamprosDAO",
-    // images: [
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 800,
-    //     height: 600,
-    //   },
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 1800,
-    //     height: 1600,
-    //     alt: "My custom alt",
-    //   },
-    // ],
-    locale: "en_US",
+    images: [
+      {
+        url: "https://lamprosdao.vercel.app/about-us.png",
+        width: 1200,
+        height: 630,
+        alt: "About Lampros DAO",
+        type: "image/png",
+      },
+    ],
     type: "website",
+    locale: "en_US",
   },
 };
 

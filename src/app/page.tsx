@@ -2,25 +2,23 @@ import Homepage from "@/components/Homepage/Homepage";
 
 export const metadata = {
   title: "Lampros DAO",
-  // description: "Home Page Description...",
+  description:
+    "Driving Mainstream Adoption, Empowering Developers,and Cultivating the Future of Web3",
+
   openGraph: {
     title: "Lampros DAO",
-    // description: "Home Page Description...",
+    description:
+      "Driving Mainstream Adoption, Empowering Developers,and Cultivating the Future of Web3",
     url: "https://lamprosdao.vercel.app/",
-    siteName: "LamprosDAO",
-    // images: [
-    //   {
-    //     url: "https://app.optimism.io/og-image.png", // Must be an absolute URL
-    //     width: 800,
-    //     height: 600,
-    //   },
-    //   {
-    //     url: "https://app.optimism.io/og-image.png", // Must be an absolute URL
-    //     width: 1800,
-    //     height: 1600,
-    //     alt: "My custom alt",
-    //   },
-    // ],
+    siteName: "Lampros DAO",
+    images: [
+      {
+        url: "https://lamprosdao.vercel.app/homepage.png", // Must be an absolute URL
+        width: 1200,
+        height: 630,
+        alt: "Lampros DAO",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },

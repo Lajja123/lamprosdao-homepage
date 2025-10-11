@@ -6,18 +6,18 @@ import clip2 from "@/assests/Contributions/clip2.png";
 import Typography from "../UI/Typography";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
-import { useState } from "react";
 import contributionsContent from "@/data/contributionsContent.json";
 
-export default function Hero() {
-  const [activeContent, setActiveContent] = useState<"arbitrum" | "optimism">(
-    "arbitrum"
-  );
+interface HeroProps {
+  activeChain: "arbitrum" | "optimism";
+  onChainChange: (chain: "arbitrum" | "optimism") => void;
+}
 
-  const currentContent = contributionsContent[activeContent];
+export default function Hero({ activeChain, onChainChange }: HeroProps) {
+  const currentContent = contributionsContent[activeChain];
 
   const handleButtonClick = (content: "arbitrum" | "optimism") => {
-    setActiveContent(content);
+    onChainChange(content);
   };
 
   return (
@@ -55,14 +55,23 @@ export default function Hero() {
             weight="semibold"
             className="tracking-wider font-ppmori text-xl leading-1.5  mx-auto px-10 py-10"
           >
-            At Lampros DAO, we actively contribute to both governance and
-            research, ensuring that decentralized ecosystems remain transparent,
-            efficient, and community-driven. Through governance, we engage in
-            DAO discussions, voting, and proposal-making, helping shape the
-            direction of decentralized decision-making. Our research efforts
-            focus on analyzing governance structures, incentive programs, and
-            power distribution to provide data-backed insights that drive
-            informed decisions.{" "}
+            <div>
+              At Lampros DAO, we actively contribute to both governance and
+              research, ensuring that decentralized ecosystems remain
+              transparent, efficient, and community-driven. Through governance,
+              we engage in DAO discussions, voting, and proposal-making, helping
+              shape the direction of decentralized decision-making. Our research
+              efforts focus on analyzing governance structures, incentive
+              programs, and power distribution to provide data-backed insights
+              that drive informed decisions.
+            </div>
+            <div className="mt-4">
+              By working across multiple DAOs, we aim to improve governance
+              participation, develop analytical tools, and contribute to
+              ecosystem growth. Our work helps communities navigate
+              decentralization, ensuring long-term sustainability and
+              inclusivity.
+            </div>
           </Typography>
         </div>
         <div className="col-span-5 col-start-6 bg-[#DFF48D] p-5 flex items-center justify-center ">
@@ -77,7 +86,7 @@ export default function Hero() {
         <div className="col-span-4 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
           <div
             className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
-              activeContent === "arbitrum"
+              activeChain === "arbitrum"
                 ? "bg-white scale-105"
                 : "bg-gray-300 hover:bg-gray-200"
             }`}
@@ -97,7 +106,7 @@ export default function Hero() {
         <div className="col-span-4 col-start-6 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
           <div
             className={`rounded-full my-10 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
-              activeContent === "optimism"
+              activeChain === "optimism"
                 ? "bg-white scale-105"
                 : "bg-gray-300 hover:bg-gray-200"
             }`}

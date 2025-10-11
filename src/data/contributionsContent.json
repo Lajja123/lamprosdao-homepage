@@ -8,7 +8,48 @@
             "I",
             "M"
         ],
-        "word": "Arbitrum"
+        "word": "Arbitrum",
+        "contributions": {
+            "header": "BELOW ARE SOME OF OUR KEY CONTRIBUTIONS TO ARBITRUM DAO",
+            "items": [
+                {
+                    "id": "01",
+                    "title": "LTIPP Incentive Programs",
+                    "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
+                    "buttonLabel": "Read The Reports",
+                    "link": "https://forum.arbitrum.foundation/t/team-lampros-labs-dao-ltipp-research-bounty-reports/27015/3?u=euphoria",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "02",
+                    "title": "Arbitrum Governance & Development Initiative",
+                    "description": "Educated 1,200+ students across 18 colleges in Gujarat, India, on Arbitrum governance and smart contract development. Hands-on training led to 500+ smart contract deployments and increased community participation in Arbitrum governance.",
+                    "link": "https://forum.arbitrum.foundation/t/arbitrum-governance-and-development-initiative-lampros-labs-dao/26315?u=euphoria",
+                    "buttonLabel": "Learn More`",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "03",
+                    "title": "LTIPP Voting Dashboard",
+                    "description": "An interactive dashboard providing real-time voting insights for the LTIPP program, ensuring transparency for delegates, users, and community members. It offers project details, voting metrics, budget tracking, and proposal analysis.",
+                    "link": "https://docs.google.com/spreadsheets/d/1gBzO34v_YRQnR9ABTXjtTHMbqDylDGa54DT7LPekuqI/edit#gid=0",
+                    "buttonLabel": "View Dashboard",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "04",
+                    "title": "STIP-B Voting Dashboard",
+                    "description": " A voting dashboard for STIP-B proposals, displaying key metrics like total funding requested, passed projects, and remaining voting time. It enhances decision-making transparency in Arbitrum DAO.",
+                    "link": "https://docs.google.com/spreadsheets/d/1gBzO34v_YRQnR9ABTXjtTHMbqDylDGa54DT7LPekuqI/edit#gid=0",
+                    "buttonLabel": "View Dashboard",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                }
+            ]
+        }
     },
     "optimism": {
         "title": "Optimism",
@@ -19,43 +60,46 @@
             "I",
             "M"
         ],
-        "word": "Optimism"
-    },
-    "contributions": {
-        "header": "BELOW ARE SOME OF OUR KEY CONTRIBUTIONS TO ARBITRUM DAO",
-        "items": [
-            {
-                "id": "01",
-                "title": "LTIPP Incentive Programs",
-                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
-                "buttonLabel": "Read The Reports",
-                "buttonColor": "#DFCDF2",
-                "buttonTextColor": "#0B0B0B"
-            },
-            {
-                "id": "02",
-                "title": "LTIPP Incentive Programs",
-                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
-                "buttonLabel": "Read The Reports",
-                "buttonColor": "#DFCDF2",
-                "buttonTextColor": "#0B0B0B"
-            },
-            {
-                "id": "03",
-                "title": "LTIPP Incentive Programs",
-                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
-                "buttonLabel": "Read The Reports",
-                "buttonColor": "#DFCDF2",
-                "buttonTextColor": "#0B0B0B"
-            },
-            {
-                "id": "04",
-                "title": "LTIPP Incentive Programs",
-                "description": "We conducted an in-depth analysis of the LTIPP incentive programs, evaluating their impact on participating and non-recipient protocols. Our research includes statistical models, interactive dashboards, and an ARB distribution tracker to ensure transparency.",
-                "buttonLabel": "Read The Reports",
-                "buttonColor": "#DFCDF2",
-                "buttonTextColor": "#0B0B0B"
-            }
-        ]
+        "word": "Optimism",
+        "contributions": {
+            "header": "BELOW ARE SOME OF OUR KEY CONTRIBUTIONS TO OPTIMISM COLLECTIVE",
+            "items": [
+                {
+                    "id": "01",
+                    "title": "Optimism NumbaNERDs",
+                    "description": "Our team actively contributed to governance-related research bounties, topping the leaderboard in the NumbaNERDs bounty program. This initiative focused on governance analytics and transparency in the Optimism ecosystem.",
+                    "buttonLabel": "View Contributions",
+                    "link": "https://app.dework.xyz/optimism-community/contributors",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "02",
+                    "title": "Measuring the Concentration of Power in Optimism Collective",
+                    "description": "We introduced the Concentration of Power Index (CPI) to analyze governance influence in Optimism DAO. Our research compares Optimism's decentralization with other DAOs, providing insights for future governance improvements.",
+                    "buttonLabel": "Read the report",
+                    "link": "https://www.papermark.io/view/cm1isoexg0003j5b1j53u50ow",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "03",
+                    "title": "Badgeholder Onchain Analysis",
+                    "description": "A deep dive into the onchain activity of Optimism's Badgeholders, comparing their engagement with non-Badgeholders. This research supports informed decisions on future citizenship expansion in the Optimism Collective.",
+                    "buttonLabel": "Read the analysis",
+                    "link": "https://rose-characteristic-frog-540.mypinata.cloud/ipfs/QmNbEUZBiVz57j1vV57BWPobYQ6uhaFeu23rgzdUdY54GK",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                },
+                {
+                    "id": "04",
+                    "title": "Votable Supply Framework",
+                    "description": "Developing a framework to forecast and optimize votable supply in Optimism governance. This research aims to ensure progressive decentralization and mitigate governance attack risks through data-driven projections.",
+                    "buttonLabel": "Ongoing Project",
+                    "buttonColor": "#DFCDF2",
+                    "buttonTextColor": "#0B0B0B"
+                }
+            ]
+        }
     }
 }

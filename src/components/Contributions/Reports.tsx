@@ -5,9 +5,25 @@ import bgImage1 from "@/assests/Governance/reportbg.png";
 import contributionsData from "@/data/contributionsContent.json";
 import link from "@/assests/Governance/link.svg";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Reports() {
-  const { contributions } = contributionsData;
+interface ContributionItem {
+  id: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
+  link?: string; // Optional link property
+  buttonColor: string;
+  buttonTextColor: string;
+}
+
+interface ReportsProps {
+  activeChain: "arbitrum" | "optimism";
+}
+
+export default function Reports({ activeChain }: ReportsProps) {
+  const contributions = contributionsData[activeChain].contributions;
+  const items = contributions.items as ContributionItem[];
   return (
     <>
       <div className="grid grid-cols-10 bg-[#1A1A1A]">
@@ -49,7 +65,7 @@ export default function Reports() {
             weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
-            {contributions.items[0].title}
+            {items[0].title}
           </Typography>
         </div>
         <div className="col-start-6 row-start-2 border border-white relative flex items-center justify-center">
@@ -78,7 +94,7 @@ export default function Reports() {
             weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
-            {contributions.items[1].title}
+            {items[1].title}
           </Typography>
         </div>
         <div className="row-start-3"></div>
@@ -89,16 +105,23 @@ export default function Reports() {
             weight="normal"
             className=" tracking-wider font-ppmori"
           >
-            {contributions.items[0].description}
+            {items[0].description}
           </Typography>
           <div>
-            {" "}
-            <Button
-              label="Read The Reports"
-              color="#DFCDF2"
-              textColor="#0B0B0B"
-              className=" py-1 px-2"
-            />
+            <Link
+              href={items[0].link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={items[0].buttonLabel}
+                color={items[0].buttonColor}
+                textColor={items[0].buttonTextColor}
+                className=" py-1 px-2"
+              >
+                <Image src={link} alt="arrow" className="w-10 h-10" />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="col-start-6 row-start-3"></div>
@@ -109,16 +132,23 @@ export default function Reports() {
             weight="normal"
             className=" tracking-wider font-ppmori"
           >
-            {contributions.items[1].description}
+            {items[1].description}
           </Typography>
           <div>
-            {" "}
-            <Button
-              label="Read The Reports"
-              color="#DFCDF2"
-              textColor="#0B0B0B"
-              className=""
-            />
+            <Link
+              href={items[1].link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={items[1].buttonLabel}
+                color={items[1].buttonColor}
+                textColor={items[1].buttonTextColor}
+                className=""
+              >
+                <Image src={link} alt="arrow" className="w-10 h-10" />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="row-start-4 border border-white relative flex items-start justify-center p-10">
@@ -147,7 +177,7 @@ export default function Reports() {
             weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
-            {contributions.items[2].title}{" "}
+            {items[2].title}{" "}
           </Typography>
         </div>
         <div className="col-start-6 row-start-4 border border-white relative flex items-center justify-center">
@@ -176,7 +206,7 @@ export default function Reports() {
             weight="semibold"
             className="uppercase tracking-wider font-ppmori "
           >
-            {contributions.items[3].title}{" "}
+            {items[3].title}{" "}
           </Typography>
         </div>
         <div className="row-start-5"></div>
@@ -187,16 +217,23 @@ export default function Reports() {
             weight="normal"
             className=" tracking-wider font-ppmori"
           >
-            {contributions.items[2].description}
+            {items[2].description}
           </Typography>
           <div>
-            {" "}
-            <Button
-              label="Read The Reports"
-              color="#DFCDF2"
-              textColor="#0B0B0B"
-              className=""
-            />
+            <Link
+              href={items[2].link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={items[2].buttonLabel}
+                color={items[2].buttonColor}
+                textColor={items[2].buttonTextColor}
+                className=""
+              >
+                <Image src={link} alt="arrow" className="w-10 h-10" />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="col-start-6 row-start-5"></div>
@@ -207,27 +244,29 @@ export default function Reports() {
             weight="normal"
             className=" tracking-wider font-ppmori"
           >
-            {contributions.items[3].description}
+            {items[3].description}
           </Typography>
           <div>
-            {" "}
-            <Button
-              label="Read The Reports"
-              color="#DFCDF2"
-              textColor="#0B0B0B"
-              className=""
-            />
+            <Link
+              href={items[3].link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={items[3].buttonLabel}
+                color={items[3].buttonColor}
+                textColor={items[3].buttonTextColor}
+                className=""
+              >
+                <Image src={link} alt="arrow" className="w-10 h-10" />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="col-span-10 row-start-6 border border-white p-10 flex items-center justify-center">
-          <Button
-            label="See More"
-            color="#D0FFAC"
-            textColor="#0B0B0B"
-
-          >
-                      <Image src={link} alt="arrow" className="w-10 h-10" />
-</Button>
+          <Button label="See More" color="#D0FFAC" textColor="#0B0B0B">
+            <Image src={link} alt="arrow" className="w-10 h-10" />
+          </Button>
         </div>
       </div>
     </>

@@ -53,11 +53,11 @@ export default function Section2() {
               weight="semibold"
               className="tracking-wide font-ppmori"
             >
-              In The Vibrant World Of Blockchain, Lampros DAO Stands As A Beacon,
-              Illuminating The Path For Innovators, Dreamers, And Builders.
-              Founded With A Profound Vision To Seamlessly Merge Blockchain
-              Technology With Mainstream Applications, We&apos;ve Steadily Grown
-              Into A Robust Community Hub.
+              In the vibrant world of blockchain, Lampros DAO stands as a
+              beacon, illuminating the path for innovators, dreamers, and
+              builders. Founded with a profound vision to seamlessly merge
+              blockchain technology with mainstream applications, we've steadily
+              grown into a robust community hub.
             </Typography>
             <Typography
               variant="subtitle2"
@@ -65,11 +65,11 @@ export default function Section2() {
               weight="bold"
               className="tracking-wide font-ppmori"
             >
-              Our Ethos Is Rooted In Fostering Growth – Both Of The Individual And
-              The Collective. With Each Project We Support, Every Developer We
-              Guide, And Each Event We Host, We Inch Closer To A Future Where
-              Blockchain Isn&apos;t Just A Buzzword, But An Integral Part Of Our
-              Digital Tapestry.
+              Our ethos is rooted in fostering growth - both of the individual
+              and the collective. With each project we support, every developer
+              we guide, and each event we host, we inch closer to a future where
+              blockchain isn't just a buzzword, but an integral part of our
+              digital tapestry.
             </Typography>
           </div>
         </div>

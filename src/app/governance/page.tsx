@@ -10,19 +10,14 @@ export const metadata = {
     // description: "About Page Description...",
     url: "https://lamprosdao.vercel.app/governance",
     siteName: "LamprosDAO",
-    // images: [
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 800,
-    //     height: 600,
-    //   },
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 1800,
-    //     height: 1600,
-    //     alt: "My custom alt",
-    //   },
-    // ],
+    images: [
+      {
+        url: "https://lamprosdao.vercel.app/governance.png",
+        width: 1200,
+        height: 630,
+        alt: "Governance Lampros DAO",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },

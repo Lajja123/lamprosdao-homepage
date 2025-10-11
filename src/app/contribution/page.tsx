@@ -1,5 +1,4 @@
-import Hero from "@/components/Contributions/Hero";
-import Reports from "@/components/Contributions/Reports";
+import ContributionsWrapper from "@/components/Contributions/ContributionsWrapper";
 
 export const metadata = {
   title: "Contribution",
@@ -9,19 +8,14 @@ export const metadata = {
     // description: "About Page Description...",
     url: "https://lamprosdao.vercel.app/contribution",
     siteName: "LamprosDAO",
-    // images: [
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 800,
-    //     height: 600,
-    //   },
-    //   {
-    //     url: "https://uniswap.org/images/twitter-card.jpg",
-    //     width: 1800,
-    //     height: 1600,
-    //     alt: "My custom alt",
-    //   },
-    // ],
+    images: [
+      {
+        url: "https://lamprosdao.vercel.app/contribution.png",
+        width: 1200,
+        height: 630,
+        alt: "Contribution Lampros DAO",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -30,8 +24,7 @@ export const metadata = {
 export default function page() {
   return (
     <div>
-      <Hero />
-      <Reports />
+      <ContributionsWrapper />
     </div>
   );
 }

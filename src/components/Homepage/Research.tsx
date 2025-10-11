@@ -3,14 +3,13 @@ import { useState } from "react";
 import Image from "next/image";
 import Clip from "@/assests/HeroSection3/Clip.svg";
 import Clip2 from "@/assests/HeroSection3/Clip2.svg";
-import ArrowLeft from "@/assests/common/arrow1.svg";
-import ArrowRight from "@/assests/common/arrow1.svg";
 import { Typography } from "@/components/UI/Typography";
 import Button from "@/components/UI/Button";
 import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
 import Arrow from "../UI/Arrow";
 import Grid, { GridCell } from "@/components/UI/Grid";
 import researchContent from "@/data/researchContent.json";
+import Link from "next/link";
 
 export default function Research() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,7 +65,13 @@ export default function Research() {
           </Typography>
 
           <div>
-            <Button label="Know More" color="#D0FFAC" textColor="#000000" />
+            <Link
+              href={currentItem.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button label="Know More" color="#D0FFAC" textColor="#000000" />
+            </Link>
           </div>
         </div>
       </GridCell>

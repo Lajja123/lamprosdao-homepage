@@ -2,74 +2,50 @@
     "faqItems": [
         {
             "id": 1,
-            "question": "What's The Core Vision Of Lampros DAO?",
-            "answer": "Lampros DAO is dedicated to empowering Web3 contributors through comprehensive training, research, and community building. Our vision is to bridge the gap between traditional development and Web3 innovation, providing accessible education and hands-on experience in decentralized technologies.",
+            "question": "What's the core vision of Lampros DAO?",
+            "answer": "At our heart, Lampros DAO seeks to bridge the mainstream with the blockchain realm. We're laser-focused on supporting projects that can seamlessly introduce blockchain technology to everyday use.",
             "isExpanded": false
         },
         {
             "id": 2,
-            "question": "How can I get started with Lampros DAO?",
+            "question": "I'm new to blockchain and Web3. How can Lampros DAO assist me?",
             "answer": "Welcome aboard! Lampros DAO offers training sessions, hackathons, bootcamps, and cohorts designed specifically to help budding developers like you delve into the nuances of web3. Our community is here to guide, assist, and mentor you throughout your journey.",
             "isExpanded": false
         },
         {
             "id": 3,
             "question": "Can I contribute to open-source projects through Lampros DAO?",
-            "answer": "Absolutely! We actively encourage contributions to various open-source projects in the Web3 ecosystem. From governance tools to DeFi protocols, there are numerous opportunities to contribute and make a meaningful impact in the decentralized space.",
+            "answer": "Absolutely! We're ardent supporters of open source and have a plethora of projects across various blockchains. Your contributions will not only enhance these projects but also shape the future of decentralized systems.",
             "isExpanded": false
         },
         {
             "id": 4,
-            "question": "What educational resources does Lampros DAO provide?",
-            "answer": "We offer a comprehensive range of educational resources including workshops, seminars, coding bootcamps, and mentorship programs. Our curriculum covers blockchain fundamentals, smart contract development, DAO governance, and advanced Web3 concepts.",
+            "question": "What's the deal with the future Lampros DAO?",
+            "answer": "We're always thinking ahead. Our vision for the Lampros DAO (Decentralized Autonomous Organization) is to craft a space where decision-making is collaborative and transparent, aligning perfectly with the ethos of decentralization.",
             "isExpanded": false
         },
         {
             "id": 5,
-            "question": "How does governance work within Lampros DAO?",
-            "answer": "Our governance follows a decentralized model where community members can propose and vote on important decisions. We use transparent voting mechanisms and encourage active participation from all members in shaping the future direction of our organization.",
+            "question": "How does Lampros DAO support the well-being of its members?",
+            "answer": "We believe in the holistic development of our members. Beyond the digital realm, we provide an IRL (In Real Life) environment that focuses on both the physical and mental well-being of every individual in our community.",
             "isExpanded": false
         },
         {
             "id": 6,
-            "question": "What are the benefits of joining Lampros DAO?",
-            "answer": "Members gain access to exclusive educational content, networking opportunities with industry experts, hands-on project experience, mentorship from experienced developers, and the chance to contribute to cutting-edge Web3 research and development.",
+            "question": "I have a groundbreaking idea. How can Lampros DAO support its fruition?",
+            "answer": "Brilliant! Lampros DAO is always on the lookout for novel projects. We provide essential resources to ensure that promising ideas transform into sustainable realities, fueling the growth of the blockchain community.",
             "isExpanded": false
         },
         {
             "id": 7,
-            "question": "How can I participate in research initiatives?",
-            "answer": "Research participation is open to all members. You can join ongoing research projects, propose new research topics, collaborate with other researchers, and contribute to our knowledge base through papers, documentation, and practical implementations.",
+            "question": "How does Lampros DAO contribute to the growth of the web3 ecosystem?",
+            "answer": "Our commitment to web3 is unwavering. By organizing workshops, sessions, and activities, we aim to attract and induct new talents. Moreover, by providing public goods and resources, we play a pivotal role in expanding the horizons of the web3 landscape.",
             "isExpanded": false
         },
         {
             "id": 8,
-            "question": "What programming languages should I know?",
-            "answer": "While we welcome members with various skill levels, familiarity with JavaScript, Python, or Solidity is beneficial. We also provide learning resources for those new to programming and Web3 development.",
-            "isExpanded": false
-        },
-        {
-            "id": 9,
-            "question": "How often are community events held?",
-            "answer": "We host regular events including weekly workshops, monthly hackathons, quarterly conferences, and ongoing online discussions. Our event calendar is updated regularly and all members receive notifications about upcoming activities.",
-            "isExpanded": false
-        },
-        {
-            "id": 10,
-            "question": "Can I earn rewards for contributions?",
-            "answer": "Yes! We have a comprehensive reward system that recognizes contributions through tokens, NFTs, certificates, and other incentives. Active contributors are regularly acknowledged and rewarded for their valuable input to the community.",
-            "isExpanded": false
-        },
-        {
-            "id": 11,
-            "question": "How often are community events held?",
-            "answer": "We host regular events including weekly workshops, monthly hackathons, quarterly conferences, and ongoing online discussions. Our event calendar is updated regularly and all members receive notifications about upcoming activities.",
-            "isExpanded": false
-        },
-        {
-            "id": 12,
-            "question": "Can I earn rewards for contributions?",
-            "answer": "Yes! We have a comprehensive reward system that recognizes contributions through tokens, NFTs, certificates, and other incentives. Active contributors are regularly acknowledged and rewarded for their valuable input to the community.",
+            "question": "How can I become a part of Lampros DAO?",
+            "answer": "We're always eager to welcome enthusiasts! Whether you're a seasoned developer or a curious newbie, there's a place for you at Lampros DAO. Reach out to us through our contact page or join one of our community events to get started.",
             "isExpanded": false
         }
     ]

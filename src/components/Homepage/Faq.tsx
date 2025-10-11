@@ -116,160 +116,79 @@ export default function Faq() {
 
   const currentItems = getCurrentSectionItems();
 
+  // Render FAQ item component
+  const renderFaqItem = (item: any, index: number) => {
+    if (!item) return null;
+
+    return (
+      <>
+        <NumberCell
+          number={String(currentSection * itemsPerSection + index + 1).padStart(
+            2,
+            "0"
+          )}
+          rowStart={index > 0 ? String(index + 1) : undefined}
+        />
+        <ContentCell
+          rowStart={index > 0 ? String(index + 1) : undefined}
+          onClick={() => toggleExpanded(item.id)}
+          isExpanded={expandedItems.has(item.id)}
+        >
+          <div>
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="semibold"
+              className={combineStyles(
+                commonStyles.typography.body.medium,
+                commonStyles.typography.wrap.words
+              )}
+            >
+              {item.question}
+            </Typography>
+            <div
+              className={combineStyles(
+                "overflow-hidden transition-all duration-500 ease-in-out",
+                expandedItems.has(item.id)
+                  ? "max-h-96 opacity-100 mt-3"
+                  : "max-h-0 opacity-0 mt-0"
+              )}
+            >
+              <Typography
+                variant="body2"
+                color="primary"
+                weight="semibold"
+                className={combineStyles(
+                  commonStyles.typography.body.medium,
+                  commonStyles.typography.wrap.words
+                )}
+              >
+                {item.answer}
+              </Typography>
+            </div>
+          </div>
+        </ContentCell>
+      </>
+    );
+  };
+
   return (
     <>
       <div className={commonStyles.grid.cols10}>
-        <NumberCell
-          number={String(currentSection * itemsPerSection + 1).padStart(2, "0")}
-        />
+        {/* Dynamically render FAQ items */}
+        {currentItems.map((item, index) => renderFaqItem(item, index))}
 
-        <ContentCell
-          onClick={() => currentItems[0] && toggleExpanded(currentItems[0].id)}
-          isExpanded={
-            currentItems[0] ? expandedItems.has(currentItems[0].id) : false
-          }
+        <div
+          className={stylePresets.faq.questionCell}
+          style={{ gridRowStart: currentItems.length + 1 }}
         >
-          <div>
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="semibold"
-              className={combineStyles(
-                commonStyles.typography.body.medium,
-                commonStyles.typography.wrap.words
-              )}
-            >
-              {currentItems[0]?.question || ""}
-            </Typography>
-            {currentItems[0] && (
-              <div
-                className={combineStyles(
-                  "overflow-hidden transition-all duration-500 ease-in-out ",
-                  expandedItems.has(currentItems[0].id)
-                    ? "max-h-96 opacity-100 mt-3"
-                    : "max-h-0 opacity-0 mt-0"
-                )}
-              >
-                <Typography
-                  variant="body2"
-                  color="primary"
-                  weight="semibold"
-                  className={combineStyles(
-                    commonStyles.typography.body.medium,
-                    commonStyles.typography.wrap.words
-                  )}
-                >
-                  {currentItems[0].answer}
-                </Typography>
-              </div>
-            )}
-          </div>
-        </ContentCell>
-
-        <NumberCell
-          number={String(currentSection * itemsPerSection + 2).padStart(2, "0")}
-          rowStart="2"
-        />
-
-        <ContentCell
-          rowStart="2"
-          onClick={() => currentItems[1] && toggleExpanded(currentItems[1].id)}
-          isExpanded={
-            currentItems[1] ? expandedItems.has(currentItems[1].id) : false
-          }
-        >
-          <div>
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="semibold"
-              className={combineStyles(
-                commonStyles.typography.body.medium,
-                commonStyles.typography.wrap.words
-              )}
-            >
-              {currentItems[1]?.question || ""}
-            </Typography>
-            {currentItems[1] && (
-              <div
-                className={combineStyles(
-                  "overflow-hidden transition-all duration-500 ease-in-out",
-                  expandedItems.has(currentItems[1].id)
-                    ? "max-h-96 opacity-100 mt-3"
-                    : "max-h-0 opacity-0 mt-0"
-                )}
-              >
-                <Typography
-                  variant="body2"
-                  color="primary"
-                  weight="semibold"
-                  className={combineStyles(
-                    commonStyles.typography.body.medium,
-                    commonStyles.typography.wrap.words
-                  )}
-                >
-                  {currentItems[1].answer}
-                </Typography>
-              </div>
-            )}
-          </div>
-        </ContentCell>
-
-        <NumberCell
-          number={String(currentSection * itemsPerSection + 3).padStart(2, "0")}
-          rowStart="3"
-        />
-
-        <ContentCell
-          rowStart="3"
-          onClick={() => currentItems[2] && toggleExpanded(currentItems[2].id)}
-          isExpanded={
-            currentItems[2] ? expandedItems.has(currentItems[2].id) : false
-          }
-        >
-          <div>
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="semibold"
-              className={combineStyles(
-                commonStyles.typography.body.medium,
-                "font-ppmori",
-                commonStyles.typography.wrap.words
-              )}
-            >
-              {currentItems[2]?.question || ""}
-            </Typography>
-            {currentItems[2] && (
-              <div
-                className={combineStyles(
-                  "overflow-hidden transition-all duration-500 ease-in-out",
-                  expandedItems.has(currentItems[2].id)
-                    ? "max-h-96 opacity-100 mt-3"
-                    : "max-h-0 opacity-0 mt-0"
-                )}
-              >
-                <Typography
-                  variant="body2"
-                  color="primary"
-                  weight="semibold"
-                  className={combineStyles(
-                    commonStyles.typography.body.medium,
-                    commonStyles.typography.wrap.words
-                  )}
-                >
-                  {currentItems[2].answer}
-                </Typography>
-              </div>
-            )}
-          </div>
-        </ContentCell>
-
-        <div className={stylePresets.faq.questionCell}>
           <Image src={question} alt="question mark" />
         </div>
 
-        <div className={stylePresets.faq.titleCell}>
+        <div
+          className={stylePresets.faq.titleCell}
+          style={{ gridRowStart: currentItems.length + 1 }}
+        >
           <Typography
             variant="h1"
             color="primary"
@@ -281,7 +200,10 @@ export default function Faq() {
           </Typography>
         </div>
 
-        <div className="relative ">
+        <div
+          className="relative"
+          style={{ gridRowStart: currentItems.length + 1 }}
+        >
           <div
             className={combineStyles(
               "cursor-pointer absolute inset-0 flex items-center justify-center"
@@ -302,11 +224,17 @@ export default function Faq() {
           </div>
         </div>
 
-        <div className={stylePresets.faq.clipCell}>
+        <div
+          className={stylePresets.faq.clipCell}
+          style={{ gridRowStart: currentItems.length + 1 }}
+        >
           <Image src={clip} alt="clip" />
         </div>
 
-        <div className="relative">
+        <div
+          className="relative"
+          style={{ gridRowStart: currentItems.length + 1 }}
+        >
           <div
             className={combineStyles(
               "cursor-pointer  absolute inset-0 flex items-center justify-center"

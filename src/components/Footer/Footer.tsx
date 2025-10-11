@@ -20,11 +20,12 @@ interface FooterProps {
 // Color theme configurations
 const footerThemes = {
   light: {
-    background: "bg-[#FFFFFF]",
+    background: "bg-[#FFFFFF] ",
     textColor: "text-black",
     borderColor: "border-black",
     customBorderColor: "border-[#DFF48D]",
-
+    hoverBackgroundColor: "hover:bg-[#1a1a1a]",
+    hoverTextColor: "group-hover:text-[#DFF48D]",
     bottomBorderColor: "#FFFFFF", // Custom border color for bottom section
     iconColor: "#D0FFAC", // Black icons for light theme
     logo: logoLight, // Use light logo variant
@@ -35,6 +36,8 @@ const footerThemes = {
     textColor: "text-[#DFF48D]",
     borderColor: "border-white",
     customBorderColor: "border-white",
+    hoverBackgroundColor: "hover:bg-[#DFCDF2]",
+    hoverTextColor: "group-hover:text-[#1a1a1a]",
     iconColor: "#FFFFFF", // White icons for dark theme
     logo: logoDark, // Use dark logo variant
     logoIcon: logoIconDark, // Use dark logo icon variant
@@ -65,48 +68,60 @@ export default function Footer({ variant }: FooterProps) {
         className={`grid grid-cols-2 sm:grid-cols-4 text-center`}
         style={{ fontFamily: "PP Mori" }}
       >
-        <Link href="/" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
-        <Typography
-          variant="button"
-          align="center"
-          weight="bold"
-          className={`${theme.textColor} text-sm sm:text-base`}
+        <Link
+          href="/"
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
         >
-          Home
-        </Typography>
+          <Typography
+            variant="button"
+            align="center"
+            weight="bold"
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+          >
+            Home
+          </Typography>
         </Link>
-        <Link href="/about-us" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
-        <Typography
-          variant="button"
-          align="center"
-          weight="bold"
-          className={` ${theme.textColor} text-sm sm:text-base`}
+        <Link
+          href="/about-us"
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
         >
-          About Us
-        </Typography>
+          <Typography
+            variant="button"
+            align="center"
+            weight="bold"
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+          >
+            About Us
+          </Typography>
         </Link>
-        <Link href="/governance" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
-        <Typography
-          variant="button"
-          align="center"
-          weight="bold"
-          className={`${theme.textColor} text-sm sm:text-base`}
+        <Link
+          href="/governance"
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
         >
-          Governance
-        </Typography>
+          <Typography
+            variant="button"
+            align="center"
+            weight="bold"
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+          >
+            Governance
+          </Typography>
         </Link>
-        <Link href="/contribution" className={`w-full border ${theme.borderColor} p-3 sm:p-4 md:p-5  `}>
-        <Typography
-          variant="button"
-          align="center"
-          weight="bold"
-          className={`${theme.textColor} text-sm sm:text-base`}
+        <Link
+          href="/contribution"
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
         >
-          Contribution
-        </Typography>
+          <Typography
+            variant="button"
+            align="center"
+            weight="bold"
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+          >
+            Contribution
+          </Typography>
         </Link>
       </div>
-          
+
       {/* Logo Section */}
       <div
         className={`border-r border-l border-white relative w-full p-3 sm:p-4 md:p-5`}
@@ -134,17 +149,15 @@ export default function Footer({ variant }: FooterProps) {
           className={`border-r ${theme.customBorderColor} flex items-center justify-center w-full sm:w-auto sm:min-w-[80px] border-b sm:border-b-0 p-3 sm:p-4`}
         >
           <Link href="/">
-          <Image
-            src={theme.logoIcon}
-            alt="Lampros logo"
-            width={40}
-            height={40}
-            className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
+            <Image
+              src={theme.logoIcon}
+              alt="Lampros logo"
+              width={40}
+              height={40}
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
             />
-            </Link>
-        
+          </Link>
         </div>
-
 
         {/* Spacer for larger screens */}
         <div className="flex-1 hidden sm:block p-3" />
