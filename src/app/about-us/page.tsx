@@ -12,7 +12,7 @@ export const metadata = {
     siteName: "Lampros DAO",
     images: [
       {
-        url: "https://lamprosdao.vercel.app/OGImages/about-us.png",
+        url: "https://lamprosdao.vercel.app/OGImages/aboutus.png",
         width: 1200,
         height: 630,
         alt: "About Lampros DAO",
