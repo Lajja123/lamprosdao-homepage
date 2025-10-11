@@ -54,12 +54,6 @@ const Psygen = localFont({
   preload: true,
 });
 
-export const metadata: Metadata = {
-  title: "Lampros DAO",
-  description:"Driving Mainstream Adoption, Empowering Developers,and Cultivating the Future of Web3",
-
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

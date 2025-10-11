@@ -9,10 +9,10 @@ export const metadata = {
     title: "Governance",
     // description: "About Page Description...",
     url: "https://lamprosdao.vercel.app/governance",
-    siteName: "LamprosDAO",
+    siteName: "Lampros DAO",
     images: [
       {
-        url: "https://lamprosdao.vercel.app/governance.png",
+        url: "https://lamprosdao.vercel.app/OGImages/governance.png",
         width: 1200,
         height: 630,
         alt: "Governance Lampros DAO",

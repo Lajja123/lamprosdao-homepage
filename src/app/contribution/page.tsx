@@ -7,10 +7,10 @@ export const metadata = {
     title: "Contribution",
     // description: "About Page Description...",
     url: "https://lamprosdao.vercel.app/contribution",
-    siteName: "LamprosDAO",
+    siteName: "Lampros DAO",
     images: [
       {
-        url: "https://lamprosdao.vercel.app/contribution.png",
+        url: "https://lamprosdao.vercel.app/OGImages/contribution.png",
         width: 1200,
         height: 630,
         alt: "Contribution Lampros DAO",

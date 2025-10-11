@@ -13,7 +13,7 @@ export const metadata = {
     siteName: "Lampros DAO",
     images: [
       {
-        url: "https://lamprosdao.vercel.app/homepage.png", // Must be an absolute URL
+        url: "https://lamprosdao.vercel.app/OGImages/homepage.png", // Must be an absolute URL
         width: 1200,
         height: 630,
         alt: "Lampros DAO",
