@@ -15,7 +15,11 @@ export default function Delegate() {
             color="white"
             className="tracking-wide uppercase"
           >
-            <span className="uppercase font-bohemian wavy-letter">D</span>ele<span className="uppercase font-bohemian wavy-letter">g</span>ate to <span className="uppercase font-bohemian wavy-letter">L</span>am<span className="uppercase font-bohemian wavy-letter">P</span>ros D<span className="uppercase font-bohemian wavy-letter">A</span>O
+            <span className="uppercase font-bohemian wavy-letter">D</span>ele
+            <span className="uppercase font-bohemian wavy-letter">g</span>ate to{" "}
+            <span className="uppercase font-bohemian wavy-letter">L</span>am
+            <span className="uppercase font-bohemian wavy-letter">P</span>ros D
+            <span className="uppercase font-bohemian wavy-letter">A</span>O
           </Typography>
         </div>
         <div className="col-start-10 border border-white"></div>
@@ -34,7 +38,7 @@ export default function Delegate() {
             variant="body1"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px] w-[500px]"
+            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px] "
           >
             Delegate your tokens to our team and become a part of shaping the
             future of decentralized ecosystems.{" "}
@@ -53,9 +57,7 @@ export default function Delegate() {
         <div className="col-span-4 row-span-3 col-start-6 row-start-2 border border-white flex items-center justify-center p-5">
           <Image src={delegate} alt="delegate" className="w-[50%]" />
         </div>
-        <div className="row-span-4 col-start-10 row-start-1 border border-black bg-[#CBE9FF]  ">
-         
-        </div>
+        <div className="row-span-4 col-start-10 row-start-1 border border-black bg-[#CBE9FF]  "></div>
         <div className="col-span-4 col-start-2 gap-3 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
           <Typography
@@ -68,7 +70,7 @@ export default function Delegate() {
           </Typography>
         </div>
         <div className="col-span-4 col-start-6 row-start-5 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
-           <Image src={op} alt="arbitrum"  className="w-10"/>
+          <Image src={op} alt="arbitrum" className="w-10" />
           <div>
             <Typography
               variant="body1"
@@ -81,11 +83,8 @@ export default function Delegate() {
           </div>
         </div>
         <div className="col-span-10 row-start-6 "></div>
-        
       </div>
       <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-7 border border-black"></div>
-
-      
     </>
   );
 }
