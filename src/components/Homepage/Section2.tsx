@@ -42,6 +42,7 @@ export default function Section2() {
               src={clip}
               alt="clip"
               className="w-full h-full object-contain"
+              quality={100}
             />
           </div>
 

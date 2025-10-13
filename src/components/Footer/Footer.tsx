@@ -132,6 +132,7 @@ export default function Footer({ variant }: FooterProps) {
           width={500}
           height={500}
           className="mx-auto"
+          quality={100}
         />
         <div className="absolute inset-0 flex items-center justify-center p-5">
           <Image src={theme.logo} alt={""} className="w-full" />

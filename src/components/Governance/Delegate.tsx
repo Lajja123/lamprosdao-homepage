@@ -47,7 +47,7 @@ export default function Delegate() {
             variant="body1"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px]  w-[500px]"
+            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px] "
           >
             By delegating your tokens to our team, you enable us to represent
             your interests and drive meaningful governance decisions. Empower
