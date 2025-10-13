@@ -662,9 +662,8 @@ const RecentVotes = React.memo(function RecentVotes() {
 
       {/* Footer Row - Always position at the bottom */}
       <div
-        className={`col-span-8 row-start-${
-          loading || error || noData ? 6 : proposals.length * 2 + 2
-        } border border-black bg-[#E8F5A8] p-8 flex items-center justify-center`}
+        className={`col-span-8 row-start-10 
+         border border-black bg-[#E8F5A8] p-8 flex items-center justify-center`}
       >
         <Link
           href={
@@ -679,11 +678,7 @@ const RecentVotes = React.memo(function RecentVotes() {
           </Button>
         </Link>
       </div>
-      <div
-        className={`col-start-9 row-start-${
-          loading || error || noData ? 6 : proposals.length * 2 + 2
-        } border border-black bg-[#E8F5A8]`}
-      ></div>
+      
     </div>
   );
 });
