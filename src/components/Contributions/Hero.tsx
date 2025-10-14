@@ -85,7 +85,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <div className="row-start-3 border border-white bg-[#1A1A1A]"></div>
         <div className="col-span-4 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
           <div
-            className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
+            className={` rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300  ${
               activeChain === "arbitrum"
                 ? "bg-white scale-105"
                 : "bg-gray-300 hover:bg-gray-200"
@@ -105,7 +105,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
         <div className="col-span-4 col-start-6 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
           <div
-            className={`rounded-full my-10 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
+            className={` will-change-transform rounded-full my-10 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
               activeChain === "optimism"
                 ? "bg-white scale-105"
                 : "bg-gray-300 hover:bg-gray-200"

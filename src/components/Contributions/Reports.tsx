@@ -27,8 +27,8 @@ export default function Reports({ activeChain }: ReportsProps) {
   return (
     <>
       <div className="grid grid-cols-10 bg-[#1A1A1A]">
-        <div className="border border-white"></div>
-        <div className="col-span-8 border border-white flex items-center justify-center p-10">
+        <div className="border-b border-r border-l border-white"></div>
+        <div className="col-span-8 border-b border-r border-l border-white flex items-center justify-center p-10">
           <Typography
             variant="subtitle1"
             color="yellow"
@@ -38,7 +38,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             {contributions.header}{" "}
           </Typography>
         </div>
-        <div className="col-start-10 border border-white flex items-center justify-center p-10"></div>
+        <div className="col-start-10 border-b border-r border-l border-white flex items-center justify-center p-10"></div>
         <div className="row-start-2 border border-white relative flex items-center justify-center p-10">
           <div
             className="absolute inset-0"
@@ -254,7 +254,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             </Link>
           </div>
         </div>
-        <div className="col-span-10 row-start-6 border border-white p-10 flex items-center justify-center">
+        <div className="col-span-10 row-start-6 border-t border-white p-10 flex items-center justify-center bg-[#000000]">
           <Button label="See More" color="#D0FFAC" textColor="#0B0B0B"></Button>
         </div>
       </div>

@@ -13,15 +13,30 @@ import link from "@/assests/Governance/link.svg";
 
 export default function Hero() {
   const teamMembers = [
-    { name: "Euphoria", icon: "↗", link: "https://x.com/Euphoria_0077" ,src: euphoria},
-    { name: "Chain_L", icon: "↗", link: "https://x.com/chain_haya",src: chain},
-    { name: "Hirangi", icon: "↗", link: "https://x.com/HirangiPandya" ,src: hirangi},
+    {
+      name: "Euphoria",
+      icon: "↗",
+      link: "https://x.com/Euphoria_0077",
+      src: euphoria,
+    },
+    {
+      name: "Chain_L",
+      icon: "↗",
+      link: "https://x.com/chain_haya",
+      src: chain,
+    },
+    {
+      name: "Hirangi",
+      icon: "↗",
+      link: "https://x.com/HirangiPandya",
+      src: hirangi,
+    },
   ];
 
   return (
     <>
       <div className="grid grid-cols-8">
-        <GridCell rowSpan={4} className="col-span-1" />
+        <GridCell rowSpan={3} className="col-span-1" />
 
         <GridCell
           colSpan={2}
@@ -40,7 +55,7 @@ export default function Hero() {
             variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl leading-1.5 mx-auto px-10 py-10"
+            className="mx-w-[500px] tracking-wider font-ppmori text-xl leading-1.5 mx-auto px-10 py-10"
           >
             Lampros DAO is an open community of builders and governance
             enthusiasts committed to transparency, decentralization, and
@@ -50,7 +65,7 @@ export default function Hero() {
           </Typography>
         </GridCell>
 
-        <GridCell rowSpan={4} className="col-start-8" />
+        <GridCell rowSpan={3} className="col-start-8" />
 
         <GridCell
           colSpan={6}
@@ -72,27 +87,30 @@ export default function Hero() {
             colSpan={2}
             className={`col-start-${
               2 + index * 2
-            } row-start-4 flex items-center justify-center p-8 gap-4`}
+            } row-start-4 flex items-center justify-center p-10 gap-4`}
           >
-            <Link 
-              href={member.link} 
-              target="_blank" 
+            <Link
+              href={member.link}
+              target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 hover:opacity-80 transition-opacity duration-300"
+              className="flex items-center  hover:opacity-80 transition-opacity duration-300"
             >
-              <div className="">
-              <Image src={member.src} alt="link" className="w-12 h-12 rounded-full border-1  border-black" />
-
+              <div className="p-4">
+                <Image
+                  src={member.src}
+                  alt="link"
+                  className="w-12 h-12 rounded-full border-1  border-black"
+                />
               </div>
               <Typography
                 variant="body1"
                 color="primary"
-                weight="semibold" 
+                weight="semibold"
                 className="font-ppmori"
               >
                 {member.name}
               </Typography>
-              <Image src={link} alt="link" className="w-10" />
+              <Image src={link} alt="link" className="w-10 " />
             </Link>
           </GridCell>
         ))}
@@ -100,11 +118,14 @@ export default function Hero() {
 
       {/* OUR DELEGATIONS Section */}
       <div className="grid grid-cols-8 mt-0 bg-[#1A1A1A]">
-        <GridCell rowSpan={2} className="col-span-1 border- border-white" />
+        <GridCell
+          rowSpan={2}
+          className="col-span-1 border-t border-l border-r border-white"
+        />
 
         <GridCell
           colSpan={6}
-          className="col-start-2 flex items-center justify-center p-8 border- border-white"
+          className="col-start-2 flex items-center justify-center p-10 "
         >
           <Typography
             variant="h2"
@@ -117,52 +138,60 @@ export default function Hero() {
           </Typography>
         </GridCell>
 
-        <GridCell rowSpan={2} className="col-start-8 border- border-white" />
-
+        {/* <GridCell className="col-start-8 border-t border-l border-r border-white" /> */}
         <GridCell
-          colSpan={3}
-          className="col-start-2 row-start-2  p-6 border- border-white"
-        >
-                      <Link href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642" target="_blank" rel="noopener noreferrer">
+          rowSpan={2}
+          className="col-start-8 border-t border-l border-r border-white"
+        />
+        <GridCell className="row-start-2 border-t border-l border-r border-white" />
 
-          <div
-            className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+        <GridCell colSpan={3} className="row-start-2  p-6 border border-white">
+          <Link
+            href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Image src={arbitrum} alt="arbitrum" className="w-10" />
-            <Typography
-              variant="subtitle2"
-              color="primary"
-              weight="semibold"
-              className="font-ppmori "
+            <div
+              className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
-              Arbitrum
-            </Typography>
-           
-          </div>
+              <Image src={arbitrum} alt="arbitrum" className="w-10" />
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                weight="semibold"
+                className="font-ppmori "
+              >
+                Arbitrum
+              </Typography>
+            </div>
           </Link>
         </GridCell>
 
         <GridCell
           colSpan={3}
-          className="col-start-5 row-start-2  p-6"
+          className="col-start-5 row-start-2  p-6 border border-white"
         >
-          <Link href="https://vote.optimism.io/delegates/lamprosdao.eth" target="_blank" rel="noopener noreferrer">
-          <div
-            className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+          <Link
+            href="https://vote.optimism.io/delegates/lamprosdao.eth"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Image src={op} alt="optimism" className="w-10" />
-            <Typography
-              variant="subtitle2"
-              color="primary"
-              weight="semibold"
-              className="font-ppmori "
+            <div
+              className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
+              <Image src={op} alt="optimism" className="w-10" />
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                weight="semibold"
+                className="font-ppmori "
+              >
                 Optimism
               </Typography>
-            
-          </div>
+            </div>
           </Link>
         </GridCell>
+        <GridCell className="col-start-8 row-start-2 border border-white" />
       </div>
     </>
   );

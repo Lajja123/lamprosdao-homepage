@@ -84,7 +84,7 @@ const ProtocolButton = React.memo(
   }) => (
     <button
       onClick={() => onClick(protocol.name)}
-      className={`px-6 py-3 rounded-full transition-all flex items-center gap-2 ${
+      className={`cursor-pointer px-6 py-3 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
         isActive ? "bg-[#2F2B2B] text-white" : "bg-gray-300 text-gray-700"
       }`}
     >
@@ -392,13 +392,13 @@ const RecentVotes = React.memo(function RecentVotes() {
   const getVoteResultColor = useCallback((result: string): string => {
     switch (result) {
       case "For":
-        return "text-green-600";
+        return "text-[#000000]";
       case "Against":
-        return "text-red-600";
+        return "text-[#000000]";
       case "Abstain":
-        return "text-gray-600";
+        return "text-[#000000]";
       default:
-        return "text-green-600";
+        return "text-[#000000]";
     }
   }, []);
 
@@ -408,12 +408,12 @@ const RecentVotes = React.memo(function RecentVotes() {
 
   return (
     <div className="grid grid-cols-8 ">
-      <div className=" border border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
+      <div className=" border-b border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
         <div className="  flex items-center justify-center">
           <Image src={vote1} alt="vote1" />
         </div>
       </div>
-      <div className="col-span-6 border border-black p-6 flex items-center justify-between">
+      <div className="col-span-6 border border-black p-10 flex items-center justify-between">
         <Typography
           variant="h2"
           color="primary"
@@ -422,7 +422,7 @@ const RecentVotes = React.memo(function RecentVotes() {
         >
           Recent Votes
         </Typography>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center ">
           {protocols.map((protocol) => (
             <ProtocolButton
               key={protocol.name}
@@ -495,13 +495,13 @@ const RecentVotes = React.memo(function RecentVotes() {
                 </Typography>
               </div>
               <div
-                className={`col-span-2 row-start-${baseRow} border border-black p-6 flex items-center`}
+                className={` row-start-${baseRow} border border-black p-6 flex items-center justify-items-start`}
               >
                 <Typography
                   variant="body1"
                   color="primary"
                   weight="medium"
-                  className="font-ppmori"
+                  className="font-ppmori "
                 >
                   Voted [{" "}
                   <span className={getVoteResultColor(proposal.result)}>
@@ -511,13 +511,13 @@ const RecentVotes = React.memo(function RecentVotes() {
                 </Typography>
               </div>
               <div
-                className={`col-span-6 col-start-4 row-start-${baseRow} border border-black p-6`}
+                className={`col-span-8 col-start-3 row-start-${baseRow} border border-black p-6 `}
               >
                 <Typography
                   variant="body1"
                   color="primary"
                   weight="normal"
-                  className="mb-4"
+                  className="mb-4 mx-w-[600px]"
                 >
                   {proposal.title}
                 </Typography>
@@ -525,16 +525,16 @@ const RecentVotes = React.memo(function RecentVotes() {
                   <Typography
                     variant="caption"
                     color="accent"
-                    weight="normal"
-                    className="px-4 py-1.5 border border-[#A885CD] rounded-full bg-transparent"
+                    weight="medium"
+                    className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
                   >
                     {proposal.protocol}
                   </Typography>
                   <Typography
                     variant="caption"
                     color="accent"
-                    weight="normal"
-                    className="px-4 py-1.5 border border-[#A885CD] rounded-full bg-transparent"
+                    weight="medium"
+                    className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
                   >
                     {proposal.type}
                   </Typography>
@@ -551,8 +551,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                   style={{
                     backgroundImage: `url(${bgImage1.src})`,
                     backgroundSize: "cover",
-                    backgroundPosition: "center center",
+                    backgroundPosition: "center left",
                     backgroundRepeat: "no-repeat",
+                    backgroundBlendMode: "multiply",
                   }}
                 ></div>
                 <Arrow direction={expandedItem === index ? "up" : "down"} />
@@ -663,7 +664,7 @@ const RecentVotes = React.memo(function RecentVotes() {
       {/* Footer Row - Always position at the bottom */}
       <div
         className={`col-span-8 row-start-10 
-         border border-black bg-[#E8F5A8] p-8 flex items-center justify-center`}
+         border border-black bg-[#DFF48D] p-10 flex items-center justify-center`}
       >
         <Link
           href={

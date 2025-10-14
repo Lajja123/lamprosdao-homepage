@@ -22,8 +22,10 @@ export default function Delegate() {
             <span className="uppercase font-bohemian wavy-letter">A</span>O
           </Typography>
         </div>
-        <div className="col-start-10 border border-white"></div>
-        <div className="row-span-4 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
+        <div className=" col-start-10 border-b border-l border-r border-white"></div>
+
+        {/* <div className="col-start-10 border border-white"></div> */}
+        <div className="row-span-3 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
           <Typography
             variant="caption"
             color="white"
@@ -33,58 +35,62 @@ export default function Delegate() {
             [ Your Delegation Matters !! ]
           </Typography>
         </div>
-        <div className="col-span-4 p-5 row-span-3 row-start-2 border border-white flex items-center flex-col gap-5 justify-center">
+        <div className="col-span-4 row-span-2 row-start-2 border border-white flex items-center flex-col gap-5 justify-center">
           <Typography
-            variant="body1"
+            variant="subtitle2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px] "
+            className="tracking-wider font-ppmori leading-[1.5] max-w-[500px] "
           >
             Delegate your tokens to our team and become a part of shaping the
             future of decentralized ecosystems.{" "}
           </Typography>
           <Typography
-            variant="body1"
+            variant="subtitle2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori  leading-1.5 max-w-[600px] "
+            className="tracking-wider font-ppmori leading-[1.5] max-w-[500px] "
           >
             By delegating your tokens to our team, you enable us to represent
             your interests and drive meaningful governance decisions. Empower
             effective governance in Web3.{" "}
           </Typography>
         </div>
-        <div className="col-span-4 row-span-3 col-start-6 row-start-2 border border-white flex items-center justify-center p-5">
-          <Image src={delegate} alt="delegate" className="w-[50%]" />
+        <div className="col-span-4 row-span-2 col-start-6 row-start-2 border border-white flex items-center justify-center p-10">
+          <Image
+            src={delegate}
+            alt="delegate"
+            className="w-[50%]"
+            quality={100}
+          />
         </div>
-        <div className="row-span-4 col-start-10 row-start-1 border border-black bg-[#CBE9FF]  "></div>
-        <div className="col-span-4 col-start-2 gap-3 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5">
+        <div className="row-span-3 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
+        <div className="col-span-4 col-start-2 row-start-4 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
           <Typography
             variant="body1"
             color="primary"
-            weight="semibold"
+            weight="bold"
             className="font-ppmori "
           >
             Delegate On Arbitrum
           </Typography>
         </div>
-        <div className="col-span-4 col-start-6 row-start-5 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
+        <div className="col-span-4 col-start-6 row-start-4 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
           <Image src={op} alt="arbitrum" className="w-10" />
           <div>
             <Typography
               variant="body1"
               color="primary"
-              weight="semibold"
+              weight="bold"
               className="font-ppmori "
             >
               Delegate On Optimism
             </Typography>
           </div>
         </div>
-        <div className="col-span-10 row-start-6 "></div>
       </div>
-      <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-7 border border-black"></div>
+      <div className="col-span-10 row-start-5 bg-[#1A1A1A] p-10 border border-black"></div>
     </>
   );
 }
