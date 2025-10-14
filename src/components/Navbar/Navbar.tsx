@@ -44,15 +44,16 @@ export default function Navbar({ centerContent }: NavbarProps) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animate navbar elements on mount
-      gsap.fromTo([logoRef.current, centerRef.current, menuRef.current], 
+      gsap.fromTo(
+        [logoRef.current, centerRef.current, menuRef.current],
         { opacity: 0, y: -20 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8, 
-          stagger: 0.1, 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
           ease: "power2.out",
-          delay: 0.2
+          delay: 0.2,
         }
       );
 
@@ -65,11 +66,10 @@ export default function Navbar({ centerContent }: NavbarProps) {
             ease: "power2.inOut",
             repeat: -1,
             yoyo: true,
-            delay: 1 + (index * 0.1)
+            delay: 1 + index * 0.1,
           });
         }
       });
-
     }, navbarRef);
 
     return () => ctx.revert();
@@ -116,7 +116,10 @@ export default function Navbar({ centerContent }: NavbarProps) {
   }, [isMenuOpen]);
 
   return (
-    <nav ref={navbarRef} className="relative flex items-start md:items-start justify-between">
+    <nav
+      ref={navbarRef}
+      className="relative flex items-start md:items-start justify-between"
+    >
       {/* Left: Logo */}
       <div ref={logoRef} className="flex p-10">
         <Link href="/">
@@ -151,15 +154,19 @@ export default function Navbar({ centerContent }: NavbarProps) {
                     case "About Us":
                       return (
                         <>
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[0] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             A
                           </span>
                           bout{" "}
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[1] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             U
@@ -171,28 +178,36 @@ export default function Navbar({ centerContent }: NavbarProps) {
                       return (
                         <>
                           G
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[0] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             o
                           </span>
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[1] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             v
                           </span>
                           ern
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[2] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[2] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             a
                           </span>
                           nc
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[3] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[3] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             e
@@ -203,28 +218,36 @@ export default function Navbar({ centerContent }: NavbarProps) {
                       return (
                         <>
                           C
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[0] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             o
                           </span>
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[1] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             nt
                           </span>
                           rib
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[2] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[2] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             u
                           </span>
                           t
-                          <span 
-                            ref={el => { if (el) wavyLettersRef.current[3] = el; }}
+                          <span
+                            ref={(el) => {
+                              if (el) wavyLettersRef.current[3] = el;
+                            }}
                             className="uppercase font-bohemian wavy-letter inline-block"
                           >
                             i
@@ -250,7 +273,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
               <li key={item.href}>
                 <Link href={item.href} className="group">
                   <Typography
-                    variant="body1"
+                    variant="subtitle2"
                     weight="medium"
                     color={isActive ? "accent" : "primary"}
                     className={`uppercase tracking-wide transition-all duration-300 hover:scale-105 ${

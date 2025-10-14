@@ -44,13 +44,13 @@ export default function Research() {
 
       {/* Content section - spans 3 columns, 4 rows */}
       <GridCell type="researchContent">
-        <div className="space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 h-full flex flex-col justify-center">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-10  flex flex-col justify-center">
           <Typography
             variant="h1"
             weight="normal"
             align="left"
             color="#E9FCE4"
-            className="uppercase tracking-[-0.02em] leading-[0.95] text-[28px] sm:text-[32px] md:text-[48px] lg:text-[60px] xl:text-[68px] 2xl:text-[76px]"
+            className="uppercase tracking-[-0.02em] leading-[0.95] "
           >
             {currentItem.title}
           </Typography>
@@ -100,12 +100,8 @@ export default function Research() {
       </GridCell>
 
       {/* Clip2 image - row 5, column 5 */}
-      <GridCell type="researchIcon" className="col-start-5 row-start-5">
-        <Image
-          src={Clip2}
-          alt="Emblem"
-          className="p-3 sm:p-4 md:p-5 w-[60%] sm:w-[65%] md:w-[70%] lg:w-[75%]"
-        />
+      <GridCell type="researchIcon" className="col-start-5 row-start-5 p-5">
+        <Image src={Clip2} alt="Emblem" className="p-3 sm:p-4 md:p-5 w-full" />
       </GridCell>
 
       {/* Arrow right - row 5, column 6 */}

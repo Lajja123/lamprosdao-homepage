@@ -228,7 +228,7 @@ export default function Faq() {
           className={stylePresets.faq.clipCell}
           style={{ gridRowStart: currentItems.length + 1 }}
         >
-          <Image src={clip} alt="clip" />
+          <Image src={clip} alt="clip" className="w-[50%]  mx-auto" />
         </div>
 
         <div
