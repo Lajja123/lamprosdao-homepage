@@ -60,12 +60,12 @@ export default function Ethos() {
             className="w-[300px] mx-auto"
           />
         </div>
-        <div className="col-span-4 border border-[#000000] px-15 py-5 flex items-center justify-center ">
+        <div className="col-span-4 border border-[#000000] px-15 py-5 flex items-center justify-start ">
           <Typography
             variant="h6"
             color="primary"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[500px] "
           >
             {ethosData[0].title}
           </Typography>
@@ -80,12 +80,12 @@ export default function Ethos() {
             {ethosData[0].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-6 row-start-2 border border-[#000000] flex items-center justify-center px-15 py-5 ">
+        <div className="col-span-5 row-span-2 col-start-6 row-start-2 border border-[#000000] flex items-center justify-start px-15 py-10 ">
           <Typography
             variant="subtitle2"
             color="primary"
             weight="medium"
-            className=" font-ppmori"
+            className=" font-ppmori max-w-[700px]"
           >
             {ethosData[0].content}
           </Typography>
@@ -100,21 +100,21 @@ export default function Ethos() {
             {ethosData[1].number}
           </Typography>
         </div>
-        <div className="col-span-4 col-start-1 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-5 ">
+        <div className="col-span-4 col-start-1 row-start-4 border border-[#000000] flex items-center justify-start px-15 py-10">
           <Typography
             variant="h6"
             color="primary"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[500px] "
           >
             {ethosData[1].title}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-1 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 ">
+        <div className="col-span-5 row-span-2 col-start-1 row-start-5 border border-[#000000] flex items-center justify-start px-15 py-5 ">
           <Typography
             variant="subtitle2"
             color="primary"
-            className=" font-ppmori"
+            className=" font-ppmori max-w-[700px]"
           >
             {ethosData[1].content}
           </Typography>
@@ -124,7 +124,7 @@ export default function Ethos() {
             variant="h6"
             color="primary"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[500px] "
           >
             {ethosData[2].title}
           </Typography>
@@ -139,21 +139,21 @@ export default function Ethos() {
             {ethosData[2].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-6 row-start-5 border border-[#000000] flex items-center justify-center px-15 py-5 ">
+        <div className="col-span-5 row-span-2 col-start-6 row-start-5 border border-[#000000] flex items-center justify-start px-15 py-10 ">
           <Typography
             variant="subtitle2"
             color="primary"
-            className=" font-ppmori"
+            className=" font-ppmori max-w-[700px]"
           >
             {ethosData[2].content}
           </Typography>
         </div>
-        <div className="col-span-4 row-start-7 border border-[#000000] flex items-center justify-start px-15 py-5 ">
+        <div className="col-span-4 row-start-7 border border-[#000000] flex items-center justify-start px-15 py-10 ">
           <Typography
             variant="h6"
             color="primary"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[500px] "
           >
             {ethosData[3].title}
           </Typography>
@@ -168,11 +168,11 @@ export default function Ethos() {
             {ethosData[3].number}
           </Typography>
         </div>
-        <div className="col-span-5 row-span-2 col-start-1 border border-[#000000] row-start-8 flex items-center justify-center px-15 py-5 ">
+        <div className="col-span-5 row-span-2 col-start-1 border border-[#000000] row-start-8 flex items-center justify-start px-15 py-10 ">
           <Typography
             variant="subtitle2"
             color="primary"
-            className=" font-ppmori"
+            className=" font-ppmori max-w-[700px]"
           >
             {ethosData[3].content}
           </Typography>
@@ -182,7 +182,7 @@ export default function Ethos() {
             variant="h6"
             color="primary"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[500px] "
           >
             {ethosData[4].title}
           </Typography>
@@ -197,11 +197,11 @@ export default function Ethos() {
             {ethosData[4].number}
           </Typography>
         </div>
-        <div className="col-span-5 col-start-6 border flex items-center justify-center border-[#000000] px-15 py-5 ">
+        <div className="col-span-5 col-start-6 border flex items-center justify-start border-[#000000] px-15 py-10 ">
           <Typography
             variant="subtitle2"
             color="primary"
-            className=" font-ppmori"
+            className=" font-ppmori max-w-[700px]"
           >
             {ethosData[4].content}
           </Typography>

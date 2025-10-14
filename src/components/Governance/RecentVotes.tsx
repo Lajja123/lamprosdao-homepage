@@ -417,7 +417,7 @@ const RecentVotes = React.memo(function RecentVotes() {
         <Typography
           variant="h2"
           color="primary"
-          weight="light"
+          weight="semibold"
           className="tracking-wide"
         >
           Recent Votes
@@ -575,6 +575,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                             width={40}
                             height={40}
                             className="rounded-full"
+                            quality={100}
                           />
                         </div>
                         <div className="flex-1">

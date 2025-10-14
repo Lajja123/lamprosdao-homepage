@@ -53,7 +53,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl leading-1.5  mx-auto px-10 py-10"
+            className="tracking-wider font-ppmori text-xl  mx-auto px-10 py-10"
           >
             <div>
               At Lampros DAO, we actively contribute to both governance and
@@ -170,7 +170,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[1200px] p-5 mx-auto"
+            className="tracking-wider font-ppmori text-xl  max-w-[1200px] p-5 mx-auto"
           >
             {currentContent.description}
           </Typography>

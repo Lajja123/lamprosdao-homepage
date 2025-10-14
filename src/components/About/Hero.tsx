@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import about from "@/assests/AboutUs/about.svg";
+import about from "@/assests/AboutUs/about.png";
 import Typography from "@/components/UI/Typography";
 import vision from "@/assests/AboutUs/vision.svg";
 import mission from "@/assests/AboutUs/mission.svg";
@@ -14,6 +14,7 @@ export default function Hero() {
             src={about}
             alt="Metallic sculpture"
             className=" w-[80%] h-full mx-auto"
+            quality={100}
           />
         </div>
         <div className="col-span-6 row-span-6 col-start-5 border border-black p-10 flex flex-col justify-center">
@@ -57,9 +58,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="grid grid-cols-10 grid-rows-8  bg-[#1A1A1A]">
+      <div className="grid grid-cols-10  grid-rows-6   bg-[#1A1A1A]">
         <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-5"></div>
-        <div className="col-span-3 p-5 border border-[#FFFFFF] flex items-center justify-center">
+        <div className="col-span-4 p-5 border border-[#FFFFFF] flex items-center justify-center">
           <Typography
             variant="h3"
             weight="semibold"
@@ -71,28 +72,28 @@ export default function Hero() {
             <span className="uppercase font-bohemian wavy-letter">i</span>on
           </Typography>
         </div>
-        <div className="col-span-5 row-span-4 col-start-5 border border-[#FFFFFF] p-5 w-full flex items-center justify-center">
-          <Image src={vision} alt="Metallic sculpture" />
+        <div className="col-span-4 row-span-3 col-start-6 border border-[#FFFFFF] p-5 w-full flex items-center justify-center">
+          <Image src={vision} alt="Metallic sculpture" quality={100} />
         </div>
-        <div className="row-span-4 col-start-10 border border-[#FFFFFF]"></div>
-        <div className="row-span-3 row-start-2 border "></div>
-        <div className="w-[80%] mx-auto col-span-3 row-span-3  flex items-center justify-center">
+        <div className="row-span-3 col-start-10 border border-[#FFFFFF]"></div>
+        <div className="row-span-2 row-start-2 border border-white"></div>
+        <div className=" col-span-4 row-span-2 row-start-2  flex items-center justify-center">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori text-xl leading-1.5"
+            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[600px]"
           >
             To be the global nexus where blockchain technology seamlessly
             integrates into everyday life, creating a decentralized and
             empowered future for all.
           </Typography>
         </div>
-        <div className="row-span-4 row-start-5 border border-[#FFFFFF]"></div>
-        <div className="col-span-3 row-span-4 row-start-5 border border-[#FFFFFF] flex items-center justify-center p-5">
-          <Image src={mission} alt="Metallic sculpture" />
+        <div className="row-span-3 row-start-4 border border-[#FFFFFF]"></div>
+        <div className="col-span-4 row-span-3 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5">
+          <Image src={mission} alt="Metallic sculpture" quality={100} />
         </div>
-        <div className="col-span-5 col-start-5 row-start-5 border border-[#FFFFFF] flex items-center justify-center">
+        <div className="col-span-4 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center">
           <Typography
             variant="h3"
             weight="semibold"
@@ -104,12 +105,12 @@ export default function Hero() {
             <span className="uppercase font-bohemian wavy-letter">i</span>on
           </Typography>
         </div>
-        <div className=" w-[80%] mx-auto col-span-5 row-span-3 col-start-5 row-start-6  flex items-center justify-center">
+        <div className=" col-span-4 row-span-2 col-start-6 row-start-5  flex items-center justify-center">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori leading-[0.90]"
+            className="tracking-wider font-ppmori leading-[0.90] max-w-[600px]"
           >
             Lampros DAO is dedicated to cultivating trailblazing web3 leaders,
             amplifying open-source breakthroughs across multiple blockchain
@@ -117,8 +118,8 @@ export default function Hero() {
             decentralized principles.
           </Typography>
         </div>
-        <div className="col-start-10 bg-[#DFCDF2] row-start-5 border border-[#FFFFFF]"></div>
-        <div className="row-span-3 col-start-10 row-start-6 border border-[#FFFFFF]"></div>
+        <div className=" bg-[#DFCDF2] col-start-10 row-start-4 border border-[#FFFFFF]"></div>
+        <div className="row-span-2 col-start-10 row-start-5 border border-[#FFFFFF]"></div>
       </div>
     </>
   );

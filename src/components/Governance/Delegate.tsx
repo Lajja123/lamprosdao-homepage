@@ -40,7 +40,7 @@ export default function Delegate() {
             variant="subtitle2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori leading-[1.5] max-w-[500px] "
+            className="tracking-wider font-ppmori  max-w-[500px] "
           >
             Delegate your tokens to our team and become a part of shaping the
             future of decentralized ecosystems.{" "}
@@ -49,7 +49,7 @@ export default function Delegate() {
             variant="subtitle2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori leading-[1.5] max-w-[500px] "
+            className="tracking-wider font-ppmori  max-w-[500px] "
           >
             By delegating your tokens to our team, you enable us to represent
             your interests and drive meaningful governance decisions. Empower
@@ -68,7 +68,7 @@ export default function Delegate() {
         <div className="col-span-4 col-start-2 row-start-4 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
           <Typography
-            variant="body1"
+            variant="body2"
             color="primary"
             weight="bold"
             className="font-ppmori "
@@ -80,7 +80,7 @@ export default function Delegate() {
           <Image src={op} alt="arbitrum" className="w-10" />
           <div>
             <Typography
-              variant="body1"
+              variant="body2"
               color="primary"
               weight="bold"
               className="font-ppmori "

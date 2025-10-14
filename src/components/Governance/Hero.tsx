@@ -43,7 +43,7 @@ export default function Hero() {
           rowSpan={2}
           className="p-5 flex items-center justify-center"
         >
-          <Image src={clip} alt="Metallic sculpture" />
+          <Image src={clip} alt="Metallic sculpture" quality={100} />
         </GridCell>
 
         <GridCell
@@ -55,7 +55,7 @@ export default function Hero() {
             variant="body2"
             color="primary"
             weight="semibold"
-            className="mx-w-[500px] tracking-wider font-ppmori text-xl leading-1.5 mx-auto px-10 py-10"
+            className="mx-w-[500px] tracking-wider font-ppmori text-xl  mx-auto px-10 py-10"
           >
             Lampros DAO is an open community of builders and governance
             enthusiasts committed to transparency, decentralization, and
@@ -75,7 +75,7 @@ export default function Hero() {
             variant="h3"
             color="primary"
             weight="normal"
-            className="tracking-wider font-ppmori text-3xl leading-1.5"
+            className="tracking-wider font-ppmori text-3xl "
           >
             Our Team Members
           </Typography>
@@ -100,6 +100,7 @@ export default function Hero() {
                   src={member.src}
                   alt="link"
                   className="w-12 h-12 rounded-full border-1  border-black"
+                  quality={100}
                 />
               </div>
               <Typography
@@ -154,7 +155,12 @@ export default function Hero() {
             <div
               className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
-              <Image src={arbitrum} alt="arbitrum" className="w-10" />
+              <Image
+                src={arbitrum}
+                alt="arbitrum"
+                className="w-10"
+                quality={100}
+              />
               <Typography
                 variant="subtitle2"
                 color="primary"
@@ -179,7 +185,7 @@ export default function Hero() {
             <div
               className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
-              <Image src={op} alt="optimism" className="w-10" />
+              <Image src={op} alt="optimism" className="w-10" quality={100} />
               <Typography
                 variant="subtitle2"
                 color="primary"

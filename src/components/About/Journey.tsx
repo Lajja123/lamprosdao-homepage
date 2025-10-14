@@ -172,19 +172,7 @@ export default function Journey() {
         <div className="col-span-4 row-span-2 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5 ">
           <Image src={web34} alt="Metallic sculpture" />
         </div>
-        <div
-          className={`col-start-2 row-start-5 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[3].color}`}
-        >
-          <Typography
-            variant="h5"
-            color="primary"
-            weight="light"
-            className="font-psygen"
-          >
-            {journeyData[3].number}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-3 row-start-5 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
+        <div className="col-span-3 col-start-2 row-start-5 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
             variant="h5"
             color="white"
@@ -200,6 +188,18 @@ export default function Journey() {
             className=" tracking-wide font-ppmori"
           >
             {journeyData[3].title}
+          </Typography>
+        </div>
+        <div
+          className={`col-start-5 row-start-5 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[3].color}`}
+        >
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="normal"
+            className="font-psygen"
+          >
+            {journeyData[3].number}
           </Typography>
         </div>
         <div className="col-span-4 row-span-2 col-start-2 row-start-6 border border-[#FFFFFF] flex items-center justify-center p-5 ">
@@ -269,7 +269,7 @@ export default function Journey() {
           <Image src={web78} alt="Metallic sculpture" />
         </div>
         <div
-          className={`col-start-5 row-start-8 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[6].color}`}
+          className={`col-start-2 row-start-8 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[6].color}`}
         >
           <Typography
             variant="h2"
@@ -280,7 +280,7 @@ export default function Journey() {
             {journeyData[6].number}
           </Typography>
         </div>
-        <div className="col-span-3 col-start-2 row-start-8 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
+        <div className="col-span-3 col-start-3 row-start-8 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
             variant="h5"
             color="white"
@@ -298,19 +298,7 @@ export default function Journey() {
             {journeyData[6].title}
           </Typography>
         </div>
-        <div
-          className={`col-start-2 row-start-9 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[7].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[7].number}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-3 row-start-9 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
+        <div className="col-span-3 col-start-2 row-start-9 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
             variant="h5"
             color="white"
@@ -326,6 +314,18 @@ export default function Journey() {
             className=" tracking-wide font-ppmori"
           >
             {journeyData[7].title}
+          </Typography>
+        </div>
+        <div
+          className={`col-start-5 row-start-9 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[7].color}`}
+        >
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="normal"
+            className="font-psygen"
+          >
+            {journeyData[7].number}
           </Typography>
         </div>
       </div>
