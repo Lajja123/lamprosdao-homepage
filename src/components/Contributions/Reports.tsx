@@ -58,7 +58,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             01{" "}
           </Typography>
         </div>
-        <div className="col-span-4 row-start-2 border border-white flex items-center justify-center p-10 ">
+        <div className="col-span-4 row-start-2 border border-white flex items-center justify-start p-10 ">
           <Typography
             variant="h5"
             color="white"
@@ -87,7 +87,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             02{" "}
           </Typography>
         </div>
-        <div className="col-span-4  flex items-center justify-center p-10 col-start-7 row-start-2 border border-white">
+        <div className="col-span-4  flex items-center justify-start p-10 col-start-7 row-start-2 border border-white">
           <Typography
             variant="h5"
             color="white"
@@ -98,12 +98,12 @@ export default function Reports({ activeChain }: ReportsProps) {
           </Typography>
         </div>
         <div className="row-start-3"></div>
-        <div className="col-span-4 row-start-3 border-r border-white p-10 flex flex-col gap-4">
+        <div className="col-span-4 row-start-3 border-r border-white p-10 flex flex-col gap-6 ">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className=" tracking-wider font-ppmori"
+            className=" tracking-wider font-ppmori max-w-[600px]"
           >
             {items[0].description}
           </Typography>
@@ -117,20 +117,17 @@ export default function Reports({ activeChain }: ReportsProps) {
                 label={items[0].buttonLabel}
                 color={items[0].buttonColor}
                 textColor={items[0].buttonTextColor}
-                className=" py-1 px-2"
-              >
-                <Image src={link} alt="arrow" className="w-10 h-10" />
-              </Button>
+              ></Button>
             </Link>
           </div>
         </div>
         <div className="col-start-6 row-start-3"></div>
-        <div className="col-span-4 col-start-7 row-start-3 p-10  flex flex-col gap-4">
+        <div className="col-span-4 col-start-7 row-start-3 p-10  flex flex-col gap-6  ">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className=" tracking-wider font-ppmori"
+            className=" tracking-wider font-ppmori max-w-[600px]"
           >
             {items[1].description}
           </Typography>
@@ -145,9 +142,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                 color={items[1].buttonColor}
                 textColor={items[1].buttonTextColor}
                 className=""
-              >
-                <Image src={link} alt="arrow" className="w-10 h-10" />
-              </Button>
+              ></Button>
             </Link>
           </div>
         </div>
@@ -167,7 +162,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             weight="bold"
             className="uppercase tracking-wider font-psygen z-10"
           >
-            03{" "}
+            03
           </Typography>
         </div>
         <div className="col-span-4 row-start-4 border border-white p-10 flex items-start justify-start">
@@ -175,7 +170,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             variant="h5"
             color="white"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori "
+            className="uppercase tracking-wider font-ppmori max-w-[600px]"
           >
             {items[2].title}{" "}
           </Typography>
@@ -199,7 +194,7 @@ export default function Reports({ activeChain }: ReportsProps) {
             04
           </Typography>
         </div>
-        <div className="col-span-4 p-10 col-start-7 row-start-4 border border-white flex items-center justify-center">
+        <div className="col-span-4 p-10 col-start-7 row-start-4 border border-white flex items-center justify-start">
           <Typography
             variant="h5"
             color="white"
@@ -210,12 +205,12 @@ export default function Reports({ activeChain }: ReportsProps) {
           </Typography>
         </div>
         <div className="row-start-5"></div>
-        <div className="col-span-4 row-start-5  p-10 flex flex-col gap-4 border-r border-white">
+        <div className="col-span-4 row-start-5  p-10 flex flex-col gap-6 border-r border-white">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className=" tracking-wider font-ppmori"
+            className=" tracking-wider font-ppmori max-w-[600px]"
           >
             {items[2].description}
           </Typography>
@@ -230,19 +225,17 @@ export default function Reports({ activeChain }: ReportsProps) {
                 color={items[2].buttonColor}
                 textColor={items[2].buttonTextColor}
                 className=""
-              >
-                <Image src={link} alt="arrow" className="w-10 h-10" />
-              </Button>
+              ></Button>
             </Link>
           </div>
         </div>
         <div className="col-start-6 row-start-5"></div>
-        <div className="col-span-4 col-start-7 row-start-5 p-10 flex flex-col gap-4">
+        <div className="col-span-4 col-start-7 row-start-5 p-10 flex flex-col gap-6">
           <Typography
             variant="body2"
             color="white"
             weight="normal"
-            className=" tracking-wider font-ppmori"
+            className=" tracking-wider font-ppmori max-w-[600px]"
           >
             {items[3].description}
           </Typography>
@@ -257,16 +250,12 @@ export default function Reports({ activeChain }: ReportsProps) {
                 color={items[3].buttonColor}
                 textColor={items[3].buttonTextColor}
                 className=""
-              >
-                <Image src={link} alt="arrow" className="w-10 h-10" />
-              </Button>
+              ></Button>
             </Link>
           </div>
         </div>
         <div className="col-span-10 row-start-6 border border-white p-10 flex items-center justify-center">
-          <Button label="See More" color="#D0FFAC" textColor="#0B0B0B">
-            <Image src={link} alt="arrow" className="w-10 h-10" />
-          </Button>
+          <Button label="See More" color="#D0FFAC" textColor="#0B0B0B"></Button>
         </div>
       </div>
     </>

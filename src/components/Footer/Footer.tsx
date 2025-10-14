@@ -70,7 +70,7 @@ export default function Footer({ variant }: FooterProps) {
       >
         <Link
           href="/"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
         >
           <Typography
             variant="button"
@@ -83,7 +83,7 @@ export default function Footer({ variant }: FooterProps) {
         </Link>
         <Link
           href="/about-us"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
         >
           <Typography
             variant="button"
@@ -96,7 +96,7 @@ export default function Footer({ variant }: FooterProps) {
         </Link>
         <Link
           href="/governance"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
         >
           <Typography
             variant="button"
@@ -109,7 +109,7 @@ export default function Footer({ variant }: FooterProps) {
         </Link>
         <Link
           href="/contribution"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-5 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
         >
           <Typography
             variant="button"
@@ -124,7 +124,7 @@ export default function Footer({ variant }: FooterProps) {
 
       {/* Logo Section */}
       <div
-        className={`border-r border-l border-white relative w-full p-3 sm:p-4 md:p-5`}
+        className={`border-r border-l border-white relative w-full p-3 sm:p-4 md:p-6`}
       >
         <Image
           src={rectangle}
@@ -156,6 +156,7 @@ export default function Footer({ variant }: FooterProps) {
               width={40}
               height={40}
               className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
+              quality={100}
             />
           </Link>
         </div>
@@ -170,12 +171,12 @@ export default function Footer({ variant }: FooterProps) {
           {socialPlatforms.map((platform, index) => (
             <div
               key={platform}
-              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-8 hover:bg-gray-800/20 transition-colors duration-200`}
+              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-8 hover:bg-white transition-colors duration-200 group`}
             >
               <SocialIcon
                 platform={platform}
                 color={theme.iconColor}
-                className="w-5 h-5 "
+                className="w-6 h-6 group-hover:!bg-black transition-colors duration-200"
               />
             </div>
           ))}

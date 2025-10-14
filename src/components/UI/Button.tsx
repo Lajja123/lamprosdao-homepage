@@ -70,7 +70,8 @@ export const Button: React.FC<ButtonProps> = ({
     if (!button) return;
 
     // Initial animation on mount
-    gsap.fromTo(button, 
+    gsap.fromTo(
+      button,
       { scale: 0.8, opacity: 0 },
       { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
     );
@@ -80,7 +81,7 @@ export const Button: React.FC<ButtonProps> = ({
       gsap.to(button, {
         scale: 1.05,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -88,7 +89,7 @@ export const Button: React.FC<ButtonProps> = ({
       gsap.to(button, {
         scale: 1,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -99,23 +100,23 @@ export const Button: React.FC<ButtonProps> = ({
         duration: 0.1,
         ease: "power2.out",
         yoyo: true,
-        repeat: 1
+        repeat: 1,
       });
     };
 
-    button.addEventListener('mouseenter', handleMouseEnter);
-    button.addEventListener('mouseleave', handleMouseLeave);
-    button.addEventListener('click', handleClick);
+    button.addEventListener("mouseenter", handleMouseEnter);
+    button.addEventListener("mouseleave", handleMouseLeave);
+    button.addEventListener("click", handleClick);
 
     return () => {
-      button.removeEventListener('mouseenter', handleMouseEnter);
-      button.removeEventListener('mouseleave', handleMouseLeave);
-      button.removeEventListener('click', handleClick);
+      button.removeEventListener("mouseenter", handleMouseEnter);
+      button.removeEventListener("mouseleave", handleMouseLeave);
+      button.removeEventListener("click", handleClick);
     };
   }, []);
 
   const base =
-    "inline-flex items-center justify-center transition will-change-transform px-5 cursor-pointer";
+    "inline-flex items-center justify-center transition will-change-transform px-10  cursor-pointer";
   const radius = roundedClassMap[rounded];
 
   const style: React.CSSProperties = {};
@@ -184,7 +185,7 @@ export const Button: React.FC<ButtonProps> = ({
               | undefined
           }
           align="center"
-          weight="medium"
+          weight="bold"
           className={["pointer-events-none select-none", variantClasses].join(
             " "
           )}

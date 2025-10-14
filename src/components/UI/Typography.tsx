@@ -59,7 +59,7 @@ const getTypographyStyles = (variant: string) => {
     overline:
       "text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm 2xl:text-base leading-normal tracking-widest",
     button:
-      "text-xs sm:text-sm md:text-sm 2xl:text-base  leading-none tracking-wide  font-ppmori",
+      "text-xs sm:text-sm md:text-sm 2xl:text-lg  leading-none tracking-wide  font-ppmori",
     logo: "text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl leading-none tracking-wider font-light",
     accent:
       "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed tracking-wide",

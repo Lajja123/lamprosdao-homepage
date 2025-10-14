@@ -138,7 +138,20 @@ export default function Journey() {
             {journeyData[1].title}
           </Typography>
         </div>
-        <div className="col-span-3 col-start-2 row-start-4 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
+
+        <div
+          className={`col-start-2 row-start-4 border border-[#FFFFFF] flex items-center justify-center ${journeyData[2].color}`}
+        >
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="normal"
+            className="font-psygen"
+          >
+            {journeyData[2].number}
+          </Typography>
+        </div>
+        <div className="col-span-3 col-start-3 row-start-4 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
             variant="h5"
             color="white"
@@ -154,18 +167,6 @@ export default function Journey() {
             className=" tracking-wide font-ppmori"
           >
             {journeyData[2].title}
-          </Typography>
-        </div>
-        <div
-          className={`col-start-5 row-start-4 border border-[#FFFFFF] flex items-center justify-center ${journeyData[2].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[2].number}
           </Typography>
         </div>
         <div className="col-span-4 row-span-2 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5 ">

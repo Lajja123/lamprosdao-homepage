@@ -26,7 +26,7 @@
                     "title": "Arbitrum Governance & Development Initiative",
                     "description": "Educated 1,200+ students across 18 colleges in Gujarat, India, on Arbitrum governance and smart contract development. Hands-on training led to 500+ smart contract deployments and increased community participation in Arbitrum governance.",
                     "link": "https://forum.arbitrum.foundation/t/arbitrum-governance-and-development-initiative-lampros-labs-dao/26315?u=euphoria",
-                    "buttonLabel": "Learn More`",
+                    "buttonLabel": "Learn More",
                     "buttonColor": "#DFCDF2",
                     "buttonTextColor": "#0B0B0B"
                 },
@@ -58,7 +58,7 @@
         "highlightedLetters": [
             "O",
             "I",
-            "M"
+            "T"
         ],
         "word": "Optimism",
         "contributions": {

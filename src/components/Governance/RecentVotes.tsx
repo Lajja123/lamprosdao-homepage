@@ -673,12 +673,9 @@ const RecentVotes = React.memo(function RecentVotes() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button label="See More" color="#000000" textColor="#FFFFFF">
-            <Image src={linkLight} alt="arrow" className="w-10 h-10" />
-          </Button>
+          <Button label="See More" color="#000000" textColor="#FFFFFF" />
         </Link>
       </div>
-      
     </div>
   );
 });
