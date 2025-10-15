@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import about from "@/assests/AboutUs/about.png";
+import about from "@/assests/AboutUs/about.svg";
 import Typography from "@/components/UI/Typography";
 import vision from "@/assests/AboutUs/vision.svg";
 import mission from "@/assests/AboutUs/mission.svg";
@@ -82,7 +82,7 @@ export default function Hero() {
             variant="body2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori text-xl leading-1.5 max-w-[600px]"
+            className="tracking-wider font-ppmori text-xl leading-1.5 p-10"
           >
             To be the global nexus where blockchain technology seamlessly
             integrates into everyday life, creating a decentralized and
@@ -110,7 +110,7 @@ export default function Hero() {
             variant="body2"
             color="white"
             weight="normal"
-            className="tracking-wider font-ppmori leading-[0.90] max-w-[600px]"
+            className="tracking-wider font-ppmori leading-[0.90] p-10"
           >
             Lampros DAO is dedicated to cultivating trailblazing web3 leaders,
             amplifying open-source breakthroughs across multiple blockchain

@@ -82,17 +82,21 @@ const ProtocolButton = React.memo(
     isActive: boolean;
     onClick: (name: string) => void;
   }) => (
-    <button
-      onClick={() => onClick(protocol.name)}
-      className={`cursor-pointer px-6 py-3 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
-        isActive ? "bg-[#2F2B2B] text-white" : "bg-gray-300 text-gray-700"
-      }`}
-    >
-      <Image src={protocol.icon} alt={protocol.name} className="w-7" />
-      <Typography variant="button" color="white" className="normal-case">
+    <div className="relative group">
+      <button
+        onClick={() => onClick(protocol.name)}
+        className={`cursor-pointer px-6 py-2 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
+          isActive ? "bg-[#2F2B2B] text-white" : "bg-gray-300 text-gray-700"
+        }`}
+      >
+        <Image src={protocol.icon} alt={protocol.name} className="w-7" />
+      </button>
+      {/* Tooltip */}
+      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-[#2F2B2B] text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
         {protocol.name}
-      </Typography>
-    </button>
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+      </div>
+    </div>
   )
 );
 
