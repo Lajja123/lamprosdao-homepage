@@ -64,8 +64,8 @@ export default function RootLayout({
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen`}
       >
-        <DesktopOnly />
-        <div className="hidden md:block">
+        {/* <DesktopOnly /> */}
+        <div >
           <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
           <Navbar />
           {children}

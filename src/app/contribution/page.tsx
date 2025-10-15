@@ -24,7 +24,7 @@ export const metadata = {
 export default function page() {
   return (
     <div>
-      <ContributionsWrapper />
+      {/* <ContributionsWrapper /> */}
     </div>
   );
 }

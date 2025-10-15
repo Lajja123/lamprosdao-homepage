@@ -121,7 +121,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
       className="relative flex items-start md:items-start justify-between"
     >
       {/* Left: Logo */}
-      <div ref={logoRef} className="flex p-10">
+      <div ref={logoRef} className="flex p-4 md:p-10">
         <Link href="/">
           <Image
             src={logo}
@@ -131,13 +131,13 @@ export default function Navbar({ centerContent }: NavbarProps) {
         </Link>
       </div>
 
-      {/* Center: Dynamic Content */}
-      <div ref={centerRef} className="flex justify-center items-center">
+      {/* Center: Dynamic Content - Hidden on mobile */}
+      <div ref={centerRef} className="hidden md:flex justify-center items-center">
         {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
           <Image
             src={finalCenterContent.imageSrc}
             alt={finalCenterContent.imageAlt || "Center image"}
-            className=" w-full "
+            className="w-full h-full"
           />
         ) : (
           <Typography
@@ -276,7 +276,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
                     variant="subtitle2"
                     weight="medium"
                     color={isActive ? "accent" : "primary"}
-                    className={`uppercase tracking-wide transition-all duration-300 hover:scale-105 ${
+                    className={`uppercase tracking-wide transition-aljl duration-300 hover:scale-105 ${
                       isActive
                         ? "text-[#A885CD] font-semibold "
                         : "group-hover:text-[#A885CD]  "
@@ -290,6 +290,122 @@ export default function Navbar({ centerContent }: NavbarProps) {
           })}
         </ul>
       </div>
+
+      {/* Mobile Hamburger Menu Button */}
+      <div className="md:hidden flex items-center p-4">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex flex-col justify-center items-center w-8 h-8 space-y-1 group"
+          aria-label="Toggle mobile menu"
+        >
+          <span
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Menu Panel */}
+          <div
+            ref={panelRef}
+            className="absolute top-0 right-0 w-80 h-full bg-white shadow-xl"
+          >
+            {/* Close Button */}
+            <div className="flex justify-end p-4">
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors duration-200"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="w-5 h-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Center Content */}
+            <div className="px-6 pb-6 border-b border-gray-200">
+              {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
+                <Image
+                  src={finalCenterContent.imageSrc}
+                  alt={finalCenterContent.imageAlt || "Center image"}
+                  className="w-full max-w-xs mx-auto"
+                />
+              ) : (
+                <Typography
+                  variant="h3"
+                  weight="semibold"
+                  color="primary"
+                  className="text-center uppercase tracking-wider text-lg"
+                >
+                  {finalCenterContent?.title || "Menu"}
+                </Typography>
+              )}
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="p-6">
+              <ul ref={listRef} className="space-y-4">
+                {navigationItems.map((item) => {
+                  const isActive = isActiveRoute(item.href);
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block group"
+                      >
+                        <Typography
+                          variant="h4"
+                          weight="medium"
+                          color={isActive ? "accent" : "primary"}
+                          className={`uppercase tracking-wide transition-all duration-300 py-3 px-4 rounded-lg ${
+                            isActive
+                              ? "text-[#A885CD] font-semibold bg-[#A885CD]/10"
+                              : "group-hover:text-[#A885CD] group-hover:bg-gray-50"
+                          }`}
+                        >
+                          {item.label}
+                        </Typography>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -166,17 +166,17 @@ export default function Footer({ variant }: FooterProps) {
 
         {/* Social Icons */}
         <div
-          className={`${theme.borderColor} grid grid-cols-3 sm:grid-cols-6  w-full sm:w-auto sm:min-w-[300px] text-center border-t sm:border-t-0 sm:border-l`}
+          className={`${theme.borderColor} grid grid-cols-3 sm:grid-cols-6 w-full sm:w-auto sm:min-w-[300px] text-center border-t sm:border-t-0 sm:border-l`}
         >
           {socialPlatforms.map((platform, index) => (
             <div
               key={platform}
-              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-8 hover:bg-white transition-colors duration-200 group`}
+              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-4 sm:px-6 md:px-8 py-4 sm:py-6 hover:bg-white transition-colors duration-200 group`}
             >
               <SocialIcon
                 platform={platform}
                 color={theme.iconColor}
-                className="w-6 h-6 group-hover:!bg-black transition-colors duration-200"
+                className="w-5 h-5 sm:w-6 sm:h-6 group-hover:!bg-black transition-colors duration-200"
               />
             </div>
           ))}

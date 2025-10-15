@@ -45,7 +45,7 @@ export const commonStyles = {
       "min-w-[768px] lg:min-w-[1024px] grid grid-cols-8 lg:grid-cols-10 border border-black",
     // Research grid with 6 columns and 5 rows
     research:
-      "min-w-[320px] sm:min-w-[640px] md:min-w-[768px] grid grid-cols-6 grid-rows-5 border border-white",
+      "min-w-[320px] sm:min-w-[640px] md:min-w-[768px] grid grid-cols-6  border border-white",
   },
 
   // Backgrounds

@@ -27,9 +27,9 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <Hero />
+      {/* <Hero />
       <Ethos />
-      <Journey />
+      <Journey /> */}
     </>
   );
 }
