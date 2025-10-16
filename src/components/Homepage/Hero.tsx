@@ -3,10 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import vector1 from "@/assests/HeroSection1/Vector1.svg";
-import vector2 from "@/assests/HeroSection1/Vector2.svg";
-import clip1 from "@/assests/HeroSection1/clip1.svg";
-import clip2 from "@/assests/HeroSection1/clip2.svg";
+import hero from "@/assests/HeroSection1/hero.png";
 
 import { Typography } from "@/components/UI/Typography"; // adjust path
 
@@ -102,17 +99,29 @@ export default function Hero() {
 
   return (
     <>
-      <div ref={heroRef} className="w-full h-max relative overflow-hidden">
+      <div ref={heroRef} className="w-full h-max relative ">
+        {/* Background Image */}
+        <div ref={imageRef} className="absolute inset-0 w-full h-full z-0 hidden md:block">
+          <Image
+            src={hero}
+            alt="Hero background"
+            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+          />
+        </div>
+        
+        {/* Title Section */}
         <div 
           ref={titleRef}
-          className="z-50 absolute bottom-[10%] sm:bottom-[15%] md:bottom-[35%] lg:bottom-[35%] xl:bottom-[50%] w-full"
+          className="relative z-10 w-full py-7 "
         >
           <Typography
             variant="h1"
             weight="normal"
             align="center"
             color="dark"
-            className="uppercase leading-tight font-ppmori"
+            className="uppercase leading-tight font-ppmori "
           >
             The Be
             <span 
@@ -128,21 +137,24 @@ export default function Hero() {
             weight="normal"
             align="center"
             color="dark"
-            className="uppercase leading-tight font-ppmori"
+            className="uppercase leading-tight font-ppmori "
           >
             Of B
             <span 
-              className="font-bohemian wavy-letter"
+              ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+              className="font-bohemian wavy-letter inline-block"
             >
               l
             </span>
             ockch
             <span 
+              ref={el => { if (el) wavyLettersRef.current[2] = el; }}
               className="font-bohemian wavy-letter inline-block"
             >
               a
             </span>
             <span 
+              ref={el => { if (el) wavyLettersRef.current[3] = el; }}
               className="font-bohemian wavy-letter inline-block"
             >
               i
@@ -150,30 +162,23 @@ export default function Hero() {
             n
           </Typography>
         </div>
-        <div ref={imageRef} className="w-full h-full">
-          <Image
-            src={clip1}
-            alt="Clip1 background"
-            className="h-auto w-full relative z-10"
-            priority
-          />
-        </div>
-      </div>
-      <div 
+        <div 
         ref={subtitleRef}
-        className="flex items-center justify-center relative z-50 bottom-[40px] sm:bottom-[60px] md:bottom-[80px] lg:bottom-[100px] xl:bottom-[140px] w-full"
+        className="flex items-center justify-center relative md:top-[30px] w-[80%] mx-auto top-0 sm:mb-40 mb-10"
       >
         <Typography
-          variant="subtitle2"
+          variant="h6"
           align="center"
           weight="semibold"
           color="primary"
-          className="bg-[#DFEAF9] font-ppmori px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl inline-block shadow-[0_1px_0_rgba(0,0,0,0.06)] hover:shadow-lg transition-shadow duration-300"
+          className="bg-[#DFEAF9] font-ppmori px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl  shadow-[0_1px_0_rgba(0,0,0,0.06)] hover:shadow-lg transition-shadow duration-300"
         >
           Driving Mainstream Adoption, Empowering Developers, and Cultivating
           the Future of Web3
         </Typography>
       </div>
+      </div>
+      
     </>
   );
 }

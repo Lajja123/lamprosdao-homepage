@@ -122,7 +122,7 @@ export const commonStyles = {
       // Basic cell with standard border
       basic: "border border-black ",
       // Cell with height
-      withHeight: "border border-black h-30",
+      withHeight: "border border-black relative",
       // Number cell
       number: "border border-[#000000] p-10 flex items-center justify-center",
       // Content cell

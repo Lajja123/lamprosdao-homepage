@@ -62,15 +62,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen`}
+        className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
       >
         {/* <DesktopOnly /> */}
-        <div >
           <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
           <Navbar />
           {children}
           <Footer />
-        </div>
       </body>
     </html>
   );

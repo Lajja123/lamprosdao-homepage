@@ -121,12 +121,13 @@ export default function Navbar({ centerContent }: NavbarProps) {
       className="relative flex items-start md:items-start justify-between"
     >
       {/* Left: Logo */}
-      <div ref={logoRef} className="flex p-4 md:p-10">
+      <div ref={logoRef} className=" p-4 md:p-10">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
-            className="cursor-pointer w-full hover:scale-105 transition-transform duration-300"
+            className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-80 w-30"
+           
           />
         </Link>
       </div>
@@ -137,14 +138,16 @@ export default function Navbar({ centerContent }: NavbarProps) {
           <Image
             src={finalCenterContent.imageSrc}
             alt={finalCenterContent.imageAlt || "Center image"}
-            className="w-full h-full"
+            className="w-full h-full object-contain"
+            width={1500}
+            height={1500}
           />
         ) : (
           <Typography
             variant="h2"
             weight="semibold"
             color="primary"
-            className=" p-10 text-center uppercase tracking-wider text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl"
+            className=" p-10 text-center uppercase"
           >
             {finalCenterContent?.title
               ? (() => {
@@ -265,8 +268,8 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Right: Desktop Menu */}
-      <div ref={menuRef} className="hidden md:flex justify-end p-10">
-        <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] z-10 rounded-lg">
+      <div ref={menuRef} className="hidden md:flex justify-end p-5">
+        <ul className="flex flex-col items-end gap-1 bg-[#FFFFFF] z-10 rounded-lg">
           {navigationItems.map((item, index) => {
             const isActive = isActiveRoute(item.href);
             return (
@@ -328,7 +331,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
           {/* Menu Panel */}
           <div
             ref={panelRef}
-            className="absolute top-0 right-0 w-80 h-full bg-white shadow-xl"
+            className="absolute top-0 right-0 w-full h-full bg-white shadow-xl"
           >
             {/* Close Button */}
             <div className="flex justify-end p-4">
@@ -354,24 +357,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
             </div>
 
             {/* Mobile Center Content */}
-            <div className="px-6 pb-6 border-b border-gray-200">
-              {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
-                <Image
-                  src={finalCenterContent.imageSrc}
-                  alt={finalCenterContent.imageAlt || "Center image"}
-                  className="w-full max-w-xs mx-auto"
-                />
-              ) : (
-                <Typography
-                  variant="h3"
-                  weight="semibold"
-                  color="primary"
-                  className="text-center uppercase tracking-wider text-lg"
-                >
-                  {finalCenterContent?.title || "Menu"}
-                </Typography>
-              )}
-            </div>
+            {/*  */}
 
             {/* Mobile Navigation */}
             <div className="p-6">

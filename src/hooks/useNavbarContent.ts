@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import vector2 from "@/assests/common/clip.svg";
+import vector2 from "@/assests/common/clip.png";
 import type { NavbarContent } from "@/types";
 
 export function useNavbarContent(): NavbarContent {
@@ -23,7 +23,7 @@ export function useNavbarContent(): NavbarContent {
   return pathname === "/"
     ? {
         type: "image",
-        imageSrc: vector2,
+        imageSrc: vector2.src,
         imageAlt: "Lampros DAO Vector",
       }
     : {

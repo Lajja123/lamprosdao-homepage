@@ -129,13 +129,12 @@ export default function Footer({ variant }: FooterProps) {
         <Image
           src={rectangle}
           alt={""}
-          width={500}
-          height={500}
-          className="mx-auto"
+         
+          className="mx-auto hidden sm:block"
           quality={100}
         />
-        <div className="absolute inset-0 flex items-center justify-center p-5">
-          <Image src={theme.logo} alt={""} className="w-full" />
+        <div className="sm:absolute inset-0 flex items-center justify-center p-5 ">
+          <Image src={theme.logo} alt={""} className="" />
         </div>
       </div>
 
@@ -147,7 +146,7 @@ export default function Footer({ variant }: FooterProps) {
         }}
       >
         <div
-          className={`border-r ${theme.customBorderColor} flex items-center justify-center w-full sm:w-auto sm:min-w-[80px] border-b sm:border-b-0 p-3 sm:p-4`}
+          className={`hidden sm:block border-r ${theme.customBorderColor} flex items-center justify-center w-full sm:w-auto sm:min-w-[80px] border-b sm:border-b-0 p-3 sm:p-4`}
         >
           <Link href="/">
             <Image
@@ -166,7 +165,7 @@ export default function Footer({ variant }: FooterProps) {
 
         {/* Social Icons */}
         <div
-          className={`${theme.borderColor} grid grid-cols-3 sm:grid-cols-6 w-full sm:w-auto sm:min-w-[300px] text-center border-t sm:border-t-0 sm:border-l`}
+          className={`${theme.borderColor} grid grid-cols-6 sm:grid-cols-6 w-full sm:w-auto sm:min-w-[300px] text-center border-t sm:border-t-0 sm:border-l`}
         >
           {socialPlatforms.map((platform, index) => (
             <div

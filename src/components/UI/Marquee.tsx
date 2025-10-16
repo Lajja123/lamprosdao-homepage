@@ -36,7 +36,7 @@ export default function Marquee({
   ));
 
   return (
-    <div className="marquee w-full overflow-hidden border-b border-black/10 bg-[#F3FBD4]">
+    <div className="marquee w-full overflow-hidden border-b border-black/10 bg-[#F3FBD4] py-2 backdrop-blur-lg">
       <div
         className="marquee__track flex gap-8"
         style={{
