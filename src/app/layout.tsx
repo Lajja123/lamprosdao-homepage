@@ -65,12 +65,14 @@ export default function RootLayout({
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
       >
-        {/* <DesktopOnly /> */}
+        <DesktopOnly />
+        <div className="hidden md:block">
           <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
           <Navbar />
           {children}
           <Footer />
           <FloatingCTA />
+          </div>
       </body>
     </html>
   );
