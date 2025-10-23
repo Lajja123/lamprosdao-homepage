@@ -5,6 +5,7 @@ import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
 import DesktopOnly from "@/components/UI/DesktopOnly";
 import Footer from "@/components/Footer/Footer";
+import FloatingCTA from "@/components/UI/FloatingCTA";
 
 const PPMori = localFont({
   src: "./fonts/PPMori-Regular.otf",
@@ -69,6 +70,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <FloatingCTA />
       </body>
     </html>
   );

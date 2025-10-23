@@ -3,11 +3,14 @@ import Image from "next/image";
 import delegate from "@/assests/Governance/Delegate.png";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
+import uniswap from "@/assests/Governance/uniswap.svg";
+import superfluid from "@/assests/Governance/superfluid_green.svg";
+import Link from "next/link";
 
 export default function Delegate() {
   return (
     <>
-      <div className="grid grid-cols-10 bg-[#1A1A1A]">
+      <div id="delegate-section" className="grid grid-cols-10 bg-[#1A1A1A]">
         <div className="border-l border-r border-b border-white"></div>
         <div className="col-span-8 border border-black flex item-center justify-center p-10">
           <Typography
@@ -25,7 +28,7 @@ export default function Delegate() {
         <div className=" col-start-10 border-b border-l border-r border-white"></div>
 
         {/* <div className="col-start-10 border border-white"></div> */}
-        <div className="row-span-3 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
+        <div className="row-span-4 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
           <Typography
             variant="caption"
             color="white"
@@ -64,33 +67,64 @@ export default function Delegate() {
             quality={100}
           />
         </div>
-        <div className="row-span-3 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
+        <div className="row-span-4 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
+        {/* First row - Arbitrum and Optimism */}
         <div className="col-span-4 col-start-2 row-start-4 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="bold"
-            className="font-ppmori "
-          >
-            Delegate On Arbitrum
-          </Typography>
-        </div>
-        <div className="col-span-4 col-start-6 row-start-4 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
-          <Image src={op} alt="arbitrum" className="w-10" />
-          <div>
+          <Link href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
             <Typography
               variant="body2"
               color="primary"
               weight="bold"
-              className="font-ppmori "
+              className="font-ppmori hover:underline cursor-pointer"
+            >
+              Delegate On Arbitrum
+            </Typography>
+          </Link>
+        </div>
+        <div className="col-span-4 col-start-6 row-start-4 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
+          <Image src={op} alt="optimism" className="w-10" />
+          <Link href="https://vote.optimism.io/delegates/lamprosdao.eth" target="_blank">
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="bold"
+              className="font-ppmori hover:underline cursor-pointer"
             >
               Delegate On Optimism
             </Typography>
-          </div>
+          </Link>
+        </div>
+        
+        {/* Second row - Uniswap and Superfluid */}
+        <div className="col-span-4 col-start-2 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
+          <Image src={uniswap} alt="uniswap" className="w-10" />
+          <Link href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="bold"
+              className="font-ppmori hover:underline cursor-pointer"
+            >
+              Delegate On Uniswap
+            </Typography>
+          </Link>
+        </div>
+        <div className="col-span-4 col-start-6 row-start-5 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
+          <Image src={superfluid} alt="superfluid" className="w-10" />
+          <Link href="https://claim.superfluid.org/governance" target="_blank">
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="bold"
+              className="font-ppmori hover:underline cursor-pointer"
+            >
+              Delegate On Superfluid
+            </Typography>
+          </Link>
         </div>
       </div>
-      <div className="col-span-10 row-start-5 bg-[#1A1A1A] p-10 border border-black"></div>
+      <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-10 border border-black"></div>
     </>
   );
 }

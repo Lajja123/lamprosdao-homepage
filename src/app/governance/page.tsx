@@ -1,34 +1,43 @@
+"use client";
+import { useEffect } from "react";
 import Delegate from "@/components/Governance/Delegate";
 import Hero from "@/components/Governance/Hero";
 import RecentVotes from "@/components/Governance/RecentVotes";
 
-export const metadata = {
-  title: "Governance",
-  // description: "About Page Description...",
-  openGraph: {
-    title: "Governance",
-    // description: "About Page Description...",
-    url: "https://lamprosdao.vercel.app/governance",
-    siteName: "Lampros DAO",
-    images: [
-      {
-        url: "https://lamprosdao.vercel.app/OGImages/governance.png",
-        width: 1200,
-        height: 630,
-        alt: "Governance Lampros DAO",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-};
-
 export default function page() {
+  useEffect(() => {
+    // Handle hash navigation on page load
+    const handleHashNavigation = () => {
+      const hash = window.location.hash;
+      if (hash === "#delegate-section") {
+        setTimeout(() => {
+          const delegateSection = document.getElementById("delegate-section");
+          if (delegateSection) {
+            delegateSection.scrollIntoView({ 
+              behavior: "smooth",
+              block: "start"
+            });
+          }
+        }, 100);
+      }
+    };
+
+    // Check hash on mount
+    handleHashNavigation();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashNavigation);
+    
+    return () => {
+      window.removeEventListener("hashchange", handleHashNavigation);
+    };
+  }, []);
+
   return (
     <div>
-      {/* <Hero />
+      <Hero />
       <RecentVotes />
-      <Delegate /> */}
+      <Delegate />
     </div>
   );
 }
