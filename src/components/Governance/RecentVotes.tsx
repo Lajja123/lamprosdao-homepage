@@ -411,7 +411,277 @@ const RecentVotes = React.memo(function RecentVotes() {
   }, [fetchProposals]);
 
   return (
-    <div className="grid grid-cols-8 ">
+    <>
+      {/* Mobile Layout */}
+      <div className="lg:hidden">
+        {/* Header Section */}
+        <div className="border border-black bg-[#C5D9E8] p-4 md:p-6 flex items-center justify-center">
+          <div className="flex items-center justify-center">
+            <Image src={vote1} alt="vote1" className="w-8 md:w-10" />
+          </div>
+        </div>
+        
+        <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="semibold"
+            className="tracking-wide text-lg md:text-xl"
+          >
+            Recent Votes
+          </Typography>
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            {protocols.map((protocol) => (
+              <ProtocolButton
+                key={protocol.name}
+                protocol={protocol}
+                isActive={activeTab === protocol.name}
+                onClick={handleProtocolSelection}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="border border-black">
+          {loading ? (
+            // Mobile loading skeleton
+            <div className="p-4 md:p-6">
+              {Array.from({ length: 2 }).map((_, index) => (
+                <div key={index} className="mb-4 p-4 border border-gray-200 rounded-lg">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-6 h-6 bg-gray-300 animate-pulse rounded"></div>
+                    <div className="w-20 h-4 bg-gray-300 animate-pulse rounded"></div>
+                  </div>
+                  <div className="w-full h-4 bg-gray-300 animate-pulse rounded mb-2"></div>
+                  <div className="flex gap-2">
+                    <div className="w-16 h-6 bg-gray-300 animate-pulse rounded-full"></div>
+                    <div className="w-20 h-6 bg-gray-300 animate-pulse rounded-full"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            // Error state
+            <div className="p-4 md:p-6 text-center">
+              <Typography
+                variant="h3"
+                color="primary"
+                weight="medium"
+                className="mb-2 text-lg md:text-xl"
+              >
+                Oops! Something Went Wrong
+              </Typography>
+              <Typography variant="body1" color="primary" weight="normal" className="text-sm md:text-base">
+                {error}
+              </Typography>
+            </div>
+          ) : noData ? (
+            // No data state
+            <div className="p-4 md:p-6 text-center">
+              <Typography
+                variant="h3"
+                color="primary"
+                weight="medium"
+                className="mb-2 text-lg md:text-xl"
+              >
+                No Votes Available
+              </Typography>
+              <Typography variant="body1" color="primary" weight="normal" className="text-sm md:text-base">
+                There are no recent votes to display for {activeTab} at the
+                moment. Please check back later!
+              </Typography>
+            </div>
+          ) : (
+            // Mobile vote cards
+            <div className="p-4 md:p-6 space-y-4">
+              {proposals.map((proposal, index) => (
+                <div key={proposal.id} className="border border-gray-200 rounded-lg p-4">
+                  {/* Vote Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <Typography
+                        variant="h4"
+                        color="primary"
+                        weight="light"
+                        className="font-psygen text-lg md:text-xl"
+                      >
+                        {proposal.id}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="primary"
+                        weight="medium"
+                        className="font-ppmori text-sm md:text-base"
+                      >
+                        Voted [{" "}
+                        <span className={getVoteResultColor(proposal.result)}>
+                          {proposal.result}
+                        </span>{" "}
+                        ]
+                      </Typography>
+                    </div>
+                    <button
+                      onClick={() =>
+                        setExpandedItem(expandedItem === index ? null : index)
+                      }
+                      className="p-2 hover:bg-gray-100 rounded transition-colors"
+                    >
+                      <Arrow direction={expandedItem === index ? "up" : "down"} />
+                    </button>
+                  </div>
+
+                  {/* Proposal Title */}
+                  <Typography
+                    variant="body1"
+                    color="primary"
+                    weight="normal"
+                    className="mb-3 text-sm md:text-base"
+                  >
+                    {proposal.title}
+                  </Typography>
+
+                  {/* Tags */}
+                  <div className="flex gap-2 flex-wrap">
+                    <Typography
+                      variant="caption"
+                      color="accent"
+                      weight="medium"
+                      className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                    >
+                      {proposal.protocol}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="accent"
+                      weight="medium"
+                      className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                    >
+                      {proposal.type}
+                    </Typography>
+                  </div>
+
+                  {/* Expandable content */}
+                  {expandedItem === index && (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      {proposal.voter && (
+                        <div className="space-y-4">
+                          {/* Voter Information */}
+                          <div className="flex items-center space-x-3">
+                            <div className="flex-shrink-0">
+                              <Image
+                                src={voterIcon.src}
+                                alt={`${proposal.voter.name} icon`}
+                                width={32}
+                                height={32}
+                                className="rounded-full"
+                                quality={100}
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <Typography
+                                variant="body2"
+                                color="primary"
+                                weight="medium"
+                                className="mb-1 text-sm md:text-base"
+                              >
+                                {proposal.voter.name}
+                              </Typography>
+                              <Typography
+                                variant="body1"
+                                color="primary"
+                                weight="normal"
+                                className="text-xs md:text-sm"
+                              >
+                                Voted{" "}
+                                <Typography
+                                  variant="body1"
+                                  color="primary"
+                                  weight="medium"
+                                  className={`inline ${getVoteResultColor(
+                                    proposal.result
+                                  )}`}
+                                >
+                                  {proposal.result}
+                                </Typography>{" "}
+                                on{" "}
+                                <Typography
+                                  variant="body1"
+                                  color="primary"
+                                  weight="medium"
+                                  className="inline"
+                                >
+                                  {proposal.hasRationale && proposal.forumCreatedAt
+                                    ? formatDate(proposal.forumCreatedAt)
+                                    : formatDate(proposal.endDate)}
+                                </Typography>
+                              </Typography>
+                            </div>
+                          </div>
+
+                          {/* Rationale Section */}
+                          {proposal.hasRationale && (
+                            <div className="mt-4">
+                              <Typography
+                                variant="subtitle2"
+                                color="primary"
+                                weight="medium"
+                                className="mb-2 text-sm md:text-base"
+                              >
+                                Rationale
+                              </Typography>
+                              <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                {proposal.forumContent ? (
+                                  <div
+                                    className="prose prose-sm max-w-none text-xs md:text-sm"
+                                    style={{
+                                      color: "#1A1A1A",
+                                      fontFamily: "PPMori, sans-serif",
+                                    }}
+                                    dangerouslySetInnerHTML={{
+                                      __html: proposal.forumContent,
+                                    }}
+                                  />
+                                ) : (
+                                  <Typography
+                                    variant="body1"
+                                    color="light-gray"
+                                    weight="normal"
+                                    className="text-xs md:text-sm"
+                                  >
+                                    {proposal.commentLink}
+                                  </Typography>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer Section */}
+        <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
+          <Link
+            href={
+              protocols.find((p) => p.name === activeTab)?.link ||
+              "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button label="See More" color="#000000" textColor="#FFFFFF" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-8">
       <div className=" border-b border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
         <div className="  flex items-center justify-center">
           <Image src={vote1} alt="vote1" />
@@ -682,7 +952,8 @@ const RecentVotes = React.memo(function RecentVotes() {
           <Button label="See More" color="#000000" textColor="#FFFFFF" />
         </Link>
       </div>
-    </div>
+      </div>
+    </>
   );
 });
 
