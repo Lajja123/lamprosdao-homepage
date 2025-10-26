@@ -28,7 +28,7 @@ const NumberCell = ({
 }) => (
   <div
     className={combineStyles(
-      "col-span-2 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center",
+      "col-span-2 sm:col-span-1 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center",
       rowStart ? `row-start-${rowStart}` : ""
     )}
   >
@@ -52,7 +52,7 @@ const ContentCell = ({
 }) => (
   <div
     className={combineStyles(
-      "col-span-6 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center min-w-0",
+      "col-span-6 sm:col-span-8 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center min-w-0",
       rowStart ? `row-start-${rowStart}` : ""
     )}
   >
@@ -71,7 +71,7 @@ const IconCell = ({
 }) => (
   <div
     className={combineStyles(
-      "col-span-2 border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer ",
+      "col-span-2 sm:col-span-1 border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer ",
       rowStart ? `row-start-${rowStart}` : ""
     )}
     onClick={onClick}
@@ -83,7 +83,7 @@ const IconCell = ({
       height={24}
       className={combineStyles(
         commonStyles.components.iconContainer.purple,
-        "transition-all duration-300 ease-in-out w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10"
+        "transition-all duration-300 ease-in-out w-5 h-5 sm:w-6 sm:h-6 md:w-10 md:h-10"
       )}
     />
   </div>
@@ -204,8 +204,7 @@ export default function Faq() {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-              }}
-            >
+              }}            >
               <button
                 onClick={handlePrevious}
                 className="w-full h-full flex items-center justify-center"
@@ -213,8 +212,8 @@ export default function Faq() {
                 <Arrow
                   direction="left"
                   size={30}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                />
+                  className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
+                  />
               </button>
             </div>
           </div>
@@ -257,8 +256,8 @@ export default function Faq() {
                 <Arrow
                   direction="right"
                   size={30}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                />
+                  className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
+                  />
               </button>
             </div>
           </div>
@@ -312,16 +311,11 @@ export default function Faq() {
               }}
               onClick={handlePrevious}
             >
-<button
-                onClick={handlePrevious}
-                className="w-full h-full flex items-center justify-center"
-              >
-                <Arrow
-                  direction="left"
-                  size={30}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                />
-              </button>
+              <Arrow
+                direction="left"
+                size={70}
+                className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]"
+              />
             </div>
           </div>
 
@@ -352,16 +346,11 @@ export default function Faq() {
               }}
               onClick={handleNext}
             >
-              <button
-                onClick={handleNext}
-                className="w-full h-full flex items-center justify-center"
-              >
-                <Arrow
-                  direction="right"
-                  size={30}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                />
-              </button>
+              <Arrow
+                direction="right"
+                size={70}
+                className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]"
+              />
             </div>
           </div>
         </div>

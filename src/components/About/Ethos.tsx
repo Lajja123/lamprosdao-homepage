@@ -38,7 +38,61 @@ export default function Ethos() {
 
   return (
     <>
-      <div className="grid grid-cols-10 ">
+      {/* Mobile Layout */}
+      <div className="lg:hidden">
+        {/* Header Section */}
+        <div className="bg-[#CBE9FF] p-4 md:p-6 border border-[#000000]">
+          <div className="flex items-center justify-center">
+            <Typography
+              variant="h1"
+              color="primary"
+              weight="medium"
+              className="text-3xl md:text-4xl lg:text-6xl leading-none font-csbohemian tracking-wider text-center"
+            >
+              O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
+              ET<span className="uppercase font-bohemian wavy-letter">H</span>
+              OS
+            </Typography>
+          </div>
+        </div>
+
+        {/* Ethos Items */}
+        {ethosData.map((item, index) => (
+          <div key={index} className="border border-[#000000]">
+            <div className="flex items-center justify-between p-4 md:p-6 bg-[#DFF48D]">
+              <Typography
+                variant="h2"
+                color="primary"
+                weight="normal"
+                className="font-psygen text-2xl md:text-3xl"
+              >
+                {item.number}
+              </Typography>
+            </div>
+            <div className="p-4 md:p-6">
+              <Typography
+                variant="h6"
+                color="primary"
+                weight="semibold"
+                className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-4"
+              >
+                {item.title}
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                weight="medium"
+                className="font-ppmori text-sm md:text-base leading-relaxed"
+              >
+                {item.content}
+              </Typography>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-10">
         <div className="col-span-5 row-span-3 w-full bg-[#CBE9FF] p-5 border border-[#000000] flex flex-row justify-around items-center ">
           <div>
             <Typography

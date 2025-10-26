@@ -60,7 +60,60 @@ export default function Journey() {
 
   return (
     <>
-      <div className="grid grid-cols-10 grid-rows-9 bg-[#1A1A1A]">
+      {/* Mobile Layout */}
+      <div className="lg:hidden bg-[#1A1A1A]">
+        {/* Header Section */}
+        <div className="border border-[#FFFFFF] p-4 md:p-6">
+          <Typography
+            variant="h2"
+            color="white"
+            className="uppercase font-ppmori tracking-wider text-center text-lg md:text-xl"
+          >
+            O<span className="uppercase font-bohemian wavy-letter">U</span>r{" "}
+            <span className="uppercase font-bohemian wavy-letter">W</span>eb3{" "}
+            <span className="uppercase font-bohemian wavy-letter">J</span>our
+            <span className="uppercase font-bohemian wavy-letter">n</span>e
+            <span className="uppercase font-bohemian wavy-letter">y</span>
+          </Typography>
+        </div>
+
+        {/* Journey Items */}
+        {journeyData.map((item, index) => (
+          <div key={index} className="border border-[#FFFFFF]">
+            <div className={`flex items-center justify-between p-4 md:p-6 ${item.color}`}>
+              <Typography
+                variant="h2"
+                color="primary"
+                weight="normal"
+                className="font-psygen text-2xl md:text-3xl"
+              >
+                {item.number}
+              </Typography>
+            </div>
+            <div className="p-4 md:p-6">
+              <Typography
+                variant="h5"
+                color="white"
+                weight="bold"
+                className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-3"
+              >
+                {item.date}
+              </Typography>
+              <Typography
+                variant="body1"
+                color="white"
+                weight="light"
+                className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
+              >
+                {item.title}
+              </Typography>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-10 lg:grid-rows-9 bg-[#1A1A1A]">
         <div className="row-span-9 border border-[#FFFFFF]"></div>
         <div className="col-span-8 border border-[#FFFFFF] flex items-center justify-center p-5">
           <Typography
