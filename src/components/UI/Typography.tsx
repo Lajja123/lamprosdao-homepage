@@ -46,7 +46,7 @@ const getTypographyStyles = (variant: string) => {
     h3: "text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl leading-snug tracking-tight",
     h4: "text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl leading-snug tracking-tight",
     h5: "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-snug",
-    h6: "text-xs sm:text-xs md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-snug",
+    h6: "text-xs sm:text-xs md:text-base lg:text-lg xl:text-lg leading-snug",
     subtitle1:
       "text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed tracking-wide",
     subtitle2:

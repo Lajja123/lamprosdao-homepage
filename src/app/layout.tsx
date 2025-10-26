@@ -61,19 +61,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // <html lang="en">
+    //   <body
+    //     className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
+    //   >
+    //     <DesktopOnly />
+    //     <div className="hidden md:block">
+    //       <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
+    //       <Navbar />
+    //       {children}
+    //       <Footer />
+    //       <FloatingCTA />
+    //       </div>
+    //   </body>
+    // </html>
+
     <html lang="en">
-      <body
-        className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
-      >
-        <DesktopOnly />
-        <div className="hidden md:block">
-          <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
-          <Navbar />
-          {children}
-          <Footer />
-          <FloatingCTA />
-          </div>
-      </body>
-    </html>
+    <body
+      className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
+    >
+      {/* <DesktopOnly /> */}
+        <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
+        <Navbar />
+        {children}
+        <Footer />
+        <FloatingCTA />
+    </body>
+  </html>
   );
 }

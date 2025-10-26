@@ -130,32 +130,15 @@ export default function Section2() {
       <div className="lg:hidden">
         <div className="w-full overflow-x-auto">
           <div className="min-w-[320px] grid grid-cols-3 border border-black">
-            {/* Row 1 - Hand image in top row */}
-            <div className="border border-black relative min-h-[80px]"></div>
-            <div className="border border-black relative min-h-[80px]"></div>
+            {/* Row 1 - Hand image in first column */}
             <div className="border border-black relative min-h-[80px] bg-[#D0FFAC] flex items-center justify-center">
-              <Image src={hand} alt="hand" className="mx-auto w-full h-full object-contain p-3" />
+              <Image src={hand} alt="hand" className="mx-auto w-10 h-10 object-contain" />
             </div>
+            <div className="border border-black relative min-h-[80px]"></div>
+            <div className="border border-black relative min-h-[80px]"></div>
 
-            {/* Row 2 - Main content with arrow */}
-            <div className="border border-black relative min-h-[80px] flex items-center justify-center">
-              {/* Arrow image in first cell */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${bgImage1.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <Image
-                src={arrow}
-                alt="arrow"
-                className="relative w-full h-full object-contain p-2 mx-auto"
-              />
-            </div>
-            <div className="col-span-2 border border-black flex items-center justify-center p-4 bg-white">
+            {/* Row 2 - Main content without arrow */}
+            <div className="col-span-3 border border-black flex items-center justify-center p-4 bg-white">
               {/* Text Content Only - No clip image on mobile */}
               <div className="w-full space-y-4">
                 <Typography
@@ -201,7 +184,7 @@ export default function Section2() {
               <Image
                 src={hugeicon}
                 alt="hugeicon"
-                className="relative mx-auto w-full h-full object-contain p-3"
+                className="relative mx-auto w-10 h-10 object-contain"
               />
             </div>
           </div>

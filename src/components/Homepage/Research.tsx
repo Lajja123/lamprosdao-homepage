@@ -188,45 +188,52 @@ export default function Research() {
         </Grid>
       </div>
 
-      {/* Mobile Layout - Simplified layout without clip image */}
+      {/* Mobile Layout - Grid-like structure */}
       <div className="lg:hidden">
-        <div className="w-full p-4 sm:p-6">
-          {/* Content section - full width on mobile */}
-          <div className="space-y-6 sm:space-y-8 py-8 sm:py-12">
-            <Typography
-              variant="h2"
-              weight="normal"
-              align="left"
-              color="#E9FCE4"
-              className="uppercase tracking-[-0.02em] leading-[0.95] text-2xl sm:text-3xl md:text-4xl"
-            >
-              {renderTitleWithWavyLetters(currentItem.title)}
-            </Typography>
+        <div className="w-full overflow-x-auto">
+          <div className="min-w-[320px] grid grid-cols-3 border border-white">
+            {/* Row 1 - Main content spanning all columns */}
+            <div className="col-span-3 p-4 sm:p-6">
+              <div className="space-y-6 sm:space-y-8 py-8 sm:py-12">
+                <Typography
+                  variant="h2"
+                  weight="normal"
+                  align="left"
+                  color="#E9FCE4"
+                  className="uppercase tracking-[-0.02em] leading-[0.95] text-2xl sm:text-3xl md:text-4xl"
+                >
+                  {renderTitleWithWavyLetters(currentItem.title)}
+                </Typography>
 
-            <Typography
-              variant="subtitle2"
-              weight="normal"
-              color="#C7C7C7"
-              className="leading-relaxed text-sm sm:text-base md:text-lg"
-            >
-              {currentItem.description}
-            </Typography>
+                <Typography
+                  variant="subtitle2"
+                  weight="normal"
+                  color="#C7C7C7"
+                  className="leading-relaxed text-sm sm:text-base md:text-lg"
+                >
+                  {currentItem.description}
+                </Typography>
 
-            <div>
-              <Link
-                href={currentItem.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button label="Know More" color="#D0FFAC" textColor="#000000" />
-              </Link>
+                <div className="flex justify-center sm:justify-start">
+                  <Link
+                    href={currentItem.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button 
+                      label="Know More" 
+                      color="#D0FFAC" 
+                      textColor="#000000"
+                      className="w-full sm:w-auto px-8 py-3 text-sm sm:text-base"
+                    />
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Navigation controls - bottom section */}
-          <div className="flex items-center justify-between mt-8 sm:mt-12">
+            {/* Row 2 - Navigation controls in grid format */}
             {/* Left arrow */}
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+            <div className="border border-white relative min-h-[80px] flex items-center justify-center">
               <div
                 className="absolute inset-0"
                 style={{
@@ -242,14 +249,14 @@ export default function Research() {
               >
                 <Arrow
                   direction="left"
-                  size={50}
-                  className="w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300"
+                  size={30}
+                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
                 />
               </button>
             </div>
 
             {/* Clip2 image - center */}
-            <div className="flex-shrink-0">
+            <div className="border border-white flex items-center justify-center p-5">
               <Image 
                 src={Clip2} 
                 alt="Emblem" 
@@ -258,7 +265,7 @@ export default function Research() {
             </div>
 
             {/* Right arrow */}
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+            <div className="border border-white relative min-h-[80px] flex items-center justify-center">
               <div
                 className="absolute inset-0"
                 style={{
@@ -274,8 +281,8 @@ export default function Research() {
               >
                 <Arrow
                   direction="right"
-                  size={50}
-                  className="w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300"
+                  size={30}
+                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
                 />
               </button>
             </div>

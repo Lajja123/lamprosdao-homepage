@@ -108,9 +108,9 @@ export const commonStyles = {
 
     // Icon container styles
     iconContainer: {
-      default: "p-3 rounded-lg border border-black",
-      purple: "bg-[#DFCDF2] p-3 rounded-lg border border-black",
-      dark: "bg-[#1a1a1a] p-3 rounded-lg border border-black",
+      default: "p-1 md:p-3 rounded-lg border border-black",
+      purple: "bg-[#DFCDF2] p-1 md:p-3 rounded-lg border border-black",
+      dark: "bg-[#1a1a1a] p-1 md:p-3 rounded-lg border border-black",
     },
 
     // Navigation styles

@@ -121,12 +121,12 @@ export default function Navbar({ centerContent }: NavbarProps) {
       className="relative flex items-start md:items-start justify-between"
     >
       {/* Left: Logo */}
-      <div ref={logoRef} className=" p-4 md:p-10">
+      <div ref={logoRef} className=" p-5">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
-            className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-80 w-30"
+            className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-48 w-30"
            
           />
         </Link>
@@ -134,18 +134,10 @@ export default function Navbar({ centerContent }: NavbarProps) {
 
       {/* Center: Dynamic Content - Hidden on mobile */}
       <div ref={centerRef} className="hidden md:flex justify-center items-center">
-        {finalCenterContent?.type === "image" && finalCenterContent.imageSrc ? (
-          <Image
-            src={finalCenterContent.imageSrc}
-            alt={finalCenterContent.imageAlt || "Center image"}
-            className="w-full h-full object-contain"
-            width={1500}
-            height={1500}
-          />
-        ) : (
+       
           <Typography
-            variant="h2"
-            weight="semibold"
+            variant="h1"
+            weight="normal"
             color="primary"
             className=" p-10 text-center uppercase"
           >
@@ -264,19 +256,19 @@ export default function Navbar({ centerContent }: NavbarProps) {
                 })()
               : finalCenterContent?.title}
           </Typography>
-        )}
+      
       </div>
 
       {/* Right: Desktop Menu */}
       <div ref={menuRef} className="hidden md:flex justify-end p-5">
-        <ul className="flex flex-col items-end gap-1 bg-[#FFFFFF] z-10 rounded-lg">
+        <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] z-10 rounded-lg">
           {navigationItems.map((item, index) => {
             const isActive = isActiveRoute(item.href);
             return (
               <li key={item.href}>
                 <Link href={item.href} className="group">
                   <Typography
-                    variant="subtitle2"
+                    variant="button"
                     weight="medium"
                     color={isActive ? "accent" : "primary"}
                     className={`uppercase tracking-wide transition-aljl duration-300 hover:scale-105 ${
