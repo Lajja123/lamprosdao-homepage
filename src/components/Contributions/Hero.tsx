@@ -22,7 +22,149 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
   return (
     <>
-      <div className="grid grid-cols-10 ">
+      {/* Mobile Layout */}
+      <div className="lg:hidden">
+        {/* Main Content Section */}
+        <div className="flex flex-col">
+
+          {/* Text Section */}
+          <div className="border border-black p-4 md:p-6">
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="semibold"
+              className="tracking-wider font-ppmori text-sm md:text-base"
+            >
+              <div>
+                At Lampros DAO, we actively contribute to both governance and
+                research, ensuring that decentralized ecosystems remain
+                transparent, efficient, and community-driven. Through governance,
+                we engage in DAO discussions, voting, and proposal-making, helping
+                shape the direction of decentralized decision-making. Our research
+                efforts focus on analyzing governance structures, incentive
+                programs, and power distribution to provide data-backed insights
+                that drive informed decisions.
+              </div>
+              <div className="mt-3 md:mt-4">
+                By working across multiple DAOs, we aim to improve governance
+                participation, develop analytical tools, and contribute to
+                ecosystem growth. Our work helps communities navigate
+                decentralization, ensuring long-term sustainability and
+                inclusivity.
+              </div>
+            </Typography>
+          </div>
+
+          {/* Second Image Section */}
+          <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
+            <Image
+              src={clip2}
+              alt="Metallic sculpture"
+              className="w-[200px] md:w-[300px] mx-auto"
+            />
+          </div>
+        </div>
+
+        {/* Chain Selection Section */}
+        <div className="bg-[#1A1A1A]">
+          <div className="flex flex-row justify-between items-center p-4 md:p-6">
+            {/* Arbitrum Button */}
+            <div className="bg-[#1A1A1A] flex items-center justify-center p-0">
+              <div
+                className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
+                  activeChain === "arbitrum"
+                    ? "bg-white scale-105"
+                    : "bg-gray-300 hover:bg-gray-200"
+                }`}
+                onClick={() => handleButtonClick("arbitrum")}
+              >
+                <Image src={arbitrum} alt="arbitrum" className="w-6 md:w-10" />
+                <Typography
+                  variant="subtitle2"
+                  color="primary"
+                  weight="semibold"
+                  className="font-ppmori text-sm md:text-base"
+                >
+                  Arbitrum
+                </Typography>
+              </div>
+            </div>
+
+            {/* Optimism Button */}
+            <div className=" bg-[#1A1A1A] flex items-center justify-center p-4">
+              <div
+                className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
+                  activeChain === "optimism"
+                    ? "bg-white scale-105"
+                    : "bg-gray-300 hover:bg-gray-200"
+                }`}
+                onClick={() => handleButtonClick("optimism")}
+              >
+                <Image src={op} alt="optimism" className="w-6 md:w-10" />
+                <Typography
+                  variant="subtitle2"
+                  color="primary"
+                  weight="semibold"
+                  className="font-ppmori text-sm md:text-base"
+                >
+                  Optimism
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Content Section */}
+        <div className="border border-black p-4 md:p-6 flex items-center justify-center">
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="light"
+            className="tracking-wide uppercase text-lg md:text-xl text-center"
+          >
+            {currentContent.word.split("").map((letter, index) => {
+              const isHighlighted = currentContent.highlightedLetters.includes(
+                letter.toUpperCase()
+              );
+              return (
+                <span
+                  key={index}
+                  className={
+                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                  }
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </Typography>
+        </div>
+
+        <div className="border border-black bg-[#CBE9FF] p-4 md:p-6 flex items-center justify-center">
+          <Typography
+            variant="body2"
+            color="primary"
+            weight="normal"
+            className="tracking-wider text-sm md:text-base text-center"
+          >
+            {currentContent.subtitle}
+          </Typography>
+        </div>
+
+        <div className="border border-black p-4 md:p-6 flex items-center justify-center">
+          <Typography
+            variant="body2"
+            color="primary"
+            weight="semibold"
+            className="tracking-wider font-ppmori text-sm md:text-base text-center"
+          >
+            {currentContent.description}
+          </Typography>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-10">
         <div className="border border-black ">1</div>
         <div className="border border-black ">2</div>
         <div className="border border-black ">3</div>
@@ -126,7 +268,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <div className="col-start-10 row-start-3 border border-white bg-[#1A1A1A]"></div>
       </div>
 
-      <div className="grid grid-cols-10  ">
+      <div className="hidden lg:grid lg:grid-cols-10  ">
         <div className=" border border-black"></div>
         <div className="col-span-8  border border-black  flex items-center justify-center p-10">
           <Typography

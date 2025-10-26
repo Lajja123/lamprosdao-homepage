@@ -26,7 +26,90 @@ export default function Reports({ activeChain }: ReportsProps) {
   const items = contributions.items as ContributionItem[];
   return (
     <>
-      <div className="grid grid-cols-10 bg-[#1A1A1A]">
+      {/* Mobile Layout */}
+      <div className="lg:hidden bg-[#1A1A1A]">
+        {/* Header Section */}
+        <div className="border-b border-white p-4 md:p-6 flex items-center justify-center">
+          <Typography
+            variant="subtitle1"
+            color="yellow"
+            weight="semibold"
+            className="uppercase tracking-wider font-ppmori text-sm md:text-base text-center"
+          >
+            {contributions.header}
+          </Typography>
+        </div>
+
+        {/* Contribution Items */}
+        <div className="space-y-4 p-4 md:p-6">
+          {items.map((item, index) => (
+            <div key={item.id} className="border border-white rounded-lg overflow-hidden">
+              {/* Number Header */}
+              <div className="relative border-b border-white p-4 flex items-center justify-center">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${bgImage1.src})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <Typography
+                  variant="h5"
+                  color="white"
+                  weight="bold"
+                  className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </Typography>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 md:p-6 bg-[#1A1A1A]">
+                <Typography
+                  variant="h5"
+                  color="white"
+                  weight="semibold"
+                  className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-4"
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="white"
+                  weight="normal"
+                  className="tracking-wider font-ppmori text-sm md:text-base mb-6"
+                >
+                  {item.description}
+                </Typography>
+                <div>
+                  <Link
+                    href={item.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      label={item.buttonLabel}
+                      color={item.buttonColor}
+                      textColor={item.buttonTextColor}
+                      className="p-3"
+                    />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer Section */}
+        <div className="border-t border-white p-4 md:p-6 flex items-center justify-center bg-[#000000]">
+          <Button label="See More" color="#D0FFAC" textColor="#0B0B0B" />
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]">
         <div className="border-b border-r border-l border-white"></div>
         <div className="col-span-8 border-b border-r border-l border-white flex items-center justify-center p-10">
           <Typography
