@@ -59,7 +59,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                   variant="h5"
                   color="white"
                   weight="bold"
-                  className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl"
+                  className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl text-start w-full"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </Typography>
@@ -122,7 +122,7 @@ export default function Reports({ activeChain }: ReportsProps) {
           </Typography>
         </div>
         <div className="col-start-10 border-b border-r border-l border-white flex items-center justify-center p-10"></div>
-        <div className="row-start-2 border border-white relative p-10">
+        <div className="row-start-2 border border-white relative  flex items-center justify-center">
           <div
             className="absolute inset-0"
             style={{

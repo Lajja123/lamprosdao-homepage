@@ -80,7 +80,7 @@ export default function Journey() {
         {/* Journey Items */}
         {journeyData.map((item, index) => (
           <div key={index} className="border border-[#FFFFFF]">
-            <div className={`flex items-center justify-between p-4 md:p-6 ${item.color}`}>
+            <div className={`flex items-center p-4 md:p-6 ${item.color} ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
               <Typography
                 variant="h2"
                 color="primary"
@@ -90,7 +90,7 @@ export default function Journey() {
                 {item.number}
               </Typography>
             </div>
-            <div className="p-4 md:p-6">
+            <div className={`p-4 md:p-6 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
               <Typography
                 variant="h5"
                 color="white"

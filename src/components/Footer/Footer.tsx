@@ -130,10 +130,10 @@ export default function Footer({ variant }: FooterProps) {
           src={rectangle}
           alt={""}
          
-          className="mx-auto hidden sm:block"
+          className="mx-auto w-32 h-auto sm:w-auto sm:h-auto"
           quality={100}
         />
-        <div className="sm:absolute inset-0 flex items-center justify-center p-5 ">
+        <div className="absolute inset-0 flex items-center justify-center p-5 ">
           <Image src={theme.logo} alt={""} className="" />
         </div>
       </div>

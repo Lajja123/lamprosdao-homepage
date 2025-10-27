@@ -952,7 +952,7 @@ const RecentVotes = React.memo(function RecentVotes() {
           <Button label="See More" color="#000000" textColor="#FFFFFF" />
         </Link>
       </div>
-      </div>
+    </div>
     </>
   );
 });

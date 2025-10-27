@@ -24,7 +24,34 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
     <>
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        {/* Main Content Section */}
+        {/* 3-Column Grid Section */}
+        <div className="grid grid-cols-3">
+          {/* First Column - Clip Image */}
+          <div className=" border border-black">
+           
+          </div>
+          
+          {/* Second Column - Empty for now */}
+          <div className="border border-black relative">
+          <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${bgImage1.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "top center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <Image
+              src={clip}
+              alt="clip"
+              className="relative w-full h-full object-contain p-2 md:p-4 mx-auto"
+            />
+          </div>
+          
+          {/* Third Column - Empty for now */}
+          <div className="border border-black"></div>
+        </div>
         <div className="flex flex-col">
 
           {/* Text Section */}
@@ -67,7 +94,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
         {/* Chain Selection Section */}
         <div className="bg-[#1A1A1A]">
-          <div className="flex flex-row justify-between items-center p-4 md:p-6">
+          <div className="flex flex-row justify-between items-center p-4 md:p-6 gap-4">
             {/* Arbitrum Button */}
             <div className="bg-[#1A1A1A] flex items-center justify-center p-0">
               <div
@@ -91,7 +118,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             </div>
 
             {/* Optimism Button */}
-            <div className=" bg-[#1A1A1A] flex items-center justify-center p-4">
+            <div className=" bg-[#1A1A1A] flex items-center justify-center ">
               <div
                 className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
                   activeChain === "optimism"

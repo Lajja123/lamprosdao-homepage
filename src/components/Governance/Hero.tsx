@@ -127,7 +127,7 @@ export default function Hero() {
             </Typography>
           </div>
 
-          <div className="flex flex-row justify-between items-center p-4 md:p-6">
+          <div className="flex flex-row justify-between items-center p-4 md:p-6 gap-4">
             {/* Arbitrum */}
             <div className="">
               <Link
