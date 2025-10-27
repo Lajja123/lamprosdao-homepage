@@ -185,7 +185,7 @@ export default function Faq() {
   return (
     <>
       {/* Mobile Layout */}
-      <div className="block sm:hidden ">
+      <div className="block md:hidden ">
         <div className="grid grid-cols-10 border border-black min-w-[320px]">
           {/* Dynamically render FAQ items */}
           {currentItems.map((item, index) => renderFaqItem(item, index))}
@@ -212,7 +212,7 @@ export default function Faq() {
                 <Arrow
                   direction="left"
                   size={30}
-                  className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
+                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
                   />
               </button>
             </div>
@@ -256,7 +256,7 @@ export default function Faq() {
                 <Arrow
                   direction="right"
                   size={30}
-                  className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px]"
+                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
                   />
               </button>
             </div>
@@ -265,7 +265,7 @@ export default function Faq() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <div className="grid grid-cols-10 border border-black min-w-[640px] md:min-w-[768px] lg:min-w-[1024px]">
           {/* Dynamically render FAQ items */}
           {currentItems.map((item, index) => renderFaqItem(item, index))}
@@ -314,7 +314,7 @@ export default function Faq() {
               <Arrow
                 direction="left"
                 size={70}
-                className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]"
+                className="w-[30px] h-[30px] sm:w-[20px] sm:h-[20px] md:w-[30px] md:h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[50px] xl:h-[50px]"
               />
             </div>
           </div>
@@ -349,7 +349,7 @@ export default function Faq() {
               <Arrow
                 direction="right"
                 size={70}
-                className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] md:w-[50px] md:h-[50px] lg:w-[60px] lg:h-[60px] xl:w-[70px] xl:h-[70px]"
+                className="w-[30px] h-[30px] sm:w-[20px] sm:h-[20px] md:w-[30px] md:h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[50px] xl:h-[50px]"
               />
             </div>
           </div>

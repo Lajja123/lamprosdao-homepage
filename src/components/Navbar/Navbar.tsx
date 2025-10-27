@@ -287,7 +287,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Mobile Hamburger Menu Button */}
-      <div className="md:hidden flex items-center p-4">
+      <div className="md:hidden flex items-center p-4 z-50">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex flex-col justify-center items-center w-8 h-8 space-y-1 group"

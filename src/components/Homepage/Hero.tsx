@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import hero from "@/assests/HeroSection1/hero.png";
+import clip from "@/assests/common/clip.svg";
 
 import { Typography } from "@/components/UI/Typography"; // adjust path
 
@@ -99,7 +100,19 @@ export default function Hero() {
 
   return (
     <>
+
+     {/* Clip Image - Top Center */}
+     <div className="absolute top-13 left-15 z-10 hidden sm:block">
+          <Image
+            src={clip}
+            alt="Clip decoration"
+            className="w-full"
+            quality={100}
+          />
+        </div>
+        
       <div ref={heroRef} className="w-full h-max relative ">
+       
         {/* Background Image */}
         <div ref={imageRef} className="absolute inset-0 w-full h-full z-0 hidden md:block">
           <Image
@@ -114,7 +127,7 @@ export default function Hero() {
         {/* Title Section */}
         <div 
         
-          className="relative z-10 w-full py-7 "
+          className="relative z-10 w-full md:pt-20 md:pb-15 py-7 sm:pt-20 sm:pb-7 "
         >
           <Typography
             variant="h1"

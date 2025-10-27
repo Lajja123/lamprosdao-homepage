@@ -130,7 +130,14 @@ export default function Footer({ variant }: FooterProps) {
           src={rectangle}
           alt={""}
          
-          className="mx-auto w-32 h-auto sm:w-auto sm:h-auto"
+          className="mx-auto block md:hidden w-32 h-auto "
+          quality={100}
+        />
+        <Image
+          src={rectangle}
+          alt={""}
+         
+          className="mx-auto hidden md:block"
           quality={100}
         />
         <div className="absolute inset-0 flex items-center justify-center p-5 ">
