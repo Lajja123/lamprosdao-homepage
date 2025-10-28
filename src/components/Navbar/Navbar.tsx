@@ -118,7 +118,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
   return (
     <nav
       ref={navbarRef}
-      className="relative flex items-start md:items-start justify-between"
+      className="relative flex items-start md:items-start justify-between z-10"
     >
       {/* Left: Logo */}
       <div ref={logoRef} className=" p-5">
@@ -127,141 +127,144 @@ export default function Navbar({ centerContent }: NavbarProps) {
             src={logo}
             alt="Lampros DAO logo"
             className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-48 w-30"
-           
           />
         </Link>
       </div>
 
       {/* Center: Dynamic Content - Hidden on mobile */}
-      <div ref={centerRef} className="hidden md:flex justify-center items-center">
-       
-          <Typography
-            variant="h1"
-            weight="normal"
-            color="primary"
-            className=" p-10 text-center uppercase"
-          >
-            {finalCenterContent?.title
-              ? (() => {
-                  const title = finalCenterContent.title;
+      <div
+        ref={centerRef}
+        className="hidden md:flex justify-center items-center"
+      >
+        <Typography
+          variant="h1"
+          weight="normal"
+          color="primary"
+          className=" p-10 text-center uppercase"
+        >
+          {finalCenterContent?.title
+            ? (() => {
+                const title = finalCenterContent.title;
 
-                  switch (title) {
-                    case "About Us":
-                      return (
-                        <>
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[0] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            A
-                          </span>
-                          bout{" "}
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[1] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            U
-                          </span>
-                          s
-                        </>
-                      );
-                    case "Governance":
-                      return (
-                        <>
-                          G
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[0] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            o
-                          </span>
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[1] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            v
-                          </span>
-                          ern
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[2] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            a
-                          </span>
-                          nc
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[3] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            e
-                          </span>
-                        </>
-                      );
-                    case "Contribution":
-                      return (
-                        <>
-                          C
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[0] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            o
-                          </span>
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[1] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            nt
-                          </span>
-                          rib
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[2] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            u
-                          </span>
-                          t
-                          <span
-                            ref={(el) => {
-                              if (el) wavyLettersRef.current[3] = el;
-                            }}
-                            className="uppercase font-bohemian wavy-letter inline-block"
-                          >
-                            i
-                          </span>
-                          on
-                        </>
-                      );
-                    default:
-                      return title;
-                  }
-                })()
-              : finalCenterContent?.title}
-          </Typography>
-      
+                switch (title) {
+                  case "About Us":
+                    return (
+                      <>
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[0] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          A
+                        </span>
+                        bout{" "}
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[1] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          U
+                        </span>
+                        s
+                      </>
+                    );
+                  case "Governance":
+                    return (
+                      <>
+                        G
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[0] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          o
+                        </span>
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[1] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          v
+                        </span>
+                        ern
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[2] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          a
+                        </span>
+                        nc
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[3] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          e
+                        </span>
+                      </>
+                    );
+                  case "Contribution":
+                    return (
+                      <>
+                        C
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[0] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          o
+                        </span>
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[1] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          nt
+                        </span>
+                        rib
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[2] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          u
+                        </span>
+                        t
+                        <span
+                          ref={(el) => {
+                            if (el) wavyLettersRef.current[3] = el;
+                          }}
+                          className="uppercase font-bohemian wavy-letter inline-block"
+                        >
+                          i
+                        </span>
+                        on
+                      </>
+                    );
+                  default:
+                    return title;
+                }
+              })()
+            : finalCenterContent?.title}
+        </Typography>
       </div>
 
       {/* Right: Desktop Menu */}
-      <div ref={menuRef} className="hidden md:flex justify-end p-5">
-        <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] z-10 rounded-lg">
+      <div
+        ref={menuRef}
+        className="hidden md:flex justify-end p-5 relative z-20"
+      >
+        <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] rounded-lg">
           {navigationItems.map((item, index) => {
             const isActive = isActiveRoute(item.href);
             return (
@@ -319,7 +322,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
             className="absolute inset-0 bg-black bg-opacity-50"
             onClick={() => setIsMenuOpen(false)}
           />
-          
+
           {/* Menu Panel */}
           <div
             ref={panelRef}

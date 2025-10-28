@@ -101,11 +101,11 @@ export default function Hero() {
   return (
     <>
       {/* Clip Image - Top Center */}
-      <div className="absolute top-12 w-full z-10 hidden sm:block ">
+      <div className="absolute top-12 w-full hidden sm:block z-0">
         <Image
           src={clip}
           alt="Clip decoration"
-          className="w-full "
+          className="w-full"
           quality={100}
         />
       </div>
@@ -126,7 +126,7 @@ export default function Hero() {
         </div>
 
         {/* Title Section */}
-        <div className="relative z-10 w-full md:pt-20 lg:pt-40 2xl:pt-50 lg:pb-10 md:pb-20 py-7 sm:pt-20 sm:pb-7 ">
+        <div className="relative  w-full md:pt-20 lg:pt-40 2xl:pt-50 lg:pb-10 md:pb-20 py-7 sm:pt-20 sm:pb-7 ">
           <Typography
             variant="h1"
             weight="normal"
