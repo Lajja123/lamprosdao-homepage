@@ -9,7 +9,7 @@ import clip from "@/assests/common/clip.svg";
 import { Typography } from "@/components/UI/Typography"; // adjust path
 
 // Register GSAP plugins
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
@@ -23,16 +23,16 @@ export default function Hero() {
   // useEffect(() => {
   //   const ctx = gsap.context(() => {
   //     // Initial setup - hide elements
-  //     gsap.set([titleRef.current, subtitleRef.current], { 
-  //       opacity: 0, 
+  //     gsap.set([titleRef.current, subtitleRef.current], {
+  //       opacity: 0,
   //       y: 100,
   //       rotationX: 90,
   //       transformOrigin: "0% 50% -50px",
   //       transformStyle: "preserve-3d"
   //     });
-      
-  //     gsap.set(imageRef.current, { 
-  //       opacity: 0, 
+
+  //     gsap.set(imageRef.current, {
+  //       opacity: 0,
   //       scale: 0.8,
   //       y: 50
   //     });
@@ -100,21 +100,22 @@ export default function Hero() {
 
   return (
     <>
+      {/* Clip Image - Top Center */}
+      <div className="absolute top-12 w-full z-10 hidden sm:block ">
+        <Image
+          src={clip}
+          alt="Clip decoration"
+          className="w-full "
+          quality={100}
+        />
+      </div>
 
-     {/* Clip Image - Top Center */}
-     <div className="absolute top-13 left-15 z-10 hidden sm:block">
-          <Image
-            src={clip}
-            alt="Clip decoration"
-            className="w-full"
-            quality={100}
-          />
-        </div>
-        
       <div ref={heroRef} className="w-full h-max relative ">
-       
         {/* Background Image */}
-        <div ref={imageRef} className="absolute inset-0 w-full h-full z-0 hidden md:block">
+        <div
+          ref={imageRef}
+          className="absolute inset-0 w-full h-full z-0 hidden md:block top-5"
+        >
           <Image
             src={hero}
             alt="Hero background"
@@ -123,12 +124,9 @@ export default function Hero() {
             sizes="100vw"
           />
         </div>
-        
+
         {/* Title Section */}
-        <div 
-        
-          className="relative z-10 w-full md:pt-20 md:pb-15 py-7 sm:pt-20 sm:pb-7 "
-        >
+        <div className="relative z-10 w-full md:pt-20 lg:pt-40 2xl:pt-50 lg:pb-10 md:pb-20 py-7 sm:pt-20 sm:pb-7 ">
           <Typography
             variant="h1"
             weight="normal"
@@ -137,8 +135,10 @@ export default function Hero() {
             className="uppercase leading-tight font-ppmori "
           >
             The Be
-            <span 
-              ref={el => { if (el) wavyLettersRef.current[0] = el; }}
+            <span
+              ref={(el) => {
+                if (el) wavyLettersRef.current[0] = el;
+              }}
               className="uppercase font-bohemian wavy-letter inline-block"
             >
               a
@@ -153,21 +153,27 @@ export default function Hero() {
             className="uppercase  font-ppmori "
           >
             Of B
-            <span 
-              ref={el => { if (el) wavyLettersRef.current[1] = el; }}
+            <span
+              ref={(el) => {
+                if (el) wavyLettersRef.current[1] = el;
+              }}
               className="font-bohemian wavy-letter inline-block"
             >
               l
             </span>
             ockch
-            <span 
-              ref={el => { if (el) wavyLettersRef.current[2] = el; }}
+            <span
+              ref={(el) => {
+                if (el) wavyLettersRef.current[2] = el;
+              }}
               className="font-bohemian wavy-letter inline-block"
             >
               a
             </span>
-            <span 
-              ref={el => { if (el) wavyLettersRef.current[3] = el; }}
+            <span
+              ref={(el) => {
+                if (el) wavyLettersRef.current[3] = el;
+              }}
               className="font-bohemian wavy-letter inline-block"
             >
               i
@@ -175,23 +181,22 @@ export default function Hero() {
             n
           </Typography>
         </div>
-        <div 
-        ref={subtitleRef}
-        className="flex items-center justify-center relative md:top-0 w-[80%] mx-auto top-0 mb-10 md:mb-40"
-      >
-        <Typography
-          variant="h6"
-          align="center"
-          weight="semibold"
-          color="primary"
-          className="bg-[#DFEAF9] font-ppmori px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl  "
+        <div
+          ref={subtitleRef}
+          className="flex items-center justify-center relative md:top-0 w-[80%] mx-auto top-0 mb-10 md:mb-20 2xl:mb-40 md:mt-20"
         >
-          Driving Mainstream Adoption, Empowering Developers, and Cultivating
-          the Future of Web3
-        </Typography>
+          <Typography
+            variant="h6"
+            align="center"
+            weight="semibold"
+            color="primary"
+            className="bg-[#DFEAF9] font-ppmori px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl  "
+          >
+            Driving Mainstream Adoption, Empowering Developers, and Cultivating
+            the Future of Web3
+          </Typography>
+        </div>
       </div>
-      </div>
-      
     </>
   );
 }
