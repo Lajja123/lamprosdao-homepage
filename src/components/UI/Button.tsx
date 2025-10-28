@@ -160,16 +160,58 @@ export const Button: React.FC<ButtonProps> = ({
       ? textColor
       : "primary";
 
+  // Determine fill animation color based on button variant
+  const getFillColor = () => {
+    if (variant === "outline" || variant === "ghost") {
+      return textColor || color; // Use text color or button color
+    } else if (variant === "light-gray") {
+      return "#000000"; // Black fill for light gray buttons
+    } else if (variant === "light-green") {
+      return "#1a1a1a"; // Dark fill for light green buttons
+    } else if (variant === "light-purple") {
+      return "#1a1a1a"; // Dark fill for light purple buttons
+    } else if (variant === "dark-brown") {
+      return "#FFFFFF"; // White fill for dark brown buttons
+    } else {
+      return "#FFFFFF"; // Default white fill for solid buttons
+    }
+  };
+
+  // Determine text color on hover based on button variant
+  const getHoverTextColor = () => {
+    if (variant === "outline" || variant === "ghost") {
+      return "group-hover:text-white";
+    } else if (variant === "light-gray") {
+      return "group-hover:text-white";
+    } else if (variant === "light-green" || variant === "light-purple") {
+      return "group-hover:text-white";
+    } else if (variant === "dark-brown") {
+      return "group-hover:text-black";
+    } else {
+      return "group-hover:text-black";
+    }
+  };
+
   return (
     <button
       ref={buttonRef}
-      className={[base, radius, className].filter(Boolean).join(" ")}
+      className={[base, radius, className, "group relative overflow-hidden"]
+        .filter(Boolean)
+        .join(" ")}
       style={style}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
     >
-      <div className="flex items-center gap-2">
+      {/* Center fill animation background */}
+      <div
+        className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+        style={{
+          backgroundColor: getFillColor(),
+        }}
+      />
+
+      <div className="flex items-center gap-2 relative z-10">
         <Typography
           variant="button"
           color={
@@ -186,9 +228,11 @@ export const Button: React.FC<ButtonProps> = ({
           }
           align="center"
           weight="bold"
-          className={["pointer-events-none select-none text-sm sm:text-base", variantClasses].join(
-            " "
-          )}
+          className={[
+            "pointer-events-none select-none text-sm sm:text-base transition-colors duration-500",
+            getHoverTextColor(),
+            variantClasses,
+          ].join(" ")}
         >
           {label}
         </Typography>

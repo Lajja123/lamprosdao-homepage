@@ -13,9 +13,9 @@ export default function page() {
         setTimeout(() => {
           const delegateSection = document.getElementById("delegate-section");
           if (delegateSection) {
-            delegateSection.scrollIntoView({ 
+            delegateSection.scrollIntoView({
               behavior: "smooth",
-              block: "start"
+              block: "start",
             });
           }
         }, 100);
@@ -27,7 +27,7 @@ export default function page() {
 
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashNavigation);
-    
+
     return () => {
       window.removeEventListener("hashchange", handleHashNavigation);
     };

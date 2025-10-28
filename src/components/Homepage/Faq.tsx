@@ -56,7 +56,9 @@ const ContentCell = ({
       rowStart ? `row-start-${rowStart}` : ""
     )}
   >
-    <div className="flex-1 min-w-0 px-1 sm:px-2 md:px-4 lg:px-6 xl:px-10 py-2 sm:py-2">{children}</div>
+    <div className="flex-1 min-w-0 px-1 sm:px-2 md:px-4 lg:px-6 xl:px-10 py-2 sm:py-2">
+      {children}
+    </div>
   </div>
 );
 
@@ -77,7 +79,7 @@ const IconCell = ({
     onClick={onClick}
   >
     <Image
-      src={isExpanded ? bottom : top}
+      src={isExpanded ? top : bottom}
       alt={isExpanded ? "collapse item" : "expand item"}
       width={24}
       height={24}
@@ -130,15 +132,10 @@ export default function Faq() {
     return (
       <>
         <NumberCell
-          number={String(currentSection * itemsPerSection + index + 1).padStart(
-            2,
-            "0"
-          )}
+          number={String(item.id).padStart(2, "0")}
           rowStart={index > 0 ? String(index + 1) : undefined}
         />
-        <ContentCell
-          rowStart={index > 0 ? String(index + 1) : undefined}
-        >
+        <ContentCell rowStart={index > 0 ? String(index + 1) : undefined}>
           <div>
             <Typography
               variant="body2"
@@ -204,7 +201,8 @@ export default function Faq() {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-              }}            >
+              }}
+            >
               <button
                 onClick={handlePrevious}
                 className="w-full h-full flex items-center justify-center"
@@ -213,7 +211,7 @@ export default function Faq() {
                   direction="left"
                   size={30}
                   className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                  />
+                />
               </button>
             </div>
           </div>
@@ -247,7 +245,6 @@ export default function Faq() {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
-              onClick={handleNext}
             >
               <button
                 onClick={handleNext}
@@ -257,7 +254,7 @@ export default function Faq() {
                   direction="right"
                   size={30}
                   className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300"
-                  />
+                />
               </button>
             </div>
           </div>
@@ -274,10 +271,7 @@ export default function Faq() {
             className="row-start-4 bg-[#CBE9FF] flex w-full justify-center items-center border border-black p-2 sm:p-4"
             style={{ gridRowStart: currentItems.length + 1 }}
           >
-            <Image 
-              src={question} 
-              alt="question mark" 
-            />
+            <Image src={question} alt="question mark" />
           </div>
 
           <div
@@ -323,10 +317,10 @@ export default function Faq() {
             className="col-span-3 col-start-7 row-start-4 border border-black w-full flex justify-center items-center p-2 sm:p-4"
             style={{ gridRowStart: currentItems.length + 1 }}
           >
-            <Image 
-              src={clip} 
-              alt="clip" 
-              className="w-[30%] sm:w-[40%] md:w-[50%] mx-auto" 
+            <Image
+              src={clip}
+              alt="clip"
+              className="w-[30%] sm:w-[40%] md:w-[50%] mx-auto"
             />
           </div>
 

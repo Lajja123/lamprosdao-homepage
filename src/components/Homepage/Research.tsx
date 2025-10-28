@@ -34,43 +34,28 @@ export default function Research() {
       case "Our Journey & Impact":
         return (
           <>
-            <span className="uppercase font-bohemian inline-block">
-              O
-            </span>
-            ur{" "}
-            <span className="uppercase font-bohemian inline-block">
-              J
-            </span>
+            <span className="uppercase font-bohemian inline-block">O</span>
+            ur <span className="uppercase font-bohemian inline-block">J</span>
             ourney &{" "}
-            <span className="uppercase font-bohemian inline-block">
-              I
-            </span>
+            <span className="uppercase font-bohemian inline-block">I</span>
             mpact
           </>
         );
       case "Governance & Research":
         return (
           <>
-            <span className="uppercase font-bohemian inline-block">
-              G
-            </span>
+            <span className="uppercase font-bohemian inline-block">G</span>
             overnance &{" "}
-            <span className="uppercase font-bohemian inline-block">
-              R
-            </span>
+            <span className="uppercase font-bohemian inline-block">R</span>
             esearch
           </>
         );
       case "Workshops & Education":
         return (
           <>
-            <span className="uppercase font-bohemian inline-block">
-              W
-            </span>
+            <span className="uppercase font-bohemian inline-block">W</span>
             orkshops &{" "}
-            <span className="uppercase font-bohemian inline-block">
-              E
-            </span>
+            <span className="uppercase font-bohemian inline-block">E</span>
             ducation
           </>
         );
@@ -83,10 +68,7 @@ export default function Research() {
     <div className="w-full bg-[#121212] text-white">
       {/* Desktop Layout - Original research grid */}
       <div className="hidden lg:block">
-        <Grid
-          variant="research"
-          className="relative w-full"
-        >
+        <Grid variant="research" className="relative w-full">
           {/* Main image - spans 3 columns, 5 rows */}
           <GridCell type="researchImage">
             <Image
@@ -98,9 +80,7 @@ export default function Research() {
 
           {/* Content section - spans 3 columns, 4 rows */}
           <GridCell type="researchContent">
-            <div 
-              className="space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-10  flex flex-col justify-center"
-            >
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-10  flex flex-col justify-center">
               <Typography
                 variant="h2"
                 weight="normal"
@@ -126,7 +106,11 @@ export default function Research() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button label="Know More" color="#D0FFAC" textColor="#000000" />
+                  <Button
+                    label="Know More"
+                    color="#D0FFAC"
+                    textColor="#000000"
+                  />
                 </Link>
               </div>
             </div>
@@ -157,7 +141,11 @@ export default function Research() {
 
           {/* Clip2 image - row 5, column 5 */}
           <GridCell type="researchIcon" className="col-start-5 row-start-5 p-5">
-            <Image src={Clip2} alt="Emblem" className="p-3 sm:p-4 md:p-5 w-full" />
+            <Image
+              src={Clip2}
+              alt="Emblem"
+              className="p-3 sm:p-4 md:p-5 w-full"
+            />
           </GridCell>
 
           {/* Arrow right - row 5, column 6 */}
@@ -220,9 +208,9 @@ export default function Research() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button 
-                      label="Know More" 
-                      color="#D0FFAC" 
+                    <Button
+                      label="Know More"
+                      color="#D0FFAC"
                       textColor="#000000"
                       className="w-full sm:w-auto px-8 py-3 text-sm sm:text-base"
                     />
@@ -257,10 +245,10 @@ export default function Research() {
 
             {/* Clip2 image - center */}
             <div className="border border-white flex items-center justify-center p-5">
-              <Image 
-                src={Clip2} 
-                alt="Emblem" 
-                className="w-15 h-15 sm:w-16 sm:h-16 md:w-20 md:h-20" 
+              <Image
+                src={Clip2}
+                alt="Emblem"
+                className="w-15 h-15 sm:w-16 sm:h-16 md:w-20 md:h-20"
               />
             </div>
 

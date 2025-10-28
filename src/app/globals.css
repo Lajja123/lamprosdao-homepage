@@ -4,6 +4,9 @@
   --background: #ffffff;
   --foreground: #ffffff;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 @theme inline {
   --breakpoint-bp-xs: 400px;

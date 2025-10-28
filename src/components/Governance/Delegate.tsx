@@ -6,8 +6,10 @@ import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
 import Link from "next/link";
+import useScrollToHash from "@/hooks/useScrollToSection";
 
 export default function Delegate() {
+  useScrollToHash();
   return (
     <>
       {/* Mobile Layout */}
@@ -67,7 +69,10 @@ export default function Delegate() {
           {/* Arbitrum */}
           <div className="border border-white bg-white flex items-center justify-center p-4 gap-3">
             <Image src={arbitrum} alt="arbitrum" className="w-8 md:w-10" />
-            <Link href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
+            <Link
+              href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
+              target="_blank"
+            >
               <Typography
                 variant="body2"
                 color="primary"
@@ -82,7 +87,10 @@ export default function Delegate() {
           {/* Optimism */}
           <div className="border border-white bg-white flex items-center justify-center p-4 gap-3">
             <Image src={op} alt="optimism" className="w-8 md:w-10" />
-            <Link href="https://vote.optimism.io/delegates/lamprosdao.eth" target="_blank">
+            <Link
+              href="https://vote.optimism.io/delegates/lamprosdao.eth"
+              target="_blank"
+            >
               <Typography
                 variant="body2"
                 color="primary"
@@ -97,7 +105,10 @@ export default function Delegate() {
           {/* Uniswap */}
           <div className="border border-white bg-white flex items-center justify-center p-4 gap-3">
             <Image src={uniswap} alt="uniswap" className="w-8 md:w-10" />
-            <Link href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
+            <Link
+              href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
+              target="_blank"
+            >
               <Typography
                 variant="body2"
                 color="primary"
@@ -112,7 +123,10 @@ export default function Delegate() {
           {/* Superfluid */}
           <div className="border border-white bg-white flex items-center justify-center p-4 gap-3">
             <Image src={superfluid} alt="superfluid" className="w-8 md:w-10" />
-            <Link href="https://claim.superfluid.org/governance" target="_blank">
+            <Link
+              href="https://claim.superfluid.org/governance"
+              target="_blank"
+            >
               <Typography
                 variant="body2"
                 color="primary"
@@ -139,7 +153,10 @@ export default function Delegate() {
       </div>
 
       {/* Desktop Layout */}
-      <div id="delegate-section" className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]">
+      <div
+        id="delegate-section"
+        className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]"
+      >
         <div className="border-l border-r border-b border-white"></div>
         <div className="col-span-8 border border-black flex item-center justify-center p-10">
           <Typography
@@ -200,7 +217,10 @@ export default function Delegate() {
         {/* First row - Arbitrum and Optimism */}
         <div className="col-span-4 col-start-2 row-start-4 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
           <Image src={arbitrum} alt="arbitrum" className="w-10" />
-          <Link href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
+          <Link
+            href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
+            target="_blank"
+          >
             <Typography
               variant="body2"
               color="primary"
@@ -213,7 +233,10 @@ export default function Delegate() {
         </div>
         <div className="col-span-4 col-start-6 row-start-4 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
           <Image src={op} alt="optimism" className="w-10" />
-          <Link href="https://vote.optimism.io/delegates/lamprosdao.eth" target="_blank">
+          <Link
+            href="https://vote.optimism.io/delegates/lamprosdao.eth"
+            target="_blank"
+          >
             <Typography
               variant="body2"
               color="primary"
@@ -224,11 +247,14 @@ export default function Delegate() {
             </Typography>
           </Link>
         </div>
-        
+
         {/* Second row - Uniswap and Superfluid */}
         <div className="col-span-4 col-start-2 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
           <Image src={uniswap} alt="uniswap" className="w-10" />
-          <Link href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25" target="_blank">
+          <Link
+            href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
+            target="_blank"
+          >
             <Typography
               variant="body2"
               color="primary"

@@ -70,52 +70,80 @@ export default function Footer({ variant }: FooterProps) {
       >
         <Link
           href="/"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
         >
+          <div
+            className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+            style={{
+              backgroundColor:
+                effectiveVariant === "dark" ? "#DFCDF2" : "#1a1a1a",
+            }}
+          ></div>
           <Typography
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
           >
             Home
           </Typography>
         </Link>
         <Link
           href="/about-us"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
         >
+          <div
+            className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+            style={{
+              backgroundColor:
+                effectiveVariant === "dark" ? "#DFCDF2" : "#1a1a1a",
+            }}
+          ></div>
           <Typography
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
           >
             About Us
           </Typography>
         </Link>
         <Link
           href="/governance"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
         >
+          <div
+            className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+            style={{
+              backgroundColor:
+                effectiveVariant === "dark" ? "#DFCDF2" : "#1a1a1a",
+            }}
+          ></div>
           <Typography
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
           >
             Governance
           </Typography>
         </Link>
         <Link
           href="/contribution"
-          className={`group w-full border ${theme.borderColor} ${theme.hoverBackgroundColor} p-3 sm:p-4 md:p-6 transition-colors duration-200`}
+          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
         >
+          <div
+            className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+            style={{
+              backgroundColor:
+                effectiveVariant === "dark" ? "#DFCDF2" : "#1a1a1a",
+            }}
+          ></div>
           <Typography
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-200`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
           >
             Contribution
           </Typography>
@@ -128,20 +156,18 @@ export default function Footer({ variant }: FooterProps) {
       >
         <Image
           src={rectangle}
-          alt={""}
-         
-          className="mx-auto block md:hidden w-32 h-auto "
+          alt={"footer rectangle"}
+          className="mx-auto block sm:hidden w-32 h-auto "
           quality={100}
         />
         <Image
           src={rectangle}
-          alt={""}
-         
-          className="mx-auto hidden md:block"
+          alt={"footer rectangle"}
+          className="mx-auto hidden sm:block lg:w-[500px] h-auto md:w-[300px] "
           quality={100}
         />
-        <div className="absolute inset-0 flex items-center justify-center p-5 ">
-          <Image src={theme.logo} alt={""} className="" />
+        <div className="absolute inset-0 flex items-center justify-center px-10 ">
+          <Image src={theme.logo} alt={""} className="w-full " quality={100} />
         </div>
       </div>
 
@@ -177,12 +203,13 @@ export default function Footer({ variant }: FooterProps) {
           {socialPlatforms.map((platform, index) => (
             <div
               key={platform}
-              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-4 sm:px-6 md:px-8 py-4 sm:py-6 hover:bg-white transition-colors duration-200 group`}
+              className={`border-l ${theme.customBorderColor} flex items-center justify-center px-4 sm:px-6 md:px-8 py-4 sm:py-6 group relative overflow-hidden`}
             >
+              <div className="absolute inset-0 bg-white scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"></div>
               <SocialIcon
                 platform={platform}
                 color={theme.iconColor}
-                className="w-5 h-5 sm:w-6 sm:h-6 group-hover:!bg-black transition-colors duration-200"
+                className="w-5 h-5 sm:w-6 sm:h-6 group-hover:!bg-black transition-colors duration-500 relative z-10"
               />
             </div>
           ))}

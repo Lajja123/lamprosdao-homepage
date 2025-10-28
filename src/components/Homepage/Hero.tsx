@@ -15,88 +15,8 @@ if (typeof window !== "undefined") {
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
+
   const imageRef = useRef<HTMLDivElement>(null);
-  const wavyLettersRef = useRef<HTMLSpanElement[]>([]);
-
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     // Initial setup - hide elements
-  //     gsap.set([titleRef.current, subtitleRef.current], {
-  //       opacity: 0,
-  //       y: 100,
-  //       rotationX: 90,
-  //       transformOrigin: "0% 50% -50px",
-  //       transformStyle: "preserve-3d"
-  //     });
-
-  //     gsap.set(imageRef.current, {
-  //       opacity: 0,
-  //       scale: 0.8,
-  //       y: 50
-  //     });
-
-  //     // Create main timeline
-  //     const tl = gsap.timeline({ delay: 0.5 });
-
-  //     // Animate background image first
-  //     tl.to(imageRef.current, {
-  //       opacity: 1,
-  //       scale: 1,
-  //       y: 0,
-  //       duration: 1.2,
-  //       ease: "power3.out"
-  //     });
-
-  //     // Animate title with 3D flip effect
-  //     tl.to(titleRef.current, {
-  //       opacity: 1,
-  //       y: 0,
-  //       rotationX: 0,
-  //       duration: 1.2,
-  //       ease: "power3.out"
-  //     }, "-=0.8");
-
-  //     // Animate subtitle
-  //     tl.to(subtitleRef.current, {
-  //       opacity: 1,
-  //       y: 0,
-  //       rotationX: 0,
-  //       duration: 1.2,
-  //       ease: "power3.out"
-  //     }, "-=0.6");
-
-  //     // Add wavy animation to special letters
-  //     wavyLettersRef.current.forEach((letter, index) => {
-  //       if (letter) {
-  //         gsap.to(letter, {
-  //           y: -15,
-  //           duration: 0.8,
-  //           ease: "power2.inOut",
-  //           repeat: -1,
-  //           yoyo: true,
-  //           delay: 2 + (index * 0.2)
-  //         });
-  //       }
-  //     });
-
-  //     // Add subtle parallax effect to background
-  //     gsap.to(imageRef.current, {
-  //       yPercent: -20,
-  //       ease: "none",
-  //       scrollTrigger: {
-  //         trigger: heroRef.current,
-  //         start: "top bottom",
-  //         end: "bottom top",
-  //         scrub: true
-  //       }
-  //     });
-
-  //   }, heroRef);
-
-  //   return () => ctx.revert();
-  // }, []);
 
   return (
     <>
@@ -135,12 +55,7 @@ export default function Hero() {
             className="uppercase leading-tight font-ppmori "
           >
             The Be
-            <span
-              ref={(el) => {
-                if (el) wavyLettersRef.current[0] = el;
-              }}
-              className="uppercase font-bohemian wavy-letter inline-block"
-            >
+            <span className="uppercase font-bohemian wavy-letter inline-block">
               a
             </span>
             con
@@ -153,38 +68,13 @@ export default function Hero() {
             className="uppercase  font-ppmori "
           >
             Of B
-            <span
-              ref={(el) => {
-                if (el) wavyLettersRef.current[1] = el;
-              }}
-              className="font-bohemian wavy-letter inline-block"
-            >
-              l
-            </span>
+            <span className="font-bohemian wavy-letter inline-block">l</span>
             ockch
-            <span
-              ref={(el) => {
-                if (el) wavyLettersRef.current[2] = el;
-              }}
-              className="font-bohemian wavy-letter inline-block"
-            >
-              a
-            </span>
-            <span
-              ref={(el) => {
-                if (el) wavyLettersRef.current[3] = el;
-              }}
-              className="font-bohemian wavy-letter inline-block"
-            >
-              i
-            </span>
-            n
+            <span className="font-bohemian wavy-letter inline-block">a</span>
+            <span className="font-bohemian wavy-letter inline-block">i</span>n
           </Typography>
         </div>
-        <div
-          ref={subtitleRef}
-          className="flex items-center justify-center relative md:top-0 w-[80%] mx-auto top-0 mb-10 md:mb-20 2xl:mb-40 md:mt-20"
-        >
+        <div className="flex items-center justify-center relative md:top-0 w-[80%] mx-auto top-0 mb-10 md:mb-20 2xl:mb-40 md:mt-20">
           <Typography
             variant="h6"
             align="center"

@@ -420,7 +420,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             <Image src={vote1} alt="vote1" className="w-8 md:w-10" />
           </div>
         </div>
-        
+
         <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Typography
             variant="h2"
@@ -448,7 +448,10 @@ const RecentVotes = React.memo(function RecentVotes() {
             // Mobile loading skeleton
             <div className="p-4 md:p-6">
               {Array.from({ length: 2 }).map((_, index) => (
-                <div key={index} className="mb-4 p-4 border border-gray-200 rounded-lg">
+                <div
+                  key={index}
+                  className="mb-4 p-4 border border-gray-200 rounded-lg"
+                >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-6 h-6 bg-gray-300 animate-pulse rounded"></div>
                     <div className="w-20 h-4 bg-gray-300 animate-pulse rounded"></div>
@@ -472,7 +475,12 @@ const RecentVotes = React.memo(function RecentVotes() {
               >
                 Oops! Something Went Wrong
               </Typography>
-              <Typography variant="body1" color="primary" weight="normal" className="text-sm md:text-base">
+              <Typography
+                variant="body1"
+                color="primary"
+                weight="normal"
+                className="text-sm md:text-base"
+              >
                 {error}
               </Typography>
             </div>
@@ -487,7 +495,12 @@ const RecentVotes = React.memo(function RecentVotes() {
               >
                 No Votes Available
               </Typography>
-              <Typography variant="body1" color="primary" weight="normal" className="text-sm md:text-base">
+              <Typography
+                variant="body1"
+                color="primary"
+                weight="normal"
+                className="text-sm md:text-base"
+              >
                 There are no recent votes to display for {activeTab} at the
                 moment. Please check back later!
               </Typography>
@@ -496,7 +509,10 @@ const RecentVotes = React.memo(function RecentVotes() {
             // Mobile vote cards
             <div className="p-4 md:p-6 space-y-4">
               {proposals.map((proposal, index) => (
-                <div key={proposal.id} className="border border-gray-200 rounded-lg p-4">
+                <div
+                  key={proposal.id}
+                  className="border border-gray-200 rounded-lg p-4"
+                >
                   {/* Vote Header */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
@@ -525,9 +541,15 @@ const RecentVotes = React.memo(function RecentVotes() {
                       onClick={() =>
                         setExpandedItem(expandedItem === index ? null : index)
                       }
-                      className="p-2 hover:bg-gray-100 rounded transition-colors"
+                      className="p-0 hover:bg-gray-100 rounded-full transition-colors border-black border"
                     >
-                      <Arrow direction={expandedItem === index ? "up" : "down"} />
+                      <Arrow
+                        direction={expandedItem === index ? "up" : "down"}
+                        color="#000000"
+                        rounded={true}
+                        size={28}
+                        className="rounded-full "
+                      />
                     </button>
                   </div>
 
@@ -611,7 +633,8 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   weight="medium"
                                   className="inline"
                                 >
-                                  {proposal.hasRationale && proposal.forumCreatedAt
+                                  {proposal.hasRationale &&
+                                  proposal.forumCreatedAt
                                     ? formatDate(proposal.forumCreatedAt)
                                     : formatDate(proposal.endDate)}
                                 </Typography>
@@ -682,277 +705,278 @@ const RecentVotes = React.memo(function RecentVotes() {
 
       {/* Desktop Layout */}
       <div className="hidden lg:grid lg:grid-cols-8">
-      <div className=" border-b border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
-        <div className="  flex items-center justify-center">
-          <Image src={vote1} alt="vote1" />
-        </div>
-      </div>
-      <div className="col-span-6 border border-black p-10 flex items-center justify-between">
-        <Typography
-          variant="h2"
-          color="primary"
-          weight="semibold"
-          className="tracking-wide"
-        >
-          Recent Votes
-        </Typography>
-        <div className="flex items-center ">
-          {protocols.map((protocol) => (
-            <ProtocolButton
-              key={protocol.name}
-              protocol={protocol}
-              isActive={activeTab === protocol.name}
-              onClick={handleProtocolSelection}
-            />
-          ))}
-        </div>
-      </div>
-      <div className=" col-start-8 border border-black"></div>
-
-      {/* Dynamic Vote Rows */}
-      {loading ? (
-        // Memoized loading skeleton
-        <LoadingSkeleton />
-      ) : error ? (
-        // Error state
-        <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
-          <div className="text-center">
-            <Typography
-              variant="h3"
-              color="primary"
-              weight="medium"
-              className="mb-2"
-            >
-              Oops! Something Went Wrong
-            </Typography>
-            <Typography variant="body1" color="primary" weight="normal">
-              {error}
-            </Typography>
+        <div className=" border-b border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
+          <div className="  flex items-center justify-center">
+            <Image src={vote1} alt="vote1" />
           </div>
         </div>
-      ) : noData ? (
-        // No data state
-        <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
-          <div className="text-center">
-            <Typography
-              variant="h3"
-              color="primary"
-              weight="medium"
-              className="mb-2"
-            >
-              No Votes Available
-            </Typography>
-            <Typography variant="body1" color="primary" weight="normal">
-              There are no recent votes to display for {activeTab} at the
-              moment. Please check back later!
-            </Typography>
+        <div className="col-span-6 border border-black p-10 flex items-center justify-between">
+          <Typography
+            variant="h2"
+            color="primary"
+            weight="semibold"
+            className="tracking-wide"
+          >
+            Recent Votes
+          </Typography>
+          <div className="flex items-center ">
+            {protocols.map((protocol) => (
+              <ProtocolButton
+                key={protocol.name}
+                protocol={protocol}
+                isActive={activeTab === protocol.name}
+                onClick={handleProtocolSelection}
+              />
+            ))}
           </div>
         </div>
-      ) : (
-        // Dynamic vote rows
-        proposals.map((proposal, index) => {
-          const baseRow = index * 2 + 2; // Each proposal takes 2 rows (main + expanded)
-          const expandedRow = baseRow + 1;
+        <div className=" col-start-8 border border-black"></div>
 
-          return (
-            <React.Fragment key={proposal.id}>
-              <div
-                className={`row-start-${baseRow} border border-black p-6 flex items-center justify-center`}
+        {/* Dynamic Vote Rows */}
+        {loading ? (
+          // Memoized loading skeleton
+          <LoadingSkeleton />
+        ) : error ? (
+          // Error state
+          <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
+            <div className="text-center">
+              <Typography
+                variant="h3"
+                color="primary"
+                weight="medium"
+                className="mb-2"
               >
-                <Typography
-                  variant="h4"
-                  color="primary"
-                  weight="light"
-                  className="font-psygen"
-                >
-                  {proposal.id}
-                </Typography>
-              </div>
-              <div
-                className={` row-start-${baseRow} border border-black p-6 flex items-center justify-items-start`}
+                Oops! Something Went Wrong
+              </Typography>
+              <Typography variant="body1" color="primary" weight="normal">
+                {error}
+              </Typography>
+            </div>
+          </div>
+        ) : noData ? (
+          // No data state
+          <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
+            <div className="text-center">
+              <Typography
+                variant="h3"
+                color="primary"
+                weight="medium"
+                className="mb-2"
               >
-                <Typography
-                  variant="body1"
-                  color="primary"
-                  weight="medium"
-                  className="font-ppmori "
+                No Votes Available
+              </Typography>
+              <Typography variant="body1" color="primary" weight="normal">
+                There are no recent votes to display for {activeTab} at the
+                moment. Please check back later!
+              </Typography>
+            </div>
+          </div>
+        ) : (
+          // Dynamic vote rows
+          proposals.map((proposal, index) => {
+            const baseRow = index * 2 + 2; // Each proposal takes 2 rows (main + expanded)
+            const expandedRow = baseRow + 1;
+
+            return (
+              <React.Fragment key={proposal.id}>
+                <div
+                  className={`row-start-${baseRow} border border-black p-6 flex items-center justify-center`}
                 >
-                  Voted [{" "}
-                  <span className={getVoteResultColor(proposal.result)}>
-                    {proposal.result}
-                  </span>{" "}
-                  ]
-                </Typography>
-              </div>
-              <div
-                className={`col-span-8 col-start-3 row-start-${baseRow} border border-black p-6 `}
-              >
-                <Typography
-                  variant="body1"
-                  color="primary"
-                  weight="normal"
-                  className="mb-4 mx-w-[600px]"
-                >
-                  {proposal.title}
-                </Typography>
-                <div className="flex gap-3">
                   <Typography
-                    variant="caption"
-                    color="accent"
-                    weight="medium"
-                    className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
+                    variant="h4"
+                    color="primary"
+                    weight="light"
+                    className="font-psygen"
                   >
-                    {proposal.protocol}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    color="accent"
-                    weight="medium"
-                    className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
-                  >
-                    {proposal.type}
+                    {proposal.id}
                   </Typography>
                 </div>
-              </div>
-              <div
-                className={`relative col-start-8 row-start-${baseRow} border-b border-white bg-[#2A2A2A] flex items-center justify-center cursor-pointer hover:bg-[#3A3A3A] transition-colors`}
-                onClick={() =>
-                  setExpandedItem(expandedItem === index ? null : index)
-                }
-              >
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `url(${bgImage1.src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center left",
-                    backgroundRepeat: "no-repeat",
-                    backgroundBlendMode: "multiply",
-                  }}
-                ></div>
-                <Arrow direction={expandedItem === index ? "up" : "down"} />
-              </div>
-
-              {/* Expandable content for each proposal */}
-              {expandedItem === index && (
-                <div
-                  className={`col-span-8 row-start-${expandedRow} border border-black bg-gray-50 p-6`}
+                  className={` row-start-${baseRow} border border-black p-6 flex items-center justify-items-start`}
                 >
-                  {proposal.voter && (
-                    <div className="space-y-6">
-                      {/* Voter Information */}
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-shrink-0">
-                          <Image
-                            src={voterIcon.src}
-                            alt={`${proposal.voter.name} icon`}
-                            width={40}
-                            height={40}
-                            className="rounded-full"
-                            quality={100}
-                          />
-                        </div>
-                        <div className="flex-1">
-                          <Typography
-                            variant="body2"
-                            color="primary"
-                            weight="medium"
-                            className="mb-1"
-                          >
-                            {proposal.voter.name}
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            color="primary"
-                            weight="normal"
-                          >
-                            Voted{" "}
-                            <Typography
-                              variant="body1"
-                              color="primary"
-                              weight="medium"
-                              className={`inline ${getVoteResultColor(
-                                proposal.result
-                              )}`}
-                            >
-                              {proposal.result}
-                            </Typography>{" "}
-                            on{" "}
-                            <Typography
-                              variant="body1"
-                              color="primary"
-                              weight="medium"
-                              className="inline"
-                            >
-                              {proposal.hasRationale && proposal.forumCreatedAt
-                                ? formatDate(proposal.forumCreatedAt)
-                                : formatDate(proposal.endDate)}
-                            </Typography>
-                          </Typography>
-                        </div>
-                      </div>
+                  <Typography
+                    variant="body1"
+                    color="primary"
+                    weight="medium"
+                    className="font-ppmori "
+                  >
+                    Voted [{" "}
+                    <span className={getVoteResultColor(proposal.result)}>
+                      {proposal.result}
+                    </span>{" "}
+                    ]
+                  </Typography>
+                </div>
+                <div
+                  className={`col-span-8 col-start-3 row-start-${baseRow} border border-black p-6 `}
+                >
+                  <Typography
+                    variant="body1"
+                    color="primary"
+                    weight="normal"
+                    className="mb-4 mx-w-[600px]"
+                  >
+                    {proposal.title}
+                  </Typography>
+                  <div className="flex gap-3">
+                    <Typography
+                      variant="caption"
+                      color="accent"
+                      weight="medium"
+                      className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
+                    >
+                      {proposal.protocol}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="accent"
+                      weight="medium"
+                      className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
+                    >
+                      {proposal.type}
+                    </Typography>
+                  </div>
+                </div>
+                <div
+                  className={`relative col-start-8 row-start-${baseRow} border-b border-white bg-[#2A2A2A] flex items-center justify-center cursor-pointer hover:bg-[#3A3A3A] transition-colors`}
+                  onClick={() =>
+                    setExpandedItem(expandedItem === index ? null : index)
+                  }
+                >
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `url(${bgImage1.src})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center left",
+                      backgroundRepeat: "no-repeat",
+                      backgroundBlendMode: "multiply",
+                    }}
+                  ></div>
+                  <Arrow direction={expandedItem === index ? "up" : "down"} />
+                </div>
 
-                      {/* Rationale Section */}
-                      {proposal.hasRationale && (
-                        <div className="mt-6">
-                          <Typography
-                            variant="subtitle2"
-                            color="primary"
-                            weight="medium"
-                            className="mb-3"
-                          >
-                            Rationale
-                          </Typography>
-                          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            {proposal.forumContent ? (
-                              <div
-                                className="prose prose-sm max-w-none"
-                                style={{
-                                  color: "#1A1A1A",
-                                  fontFamily: "PPMori, sans-serif",
-                                }}
-                                dangerouslySetInnerHTML={{
-                                  __html: proposal.forumContent,
-                                }}
-                              />
-                            ) : (
+                {/* Expandable content for each proposal */}
+                {expandedItem === index && (
+                  <div
+                    className={`col-span-8 row-start-${expandedRow} border border-black bg-gray-50 p-6`}
+                  >
+                    {proposal.voter && (
+                      <div className="space-y-6">
+                        {/* Voter Information */}
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <Image
+                              src={voterIcon.src}
+                              alt={`${proposal.voter.name} icon`}
+                              width={40}
+                              height={40}
+                              className="rounded-full"
+                              quality={100}
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <Typography
+                              variant="body2"
+                              color="primary"
+                              weight="medium"
+                              className="mb-1"
+                            >
+                              {proposal.voter.name}
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              color="primary"
+                              weight="normal"
+                            >
+                              Voted{" "}
                               <Typography
                                 variant="body1"
-                                color="light-gray"
-                                weight="normal"
+                                color="primary"
+                                weight="medium"
+                                className={`inline ${getVoteResultColor(
+                                  proposal.result
+                                )}`}
                               >
-                                {proposal.commentLink}
+                                {proposal.result}
+                              </Typography>{" "}
+                              on{" "}
+                              <Typography
+                                variant="body1"
+                                color="primary"
+                                weight="medium"
+                                className="inline"
+                              >
+                                {proposal.hasRationale &&
+                                proposal.forumCreatedAt
+                                  ? formatDate(proposal.forumCreatedAt)
+                                  : formatDate(proposal.endDate)}
                               </Typography>
-                            )}
+                            </Typography>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
-            </React.Fragment>
-          );
-        })
-      )}
 
-      {/* Footer Row - Always position at the bottom */}
-      <div
-        className={`col-span-8 row-start-10 
+                        {/* Rationale Section */}
+                        {proposal.hasRationale && (
+                          <div className="mt-6">
+                            <Typography
+                              variant="subtitle2"
+                              color="primary"
+                              weight="medium"
+                              className="mb-3"
+                            >
+                              Rationale
+                            </Typography>
+                            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                              {proposal.forumContent ? (
+                                <div
+                                  className="prose prose-sm max-w-none"
+                                  style={{
+                                    color: "#1A1A1A",
+                                    fontFamily: "PPMori, sans-serif",
+                                  }}
+                                  dangerouslySetInnerHTML={{
+                                    __html: proposal.forumContent,
+                                  }}
+                                />
+                              ) : (
+                                <Typography
+                                  variant="body1"
+                                  color="light-gray"
+                                  weight="normal"
+                                >
+                                  {proposal.commentLink}
+                                </Typography>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })
+        )}
+
+        {/* Footer Row - Always position at the bottom */}
+        <div
+          className={`col-span-8 row-start-10 
          border border-black bg-[#DFF48D] p-10 flex items-center justify-center`}
-      >
-        <Link
-          href={
-            protocols.find((p) => p.name === activeTab)?.link ||
-            "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
-          }
-          target="_blank"
-          rel="noopener noreferrer"
         >
-          <Button label="See More" color="#000000" textColor="#FFFFFF" />
-        </Link>
+          <Link
+            href={
+              protocols.find((p) => p.name === activeTab)?.link ||
+              "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button label="See More" color="#000000" textColor="#FFFFFF" />
+          </Link>
+        </div>
       </div>
-    </div>
     </>
   );
 });

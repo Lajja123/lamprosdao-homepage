@@ -58,18 +58,18 @@ export default function Navbar({ centerContent }: NavbarProps) {
       );
 
       // Add wavy animation to special letters
-      wavyLettersRef.current.forEach((letter, index) => {
-        if (letter) {
-          gsap.to(letter, {
-            y: -8,
-            duration: 0.6,
-            ease: "power2.inOut",
-            repeat: -1,
-            yoyo: true,
-            delay: 1 + index * 0.1,
-          });
-        }
-      });
+      // wavyLettersRef.current.forEach((letter, index) => {
+      //   if (letter) {
+      //     gsap.to(letter, {
+      //       y: -8,
+      //       duration: 0.6,
+      //       ease: "power2.inOut",
+      //       repeat: -1,
+      //       yoyo: true,
+      //       delay: 1 + index * 0.1,
+      //     });
+      //   }
+      // });
     }, navbarRef);
 
     return () => ctx.revert();
