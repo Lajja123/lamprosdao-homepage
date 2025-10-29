@@ -6,14 +6,14 @@ import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
 import Link from "next/link";
-import useScrollToHash from "@/hooks/useScrollToSection";
+import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
 
 export default function Delegate() {
-  useScrollToHash();
+  useSmoothScrollOnLoad();
   return (
     <>
       {/* Mobile Layout */}
-      <div id="delegate-section" className="lg:hidden bg-[#1A1A1A]">
+      <div className="lg:hidden bg-[#1A1A1A]">
         {/* Header Section */}
         <div className="border border-white p-4 md:p-6 flex items-center justify-center">
           <Typography
@@ -154,7 +154,7 @@ export default function Delegate() {
 
       {/* Desktop Layout */}
       <div
-        id="delegate-section"
+        id="delegate"
         className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]"
       >
         <div className="border-l border-r border-b border-white"></div>

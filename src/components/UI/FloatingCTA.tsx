@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "./Button";
 import { gsap } from "gsap";
-
+import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
@@ -42,16 +42,16 @@ export default function FloatingCTA() {
     }
   }, [isVisible]);
 
-  const handleClick = () => {
-    if (pathname === "/governance") {
-      // If already on governance page, scroll to delegate section
-      router.push("#delegate-section");
-    } else {
-      // Navigate to governance page with hash
-      router.push("/governance");
-      router.push("/governance#delegate-section");
-    }
-  };
+  // const handleClick = () => {
+  //   if (pathname === "/governance") {
+  //     // If already on governance page, scroll to delegate section
+  //     router.push("#delegate-section");
+  //   } else {
+  //     // Navigate to governance page with hash
+  //     router.push("/governance");
+  //     router.push("/governance#delegate-section");
+  //   }
+  // };
 
   const handleMouseEnter = () => {
     if (ctaRef.current) {
@@ -97,7 +97,7 @@ export default function FloatingCTA() {
         {/* Floating Badge Design */}
         <div
           className="relative bg-[#DFF48D] text-[#0B0B0B] rounded-full px-6 py-3 shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer backdrop-blur-sm border-2 border-transparent group hover:shadow-[0_0_30px_rgba(168,133,205,0.4)] hover:brightness-110"
-          onClick={handleClick}
+          onClick={() => smoothScrollToSection("/governance", "delegate")}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

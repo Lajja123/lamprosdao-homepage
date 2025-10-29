@@ -84,7 +84,7 @@ export default function RootLayout({
         <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <FloatingCTA />
       </body>
     </html>

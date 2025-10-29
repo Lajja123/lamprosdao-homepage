@@ -91,6 +91,129 @@ body {
   font-family: var(--font-psygen), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Arial, sans-serif;
 }
+
+/* Interactive Grid Cell Hover Effects */
+.grid-cell-interactive {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.grid-cell-interactive::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(208, 255, 172, 0.15) 50%,
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.grid-cell-interactive:hover::before {
+  opacity: 1;
+  animation: diagonal-sweep 1.5s ease-in-out infinite;
+}
+
+@keyframes diagonal-sweep {
+  0% {
+    background-position: -100% -100%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.grid-cell-interactive .ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(203, 233, 255, 0.4) 0%,
+    rgba(223, 205, 242, 0.3) 40%,
+    rgba(208, 255, 172, 0.2) 60%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  transition: opacity 0.1s ease;
+}
+
+.grid-cell-interactive .ripple-effect.active {
+  animation: ripple-expand 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+.grid-cell-interactive:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell-interactive .hover-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.grid-cell-interactive:hover .hover-border {
+  opacity: 1;
+}
+
+@keyframes border-dash {
+  0% {
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+  }
+  100% {
+    background-position: 10px 0, -10px 100%, 0 -10px, 100% 10px;
+  }
+}
+
+/* Pattern overlay - dots */
+.grid-cell-interactive .pattern-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.grid-cell-interactive:hover .pattern-overlay {
+  opacity: 1;
+}
+
 /* Wavy letter style (static, no animation) */
 /* .wavy-letter {
   display: inline-block;
