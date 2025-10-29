@@ -234,7 +234,7 @@ export default function Hero() {
   return (
     <>
       {/* Clip Image - Top Center */}
-      <div ref={clipRef} className="absolute top-12 w-full hidden sm:block z-0">
+      <div ref={clipRef} className="md:absolute md:top-12 top-50 w-full   z-0">
         <Image
           src={clip}
           alt="Clip decoration"

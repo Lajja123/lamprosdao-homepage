@@ -118,10 +118,10 @@ export default function Navbar({ centerContent }: NavbarProps) {
   return (
     <nav
       ref={navbarRef}
-      className="relative flex items-start md:items-start justify-between z-10"
+      className="relative flex items-start md:items-start justify-between z-10  md:border-none border-b border-[#BFAFCF]"
     >
       {/* Left: Logo */}
-      <div ref={logoRef} className=" p-5">
+      <div ref={logoRef} className=" p-5 pb-2">
         <Link href="/">
           <Image
             src={logo}
@@ -290,24 +290,24 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Mobile Hamburger Menu Button */}
-      <div className="md:hidden flex items-center p-4 z-50">
+      <div className="md:hidden flex items-center p-4 z-50 pb-2">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex flex-col justify-center items-center w-8 h-8 space-y-1 group"
           aria-label="Toggle mobile menu"
         >
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+            className={`block w-6 h-0.5 bg-[#BFAFCF] transition-all duration-300 ease-in-out ${
               isMenuOpen ? "rotate-45 translate-y-1.5" : ""
             }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+            className={`block w-6 h-0.5 bg-[#BFAFCF] transition-all duration-300 ease-in-out ${
               isMenuOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ease-in-out ${
+            className={`block w-6 h-0.5 bg-[#BFAFCF] transition-all duration-300 ease-in-out ${
               isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
             }`}
           />
@@ -336,7 +336,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
                 aria-label="Close menu"
               >
                 <svg
-                  className="w-5 h-5 text-gray-600"
+                  className="w-5 h-5 text-[#BFAFCF]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
