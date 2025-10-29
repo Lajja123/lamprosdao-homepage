@@ -1,9 +1,9 @@
 import Typography from "@/components/UI/Typography";
 import Image from "next/image";
-import web12 from "@/assests/AboutUs/12.svg";
-import web34 from "@/assests/AboutUs/34.svg";
-import web56 from "@/assests/AboutUs/56.svg";
-import web78 from "@/assests/AboutUs/78.svg";
+import web12 from "@/assests/AboutUs/12.png";
+import web34 from "@/assests/AboutUs/34.png";
+import web56 from "@/assests/AboutUs/56.png";
+import web78 from "@/assests/AboutUs/78.png";
 
 export default function Journey() {
   const journeyData = [
@@ -80,7 +80,11 @@ export default function Journey() {
         {/* Journey Items */}
         {journeyData.map((item, index) => (
           <div key={index} className="border border-[#FFFFFF]">
-            <div className={`flex items-center p-4 md:p-6 ${item.color} ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+            <div
+              className={`flex items-center p-4 md:p-6 ${item.color} ${
+                index % 2 === 0 ? "justify-start" : "justify-end"
+              }`}
+            >
               <Typography
                 variant="h2"
                 color="primary"
@@ -90,7 +94,11 @@ export default function Journey() {
                 {item.number}
               </Typography>
             </div>
-            <div className={`p-4 md:p-6 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+            <div
+              className={`p-4 md:p-6 ${
+                index % 2 === 0 ? "text-left" : "text-right"
+              }`}
+            >
               <Typography
                 variant="h5"
                 color="white"
@@ -133,7 +141,11 @@ export default function Journey() {
         </div>
         <div className="row-span-9 col-start-10 border border-[#FFFFFF]"></div>
         <div className="col-span-4 row-span-2 col-start-2 row-start-2 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image src={web12} alt="Metallic sculpture" />
+          <Image
+            src={web12}
+            alt="Metallic sculpture"
+            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
+          />
         </div>
         <div className="col-span-3 col-start-6 row-start-2 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
@@ -223,7 +235,11 @@ export default function Journey() {
           </Typography>
         </div>
         <div className="col-span-4 row-span-2 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image src={web34} alt="Metallic sculpture" />
+          <Image
+            src={web34}
+            alt="Metallic sculpture"
+            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
+          />
         </div>
         <div className="col-span-3 col-start-2 row-start-5 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
@@ -256,7 +272,11 @@ export default function Journey() {
           </Typography>
         </div>
         <div className="col-span-4 row-span-2 col-start-2 row-start-6 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image src={web56} alt="Metallic sculpture" />
+          <Image
+            src={web56}
+            alt="Metallic sculpture"
+            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
+          />
         </div>
         <div className="col-span-3 col-start-6 row-start-6 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
           <Typography
@@ -319,7 +339,11 @@ export default function Journey() {
           </Typography>
         </div>
         <div className="col-span-4 row-span-2 col-start-6 row-start-8 border border-[#FFFFFF] flex items-center justify-center p-5">
-          <Image src={web78} alt="Metallic sculpture" />
+          <Image
+            src={web78}
+            alt="Metallic sculpture"
+            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
+          />
         </div>
         <div
           className={`col-start-2 row-start-8 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[6].color}`}

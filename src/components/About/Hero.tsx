@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import about from "@/assests/AboutUs/about.svg";
+import about from "@/assests/AboutUs/about.png";
 import Typography from "@/components/UI/Typography";
-import vision from "@/assests/AboutUs/vision.svg";
-import mission from "@/assests/AboutUs/mission.svg";
+import vision from "@/assests/AboutUs/vision.png";
+import mission from "@/assests/AboutUs/mission.png";
 
 export default function Hero() {
   return (
@@ -19,7 +19,7 @@ export default function Hero() {
             quality={100}
           />
         </div>
-        
+
         {/* Text Section */}
         <div className="lg:col-span-6 lg:row-span-6 lg:col-start-5 border border-black p-4 md:p-6 lg:p-10 flex flex-col justify-center order-2 lg:order-2">
           <div className="space-y-4 md:space-y-6">
@@ -81,12 +81,12 @@ export default function Hero() {
                 <span className="uppercase font-bohemian wavy-letter">i</span>on
               </Typography>
             </div>
-            <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
-              <Image 
-                src={vision} 
-                alt="Vision illustration" 
+            <div className="border border-[#FFFFFF] p-4 flex items-center justify-center w-full">
+              <Image
+                src={vision}
+                alt="Vision illustration"
                 quality={100}
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
+                className=" object-contain w-16 h-16 md:w-full md:h-100 mx-auto"
               />
             </div>
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
@@ -106,11 +106,11 @@ export default function Hero() {
           {/* Mission Section */}
           <div className="flex flex-col">
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
-              <Image 
-                src={mission} 
-                alt="Mission illustration" 
+              <Image
+                src={mission}
+                alt="Mission illustration"
                 quality={100}
-                className="w-24 h-24 md:w-32 md:h-32 object-contain"
+                className="w-16 h-16 md:w-20 md:h-20 object-contain"
               />
             </div>
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
@@ -121,7 +121,8 @@ export default function Hero() {
                 color="offset"
                 className="uppercase tracking-wider leading-[0.95] text-lg md:text-xl"
               >
-                m<span className="uppercase font-bohemian wavy-letter">i</span>ss
+                m<span className="uppercase font-bohemian wavy-letter">i</span>
+                ss
                 <span className="uppercase font-bohemian wavy-letter">i</span>on
               </Typography>
             </div>
@@ -132,10 +133,10 @@ export default function Hero() {
                 weight="normal"
                 className="tracking-wider font-ppmori text-sm md:text-base leading-[0.90] text-center"
               >
-                Lampros DAO is dedicated to cultivating trailblazing web3 leaders,
-                amplifying open-source breakthroughs across multiple blockchain
-                terrains, and building a community bound by shared growth and
-                decentralized principles.
+                Lampros DAO is dedicated to cultivating trailblazing web3
+                leaders, amplifying open-source breakthroughs across multiple
+                blockchain terrains, and building a community bound by shared
+                growth and decentralized principles.
               </Typography>
             </div>
             <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-4"></div>
@@ -158,7 +159,12 @@ export default function Hero() {
             </Typography>
           </div>
           <div className="col-span-4 row-span-3 col-start-6 border border-[#FFFFFF] p-5 w-full flex items-center justify-center">
-            <Image src={vision} alt="Vision illustration" quality={100} />
+            <Image
+              src={vision}
+              alt="Vision illustration"
+              quality={100}
+              className="w-16 h-16 md:w-full md:h-100 mx-auto object-contain"
+            />
           </div>
           <div className="row-span-3 col-start-10 border border-[#FFFFFF]"></div>
           <div className="row-span-2 row-start-2 border border-white"></div>
@@ -176,7 +182,12 @@ export default function Hero() {
           </div>
           <div className="row-span-3 row-start-4 border border-[#FFFFFF]"></div>
           <div className="col-span-4 row-span-3 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5">
-            <Image src={mission} alt="Mission illustration" quality={100} />
+            <Image
+              src={mission}
+              alt="Mission illustration"
+              quality={100}
+              className="w-16 h-16 md:w-full md:h-100 mx-auto object-contain"
+            />
           </div>
           <div className="col-span-4 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center">
             <Typography

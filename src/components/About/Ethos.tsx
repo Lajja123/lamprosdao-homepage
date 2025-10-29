@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ethos from "@/assests/AboutUs/ethos.svg";
+import ethos from "@/assests/AboutUs/ethos.png";
 import Typography from "@/components/UI/Typography";
 
 export default function Ethos() {
@@ -59,7 +59,11 @@ export default function Ethos() {
         {/* Ethos Items */}
         {ethosData.map((item, index) => (
           <div key={index} className="border border-[#000000]">
-            <div className={`flex items-center p-4 md:p-6 bg-[#DFF48D] ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+            <div
+              className={`flex items-center p-4 md:p-6 bg-[#DFF48D] ${
+                index % 2 === 0 ? "justify-start" : "justify-end"
+              }`}
+            >
               <Typography
                 variant="h2"
                 color="primary"

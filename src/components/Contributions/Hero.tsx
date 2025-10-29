@@ -1,5 +1,5 @@
 "use client";
-import clip from "@/assests/Contributions/clip.svg";
+import clip from "@/assests/Contributions/clip.png";
 import Image from "next/image";
 import bgImage1 from "@/assests/HeroSection2/arrow-bg.png";
 import clip2 from "@/assests/Contributions/clip2.png";
@@ -27,13 +27,11 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         {/* 3-Column Grid Section */}
         <div className="grid grid-cols-3">
           {/* First Column - Clip Image */}
-          <div className=" border border-black">
-           
-          </div>
-          
+          <div className=" border border-black"></div>
+
           {/* Second Column - Empty for now */}
           <div className="border border-black relative">
-          <div
+            <div
               className="absolute inset-0"
               style={{
                 backgroundImage: `url(${bgImage1.src})`,
@@ -48,12 +46,11 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               className="relative w-full h-full object-contain p-2 md:p-4 mx-auto"
             />
           </div>
-          
+
           {/* Third Column - Empty for now */}
           <div className="border border-black"></div>
         </div>
         <div className="flex flex-col">
-
           {/* Text Section */}
           <div className="border border-black p-4 md:p-6">
             <Typography
@@ -65,12 +62,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               <div>
                 At Lampros DAO, we actively contribute to both governance and
                 research, ensuring that decentralized ecosystems remain
-                transparent, efficient, and community-driven. Through governance,
-                we engage in DAO discussions, voting, and proposal-making, helping
-                shape the direction of decentralized decision-making. Our research
-                efforts focus on analyzing governance structures, incentive
-                programs, and power distribution to provide data-backed insights
-                that drive informed decisions.
+                transparent, efficient, and community-driven. Through
+                governance, we engage in DAO discussions, voting, and
+                proposal-making, helping shape the direction of decentralized
+                decision-making. Our research efforts focus on analyzing
+                governance structures, incentive programs, and power
+                distribution to provide data-backed insights that drive informed
+                decisions.
               </div>
               <div className="mt-3 md:mt-4">
                 By working across multiple DAOs, we aim to improve governance
