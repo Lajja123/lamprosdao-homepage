@@ -65,12 +65,12 @@ export default function Footer({ variant }: FooterProps) {
     <footer className={`w-full ${theme.background} ${theme.textColor}`}>
       {/* Navigation Section */}
       <div
-        className={`grid grid-cols-2 sm:grid-cols-4 text-center`}
+        className={`grid grid-cols-4  text-center`}
         style={{ fontFamily: "PP Mori" }}
       >
         <Link
           href="/"
-          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
+          className={`group w-full border ${theme.borderColor} p-2 sm:p-4 md:p-6 relative overflow-hidden`}
         >
           <div
             className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
@@ -83,14 +83,14 @@ export default function Footer({ variant }: FooterProps) {
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-xs sm:text-base transition-colors duration-500 relative z-10`}
           >
             Home
           </Typography>
         </Link>
         <Link
           href="/about-us"
-          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
+          className={`group w-full border ${theme.borderColor} p-2 sm:p-4 md:p-6 relative overflow-hidden`}
         >
           <div
             className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
@@ -103,14 +103,14 @@ export default function Footer({ variant }: FooterProps) {
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-xs sm:text-base transition-colors duration-500 relative z-10`}
           >
             About Us
           </Typography>
         </Link>
         <Link
           href="/governance"
-          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
+          className={`group w-full border ${theme.borderColor} p-2 sm:p-4 md:p-6 relative overflow-hidden`}
         >
           <div
             className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
@@ -123,14 +123,14 @@ export default function Footer({ variant }: FooterProps) {
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-xs sm:text-base transition-colors duration-500 relative z-10`}
           >
             Governance
           </Typography>
         </Link>
         <Link
           href="/contribution"
-          className={`group w-full border ${theme.borderColor} p-3 sm:p-4 md:p-6 relative overflow-hidden`}
+          className={`group w-full border ${theme.borderColor} p-2 sm:p-4 md:p-6 relative overflow-hidden`}
         >
           <div
             className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
@@ -143,7 +143,7 @@ export default function Footer({ variant }: FooterProps) {
             variant="button"
             align="center"
             weight="bold"
-            className={`${theme.textColor} ${theme.hoverTextColor} text-sm sm:text-base transition-colors duration-500 relative z-10`}
+            className={`${theme.textColor} ${theme.hoverTextColor} text-xs sm:text-base transition-colors duration-500 relative z-10`}
           >
             Contribution
           </Typography>
@@ -166,7 +166,7 @@ export default function Footer({ variant }: FooterProps) {
           className="mx-auto hidden sm:block lg:w-[500px] h-auto md:w-[300px] "
           quality={100}
         />
-        <div className="absolute inset-0 flex items-center justify-center px-10 ">
+        <div className="absolute inset-0 flex items-center justify-center md:px-10 px-2 ">
           <Image src={theme.logo} alt={""} className="w-full " quality={100} />
         </div>
       </div>

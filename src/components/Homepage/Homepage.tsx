@@ -7,9 +7,9 @@ export default function Homepage() {
   return (
     <>
       <Hero />
-      <Section2 />
+      {/* <Section2 />
       <Research />
-      <Faq />
+      <Faq /> */}
     </>
   );
 }

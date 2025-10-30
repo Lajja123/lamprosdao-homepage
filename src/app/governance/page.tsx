@@ -35,9 +35,9 @@ export default function page() {
 
   return (
     <div>
-      <Hero />
+      {/* <Hero />
       <RecentVotes />
-      <Delegate />
+      <Delegate /> */}
     </div>
   );
 }
