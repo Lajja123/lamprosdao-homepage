@@ -42,14 +42,19 @@ export default function Ethos() {
       <div className="lg:hidden">
         {/* Header Section */}
         <div className="bg-[#CBE9FF] p-4 md:p-6 border border-[#000000]">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-around">
+          <Image
+            src={ethos}
+            alt="Metallic sculpture"
+            className="w-[150px] "
+          />
             <Typography
               variant="h1"
               color="primary"
               weight="medium"
-              className="text-3xl md:text-4xl lg:text-6xl leading-none font-csbohemian tracking-wider text-center"
+              className="text-4xl md:text-4xl lg:text-6xl leading-none font-csbohemian tracking-wider text-center"
             >
-              O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
+              O<span className="uppercase font-bohemian wavy-letter">U</span>R <br></br>
               ET<span className="uppercase font-bohemian wavy-letter">H</span>
               OS
             </Typography>
@@ -59,29 +64,31 @@ export default function Ethos() {
         {/* Ethos Items */}
         {ethosData.map((item, index) => (
           <div key={index} className="border border-[#000000]">
-            <div
-              className={`flex items-center p-4 md:p-6 bg-[#DFF48D] ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
-              }`}
-            >
-              <Typography
-                variant="h2"
-                color="primary"
-                weight="normal"
-                className="font-psygen text-2xl md:text-3xl"
-              >
-                {item.number}
-              </Typography>
+            {/* Header: title left, number right in green strip */}
+            <div className="flex">
+              <div className="flex-1 p-4 md:p-6">
+                <Typography
+                  variant="h6"
+                  color="primary"
+                  weight="semibold"
+                  className="uppercase tracking-wider font-ppmori text-sm md:text-base"
+                >
+                  {item.title}
+                </Typography>
+              </div>
+              <div className="w-16 md:w-20 bg-[#DFF48D] flex items-center justify-center border-l border-[#000000] p-4 md:p-6">
+                <Typography
+                  variant="h2"
+                  color="primary"
+                  weight="normal"
+                  className="font-psygen text-2xl md:text-3xl"
+                >
+                  {item.number}
+                </Typography>
+              </div>
             </div>
-            <div className="p-4 md:p-6">
-              <Typography
-                variant="h6"
-                color="primary"
-                weight="semibold"
-                className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-4"
-              >
-                {item.title}
-              </Typography>
+            {/* Body: content full width */}
+            <div className="p-4 md:p-6 border-t border-[#000000]">
               <Typography
                 variant="subtitle2"
                 color="primary"
@@ -97,13 +104,13 @@ export default function Ethos() {
 
       {/* Desktop Layout */}
       <div className="hidden lg:grid lg:grid-cols-10">
-        <div className="col-span-5 row-span-3 w-full bg-[#CBE9FF] p-5 border border-[#000000] flex flex-row justify-around items-center ">
-          <div>
+        <div className="col-span-5 row-span-3 w-full bg-[#CBE9FF] p-5 border border-[#000000] flex flex-row justify-center gap-3 items-center ">
+          <div >
             <Typography
-              variant="h1"
+              variant="h2"
               color="primary"
               weight="medium"
-              className="text-6xl leading-none font-csbohemian tracking-wider"
+              className=" leading-none font-csbohemian tracking-wider "
             >
               O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
               <br></br>
@@ -115,7 +122,7 @@ export default function Ethos() {
           <Image
             src={ethos}
             alt="Metallic sculpture"
-            className="w-[300px] mx-auto"
+            className="w-[300px] "
           />
         </div>
         <div className="col-span-4 border border-[#000000] px-15 py-5 flex items-center justify-start ">
@@ -148,7 +155,7 @@ export default function Ethos() {
             {ethosData[0].content}
           </Typography>
         </div>
-        <div className="col-start-5 row-start-4 px-15 py-5 bg-[#DFF48D] border border-[#000000] flex items-center justify-center ">
+        <div className="col-start-5 row-start-4  bg-[#DFF48D] border border-[#000000] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"
@@ -245,7 +252,7 @@ export default function Ethos() {
             {ethosData[4].title}
           </Typography>
         </div>
-        <div className="col-start-10 row-start-7 px-15 py-5 border border-[#000000] bg-[#DFF48D] flex items-center justify-center ">
+        <div className="col-start-10 row-start-7 border border-[#000000] bg-[#DFF48D] flex items-center justify-center ">
           <Typography
             variant="h2"
             color="primary"

@@ -63,14 +63,16 @@ export default function Journey() {
       {/* Mobile Layout */}
       <div className="lg:hidden bg-[#1A1A1A]">
         {/* Header Section */}
-        <div className="border border-[#FFFFFF] p-4 md:p-6">
+        <div className="border border-[#FFFFFF] p-8 md:p-6">
           <Typography
             variant="h2"
             color="white"
-            className="uppercase font-ppmori tracking-wider text-center text-lg md:text-xl"
+            className="uppercase font-ppmori tracking-wider text-center "
+            align="center"
           >
             O<span className="uppercase font-bohemian wavy-letter">U</span>r{" "}
             <span className="uppercase font-bohemian wavy-letter">W</span>eb3{" "}
+            <br></br>
             <span className="uppercase font-bohemian wavy-letter">J</span>our
             <span className="uppercase font-bohemian wavy-letter">n</span>e
             <span className="uppercase font-bohemian wavy-letter">y</span>
@@ -80,41 +82,70 @@ export default function Journey() {
         {/* Journey Items */}
         {journeyData.map((item, index) => (
           <div key={index} className="border border-[#FFFFFF]">
-            <div
-              className={`flex items-center p-4 md:p-6 ${item.color} ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
-              }`}
-            >
-              <Typography
-                variant="h2"
-                color="primary"
-                weight="normal"
-                className="font-psygen text-2xl md:text-3xl"
-              >
-                {item.number}
-              </Typography>
-            </div>
-            <div
-              className={`p-4 md:p-6 ${
-                index % 2 === 0 ? "text-left" : "text-right"
-              }`}
-            >
-              <Typography
-                variant="h5"
-                color="white"
-                weight="bold"
-                className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-3"
-              >
-                {item.date}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="white"
-                weight="light"
-                className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
-              >
-                {item.title}
-              </Typography>
+            <div className="flex">
+              {index % 2 === 0 ? (
+                <>
+                  <div className="flex-1 bg-[#222222] p-4 md:p-6">
+                    <Typography
+                      variant="h5"
+                      color="white"
+                      weight="bold"
+                      className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-2"
+                    >
+                      {item.date}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="white"
+                      weight="light"
+                      className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
+                    >
+                      {item.title}
+                    </Typography>
+                  </div>
+                  <div className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-l border-[#FFFFFF] p-4 md:p-6`}>
+                    <Typography
+                      variant="h2"
+                      color="primary"
+                      weight="normal"
+                      className="font-psygen text-2xl md:text-3xl"
+                    >
+                      {item.number}
+                    </Typography>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-r border-[#FFFFFF] p-4 md:p-6`}>
+                    <Typography
+                      variant="h2"
+                      color="primary"
+                      weight="normal"
+                      className="font-psygen text-2xl md:text-3xl"
+                    >
+                      {item.number}
+                    </Typography>
+                  </div>
+                  <div className="flex-1 bg-[#222222] p-4 md:p-6 text-left">
+                    <Typography
+                      variant="h5"
+                      color="white"
+                      weight="bold"
+                      className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-2"
+                    >
+                      {item.date}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="white"
+                      weight="light"
+                      className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
+                    >
+                      {item.title}
+                    </Typography>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         ))}

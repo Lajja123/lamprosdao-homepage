@@ -22,7 +22,7 @@ export default function Hero() {
 
         {/* Text Section */}
         <div className="lg:col-span-6 lg:row-span-6 lg:col-start-5 border border-black p-4 md:p-6 lg:p-10 flex flex-col justify-center order-2 lg:order-2">
-          <div className="space-y-4 md:space-y-6">
+          <div className="">
             <Typography
               variant="h1"
               color="primary"
