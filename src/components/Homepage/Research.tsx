@@ -531,6 +531,17 @@ export default function Research() {
       <div className="lg:hidden">
         <div className="w-full overflow-x-auto">
           <div className="min-w-[320px] grid grid-cols-3 border border-white">
+            <GridCell
+              type="researchImage"
+              ref={imageRef}
+              className="border-b border-white"
+            >
+              <Image
+                src={Clip}
+                alt="Metallic sculpture"
+                className="w-[60%] sm:w-[45%] md:w-[50%] lg:w-[55%] xl:w-[60%] mx-auto"
+              />
+            </GridCell>
             {/* Row 1 - Main content spanning all columns */}
             <div className="col-span-3 p-4 sm:p-6">
               <div
@@ -541,9 +552,9 @@ export default function Research() {
                   <Typography
                     variant="h2"
                     weight="normal"
-                    align="left"
+                    align="center"
                     color="#E9FCE4"
-                    className="uppercase tracking-[-0.02em] leading-[0.95] text-2xl sm:text-3xl md:text-4xl"
+                    className="uppercase "
                   >
                     {renderTitleWithWavyLetters(currentItem.title)}
                   </Typography>
@@ -554,7 +565,7 @@ export default function Research() {
                     variant="subtitle2"
                     weight="normal"
                     color="#C7C7C7"
-                    className="leading-relaxed text-sm sm:text-base md:text-lg"
+                    align="center"
                   >
                     {currentItem.description}
                   </Typography>
@@ -612,7 +623,7 @@ export default function Research() {
               <Image
                 src={Clip2}
                 alt="Emblem"
-                className="w-15 h-15 sm:w-16 sm:h-16 md:w-20 md:h-20"
+                className="w-full sm:w-16 sm:h-16 md:w-20 md:h-20"
               />
             </div>
 
