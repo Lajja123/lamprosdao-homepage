@@ -10,6 +10,32 @@ import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
 
 export default function Delegate() {
   useSmoothScrollOnLoad();
+  const protocols = [
+    {
+      name: "Arbitrum",
+      img: arbitrum,
+      alt: "arbitrum",
+      href: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
+    },
+    {
+      name: "Optimism",
+      img: op,
+      alt: "optimism",
+      href: "https://vote.optimism.io/delegates/lamprosdao.eth",
+    },
+    {
+      name: "Uniswap",
+      img: uniswap,
+      alt: "uniswap",
+      href: "https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
+    },
+    {
+      name: "Superfluid",
+      img: superfluid,
+      alt: "superfluid",
+      href: "https://claim.superfluid.org/governance",
+    },
+  ];
   return (
     <>
       {/* Mobile Layout */}
@@ -214,69 +240,33 @@ export default function Delegate() {
           />
         </div>
         <div className="row-span-4 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
-        {/* First row - Arbitrum and Optimism */}
-        <div className="col-span-4 col-start-2 row-start-4 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
-          <Image src={arbitrum} alt="arbitrum" className="w-10" />
-          <Link
-            href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
-            target="_blank"
-          >
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="bold"
-              className="font-ppmori hover:underline cursor-pointer"
-            >
-              Delegate On Arbitrum
-            </Typography>
-          </Link>
-        </div>
-        <div className="col-span-4 col-start-6 row-start-4 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
-          <Image src={op} alt="optimism" className="w-10" />
-          <Link
-            href="https://vote.optimism.io/delegates/lamprosdao.eth"
-            target="_blank"
-          >
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="bold"
-              className="font-ppmori hover:underline cursor-pointer"
-            >
-              Delegate On Optimism
-            </Typography>
-          </Link>
-        </div>
-
-        {/* Second row - Uniswap and Superfluid */}
-        <div className="col-span-4 col-start-2 row-start-5 border-r border-black bg-white flex items-center flex-row justify-center p-5 gap-3">
-          <Image src={uniswap} alt="uniswap" className="w-10" />
-          <Link
-            href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
-            target="_blank"
-          >
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="bold"
-              className="font-ppmori hover:underline cursor-pointer"
-            >
-              Delegate On Uniswap
-            </Typography>
-          </Link>
-        </div>
-        <div className="col-span-4 col-start-6 row-start-5 border-l border-black bg-white flex gap-3 items-center flex-row justify-center p-5">
-          <Image src={superfluid} alt="superfluid" className="w-10" />
-          <Link href="https://claim.superfluid.org/governance" target="_blank">
-            <Typography
-              variant="body2"
-              color="primary"
-              weight="bold"
-              className="font-ppmori hover:underline cursor-pointer"
-            >
-              Delegate On Superfluid
-            </Typography>
-          </Link>
+        {/* Infinite scrolling row - all platforms in one */}
+        <div className="col-span-8 col-start-2 row-start-4 border border-black bg-white overflow-x-hidden overflow-y-visible">
+          <div className="w-full">
+            <div className="animate-scroll w-max flex">
+              {/* Single group mapping a doubled array for seamless loop */}
+              <div className="flex items-center gap-8 py-5">
+                {[...protocols, ...protocols].map((p, idx) => (
+                  <div
+                    key={`${p.name}-${idx}`}
+                    className="relative group flex items-center gap-3 px-6"
+                  >
+                    <Image src={p.img} alt={p.alt} className="w-10" />
+                    <Link href={p.href} target="_blank">
+                      <Typography
+                        variant="body2"
+                        color="primary"
+                        weight="bold"
+                        className="font-ppmori hover:underline cursor-pointer whitespace-nowrap"
+                      >
+                        {p.name}
+                      </Typography>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-10 border border-black"></div>
       </div>
