@@ -11,6 +11,8 @@ import clip from "@/assests/HeroSection2/clip.png";
 import arrow from "@/assests/HeroSection2/arrow.svg";
 import Typography from "@/components/UI/Typography";
 import Grid, { GridCell } from "@/components/UI/Grid";
+import mobileBgImage from "@/assests/HeroSection2/m-bg.png";
+import mobileArrow from "@/assests/HeroSection2/m-arrow.svg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -312,31 +314,78 @@ export default function Section2() {
 
       {/* Mobile Layout - 3-column grid */}
       <div className="lg:hidden">
-        <div className="w-full overflow-x-auto">
-          <div className="min-w-[320px] grid grid-cols-3 border border-black">
-            <div className="border border-black relative min-h-[80px] bg-[#D0FFAC] flex items-center justify-center">
-              <Image
-                src={hand}
-                alt="hand"
-                className="mx-auto w-full h-full object-contain p-5"
-              />
-            </div>
-            <div className="border border-black relative min-h-[80px] grid-cell-interactive">
-              <div className="ripple-effect" />
-              <div className="pattern-overlay" />
-            </div>
-            <div className="border border-black relative min-h-[80px] grid-cell-interactive">
-              <div className="ripple-effect" />
-              <div className="pattern-overlay" />
-            </div>
+        <div className="grid grid-cols-5 grid-rows-10 ">
+          <div className="border border-black ">1</div>
+          <div className="col-span-2 border border-black relative flex items-center justify-center">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${mobileBgImage.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <Image
+              src={mobileArrow}
+              alt="arrow"
+              className="relative mx-auto   object-contain p-5 flex justify-center"
+            />
+          </div>
+          <div className="col-start-4 border border-black">3</div>
+          <div className="col-start-5 border border-black">4</div>
+          <div className="row-start-2 border border-black">5</div>
+          <div className="col-start-1 row-start-3 border border-black    ">
+            6
+          </div>
+          <div className="col-start-1 row-start-4 border border-black">7</div>
+          <div className="col-start-1 row-start-5 border border-black">8</div>
+          <div className="col-start-1 row-start-6 border border-black  relative  ">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${bgImage2.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <Image
+              src={hugeicon}
+              alt="hugeicon"
+              className="relative mx-auto w-full h-full object-contain p-5"
+            />
+          </div>
+          <div className="col-start-1 row-start-7 border border-black">10</div>
+          <div className="col-start-1 row-start-8 border border-black    ">
+            11
+          </div>
+          <div className="col-start-1 row-start-9 border border-black   ">
+            12
+          </div>
+          <div className="col-start-1 row-start-10 border border-black    ">
+            13
+          </div>
+          <div className="col-span-3 row-span-8 col-start-2 row-start-2 border border-black    ">
+            <div className="flex flex-col items-center justify-between w-full h-full">
+              <div
+                ref={clipRef}
+                className=" w-full  flex items-center justify-center"
+              >
+                <Image
+                  src={clip}
+                  alt="clip"
+                  className="w-full h-full object-contain"
+                  quality={100}
+                />
+              </div>
 
-            <div className="col-span-3 border border-black flex items-center justify-center p-4 bg-white">
-              <div className="w-full space-y-4">
+              <div ref={textRef} className="flex-1 px-5 py-5 ">
                 <Typography
                   variant="subtitle2"
                   color="primary"
-                  weight="semibold"
-                  className="tracking-wide font-ppmori text-sm sm:text-base"
+                  weight="bold"
+                  className="tracking-wide font-ppmori max-w-[800px]"
                 >
                   In the vibrant world of blockchain, Lampros DAO stands as a
                   beacon, illuminating the path for innovators, dreamers, and
@@ -348,7 +397,7 @@ export default function Section2() {
                   variant="subtitle2"
                   color="primary"
                   weight="bold"
-                  className="tracking-wide font-ppmori text-sm sm:text-base"
+                  className="tracking-wide font-ppmori max-w-[800px] py-5"
                 >
                   Our ethos is rooted in fostering growth - both of the
                   individual and the collective. With each project we support,
@@ -358,31 +407,40 @@ export default function Section2() {
                 </Typography>
               </div>
             </div>
-
-            <div className="border border-black relative min-h-[80px] grid-cell-interactive">
-              <div className="ripple-effect" />
-              <div className="pattern-overlay" />
-            </div>
-            <div className="border border-black relative min-h-[80px] grid-cell-interactive">
-              <div className="ripple-effect" />
-              <div className="pattern-overlay" />
-            </div>
-            <div className="  relative min-h-[80px] flex items-center justify-center">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${bgImage2.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <Image
-                src={hugeicon}
-                alt="hugeicon"
-                className="relative mx-auto w-full h-full object-contain p-5"
-              />
-            </div>
+          </div>
+          <div className="col-span-3 col-start-2 row-start-10 border border-black    ">
+            15
+          </div>
+          <div className="col-start-5 row-start-2 border border-black    ">
+            16
+          </div>
+          <div className="col-start-5 row-start-3 border border-black    ">
+            17
+          </div>
+          <div className="col-start-5 row-start-4 border border-black    ">
+            18
+          </div>
+          <div className="col-start-5 row-start-5 border border-black   bg-[#D0FFAC] flex items-center justify-center  ">
+            <Image
+              src={hand}
+              alt="hand"
+              className=" mx-auto w-full h-full object-contain p-5"
+            />
+          </div>
+          <div className="col-start-5 row-start-6 border border-black    ">
+            20
+          </div>
+          <div className="col-start-5 row-start-7 border border-black    ">
+            21
+          </div>
+          <div className="col-start-5 row-start-8 border border-black    ">
+            22
+          </div>
+          <div className="col-start-5 row-start-9 border border-black    ">
+            23
+          </div>
+          <div className="col-start-5 row-start-10 border border-black    ">
+            24
           </div>
         </div>
       </div>
