@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import hero from "@/assests/HeroSection1/hero.png";
 import clip from "@/assests/common/clip.svg";
+import Vector from "@/assests/HeroSection1/Vector.svg";
 import { Typography } from "@/components/UI/Typography"; // adjust path
 
 if (typeof window !== "undefined") {
@@ -234,9 +235,20 @@ export default function Hero() {
   return (
     <>
       {/* Clip Image - Top Center */}
-      <div ref={clipRef} className="md:absolute md:top-12 top-50 w-full   z-0">
+      <div
+        ref={clipRef}
+        className="absolute md:top-12 top-50 w-full hidden md:block  z-0"
+      >
         <Image
           src={clip}
+          alt="Clip decoration"
+          className="w-full"
+          quality={100}
+        />
+      </div>
+      <div className="md:absolute md:top-12 top-50 w-full  block md:hidden z-0">
+        <Image
+          src={Vector}
           alt="Clip decoration"
           className="w-full"
           quality={100}
@@ -255,8 +267,65 @@ export default function Hero() {
           />
         </div>
 
-        {/* Title Section */}
-        <div className="relative  w-full md:pt-20 lg:pt-40 2xl:pt-50 lg:pb-10 md:pb-20 py-7 sm:pt-20 sm:pb-7 ">
+        {/* Mobile Title Section */}
+        <div className="relative w-full py-7 sm:pt-20 sm:pb-7 md:hidden">
+          <div>
+            <Typography
+              variant="h1"
+              weight="normal"
+              align="center"
+              color="dark"
+              className="uppercase leading-tight font-ppmori"
+            >
+              THE
+            </Typography>
+          </div>
+          <div>
+            <Typography
+              variant="h1"
+              weight="normal"
+              align="center"
+              color="dark"
+              className="uppercase leading-tight font-ppmori"
+            >
+              <span className="inline-block">BE</span>
+              <span className="uppercase font-bohemian wavy-letter inline-block">
+                a
+              </span>
+              <span className="inline-block">CON</span>
+            </Typography>
+          </div>
+          <div>
+            <Typography
+              variant="h1"
+              weight="normal"
+              align="center"
+              color="dark"
+              className="uppercase leading-tight font-ppmori"
+            >
+              OF
+            </Typography>
+          </div>
+          <div>
+            <Typography
+              variant="h1"
+              weight="normal"
+              align="center"
+              color="dark"
+              className="uppercase leading-tight font-ppmori"
+            >
+              <span className="inline-block">B</span>
+              <span className="font-bohemian wavy-letter inline-block">l</span>
+              <span className="inline-block">ockch</span>
+              <span className="font-bohemian wavy-letter inline-block">a</span>
+              <span className="font-bohemian wavy-letter inline-block">i</span>
+              <span className="inline-block">n</span>
+            </Typography>
+          </div>
+        </div>
+
+        {/* Desktop/Tablet Title Section */}
+        <div className="relative  w-full md:pt-20 lg:pt-40 2xl:pt-50 lg:pb-10 md:pb-20 py-7 sm:pt-20 sm:pb-7 hidden md:block">
           <div ref={titleLine2Ref}>
             <Typography
               variant="h1"
@@ -322,7 +391,7 @@ export default function Hero() {
               align="center"
               weight="semibold"
               color="primary"
-              className="bg-[#DFEAF9] font-ppmori px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl  "
+              className="bg-[#DFEAF9] font-ppmori px-3 py-3 sm:px-4 sm:py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl  "
             >
               Driving Mainstream Adoption, Empowering Developers, and
               Cultivating the Future of Web3
