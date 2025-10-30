@@ -24,6 +24,16 @@ export default function Hero() {
         <div className="lg:col-span-6 lg:row-span-6 lg:col-start-5 border border-black p-4 md:p-6 lg:p-10 flex flex-col justify-center order-2 lg:order-2">
           <div className="space-y-4 md:space-y-6">
             <Typography
+              variant="h1"
+              color="primary"
+              weight="semibold"
+              align="left"
+              className="font-ppmori uppercase  leading-tight md:hidden block"
+            >
+              About{" "}
+              <span className="uppercase font-bohemian wavy-letter">U</span>S
+            </Typography>
+            <Typography
               variant="body2"
               color="primary"
               weight="semibold"
@@ -68,14 +78,14 @@ export default function Hero() {
         <div className="flex flex-col lg:hidden">
           {/* Vision Section */}
           <div className="flex flex-col">
-            <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-4"></div>
+            {/* <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-4"></div> */}
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
               <Typography
                 variant="h3"
                 weight="semibold"
                 align="center"
                 color="offset"
-                className="uppercase font-csbohemian tracking-wider leading-[0.95] text-lg md:text-xl"
+                className="uppercase font-csbohemian tracking-wider leading-[0.95] "
               >
                 v<span className="uppercase font-bohemian wavy-letter">i</span>s
                 <span className="uppercase font-bohemian wavy-letter">i</span>on
@@ -86,7 +96,7 @@ export default function Hero() {
                 src={vision}
                 alt="Vision illustration"
                 quality={100}
-                className=" object-contain w-16 h-16 md:w-full md:h-100 mx-auto"
+                className=" object-contain w-full  mx-auto"
               />
             </div>
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
@@ -94,7 +104,8 @@ export default function Hero() {
                 variant="body2"
                 color="white"
                 weight="normal"
-                className="tracking-wider font-ppmori text-sm md:text-base leading-1.5 text-center"
+                align="center"
+                className="tracking-wider font-ppmori text-sm md:text-base leading-1.5 "
               >
                 To be the global nexus where blockchain technology seamlessly
                 integrates into everyday life, creating a decentralized and
@@ -110,7 +121,7 @@ export default function Hero() {
                 src={mission}
                 alt="Mission illustration"
                 quality={100}
-                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                className="w-full object-contain"
               />
             </div>
             <div className="border border-[#FFFFFF] p-4 flex items-center justify-center">
@@ -119,7 +130,7 @@ export default function Hero() {
                 weight="semibold"
                 align="center"
                 color="offset"
-                className="uppercase tracking-wider leading-[0.95] text-lg md:text-xl"
+                className="uppercase tracking-wider leading-[0.95] "
               >
                 m<span className="uppercase font-bohemian wavy-letter">i</span>
                 ss
@@ -131,7 +142,8 @@ export default function Hero() {
                 variant="body2"
                 color="white"
                 weight="normal"
-                className="tracking-wider font-ppmori text-sm md:text-base leading-[0.90] text-center"
+                align="center"
+                className="tracking-wider font-ppmori text-sm md:text-base leading-[0.90] "
               >
                 Lampros DAO is dedicated to cultivating trailblazing web3
                 leaders, amplifying open-source breakthroughs across multiple
@@ -139,7 +151,7 @@ export default function Hero() {
                 growth and decentralized principles.
               </Typography>
             </div>
-            <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-4"></div>
+            {/* <div className="bg-[#DFCDF2] border border-[#FFFFFF] p-4"></div> */}
           </div>
         </div>
 
