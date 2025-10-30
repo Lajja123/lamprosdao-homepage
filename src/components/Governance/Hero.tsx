@@ -38,9 +38,20 @@ export default function Hero() {
       {/* Mobile Layout */}
       <div className="lg:hidden">
         {/* Main Content Section */}
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
+          <div className="bg-[#000000] ">
+        <Typography
+                variant="h1"
+                weight="semibold"
+                align="center"
+                color="light-purple"
+                className="uppercase font-csbohemian tracking-wider leading-[0.95] border-b border-gray py-5"
+              >
+                G<span className="uppercase font-bohemian wavy-letter">o</span>v
+                <span className="uppercase font-bohemian wavy-letter">e</span>rnance
+              </Typography>
           {/* Image Section */}
-          <div className="p-4 md:p-6 flex items-center justify-center">
+          <div className="p-5 md:p-6 flex items-center justify-center">
             <Image
               src={clip}
               alt="Metallic sculpture"
@@ -48,13 +59,14 @@ export default function Hero() {
               className="w-[200px] md:w-[250px]"
             />
           </div>
-
+</div>
           {/* Text Section */}
           <div className="p-4 md:p-6 flex items-center justify-center">
             <Typography
               variant="body2"
               color="primary"
               weight="semibold"
+              align="center"
               className="tracking-wider font-ppmori text-sm md:text-base text-center"
             >
               Lampros DAO is an open community of builders and governance
@@ -66,7 +78,7 @@ export default function Hero() {
           </div>
 
           {/* Team Section */}
-          <div className="bg-[#DFCDF2] p-4 md:p-6 flex items-center justify-center">
+          <div className="bg-[#DFCDF2] p-6 md:p-6 flex items-center justify-center">
             <Typography
               variant="h3"
               color="primary"
@@ -78,58 +90,57 @@ export default function Hero() {
           </div>
 
           {/* Team Members */}
-          <div className="flex flex-col">
-            {teamMembers.map((member, index) => (
-              <div
+          <div className="grid grid-cols-3 border-t border-black">
+            {teamMembers.map((member) => (
+              <Link
                 key={member.name}
-                className="flex items-center justify-center p-4 md:p-6 border-b border-black last:border-b-0"
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-between border-b border-r last:border-r-0 border-black hover:opacity-80 transition-opacity duration-300"
               >
-                <Link
-                  href={member.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center hover:opacity-80 transition-opacity duration-300"
-                >
-                  <div className="p-3">
-                    <Image
-                      src={member.src}
-                      alt="link"
-                      className="w-10 h-10 md:w-12 md:h-12 rounded-full border-1 border-black"
-                      quality={100}
-                    />
-                  </div>
+                <div className="w-full flex items-center justify-center p-6">
+                  <Image
+                    src={member.src}
+                    alt={member.name}
+                    className="w-14 h-14 rounded-full border-1 border-black"
+                    quality={100}
+                  />
+                </div>
+                <div className="w-full border-t border-black p-3 flex items-center justify-center">
                   <Typography
                     variant="body1"
                     color="primary"
                     weight="semibold"
-                    className="font-ppmori text-sm md:text-base"
+                    className="font-ppmori text-xs md:text-base text-center"
                   >
                     {member.name}
                   </Typography>
-                  <Image src={link} alt="link" className="w-8 md:w-10" />
-                </Link>
-              </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
 
         {/* Delegations Section */}
         <div className="bg-[#1A1A1A]">
-          <div className=" p-4 md:p-6 flex items-center justify-center">
+          <div className=" p-6 md:p-6 flex items-center justify-center border-b border-white">
             <Typography
-              variant="h2"
-              className="tracking-wider font-ppmori text-white text-lg md:text-xl text-center"
+              variant="h1"
+              align="center"
+              className="tracking-wider font-ppmori text-white "
             >
-              O<span className="uppercase font-bohemian wavy-letter">U</span>R D
+              O<span className="uppercase font-bohemian wavy-letter">U</span>R <br></br>
+               D
               <span className="uppercase font-bohemian wavy-letter">E</span>LEG
               <span className="uppercase font-bohemian wavy-letter">A</span>TIO
               <span className="uppercase font-bohemian wavy-letter">N</span>S
             </Typography>
           </div>
 
-          <div className="flex flex-row justify-between items-center p-4 md:p-6 gap-4">
+          <div className="flex flex-row justify-center gap-10 items-center gap-4">
             {/* Arbitrum */}
-            <div className="">
+            <div className=" border-r border-white p-6">
               <Link
                 href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
                 target="_blank"

@@ -86,7 +86,7 @@ const ProtocolButton = React.memo(
       <button
         onClick={() => onClick(protocol.name)}
         className={`cursor-pointer px-6 py-2 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
-          isActive ? "bg-[#2F2B2B] text-white" : "bg-gray-300 text-gray-700"
+          isActive ? "bg-[#2F2B2B] text-white" : "bg-white text-gray-700"
         }`}
       >
         <Image src={protocol.icon} alt={protocol.name} className="w-7" />
@@ -414,19 +414,14 @@ const RecentVotes = React.memo(function RecentVotes() {
     <>
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        {/* Header Section */}
-        <div className="border border-black bg-[#C5D9E8] p-4 md:p-6 flex items-center justify-center">
-          <div className="flex items-center justify-center">
-            <Image src={vote1} alt="vote1" className="w-8 md:w-10" />
-          </div>
-        </div>
+        
 
-        <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#CBE9FF]">
           <Typography
-            variant="h2"
+            variant="h1"
             color="primary"
             weight="semibold"
-            className="tracking-wide text-lg md:text-xl"
+            className="tracking-wider"
           >
             Recent Votes
           </Typography>
@@ -443,10 +438,10 @@ const RecentVotes = React.memo(function RecentVotes() {
         </div>
 
         {/* Content Section */}
-        <div className="border border-black">
+        <div className="">
           {loading ? (
             // Mobile loading skeleton
-            <div className="p-4 md:p-6">
+            <div className="">
               {Array.from({ length: 2 }).map((_, index) => (
                 <div
                   key={index}
@@ -466,7 +461,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : error ? (
             // Error state
-            <div className="p-4 md:p-6 text-center">
+            <div className=" text-center">
               <Typography
                 variant="h3"
                 color="primary"
@@ -486,7 +481,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : noData ? (
             // No data state
-            <div className="p-4 md:p-6 text-center">
+            <div className="text-center">
               <Typography
                 variant="h3"
                 color="primary"
@@ -507,15 +502,16 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : (
             // Mobile vote cards
-            <div className="p-4 md:p-6 space-y-4">
+            <div className="">
               {proposals.map((proposal, index) => (
                 <div
                   key={proposal.id}
-                  className="border border-gray-200 rounded-lg p-4"
+                  className=""
                 >
                   {/* Vote Header */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-stretch border border-black">
+                    {/* Number cell */}
+                    <div className="w-14 md:w-16 p-3 border-r border-black flex items-center justify-center">
                       <Typography
                         variant="h4"
                         color="primary"
@@ -524,68 +520,75 @@ const RecentVotes = React.memo(function RecentVotes() {
                       >
                         {proposal.id}
                       </Typography>
+                    </div>
+                    {/* Status cell */}
+                    <div className="flex-1 p-3 flex items-center">
                       <Typography
                         variant="body1"
                         color="primary"
                         weight="medium"
                         className="font-ppmori text-sm md:text-base"
                       >
-                        Voted [{" "}
+                        Voted [
                         <span className={getVoteResultColor(proposal.result)}>
+                          {" "}
                           {proposal.result}
-                        </span>{" "}
+                          {" "}
+                        </span>
                         ]
                       </Typography>
                     </div>
+                    {/* Arrow cell */}
                     <button
                       onClick={() =>
                         setExpandedItem(expandedItem === index ? null : index)
                       }
-                      className="p-0 hover:bg-gray-100 rounded-full transition-colors border-black border"
+                      className="w-12 md:w-14 bg-[#1A1A1A] flex items-center justify-center"
                     >
                       <Arrow
                         direction={expandedItem === index ? "up" : "down"}
-                        color="#000000"
+                        color="#FFFFFF"
                         rounded={true}
-                        size={28}
-                        className="rounded-full "
+                        size={24}
                       />
                     </button>
                   </div>
 
                   {/* Proposal Title */}
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    weight="normal"
-                    className="mb-3 text-sm md:text-base"
-                  >
-                    {proposal.title}
-                  </Typography>
-
-                  {/* Tags */}
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="p-4 ">
                     <Typography
-                      variant="caption"
-                      color="accent"
-                      weight="medium"
-                      className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                      variant="body1"
+                      color="primary"
+                      weight="normal"
+                      className="text-sm md:text-base"
                     >
-                      {proposal.protocol}
+                      {proposal.title}
                     </Typography>
-                    <Typography
-                      variant="caption"
-                      color="accent"
-                      weight="medium"
-                      className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
-                    >
-                      {proposal.type}
-                    </Typography>
+                    <div className="flex gap-2 flex-wrap">
+                      <Typography
+                        variant="caption"
+                        color="accent"
+                        weight="medium"
+                        className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                      >
+                        {proposal.protocol}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        color="accent"
+                        weight="medium"
+                        className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                      >
+                        {proposal.type}
+                      </Typography>
+                    </div>
                   </div>
+
+                
 
                   {/* Expandable content */}
                   {expandedItem === index && (
-                    <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="mt-0 pt-4 border-t border-black p-4">
                       {proposal.voter && (
                         <div className="space-y-4">
                           {/* Voter Information */}
@@ -689,7 +692,7 @@ const RecentVotes = React.memo(function RecentVotes() {
         </div>
 
         {/* Footer Section */}
-        <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
+        <div className="border border-black bg-[#DFF48D] p-5 md:p-6 flex items-center justify-center">
           <Link
             href={
               protocols.find((p) => p.name === activeTab)?.link ||

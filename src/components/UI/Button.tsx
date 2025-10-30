@@ -116,7 +116,7 @@ export const Button: React.FC<ButtonProps> = ({
   }, []);
 
   const base =
-    "inline-flex items-center justify-center transition will-change-transform px-3 sm:px-3 md:px-6 py-2 sm:py-2 cursor-pointer";
+    "inline-flex items-center justify-center transition will-change-transform p-4 sm:px-3 md:px-6  sm:py-3 cursor-pointer";
   const radius = roundedClassMap[rounded];
 
   const style: React.CSSProperties = {};
@@ -136,15 +136,15 @@ export const Button: React.FC<ButtonProps> = ({
   if (variant === "solid") {
     style.background = color;
     style.color = textColor;
-    variantClasses = "px-2 sm:px-4 py-0 sm:py-2";
+    variantClasses = "px-4 sm:px-4 py-0 sm:py-4";
   } else if (variant === "outline") {
     style.color = textColor || color;
     style.borderColor = color;
     style.borderWidth = 1;
-    variantClasses = "px-2 sm:px-4 py-0 sm:py-2 bg-transparent";
+    variantClasses = "px-2 sm:px-4 py-0 sm:py-4 bg-transparent";
   } else if (variant === "ghost") {
     style.color = textColor || color;
-    variantClasses = "px-2 sm:px-4 py-0 sm:py-2 bg-transparent";
+    variantClasses = "px-2 sm:px-4 py-0 sm:py-4 bg-transparent";
   } else {
     // New color variants (light-green, light-purple, light-gray, dark-brown)
     style.background = getVariantColor(variant);
