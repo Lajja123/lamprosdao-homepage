@@ -592,65 +592,67 @@ export default function Research() {
             </div>
 
             {/* Row 2 - Navigation controls in grid format */}
-            {/* Left arrow */}
-            <div className="border border-white relative min-h-[80px] flex items-center justify-center">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${bgImage2.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <button
-                onClick={handlePrevious}
-                className="w-full h-full flex items-center justify-center group"
-              >
-                <Arrow
-                  direction="left"
-                  size={30}
-                  hoverScale={1.15}
-                  hoverColor="#D0FFAC"
-                  transitionDuration={0.3}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
-                />
-              </button>
-            </div>
+            <div className="col-span-3 grid grid-cols-3">
+              {/* Left arrow */}
+              <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${bgImage2.src})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <button
+                  onClick={handlePrevious}
+                  className="w-full h-full flex items-center justify-center group"
+                >
+                  <Arrow
+                    direction="left"
+                    size={30}
+                    hoverScale={1.15}
+                    hoverColor="#D0FFAC"
+                    transitionDuration={0.3}
+                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                  />
+                </button>
+              </div>
 
-            {/* Clip2 image - center */}
-            <div className="border border-white flex items-center justify-center p-5">
-              <Image
-                src={Clip2}
-                alt="Emblem"
-                className="w-full sm:w-16 sm:h-16 md:w-20 md:h-20"
-              />
-            </div>
-
-            {/* Right arrow */}
-            <div className="border border-white relative min-h-[80px] flex items-center justify-center">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${bgImage2.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <button
-                onClick={handleNext}
-                className="w-full h-full flex items-center justify-center group"
-              >
-                <Arrow
-                  direction="right"
-                  size={30}
-                  hoverScale={1.15}
-                  hoverColor="#D0FFAC"
-                  transitionDuration={0.3}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+              {/* Clip2 image - center */}
+              <div className="col-span-1 border border-white flex items-center justify-center p-5">
+                <Image
+                  src={Clip2}
+                  alt="Emblem"
+                  className="w-full sm:w-16 sm:h-16 md:w-20 md:h-20"
                 />
-              </button>
+              </div>
+
+              {/* Right arrow */}
+              <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${bgImage2.src})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <button
+                  onClick={handleNext}
+                  className="w-full h-full flex items-center justify-center group"
+                >
+                  <Arrow
+                    direction="right"
+                    size={30}
+                    hoverScale={1.15}
+                    hoverColor="#D0FFAC"
+                    transitionDuration={0.3}
+                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>

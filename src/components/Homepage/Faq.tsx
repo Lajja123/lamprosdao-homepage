@@ -34,7 +34,7 @@ const NumberCell = ({
 }) => (
   <div
     className={combineStyles(
-      "col-span-2 sm:col-span-1 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center",
+      "col-span-2 sm:col-span-1 border-b border-r md:border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center",
       rowStart ? `row-start-${rowStart}` : ""
     )}
   >
@@ -58,7 +58,7 @@ const ContentCell = ({
 }) => (
   <div
     className={combineStyles(
-      "col-span-6 sm:col-span-8 border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center min-w-0",
+      "col-span-6 sm:col-span-8 border-b md:border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center min-w-0",
       rowStart ? `row-start-${rowStart}` : ""
     )}
   >
@@ -82,7 +82,7 @@ const IconCell = ({
   <div
     ref={iconRef}
     className={combineStyles(
-      "col-span-2 sm:col-span-1 border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer group hover:bg-opacity-10 transition-all duration-300",
+      "col-span-2 sm:col-span-1 border-b md:border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer group hover:bg-opacity-10 transition-all duration-300",
       rowStart ? `row-start-${rowStart}` : ""
     )}
     onClick={onClick}
@@ -238,16 +238,18 @@ export default function Faq() {
   }, []); // Remove currentSection dependency so it doesn't retrigger on arrow clicks
 
   // Render FAQ item component
-  const renderFaqItem = (item: any, index: number) => {
+  const renderFaqItem = (item: any, index: number, applyRowStart: boolean) => {
     if (!item) return null;
 
     return (
       <>
         <NumberCell
           number={String(item.id).padStart(2, "0")}
-          rowStart={index > 0 ? String(index + 1) : undefined}
+          rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
         />
-        <ContentCell rowStart={index > 0 ? String(index + 1) : undefined}>
+        <ContentCell
+          rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
+        >
           <div>
             <Typography
               variant="body2"
@@ -284,7 +286,7 @@ export default function Faq() {
           </div>
         </ContentCell>
         <IconCell
-          rowStart={index > 0 ? String(index + 1) : undefined}
+          rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
           onClick={() => toggleExpanded(item.id)}
           isExpanded={expandedItems.has(item.id)}
         />
@@ -297,84 +299,99 @@ export default function Faq() {
       {/* Mobile Layout */}
       <div className="block md:hidden" ref={mobileSectionRef}>
         <div className="grid grid-cols-10 border border-black min-w-[320px]">
-          {/* Dynamically render FAQ items */}
-          {currentItems.map((item, index) => renderFaqItem(item, index))}
-
-          {/* Mobile Footer Row: Left Arrow (2 col) + FAQ Text (6 cols) + Right Arrow (2 col) */}
-          <div
-            className="col-span-2 relative border border-black"
-            style={{ gridRowStart: currentItems.length + 1 }}
-          >
-            <div
-              className={combineStyles(
-                "cursor-pointer absolute inset-0 flex items-center justify-center"
-              )}
-              style={{
-                backgroundImage: `url(${bgImage2.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <button
-                onClick={handlePrevious}
-                className="w-full h-full flex items-center justify-center group"
+          {/* Mobile Header Row: FAQ text (2 cols) + Question image (1 col) */}
+          <div className="col-span-10 grid grid-cols-3 border-b border-black">
+            <div className="col-span-2 border-r border-black flex justify-center items-center p-2">
+              <Typography
+                variant="h1"
+                color="primary"
+                weight="semibold"
+                align="center"
+                className="font-ppmori uppercase  leading-tight"
               >
-                <Arrow
-                  direction="left"
-                  size={30}
-                  hoverScale={1.15}
-                  hoverColor="#D0FFAC"
-                  transitionDuration={0.3}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
-                />
-              </button>
+                F <span className="uppercase font-bohemian wavy-letter">A</span>{" "}
+                Q
+              </Typography>
+            </div>
+            <div className="col-span-1 bg-[#CBE9FF] flex w-full justify-center items-center p-4 question-mark">
+              <Image
+                src={question}
+                alt="question mark"
+                className="w-10 h-10 object-contain"
+              />
             </div>
           </div>
 
-          <div
-            className="col-span-6 border border-black flex justify-center items-center p-4 faq-title"
-            style={{ gridRowStart: currentItems.length + 1 }}
-          >
-            <Typography
-              variant="h1"
-              color="primary"
-              weight="semibold"
-              align="center"
-              className="font-ppmori uppercase text-[16px] leading-tight"
-            >
-              F <span className="uppercase font-bohemian wavy-letter">A</span> Q
-            </Typography>
-          </div>
+          {/* Dynamically render FAQ items */}
+          {currentItems.map((item, index) => renderFaqItem(item, index, false))}
 
-          <div
-            className="col-span-2 relative border border-black"
-            style={{ gridRowStart: currentItems.length + 1 }}
-          >
-            <div
-              className={combineStyles(
-                "cursor-pointer absolute inset-0 flex items-center justify-center"
-              )}
-              style={{
-                backgroundImage: `url(${bgImage2.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <button
-                onClick={handleNext}
-                className="w-full h-full flex items-center justify-center group"
+          {/* Mobile Footer Row: Left Arrow (1 col) + Clip (1 col) + Right Arrow (1 col) */}
+          <div className="col-span-10 grid grid-cols-3 border-t border-black">
+            {/* Left arrow */}
+            <div className="col-span-1 relative border-r border-black">
+              <div
+                className={combineStyles(
+                  "cursor-pointer absolute inset-0 flex items-center justify-center"
+                )}
+                style={{
+                  backgroundImage: `url(${bgImage2.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
-                <Arrow
-                  direction="right"
-                  size={30}
-                  hoverScale={1.15}
-                  hoverColor="#D0FFAC"
-                  transitionDuration={0.3}
-                  className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
-                />
-              </button>
+                <button
+                  onClick={handlePrevious}
+                  className="w-full h-full flex items-center justify-center group"
+                >
+                  <Arrow
+                    direction="left"
+                    size={30}
+                    hoverScale={1.15}
+                    hoverColor="#D0FFAC"
+                    transitionDuration={0.3}
+                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                  />
+                </button>
+              </div>
+            </div>
+
+            {/* Clip image center */}
+            <div className="col-span-1 border-r border-black flex justify-center items-center p-4">
+              <Image
+                src={clip}
+                alt="clip"
+                className="w-10 h-10 object-contain"
+              />
+            </div>
+
+            {/* Right arrow */}
+            <div className="col-span-1 relative">
+              <div
+                className={combineStyles(
+                  "cursor-pointer absolute inset-0 flex items-center justify-center"
+                )}
+                style={{
+                  backgroundImage: `url(${bgImage2.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <button
+                  onClick={handleNext}
+                  className="w-full h-full flex items-center justify-center group"
+                >
+                  <Arrow
+                    direction="right"
+                    size={30}
+                    hoverScale={1.15}
+                    hoverColor="#D0FFAC"
+                    transitionDuration={0.3}
+                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -384,7 +401,7 @@ export default function Faq() {
       <div className="hidden md:block" ref={sectionRef}>
         <div className="grid grid-cols-10 border border-black min-w-[640px] md:min-w-[768px] lg:min-w-[1024px]">
           {/* Dynamically render FAQ items */}
-          {currentItems.map((item, index) => renderFaqItem(item, index))}
+          {currentItems.map((item, index) => renderFaqItem(item, index, true))}
 
           <div
             className="row-start-4 bg-[#CBE9FF] flex w-full justify-center items-center border border-black p-2 sm:p-4 question-mark"
