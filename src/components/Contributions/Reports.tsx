@@ -31,50 +31,57 @@ export default function Reports({ activeChain }: ReportsProps) {
         {/* Header Section */}
         <div className="border-b border-white p-4 md:p-6 flex items-center justify-center">
           <Typography
-            variant="subtitle1"
+            variant="h4"
             color="yellow"
             weight="semibold"
-            className="uppercase tracking-wider font-ppmori text-sm md:text-base text-center"
+            align="center"
+            className="uppercase tracking-wider font-ppmori "
           >
             {contributions.header}
           </Typography>
         </div>
 
         {/* Contribution Items */}
-        <div className="space-y-4 p-4 md:p-6">
+        <div className="">
           {items.map((item, index) => (
-            <div key={item.id} className="border border-white rounded-lg overflow-hidden">
-              {/* Number Header */}
-              <div className="relative border-b border-white p-4 flex items-center justify-center">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `url(${bgImage1.src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <Typography
-                  variant="h5"
-                  color="white"
-                  weight="bold"
-                  className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl text-start w-full"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </Typography>
+            <div key={item.id} className="border border-white">
+              {/* Header Row */}
+              <div className="flex items-stretch bg-[#1A1A1A] border-b border-white">
+                {/* Number cell */}
+                <div className="w-14 md:w-16 p-4 border-r border-white relative flex items-center justify-center">
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: `url(${bgImage1.src})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <Typography
+                    variant="h5"
+                    color="white"
+                    weight="bold"
+                    className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                </div>
+                {/* Title cell */}
+                <div className="flex-1 p-4">
+                  <Typography
+                    variant="h5"
+                    color="white"
+                    weight="semibold"
+                    className="uppercase tracking-wider font-ppmori text-sm md:text-base"
+                  >
+                    {item.title}
+                  </Typography>
+                </div>
               </div>
 
-              {/* Content */}
-              <div className="p-4 md:p-6 bg-[#1A1A1A]">
-                <Typography
-                  variant="h5"
-                  color="white"
-                  weight="semibold"
-                  className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-4"
-                >
-                  {item.title}
-                </Typography>
+              {/* Body */}
+              <div className="p-4 md:p-6 bg-[#1A1A1A] border-t border-white">
                 <Typography
                   variant="body2"
                   color="white"

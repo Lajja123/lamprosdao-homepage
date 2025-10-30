@@ -25,7 +25,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
       {/* Mobile Layout */}
       <div className="lg:hidden">
         {/* 3-Column Grid Section */}
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-6">
           {/* First Column - Clip Image */}
           <div className=" border border-black"></div>
 
@@ -49,8 +49,21 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
           {/* Third Column - Empty for now */}
           <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+
         </div>
         <div className="flex flex-col">
+
+           {/* Second Image Section */}
+           <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
+            <Image
+              src={clip2}
+              alt="Metallic sculpture"
+              className="w-full mx-auto p-5"
+            />
+          </div>
           {/* Text Section */}
           <div className="border border-black p-4 md:p-6">
             <Typography
@@ -80,21 +93,14 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             </Typography>
           </div>
 
-          {/* Second Image Section */}
-          <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
-            <Image
-              src={clip2}
-              alt="Metallic sculpture"
-              className="w-[200px] md:w-[300px] mx-auto"
-            />
-          </div>
+         
         </div>
 
         {/* Chain Selection Section */}
         <div className="bg-[#1A1A1A]">
-          <div className="flex flex-row justify-between items-center p-4 md:p-6 gap-4">
+          <div className="flex flex-row justify-center gap-10 items-center  gap-4">
             {/* Arbitrum Button */}
-            <div className="bg-[#1A1A1A] flex items-center justify-center p-0">
+            <div className="bg-[#1A1A1A] flex items-center justify-center p-5 border-r border-white">
               <div
                 className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
                   activeChain === "arbitrum"
@@ -116,7 +122,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             </div>
 
             {/* Optimism Button */}
-            <div className=" bg-[#1A1A1A] flex items-center justify-center ">
+            <div className=" bg-[#1A1A1A] flex items-center p-5justify-center ">
               <div
                 className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
                   activeChain === "optimism"
@@ -140,12 +146,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         {/* Dynamic Content Section */}
-        <div className="border border-black p-4 md:p-6 flex items-center justify-center">
+        <div className="border border-black p-5 md:p-6 flex items-center justify-center">
           <Typography
-            variant="h2"
+            variant="h1"
             color="primary"
+            align="center"
             weight="light"
-            className="tracking-wide uppercase text-lg md:text-xl text-center"
+            className="tracking-wide uppercase"
           >
             {currentContent.word.split("").map((letter, index) => {
               const isHighlighted = currentContent.highlightedLetters.includes(
@@ -165,7 +172,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           </Typography>
         </div>
 
-        <div className="border border-black bg-[#CBE9FF] p-4 md:p-6 flex items-center justify-center">
+        <div className="border border-black bg-[#CBE9FF] p-5 md:p-6 flex items-center justify-center">
           <Typography
             variant="body2"
             color="primary"
@@ -176,7 +183,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           </Typography>
         </div>
 
-        <div className="border border-black p-4 md:p-6 flex items-center justify-center">
+        <div className="border border-black p-6 md:p-6 flex items-center justify-center">
           <Typography
             variant="body2"
             color="primary"
