@@ -414,8 +414,6 @@ const RecentVotes = React.memo(function RecentVotes() {
     <>
       {/* Mobile Layout */}
       <div className="lg:hidden">
-        
-
         <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#CBE9FF]">
           <Typography
             variant="h1"
@@ -504,10 +502,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             // Mobile vote cards
             <div className="">
               {proposals.map((proposal, index) => (
-                <div
-                  key={proposal.id}
-                  className=""
-                >
+                <div key={proposal.id} className="">
                   {/* Vote Header */}
                   <div className="flex items-stretch border border-black">
                     {/* Number cell */}
@@ -532,8 +527,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                         Voted [
                         <span className={getVoteResultColor(proposal.result)}>
                           {" "}
-                          {proposal.result}
-                          {" "}
+                          {proposal.result}{" "}
                         </span>
                         ]
                       </Typography>
@@ -583,8 +577,6 @@ const RecentVotes = React.memo(function RecentVotes() {
                       </Typography>
                     </div>
                   </div>
-
-                
 
                   {/* Expandable content */}
                   {expandedItem === index && (
@@ -694,10 +686,7 @@ const RecentVotes = React.memo(function RecentVotes() {
         {/* Footer Section */}
         <div className="border border-black bg-[#DFF48D] p-5 md:p-6 flex items-center justify-center">
           <Link
-            href={
-              protocols.find((p) => p.name === activeTab)?.link ||
-              "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
-            }
+            href="https://lamprosdao.notion.site/governance"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -969,10 +958,7 @@ const RecentVotes = React.memo(function RecentVotes() {
          border border-black bg-[#DFF48D] p-10 flex items-center justify-center`}
         >
           <Link
-            href={
-              protocols.find((p) => p.name === activeTab)?.link ||
-              "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
-            }
+            href="https://lamprosdao.notion.site/governance"
             target="_blank"
             rel="noopener noreferrer"
           >

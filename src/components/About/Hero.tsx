@@ -43,11 +43,10 @@ export default function Hero() {
                 Lampros DAO was founded by a group of individuals with a shared
                 vision for governance and decentralization. Our north star is to
                 support and grow Ethereum, and we contribute to this goal by
-                actively participating in Layer 2 solutions like Arbitrum and
-                Optimism.
+                actively participating in various Layer 2s.
               </div>
               <div className="mt-3 md:mt-4">
-                We believe blockchain is not just about technology—it's about
+                We believe blockchain is not just about technology, it's about
                 the people, communities, and ideas that drive it forward. Our
                 ethos is rooted in fostering growth, both for individuals and
                 the ecosystem, ensuring that governance, research, and education
@@ -56,14 +55,14 @@ export default function Hero() {
                 future of decentralized networks.
               </div>
               <div className="mt-3 md:mt-4">
-                At Lampros DAO, we are supporting a movement—a movement where
+                At Lampros DAO, we are supporting a movement, a movement where
                 public goods, developer support, and open collaboration take
                 centre stage. We envision a future where blockchain technology
                 seamlessly integrates into everyday life, making Web3 more
                 inclusive, sustainable, and impactful.
               </div>
               <div className="mt-3 md:mt-4">
-                We are building on this foundation—join us as we shape the
+                We are building on this foundation. Join us as we shape the
                 future of decentralized governance and Ethereum's Layer 2
                 ecosystems.
               </div>

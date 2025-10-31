@@ -67,7 +67,22 @@ export default function RootLayout({
     //   >
     //     <DesktopOnly />
     //     <div className="hidden md:block">
-    //       <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
+    //       <Marquee
+    //         items={[
+    //           {
+    //             text: "Lampros DAO ranks #1 on the Scroll Delegator Program - View on X",
+    //             link: {
+    //               text: "View on X",
+    //               url: "https://x.com/lamprosdao/status/1972921578825412711",
+    //             },
+    //           },
+    //           "MegaETH Public Sale Dune Dashboard by Lampros DAO is now live - Explore the Dashboard",
+    //           "Arbitrum Expansion Dune Dashboard, now tracking Orbit chains settling on Arbitrum and Ethereum - Explore the Dashboard",
+    //           "Proud to be in Optimism Top 100 Delegates - View Delegate Profile",
+    //           "Arbitrum DRIP Epoch 4 live - Earn Rewards",
+    //           "Check out our latest X space on Arbitrum Orbit Chain Revenues & AEP flows - Broadcast link",
+    //         ]}
+    //       />
     //       <Navbar />
     //       {children}
     //       <Footer />
@@ -80,8 +95,52 @@ export default function RootLayout({
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} flex flex-col justify-between`}
       >
-        {/* <DesktopOnly /> */}
-        <Marquee text="Driving Mainstream Adoption, Empowering Developers, and Cultivating the Future of Web3" />
+        <Marquee
+          items={[
+            {
+              text: "Lampros DAO ranks #1 on the Scroll Delegator Program - View on X",
+              link: {
+                text: "View on X",
+                url: "https://x.com/lamprosdao/status/1972921578825412711",
+              },
+            },
+            {
+              text: "MegaETH Public Sale Dune Dashboard by Lampros DAO is now live - Explore the Dashboard",
+              link: {
+                text: "Explore the Dashboard",
+                url: "https://dune.com/lamprosdao/megaeth-public-sale-overview",
+              },
+            },
+            {
+              text: "Arbitrum Expansion Dune Dashboard, now tracking Orbit chains settling on Arbitrum and Ethereum - Explore the Dashboard",
+              link: {
+                text: "Explore the Dashboard",
+                url: "https://dune.com/lamprosdao/arbitrum-ecosystem-revenue-from-orbit-chains",
+              },
+            },
+            {
+              text: "Proud to be in Optimism Top 100 Delegates - View Delegate Profile",
+              link: {
+                text: "View Delegate Profile",
+                url: "https://vote.optimism.io/delegates/lamprosdao.eth",
+              },
+            },
+            {
+              text: "Arbitrum DRIP Epoch 4 live - Earn Rewards",
+              link: {
+                text: "Earn Rewards",
+                url: "https://arbitrumdrip.com/",
+              },
+            },
+            {
+              text: "Check out our latest X space on Arbitrum Orbit Chain Revenues & AEP flows - Broadcast link",
+              link: {
+                text: "Broadcast link",
+                url: "https://x.com/i/broadcasts/1vAGRQRoXDjKl",
+              },
+            },
+          ]}
+        />
         <Navbar />
         {children}
         <Footer />

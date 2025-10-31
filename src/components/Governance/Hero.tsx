@@ -40,26 +40,27 @@ export default function Hero() {
         {/* Main Content Section */}
         <div className="flex flex-col ">
           <div className="bg-[#000000] ">
-        <Typography
-                variant="h1"
-                weight="semibold"
-                align="center"
-                color="light-purple"
-                className="uppercase font-csbohemian tracking-wider leading-[0.95] border-b border-gray py-5"
-              >
-                G<span className="uppercase font-bohemian wavy-letter">o</span>v
-                <span className="uppercase font-bohemian wavy-letter">e</span>rnance
-              </Typography>
-          {/* Image Section */}
-          <div className="p-5 md:p-6 flex items-center justify-center">
-            <Image
-              src={clip}
-              alt="Metallic sculpture"
-              quality={100}
-              className="w-[200px] md:w-[250px]"
-            />
+            <Typography
+              variant="h1"
+              weight="semibold"
+              align="center"
+              color="light-purple"
+              className="uppercase font-csbohemian tracking-wider leading-[0.95] border-b border-gray py-5"
+            >
+              G<span className="uppercase font-bohemian wavy-letter">o</span>v
+              <span className="uppercase font-bohemian wavy-letter">e</span>
+              rnance
+            </Typography>
+            {/* Image Section */}
+            <div className="p-5 md:p-6 flex items-center justify-center">
+              <Image
+                src={clip}
+                alt="Metallic sculpture"
+                quality={100}
+                className="w-[200px] md:w-[250px]"
+              />
+            </div>
           </div>
-</div>
           {/* Text Section */}
           <div className="p-4 md:p-6 flex items-center justify-center">
             <Typography
@@ -73,7 +74,7 @@ export default function Hero() {
               enthusiasts committed to transparency, decentralization, and
               inclusivity. Through active participation in governance and
               collaborative efforts, we strive to create a more transparent,
-              inclusive, and resilient web3 landscape
+              inclusive, and resilient Web3 landscape.
             </Typography>
           </div>
 
@@ -130,15 +131,15 @@ export default function Hero() {
               align="center"
               className="tracking-wider font-ppmori text-white "
             >
-              O<span className="uppercase font-bohemian wavy-letter">U</span>R <br></br>
-               D
+              O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
+              <br></br>D
               <span className="uppercase font-bohemian wavy-letter">E</span>LEG
               <span className="uppercase font-bohemian wavy-letter">A</span>TIO
               <span className="uppercase font-bohemian wavy-letter">N</span>S
             </Typography>
           </div>
 
-          <div className="flex flex-row justify-center gap-10 items-center gap-4">
+          <div className="flex flex-row justify-center gap-10 items-center ">
             {/* Arbitrum */}
             <div className=" border-r border-white p-6">
               <Link
@@ -221,7 +222,7 @@ export default function Hero() {
             enthusiasts committed to transparency, decentralization, and
             inclusivity. Through active participation in governance and
             collaborative efforts, we strive to create a more transparent,
-            inclusive, and resilient web3 landscape
+            inclusive, and resilient Web3 landscape.
           </Typography>
         </GridCell>
 
@@ -325,10 +326,11 @@ export default function Hero() {
                 variant="subtitle2"
                 color="primary"
                 weight="semibold"
-                className="font-ppmori "
+                className="font-ppmori hover:underline"
               >
                 Arbitrum
               </Typography>
+              <Image src={link} alt="link" className="w-10 " />
             </div>
           </Link>
         </GridCell>
@@ -350,10 +352,11 @@ export default function Hero() {
                 variant="subtitle2"
                 color="primary"
                 weight="semibold"
-                className="font-ppmori "
+                className="font-ppmori hover:underline"
               >
                 Optimism
               </Typography>
+              <Image src={link} alt="link" className="w-10 " />
             </div>
           </Link>
         </GridCell>

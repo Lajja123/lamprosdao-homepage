@@ -103,7 +103,9 @@ export default function Journey() {
                       {item.title}
                     </Typography>
                   </div>
-                  <div className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-l border-[#FFFFFF] p-4 md:p-6`}>
+                  <div
+                    className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-l border-[#FFFFFF] p-4 md:p-6`}
+                  >
                     <Typography
                       variant="h2"
                       color="primary"
@@ -116,7 +118,9 @@ export default function Journey() {
                 </>
               ) : (
                 <>
-                  <div className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-r border-[#FFFFFF] p-4 md:p-6`}>
+                  <div
+                    className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-r border-[#FFFFFF] p-4 md:p-6`}
+                  >
                     <Typography
                       variant="h2"
                       color="primary"

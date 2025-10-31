@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import left from "@/assests/common/arrow1.svg";
 import right from "@/assests/common/arrow1.svg";
 import top from "@/assests/Faq/top.svg";
@@ -323,7 +323,11 @@ export default function Faq() {
           </div>
 
           {/* Dynamically render FAQ items */}
-          {currentItems.map((item, index) => renderFaqItem(item, index, false))}
+          {currentItems.map((item, index) => (
+            <Fragment key={item.id}>
+              {renderFaqItem(item, index, false)}
+            </Fragment>
+          ))}
 
           {/* Mobile Footer Row: Left Arrow (1 col) + Clip (1 col) + Right Arrow (1 col) */}
           <div className="col-span-10 grid grid-cols-3 border-t border-black">
@@ -401,7 +405,11 @@ export default function Faq() {
       <div className="hidden md:block" ref={sectionRef}>
         <div className="grid grid-cols-10 border border-black min-w-[640px] md:min-w-[768px] lg:min-w-[1024px]">
           {/* Dynamically render FAQ items */}
-          {currentItems.map((item, index) => renderFaqItem(item, index, true))}
+          {currentItems.map((item, index) => (
+            <Fragment key={item.id}>
+              {renderFaqItem(item, index, true)}
+            </Fragment>
+          ))}
 
           <div
             className="row-start-4 bg-[#CBE9FF] flex w-full justify-center items-center border border-black p-2 sm:p-4 question-mark"
