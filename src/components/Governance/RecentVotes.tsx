@@ -30,7 +30,7 @@ import type {
 // Memoized Loading Skeleton Component
 const LoadingSkeleton = React.memo(() => (
   <>
-    {Array.from({ length: 4 }).map((_, index) => (
+    {Array.from({ length: 5 }).map((_, index) => (
       <React.Fragment key={index}>
         <div
           className={`row-start-${
@@ -86,7 +86,9 @@ const ProtocolButton = React.memo(
       <button
         onClick={() => onClick(protocol.name)}
         className={`cursor-pointer px-6 py-2 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
-          isActive ? "bg-[#2F2B2B] text-white" : "bg-white text-gray-700"
+          isActive
+            ? "bg-[#2F2B2B] text-white border border-[#2F2B2B]"
+            : "bg-white text-gray-700 border border-[#A885CD]"
         }`}
       >
         <Image src={protocol.icon} alt={protocol.name} className="w-7" />
@@ -103,7 +105,7 @@ const ProtocolButton = React.memo(
 ProtocolButton.displayName = "ProtocolButton";
 
 const RecentVotes = React.memo(function RecentVotes() {
-  const [activeTab, setActiveTab] = useState("Arbitrum");
+  const [activeTab, setActiveTab] = useState("");
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [proposals, setProposals] = useState<Proposal[]>([]);
   const [loading, setLoading] = useState(true);
@@ -267,7 +269,7 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         const transformedProposals = await Promise.allSettled(
           validProposals
-            .slice(0, 4)
+            .slice(0, 5)
             .map(async (proposal: NotionProposalData, index: number) => {
               const protocol =
                 activeTab ||
@@ -379,7 +381,7 @@ const RecentVotes = React.memo(function RecentVotes() {
 
   // Memoize handleProtocolSelection function
   const handleProtocolSelection = useCallback((protocol: string) => {
-    setActiveTab(protocol);
+    setActiveTab((prevTab) => (prevTab === protocol ? "" : protocol));
   }, []);
 
   // Memoize formatDate function
@@ -396,14 +398,24 @@ const RecentVotes = React.memo(function RecentVotes() {
   const getVoteResultColor = useCallback((result: string): string => {
     switch (result) {
       case "For":
-        return "text-[#000000]";
+        return "bg-white text-[#A885CD]  ";
       case "Against":
-        return "text-[#000000]";
-      case "Abstain":
-        return "text-[#000000]";
+        return "bg-white text-[#A885CD] ";
       default:
-        return "text-[#000000]";
+        return "bg-white text-[#A885CD] ";
     }
+  }, []);
+
+  // Memoize type styling function
+  const getTypeStyle = useCallback((type: string): string => {
+    const typeLower = type?.toLowerCase() || "";
+    if (typeLower.includes("off-chain") || typeLower.includes("offchain")) {
+      return "border-[#A885CD] bg-[#DFCDF2] text-[#8B6FA8]";
+    }
+    if (typeLower.includes("on-chain") || typeLower.includes("onchain")) {
+      return "border-[#A885CD] bg-[#A885CD] text-white";
+    }
+    return "border-[#A885CD] bg-transparent";
   }, []);
 
   useEffect(() => {
@@ -494,8 +506,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                 weight="normal"
                 className="text-sm md:text-base"
               >
-                There are no recent votes to display for {activeTab} at the
-                moment. Please check back later!
+                There are no recent votes to display
+                {activeTab ? ` for ${activeTab}` : ""} at the moment. Please
+                check back later!
               </Typography>
             </div>
           ) : (
@@ -517,19 +530,22 @@ const RecentVotes = React.memo(function RecentVotes() {
                       </Typography>
                     </div>
                     {/* Status cell */}
-                    <div className="flex-1 p-3 flex items-center">
+                    <div className="flex-1 p-3 flex items-start justify-start gap-2 flex-col">
                       <Typography
-                        variant="body1"
+                        variant="subtitle2"
                         color="primary"
                         weight="medium"
-                        className="font-ppmori text-sm md:text-base"
+                        className="font-ppmori text-xs md:text-sm "
                       >
-                        Voted [
-                        <span className={getVoteResultColor(proposal.result)}>
-                          {" "}
-                          {proposal.result}{" "}
-                        </span>
-                        ]
+                        Voted{" "}
+                      </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        color="primary"
+                        weight="medium"
+                        className="font-ppmori text-xs md:text-sm   text-[#A885CD]"
+                      >
+                        <span>{proposal.result}</span>
                       </Typography>
                     </div>
                     {/* Arrow cell */}
@@ -554,24 +570,35 @@ const RecentVotes = React.memo(function RecentVotes() {
                       variant="body1"
                       color="primary"
                       weight="normal"
-                      className="text-sm md:text-base"
+                      className="text-sm md:text-base pb-3"
                     >
                       {proposal.title}
                     </Typography>
                     <div className="flex gap-2 flex-wrap">
+                      <span className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm flex items-center gap-2">
+                        <Image
+                          src={proposal.icon}
+                          alt={proposal.protocol}
+                          width={16}
+                          height={16}
+                          className="w-4 h-4"
+                        />
+                        <Typography
+                          variant="caption"
+                          color="accent"
+                          weight="medium"
+                          className="text-xs md:text-sm"
+                        >
+                          {proposal.protocol}
+                        </Typography>
+                      </span>
                       <Typography
                         variant="caption"
                         color="accent"
                         weight="medium"
-                        className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
-                      >
-                        {proposal.protocol}
-                      </Typography>
-                      <Typography
-                        variant="caption"
-                        color="accent"
-                        weight="medium"
-                        className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm"
+                        className={`px-3 py-1 border-2 rounded-full text-xs md:text-sm ${getTypeStyle(
+                          proposal.type
+                        )}`}
                       >
                         {proposal.type}
                       </Typography>
@@ -610,7 +637,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                                 weight="normal"
                                 className="text-xs md:text-sm"
                               >
-                                Voted{" "}
+                                Voted
                                 <Typography
                                   variant="body1"
                                   color="primary"
@@ -626,7 +653,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   variant="body1"
                                   color="primary"
                                   weight="medium"
-                                  className="inline"
+                                  className="inline text-[#A885CD]"
                                 >
                                   {proposal.hasRationale &&
                                   proposal.forumCreatedAt
@@ -651,7 +678,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                               <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
                                 {proposal.forumContent ? (
                                   <div
-                                    className="prose prose-sm max-w-none text-xs md:text-sm"
+                                    className="prose prose-sm max-w-none text-xs md:text-sm [&_a]:text-[#A885CD] [&_a]:underline [&_a:hover]:text-[#8B6FA8]"
                                     style={{
                                       color: "#1A1A1A",
                                       fontFamily: "PPMori, sans-serif",
@@ -661,14 +688,14 @@ const RecentVotes = React.memo(function RecentVotes() {
                                     }}
                                   />
                                 ) : (
-                                  <Typography
-                                    variant="body1"
-                                    color="light-gray"
-                                    weight="normal"
-                                    className="text-xs md:text-sm"
+                                  <a
+                                    href={proposal.commentLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs md:text-sm text-[#A885CD] hover:text-[#8B6FA8] underline break-all"
                                   >
                                     {proposal.commentLink}
-                                  </Typography>
+                                  </a>
                                 )}
                               </div>
                             </div>
@@ -711,7 +738,7 @@ const RecentVotes = React.memo(function RecentVotes() {
           >
             Recent Votes
           </Typography>
-          <div className="flex items-center ">
+          <div className="flex items-center gap-2">
             {protocols.map((protocol) => (
               <ProtocolButton
                 key={protocol.name}
@@ -758,8 +785,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                 No Votes Available
               </Typography>
               <Typography variant="body1" color="primary" weight="normal">
-                There are no recent votes to display for {activeTab} at the
-                moment. Please check back later!
+                There are no recent votes to display
+                {activeTab ? ` for ${activeTab}` : ""} at the moment. Please
+                check back later!
               </Typography>
             </div>
           </div>
@@ -784,7 +812,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                   </Typography>
                 </div>
                 <div
-                  className={` row-start-${baseRow} border border-black p-6 flex items-center justify-items-start`}
+                  className={`col-span-2 row-start-${baseRow} border border-black p-6 flex items-start justify-center flex-col gap-3`}
                 >
                   <Typography
                     variant="body1"
@@ -792,15 +820,19 @@ const RecentVotes = React.memo(function RecentVotes() {
                     weight="medium"
                     className="font-ppmori "
                   >
-                    Voted [{" "}
-                    <span className={getVoteResultColor(proposal.result)}>
-                      {proposal.result}
-                    </span>{" "}
-                    ]
+                    Voted{" "}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="primary"
+                    weight="medium"
+                    className={getVoteResultColor(proposal.result)}
+                  >
+                    {proposal.result}
                   </Typography>
                 </div>
                 <div
-                  className={`col-span-8 col-start-3 row-start-${baseRow} border border-black p-6 `}
+                  className={`col-span-4 col-start-4 row-start-${baseRow} border border-black p-6 `}
                 >
                   <Typography
                     variant="body1"
@@ -811,19 +843,29 @@ const RecentVotes = React.memo(function RecentVotes() {
                     {proposal.title}
                   </Typography>
                   <div className="flex gap-3">
+                    <span className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent flex items-center gap-2">
+                      <Image
+                        src={proposal.icon}
+                        alt={proposal.protocol}
+                        width={20}
+                        height={20}
+                        className="w-5 h-5"
+                      />
+                      <Typography
+                        variant="caption"
+                        color="accent"
+                        weight="medium"
+                      >
+                        {proposal.protocol}
+                      </Typography>
+                    </span>
                     <Typography
                       variant="caption"
                       color="accent"
                       weight="medium"
-                      className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
-                    >
-                      {proposal.protocol}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="accent"
-                      weight="medium"
-                      className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent"
+                      className={`px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
+                        proposal.type
+                      )}`}
                     >
                       {proposal.type}
                     </Typography>
@@ -890,14 +932,14 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   proposal.result
                                 )}`}
                               >
-                                {proposal.result}
+                                [ {proposal.result} ] {proposal.result}
                               </Typography>{" "}
                               on{" "}
                               <Typography
                                 variant="body1"
                                 color="primary"
                                 weight="medium"
-                                className="inline"
+                                className="inline text-[#A885CD]"
                               >
                                 {proposal.hasRationale &&
                                 proposal.forumCreatedAt
@@ -922,7 +964,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                             <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
                               {proposal.forumContent ? (
                                 <div
-                                  className="prose prose-sm max-w-none"
+                                  className="prose prose-sm max-w-none [&_a]:text-[#A885CD] [&_a]:underline [&_a:hover]:text-[#8B6FA8]"
                                   style={{
                                     color: "#1A1A1A",
                                     fontFamily: "PPMori, sans-serif",
@@ -932,13 +974,14 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   }}
                                 />
                               ) : (
-                                <Typography
-                                  variant="body1"
-                                  color="light-gray"
-                                  weight="normal"
+                                <a
+                                  href={proposal.commentLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-[#A885CD] hover:text-[#8B6FA8] underline break-all"
                                 >
                                   {proposal.commentLink}
-                                </Typography>
+                                </a>
                               )}
                             </div>
                           </div>
@@ -954,7 +997,7 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         {/* Footer Row - Always position at the bottom */}
         <div
-          className={`col-span-8 row-start-10 
+          className={`col-span-9 row-start-11 
          border border-black bg-[#DFF48D] p-10 flex items-center justify-center`}
         >
           <Link
