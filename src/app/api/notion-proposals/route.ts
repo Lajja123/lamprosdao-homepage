@@ -26,7 +26,7 @@ interface SimplifiedRecord {
   Protocol: string;
 }
 
-type ProtocolKey = "arbitrum" | "optimism" | "uniswap" | "superfluid";
+type ProtocolKey = "arbitrum" | "optimism" | "uniswap" | "superfluid" | "scroll";
 
 interface ProtocolPageConfig {
   id: string;
@@ -53,6 +53,9 @@ const PROTOCOL_PAGE_MAPPING: Record<ProtocolKey, ProtocolPageConfig[]> = {
   superfluid: [
     { id: "NEXT_PUBLIC_NOTION_PAGE_ID9", votingType: "Off-chain Voting" },
     // { id: "NEXT_PUBLIC_NOTION_PAGE_ID10", votingType: "On-chain Voting" }
+  ],
+  scroll: [
+    { id: "NEXT_PUBLIC_NOTION_PAGE_ID11", votingType: "On-chain Voting" },
   ],
 };
 
@@ -186,7 +189,13 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         // Fetch data for each voting type in this protocol
         const votingTypePromises = protocolPages.map(
           async ({ id, votingType }): Promise<SimplifiedRecord[]> => {
-            const pageId = process.env[id];
+            // Handle Scroll database ID directly
+            let pageId: string | undefined;
+            if (id === "SCROLL_DATABASE_ID") {
+              pageId = "29e61025a5ea8001bc60c0821694663f";
+            } else {
+              pageId = process.env[id];
+            }
 
             if (!pageId) {
               return [];

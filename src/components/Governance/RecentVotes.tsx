@@ -14,6 +14,7 @@ import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
+import scroll from "@/assests/Governance/scroll.svg";
 import bgImage1 from "@/assests/Governance/reportbg.png";
 import Arrow from "../UI/Arrow";
 import Button from "../UI/Button";
@@ -143,6 +144,12 @@ const RecentVotes = React.memo(function RecentVotes() {
         icon: superfluid,
         link: "https://forum.superfluid.org/t/lampros-dao-delegate-thread/266",
       },
+      {
+        name: "Scroll",
+        value: "scroll",
+        icon: scroll,
+        link: "",
+      },
     ],
     []
   );
@@ -208,6 +215,7 @@ const RecentVotes = React.memo(function RecentVotes() {
       if (link.includes("uniswap")) return "Uniswap";
       if (link.includes("ens")) return "ENS";
       if (link.includes("superfluid")) return "Superfluid";
+      if (link.includes("scroll")) return "Scroll";
       return "Arbitrum";
     },
     []
@@ -220,6 +228,7 @@ const RecentVotes = React.memo(function RecentVotes() {
       optimism: op,
       uniswap: uniswap,
       superfluid: superfluid,
+      scroll: scroll,
     };
 
     return (
