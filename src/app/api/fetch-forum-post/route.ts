@@ -33,6 +33,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   let forumUrl: string;
   if (protocol === "superfluid") {
     forumUrl = `https://forum.superfluid.org/t/${postId}/${postNumber}.json`;
+  } else if (protocol === "scroll") {
+    forumUrl = `https://forum.scroll.io/t/${postId}/${postNumber}.json`;
   } else {
     // Default to Arbitrum forum for Arbitrum and other protocols
     forumUrl = `https://forum.arbitrum.foundation/t/${postId}/${postNumber}.json`;
