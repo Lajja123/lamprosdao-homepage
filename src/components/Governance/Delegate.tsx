@@ -5,6 +5,7 @@ import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
+import scroll from "@/assests/Governance/scroll.svg";
 import Link from "next/link";
 import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
 
@@ -34,6 +35,12 @@ export default function Delegate() {
       img: superfluid,
       alt: "superfluid",
       href: "https://claim.superfluid.org/governance",
+    },
+    {
+      name: "Scroll",
+      img: scroll,
+      alt: "scroll",
+      href: "https://gov.scroll.io/delegates/lamprosdao.eth",
     },
   ];
   return (

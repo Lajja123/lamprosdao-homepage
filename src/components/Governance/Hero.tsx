@@ -5,11 +5,13 @@ import Link from "next/link";
 
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
+import superfluid from "@/assests/Governance/superfluid_green.svg";
 import { Grid, GridCell } from "../UI/Grid";
 import euphoria from "@/assests/Governance/euphoria.jpg";
 import hirangi from "@/assests/Governance/hirangi.jpg";
 import chain from "@/assests/Governance/chain-l.jpg";
 import link from "@/assests/Governance/link.svg";
+import scroll from "@/assests/Governance/scroll.svg";
 
 export default function Hero() {
   const teamMembers = [
@@ -139,9 +141,9 @@ export default function Hero() {
             </Typography>
           </div>
 
-          <div className="flex flex-row justify-center gap-10 items-center ">
+          <div className="grid grid-cols-2">
             {/* Arbitrum */}
-            <div className=" border-r border-white p-6">
+            <div className="border-r border-b border-white p-6 flex items-center justify-center">
               <Link
                 href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
                 target="_blank"
@@ -167,7 +169,7 @@ export default function Hero() {
             </div>
 
             {/* Optimism */}
-            <div className="">
+            <div className="border-l border-b border-white p-6 flex items-center justify-center">
               <Link
                 href="https://vote.optimism.io/delegates/lamprosdao.eth"
                 target="_blank"
@@ -187,6 +189,58 @@ export default function Hero() {
                     className="font-ppmori text-sm md:text-base"
                   >
                     Optimism
+                  </Typography>
+                </div>
+              </Link>
+            </div>
+
+            {/* Scroll */}
+            <div className="border-r border-white p-6 flex items-center justify-center">
+              <Link
+                href="https://forum.scroll.io/t/lampros-dao-delegate-thread/1091?u=euphoria"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
+                  <Image
+                    src={scroll}
+                    alt="scroll"
+                    className="w-6 md:w-10"
+                    quality={100}
+                  />
+                  <Typography
+                    variant="subtitle2"
+                    color="primary"
+                    weight="semibold"
+                    className="font-ppmori text-sm md:text-base"
+                  >
+                    Scroll
+                  </Typography>
+                </div>
+              </Link>
+            </div>
+
+            {/* Superfluid */}
+            <div className="border-l border-white p-6 flex items-center justify-center">
+              <Link
+                href="https://forum.superfluid.org/t/lampros-dao-delegate-thread/266?u=euphoria"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
+                  <Image
+                    src={superfluid}
+                    alt="superfluid"
+                    className="w-6 md:w-10"
+                    quality={100}
+                  />
+                  <Typography
+                    variant="subtitle2"
+                    color="primary"
+                    weight="semibold"
+                    className="font-ppmori text-sm md:text-base"
+                  >
+                    Superfluid
                   </Typography>
                 </div>
               </Link>
@@ -281,7 +335,7 @@ export default function Hero() {
       {/* OUR DELEGATIONS Section */}
       <div className=" grid-cols-8 mt-0 bg-[#1A1A1A] hidden lg:grid">
         <GridCell
-          rowSpan={2}
+          rowSpan={3}
           className="col-span-1 border-t border-l border-r border-white"
         />
 
@@ -300,11 +354,11 @@ export default function Hero() {
           </Typography>
         </GridCell>
 
-        {/* <GridCell className="col-start-8 border-t border-l border-r border-white" /> */}
         <GridCell
-          rowSpan={2}
+          rowSpan={3}
           className="col-start-8 border-t border-l border-r border-white"
         />
+        
         <GridCell className="row-start-2 border-t border-l border-r border-white" />
 
         <GridCell colSpan={3} className="row-start-2  p-6 border border-white">
@@ -360,8 +414,69 @@ export default function Hero() {
             </div>
           </Link>
         </GridCell>
+
         <GridCell className="col-start-8 row-start-2 border border-white" />
+
+        <GridCell className="row-start-3 border-t border-l border-r border-white" />
+
+        {/* Scroll and Superfluid Buttons */}
+        <GridCell colSpan={3} className="row-start-3  p-6 border border-white">
+          <Link
+            href="https://forum.scroll.io/t/lampros-dao-delegate-thread/1091?u=euphoria"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div
+              className={`rounded-full my-5 p-5 flex border- border-white items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+            >
+              <Image
+                src={scroll}
+                alt="scroll"
+                className="w-10"
+                quality={100}
+              />
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                weight="semibold"
+                className="font-ppmori hover:underline"
+              >
+                Scroll
+              </Typography>
+              <Image src={link} alt="link" className="w-10 " />
+            </div>
+          </Link>
+        </GridCell>
+
+        <GridCell
+          colSpan={3}
+          className="col-start-5 row-start-3  p-6 border border-white"
+        >
+          <Link
+            href="https://forum.superfluid.org/t/lampros-dao-delegate-thread/266?u=euphoria"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div
+              className={`rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg mx-10 cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+            >
+              <Image src={superfluid} alt="superfluid" className="w-10" quality={100} />
+              <Typography
+                variant="subtitle2"
+                color="primary"
+                weight="semibold"
+                className="font-ppmori hover:underline"
+              >
+                Superfluid
+              </Typography>
+              <Image src={link} alt="link" className="w-10 " />
+            </div>
+          </Link>
+        </GridCell>
+
+        <GridCell className="col-start-8 row-start-3 border border-white" />
       </div>
+      
     </>
   );
 }
