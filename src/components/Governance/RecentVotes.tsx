@@ -480,7 +480,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : error ? (
             // Error state
-            <div className=" text-center">
+            <div className=" text-center p-5">
               <Typography
                 variant="h3"
                 color="primary"
@@ -500,7 +500,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : noData ? (
             // No data state
-            <div className="text-center">
+            <div className="text-center p-5">
               <Typography
                 variant="h3"
                 color="primary"
