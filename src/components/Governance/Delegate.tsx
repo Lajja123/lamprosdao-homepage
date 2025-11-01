@@ -241,30 +241,28 @@ export default function Delegate() {
         </div>
         <div className="row-span-4 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
         {/* Infinite scrolling row - all platforms in one */}
-        <div className="col-span-8 col-start-2 row-start-4 border border-black bg-white overflow-x-hidden overflow-y-visible">
-          <div className="w-full">
-            <div className="animate-scroll w-max flex">
-              {/* Single group mapping a doubled array for seamless loop */}
-              <div className="flex items-center gap-8 py-5">
-                {[...protocols, ...protocols].map((p, idx) => (
-                  <div
-                    key={`${p.name}-${idx}`}
-                    className="relative group flex items-center gap-3 px-6"
-                  >
-                    <Image src={p.img} alt={p.alt} className="w-10" />
-                    <Link href={p.href} target="_blank">
-                      <Typography
-                        variant="body2"
-                        color="primary"
-                        weight="bold"
-                        className="font-ppmori hover:underline cursor-pointer whitespace-nowrap"
-                      >
-                        {p.name}
-                      </Typography>
-                    </Link>
-                  </div>
-                ))}
-              </div>
+        <div className="col-span-8 col-start-2 row-start-4 border border-black bg-white overflow-x-hidden">
+          <div className="w-full relative">
+            <div className="animate-scroll w-max flex py-5 items-center">
+              {/* Continuous loop - duplicated array for seamless scrolling */}
+              {[...protocols, ...protocols].map((p, idx) => (
+                <div
+                  key={`${p.name}-${idx}`}
+                  className="relative group flex items-center gap-3 flex-shrink-0 px-12"
+                >
+                  <Image src={p.img} alt={p.alt} className="w-10 flex-shrink-0" />
+                  <Link href={p.href} target="_blank" className="flex-shrink-0">
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      weight="bold"
+                      className="font-ppmori hover:underline cursor-pointer whitespace-nowrap"
+                    >
+                      {p.name}
+                    </Typography>
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>

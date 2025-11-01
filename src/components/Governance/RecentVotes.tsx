@@ -31,7 +31,7 @@ import type {
 // Memoized Loading Skeleton Component
 const LoadingSkeleton = React.memo(() => (
   <>
-    {Array.from({ length: 5 }).map((_, index) => (
+    {Array.from({ length: 4 }).map((_, index) => (
       <React.Fragment key={index}>
         <div
           className={`row-start-${
@@ -278,7 +278,7 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         const transformedProposals = await Promise.allSettled(
           validProposals
-            .slice(0, 5)
+            .slice(0, 4)
             .map(async (proposal: NotionProposalData, index: number) => {
               const protocol =
                 activeTab ||
@@ -651,9 +651,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   variant="body1"
                                   color="primary"
                                   weight="medium"
-                                  className={`inline ${getVoteResultColor(
-                                    proposal.result
-                                  )}`}
+                                  className="inline text-[#A885CD]"
                                 >
                                   {proposal.result}
                                 </Typography>{" "}
@@ -937,11 +935,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                                 variant="body1"
                                 color="primary"
                                 weight="medium"
-                                className={`inline ${getVoteResultColor(
-                                  proposal.result
-                                )}`}
+                                className="inline text-[#A885CD]"
                               >
-                                [ {proposal.result} ] {proposal.result}
+                                {proposal.result} 
                               </Typography>{" "}
                               on{" "}
                               <Typography
