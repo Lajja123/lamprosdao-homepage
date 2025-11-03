@@ -34,20 +34,23 @@ const LoadingSkeleton = React.memo(() => (
     {Array.from({ length: 4 }).map((_, index) => (
       <React.Fragment key={index}>
         <div
-          className={`row-start-${index + 2
-            } border border-black p-6 flex items-center justify-center`}
+          className={`row-start-${
+            index + 2
+          } border border-black p-6 flex items-center justify-center`}
         >
           <div className="w-8 h-8 bg-gray-300 animate-pulse rounded"></div>
         </div>
         <div
-          className={`col-span-2 row-start-${index + 2
-            } border border-black p-6 flex items-center`}
+          className={`col-span-2 row-start-${
+            index + 2
+          } border border-black p-6 flex items-center`}
         >
           <div className="w-24 h-4 bg-gray-300 animate-pulse rounded"></div>
         </div>
         <div
-          className={`col-span-6 col-start-4 row-start-${index + 2
-            } border border-black p-6`}
+          className={`col-span-6 col-start-4 row-start-${
+            index + 2
+          } border border-black p-6`}
         >
           <div className="w-full h-4 bg-gray-300 animate-pulse rounded mb-3"></div>
           <div className="flex gap-2">
@@ -56,8 +59,9 @@ const LoadingSkeleton = React.memo(() => (
           </div>
         </div>
         <div
-          className={`relative col-start-8 row-start-${index + 2
-            } border-b border-white bg-[#2A2A2A] flex items-center justify-center`}
+          className={`relative col-start-8 row-start-${
+            index + 2
+          } border-b border-white bg-[#2A2A2A] flex items-center justify-center`}
         >
           <div className="w-6 h-6 bg-gray-300 animate-pulse rounded"></div>
         </div>
@@ -82,12 +86,13 @@ const ProtocolButton = React.memo(
     <div className="relative group">
       <button
         onClick={() => onClick(protocol.name)}
-        className={`cursor-pointer px-6 py-2 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${isActive
+        className={`cursor-pointer px-6 py-2 rounded-full transition-all flex items-center gap-2 hover:bg-[#2F2B2B] hover:text-white ${
+          isActive
             ? "bg-[#2F2B2B] text-white border border-[#2F2B2B]"
             : "bg-white text-gray-700 border border-[#A885CD]"
-          }`}
+        }`}
       >
-        <Image src={protocol.icon} alt={protocol.name} className="w-7" />
+        <Image src={protocol.icon} alt={protocol.name} className="w-5 md:w-7" />
       </button>
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-[#2F2B2B] text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
@@ -246,7 +251,8 @@ const RecentVotes = React.memo(function RecentVotes() {
       const queryString = protocolObj ? `?protocol=${protocolObj.value}` : "";
 
       console.log(
-        `Fetching data for ${activeTab || "all protocols"
+        `Fetching data for ${
+          activeTab || "all protocols"
         }, request ID: ${thisRequestId}`
       );
       const response = await fetch(`/api/notion-proposals${queryString}`);
@@ -400,12 +406,12 @@ const RecentVotes = React.memo(function RecentVotes() {
   // Memoize vote result color function
   const getVoteResultColor = useCallback((result: string): string => {
     switch (result) {
-    case "For":
-      return "bg-white text-[#A885CD]  ";
-    case "Against":
-      return "bg-white text-[#A885CD] ";
-    default:
-      return "bg-white text-[#A885CD] ";
+      case "For":
+        return "bg-white text-[#A885CD]  ";
+      case "Against":
+        return "bg-white text-[#A885CD] ";
+      default:
+        return "bg-white text-[#A885CD] ";
     }
   }, []);
 
@@ -657,7 +663,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                                   className="inline text-[#A885CD]"
                                 >
                                   {proposal.hasRationale &&
-                                    proposal.forumCreatedAt
+                                  proposal.forumCreatedAt
                                     ? formatDate(proposal.forumCreatedAt)
                                     : formatDate(proposal.endDate)}
                                 </Typography>
@@ -941,7 +947,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                                 className="inline text-[#A885CD]"
                               >
                                 {proposal.hasRationale &&
-                                  proposal.forumCreatedAt
+                                proposal.forumCreatedAt
                                   ? formatDate(proposal.forumCreatedAt)
                                   : formatDate(proposal.endDate)}
                               </Typography>

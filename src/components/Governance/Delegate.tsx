@@ -47,8 +47,6 @@ export default function Delegate() {
     <>
       {/* Mobile Layout */}
       <div className="lg:hidden bg-[#1A1A1A]">
-
-        
         {/* Image Section */}
         <div className="border-b border-white p-4 md:p-6 flex items-center justify-center">
           <Image
@@ -66,7 +64,8 @@ export default function Delegate() {
             className="tracking-wide uppercase  text-center"
           >
             <span className="uppercase font-bohemian wavy-letter">D</span>ele
-            <span className="uppercase font-bohemian wavy-letter">g</span>ate to <br></br>
+            <span className="uppercase font-bohemian wavy-letter">g</span>ate to{" "}
+            <br></br>
             <span className="uppercase font-bohemian wavy-letter">L</span>am
             <span className="uppercase font-bohemian wavy-letter">P</span>ros D
             <span className="uppercase font-bohemian wavy-letter">A</span>O
@@ -99,7 +98,6 @@ export default function Delegate() {
             </Typography>
           </div>
         </div>
-
 
         {/* Delegation Buttons */}
         <div className="">
@@ -161,7 +159,11 @@ export default function Delegate() {
               target="_blank"
               className="flex items-center gap-3 p-4 bg-[#1A1A1A] justify-center"
             >
-              <Image src={superfluid} alt="superfluid" className="w-8 md:w-10" />
+              <Image
+                src={superfluid}
+                alt="superfluid"
+                className="w-8 md:w-10"
+              />
               <Typography
                 variant="body2"
                 color="white"
@@ -174,11 +176,10 @@ export default function Delegate() {
             </Link>
           </div>
         </div>
-
-       
       </div>
 
       {/* Desktop Layout */}
+
       <div
         id="delegate"
         className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]"
@@ -210,7 +211,7 @@ export default function Delegate() {
             [ Your Delegation Matters !! ]
           </Typography>
         </div>
-        <div className="col-span-4 row-span-2 row-start-2 border border-white flex items-center flex-col gap-5 justify-center">
+        <div className="col-span-4 row-span-2 row-start-2 border border-white p-5 flex items-center flex-col gap-5 justify-center">
           <Typography
             variant="subtitle2"
             color="white"
@@ -241,16 +242,20 @@ export default function Delegate() {
         </div>
         <div className="row-span-4 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
         {/* Infinite scrolling row - all platforms in one */}
-        <div className="col-span-8 col-start-2 row-start-4 border border-black bg-white overflow-x-hidden">
+        <div className="col-span-8 col-start-2 row-start-4  bg-white overflow-x-hidden">
           <div className="w-full relative">
             <div className="animate-scroll w-max flex py-5 items-center">
-              {/* Continuous loop - duplicated array for seamless scrolling */}
-              {[...protocols, ...protocols].map((p, idx) => (
+              {/* Continuous loop - duplicated array multiple times for seamless scrolling */}
+              {[...protocols, ...protocols, ...protocols].map((p, idx) => (
                 <div
                   key={`${p.name}-${idx}`}
                   className="relative group flex items-center gap-3 flex-shrink-0 px-12"
                 >
-                  <Image src={p.img} alt={p.alt} className="w-10 flex-shrink-0" />
+                  <Image
+                    src={p.img}
+                    alt={p.alt}
+                    className="w-10 flex-shrink-0"
+                  />
                   <Link href={p.href} target="_blank" className="flex-shrink-0">
                     <Typography
                       variant="body2"

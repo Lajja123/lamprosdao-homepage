@@ -263,9 +263,9 @@ export default function Reports({ activeChain }: ReportsProps) {
                 </div>
                 <div
                   key={`desc-spacer-${i}`}
-                  className={`col-start-6 row-start-${
-                    rowBase + 1
-                  } border-b border-white`}
+                  className={`col-start-6 row-start-${rowBase + 1} ${
+                    rightItem ? "border-b border-white" : ""
+                  }`}
                 ></div>
 
                 {rightItem && (

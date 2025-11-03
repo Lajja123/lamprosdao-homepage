@@ -330,13 +330,14 @@ export default function Hero() {
             </Link>
           </GridCell>
         ))}
+        <GridCell rowSpan={3} className="col-start-8" />
       </div>
 
       {/* OUR DELEGATIONS Section */}
       <div className=" grid-cols-8 mt-0 bg-[#1A1A1A] hidden lg:grid">
         <GridCell
           rowSpan={3}
-          className="col-span-1 border-t border-l border-r border-white"
+          className="col-span-1 border-t border-l border-r border-white "
         />
 
         <GridCell
@@ -354,14 +355,12 @@ export default function Hero() {
           </Typography>
         </GridCell>
 
-        <GridCell
-          rowSpan={3}
-          className="col-start-8 border-t border-l border-r border-white "
-        />
-        
         <GridCell className="row-start-2 border-t border-l border-r border-white" />
 
-        <GridCell colSpan={6} className="row-start-2  p-6 border border-white flex flex-row justify-around items-center gap-5">
+        <GridCell
+          colSpan={6}
+          className="row-start-2  p-6 border border-white flex flex-row justify-around items-center gap-5"
+        >
           <Link
             href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
             target="_blank"
@@ -415,12 +414,7 @@ export default function Hero() {
             <div
               className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
-              <Image
-                src={scroll}
-                alt="scroll"
-                className="w-7"
-                quality={100}
-              />
+              <Image src={scroll} alt="scroll" className="w-7" quality={100} />
               <Typography
                 variant="subtitle2"
                 color="primary"
@@ -440,7 +434,12 @@ export default function Hero() {
             <div
               className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
             >
-              <Image src={superfluid} alt="superfluid" className="w-7" quality={100} />
+              <Image
+                src={superfluid}
+                alt="superfluid"
+                className="w-7"
+                quality={100}
+              />
               <Typography
                 variant="subtitle2"
                 color="primary"
@@ -454,12 +453,8 @@ export default function Hero() {
           </Link>
         </GridCell>
 
-       
-
-
         <GridCell className="col-start-8 row-start-3 border border-white" />
       </div>
-      
     </>
   );
 }

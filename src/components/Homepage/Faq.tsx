@@ -198,45 +198,6 @@ export default function Faq() {
 
   const currentItems = getCurrentSectionItems();
 
-  // Reveal animations when section becomes visible - only FAQ title
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      // FAQ title animation only
-      const faqTitle = sectionRef.current?.querySelector(".faq-title");
-      const mobileFaqTitle =
-        mobileSectionRef.current?.querySelector(".faq-title");
-
-      [faqTitle, mobileFaqTitle].forEach((title) => {
-        if (title) {
-          gsap.fromTo(
-            title,
-            {
-              opacity: 0,
-              scale: 0.9,
-            },
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 0.8,
-              ease: "back.out(1.7)",
-              scrollTrigger: {
-                trigger: title,
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        }
-      });
-    }, [sectionRef, mobileSectionRef]);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []); // Remove currentSection dependency so it doesn't retrigger on arrow clicks
-
   // Render FAQ item component
   const renderFaqItem = (item: any, index: number, applyRowStart: boolean) => {
     if (!item) return null;
