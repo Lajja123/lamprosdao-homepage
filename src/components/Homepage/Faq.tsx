@@ -1,104 +1,19 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect, useRef, Fragment } from "react";
-import left from "@/assests/common/arrow1.svg";
-import right from "@/assests/common/arrow1.svg";
-import top from "@/assests/Faq/top.svg";
-import bottom from "@/assests/Faq/bottom.svg";
-import question from "@/assests/Faq/question.svg";
-import clip from "@/assests/Faq/clip.svg";
+import { useState, useRef, Fragment } from "react";
 import { Typography } from "@/components/UI/Typography";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
+import Arrow from "../UI/Arrow";
+import { NumberCell, ContentCell, IconCell } from "@/components/UI/FaqCell";
+import { combineStyles } from "@/utils/commonStyles";
+import faqContent from "@/data/faqContent.json";
+import { useFaqConfig } from "@/hooks/useFaqConfig";
+import type { FaqItem } from "@/types/home/faq";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import {
-  commonStyles,
-  stylePresets,
-  combineStyles,
-} from "@/utils/commonStyles";
-import faqContent from "@/data/faqContent.json";
-import Arrow from "../UI/Arrow";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-// Reusable components
-const NumberCell = ({
-  number,
-  rowStart,
-}: {
-  number: string;
-  rowStart?: string;
-}) => (
-  <div
-    className={combineStyles(
-      "col-span-2 sm:col-span-1 border-b border-r md:border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center",
-      rowStart ? `row-start-${rowStart}` : ""
-    )}
-  >
-    <Typography
-      variant="h5"
-      color="primary"
-      weight="semibold"
-      className="font-psygen text-xs sm:text-sm md:text-base lg:text-lg"
-    >
-      {number}
-    </Typography>
-  </div>
-);
-
-const ContentCell = ({
-  children,
-  rowStart,
-}: {
-  children: React.ReactNode;
-  rowStart?: string;
-}) => (
-  <div
-    className={combineStyles(
-      "col-span-6 sm:col-span-8 border-b md:border border-black p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center min-w-0",
-      rowStart ? `row-start-${rowStart}` : ""
-    )}
-  >
-    <div className="flex-1 min-w-0 px-1 sm:px-2 md:px-4 lg:px-6 xl:px-10 py-2 sm:py-2">
-      {children}
-    </div>
-  </div>
-);
-
-const IconCell = ({
-  rowStart,
-  onClick,
-  isExpanded = false,
-  iconRef,
-}: {
-  rowStart?: string;
-  onClick?: () => void;
-  isExpanded?: boolean;
-  iconRef?: React.RefObject<HTMLDivElement>;
-}) => (
-  <div
-    ref={iconRef}
-    className={combineStyles(
-      "col-span-2 sm:col-span-1 border-b md:border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer group hover:bg-opacity-10 transition-all duration-300",
-      rowStart ? `row-start-${rowStart}` : ""
-    )}
-    onClick={onClick}
-  >
-    <Image
-      src={isExpanded ? top : bottom}
-      alt={isExpanded ? "collapse item" : "expand item"}
-      width={24}
-      height={24}
-      className={combineStyles(
-        commonStyles.components.iconContainer.purple,
-        "transition-all duration-300 ease-in-out w-5 h-5 sm:w-6 sm:h-6 md:w-10 md:h-10 group-hover:scale-110 group-hover:brightness-110 group-hover:rotate-12"
-      )}
-    />
-  </div>
-);
 
 export default function Faq() {
   const [currentSection, setCurrentSection] = useState(0);
@@ -107,9 +22,10 @@ export default function Faq() {
   const itemsPerSection = 3;
   const totalSections = Math.ceil(faqItems.length / itemsPerSection);
 
+  const { images, backgroundImages, textConfig, arrowConfig, layoutConfig } =
+    useFaqConfig();
+
   // Refs for animations
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const mobileSectionRef = useRef<HTMLDivElement>(null);
   const answerRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
   // Function to set answer ref
@@ -199,7 +115,11 @@ export default function Faq() {
   const currentItems = getCurrentSectionItems();
 
   // Render FAQ item component
-  const renderFaqItem = (item: any, index: number, applyRowStart: boolean) => {
+  const renderFaqItem = (
+    item: FaqItem,
+    index: number,
+    applyRowStart: boolean
+  ) => {
     if (!item) return null;
 
     return (
@@ -207,6 +127,8 @@ export default function Faq() {
         <NumberCell
           number={String(item.id).padStart(2, "0")}
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
+          numberColor={textConfig.numberColor as `#${string}` | "primary"}
+          numberClassName={textConfig.numberClassName}
         />
         <ContentCell
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
@@ -214,11 +136,11 @@ export default function Faq() {
           <div>
             <Typography
               variant="body2"
-              color="primary"
+              color={textConfig.questionColor as `#${string}` | "primary"}
               weight="semibold"
               className={combineStyles(
-                "text-xs sm:text-sm md:text-base lg:text-lg",
-                commonStyles.typography.wrap.words
+                textConfig.questionClassName,
+                "break-words"
               )}
             >
               {item.question}
@@ -234,11 +156,11 @@ export default function Faq() {
             >
               <Typography
                 variant="body2"
-                color="primary"
+                color={textConfig.answerColor as `#${string}` | "primary"}
                 weight="semibold"
                 className={combineStyles(
-                  "text-xs sm:text-sm md:text-base lg:text-lg",
-                  commonStyles.typography.wrap.words
+                  textConfig.answerClassName,
+                  "break-words"
                 )}
               >
                 {item.answer}
@@ -250,6 +172,8 @@ export default function Faq() {
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
           onClick={() => toggleExpanded(item.id)}
           isExpanded={expandedItems.has(item.id)}
+          expandIcon={images.expandIcon}
+          collapseIcon={images.collapseIcon}
         />
       </>
     );
@@ -258,27 +182,35 @@ export default function Faq() {
   return (
     <>
       {/* Mobile Layout */}
-      <div className="block md:hidden" ref={mobileSectionRef}>
-        <div className="grid grid-cols-10 border border-black min-w-[320px]">
+      <div className="block md:hidden">
+        <div className={layoutConfig.mobile.grid.className}>
           {/* Mobile Header Row: FAQ text (2 cols) + Question image (1 col) */}
-          <div className="col-span-10 grid grid-cols-3 border-b border-black">
-            <div className="col-span-2 border-r border-black flex justify-center items-center p-2">
+          <div className={layoutConfig.mobile.headerRow.className}>
+            <div className={layoutConfig.mobile.titleCell.className}>
               <Typography
                 variant="h1"
-                color="primary"
+                color={textConfig.titleColor as `#${string}` | "primary"}
                 weight="semibold"
                 align="center"
-                className="font-ppmori uppercase  leading-tight"
+                className={textConfig.titleClassName}
               >
                 F <span className="uppercase font-bohemian wavy-letter">A</span>{" "}
                 Q
               </Typography>
             </div>
-            <div className="col-span-1 bg-[#CBE9FF] flex w-full justify-center items-center p-4 question-mark">
+            <div
+              className={layoutConfig.mobile.questionCell.className}
+              style={{
+                backgroundColor:
+                  layoutConfig.mobile.questionCell.backgroundColor,
+              }}
+            >
               <Image
-                src={question}
-                alt="question mark"
-                className="w-10 h-10 object-contain"
+                src={images.question.src}
+                alt={images.question.alt}
+                className={images.question.className}
+                width={images.question.width}
+                height={images.question.height}
               />
             </div>
           </div>
@@ -291,15 +223,15 @@ export default function Faq() {
           ))}
 
           {/* Mobile Footer Row: Left Arrow (1 col) + Clip (1 col) + Right Arrow (1 col) */}
-          <div className="col-span-10 grid grid-cols-3 border-t border-black">
+          <div className={layoutConfig.mobile.footerRow.className}>
             {/* Left arrow */}
-            <div className="col-span-1 relative border-r border-black">
+            <div className={layoutConfig.mobile.arrowCell.className}>
               <div
                 className={combineStyles(
                   "cursor-pointer absolute inset-0 flex items-center justify-center"
                 )}
                 style={{
-                  backgroundImage: `url(${bgImage2.src})`,
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -311,33 +243,35 @@ export default function Faq() {
                 >
                   <Arrow
                     direction="left"
-                    size={30}
-                    hoverScale={1.15}
-                    hoverColor="#D0FFAC"
-                    transitionDuration={0.3}
-                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                    size={arrowConfig.mobile.size}
+                    hoverScale={arrowConfig.mobile.hoverScale}
+                    hoverColor={arrowConfig.mobile.hoverColor}
+                    transitionDuration={arrowConfig.mobile.transitionDuration}
+                    className={arrowConfig.mobile.className}
                   />
                 </button>
               </div>
             </div>
 
             {/* Clip image center */}
-            <div className="col-span-1 border-r border-black flex justify-center items-center p-4">
+            <div className={layoutConfig.mobile.clipCell.className}>
               <Image
-                src={clip}
-                alt="clip"
-                className="w-10 h-10 object-contain"
+                src={images.clip.src}
+                alt={images.clip.alt}
+                className={images.clip.className}
+                width={images.clip.width}
+                height={images.clip.height}
               />
             </div>
 
             {/* Right arrow */}
-            <div className="col-span-1 relative">
+            <div className={layoutConfig.mobile.arrowCell.className}>
               <div
                 className={combineStyles(
                   "cursor-pointer absolute inset-0 flex items-center justify-center"
                 )}
                 style={{
-                  backgroundImage: `url(${bgImage2.src})`,
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
@@ -349,11 +283,11 @@ export default function Faq() {
                 >
                   <Arrow
                     direction="right"
-                    size={30}
-                    hoverScale={1.15}
-                    hoverColor="#D0FFAC"
-                    transitionDuration={0.3}
-                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                    size={arrowConfig.mobile.size}
+                    hoverScale={arrowConfig.mobile.hoverScale}
+                    hoverColor={arrowConfig.mobile.hoverColor}
+                    transitionDuration={arrowConfig.mobile.transitionDuration}
+                    className={arrowConfig.mobile.className}
                   />
                 </button>
               </div>
@@ -363,8 +297,8 @@ export default function Faq() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden md:block" ref={sectionRef}>
-        <div className="grid grid-cols-10 border border-black min-w-[640px] md:min-w-[768px] lg:min-w-[1024px]">
+      <div className="hidden md:block">
+        <div className={layoutConfig.desktop.grid.className}>
           {/* Dynamically render FAQ items */}
           {currentItems.map((item, index) => (
             <Fragment key={item.id}>
@@ -373,19 +307,27 @@ export default function Faq() {
           ))}
 
           <div
-            className="row-start-4 bg-[#CBE9FF] flex w-full justify-center items-center border border-black p-2 sm:p-4 question-mark"
-            style={{ gridRowStart: currentItems.length + 1 }}
+            className={layoutConfig.desktop.headerCell.className}
+            style={{
+              gridRowStart: currentItems.length + 1,
+              backgroundColor: layoutConfig.desktop.headerCell.backgroundColor,
+            }}
           >
-            <Image src={question} alt="question mark" />
+            <Image
+              src={images.questionDesktop.src}
+              alt={images.questionDesktop.alt}
+              width={images.questionDesktop.width}
+              height={images.questionDesktop.height}
+            />
           </div>
 
           <div
-            className="col-span-4 row-start-4 border border-black flex justify-center items-center p-2 sm:p-4 faq-title"
+            className={layoutConfig.desktop.titleCell.className}
             style={{ gridRowStart: currentItems.length + 1 }}
           >
             <Typography
               variant="h1"
-              color="primary"
+              color={textConfig.titleColor as `#${string}` | "primary"}
               weight="semibold"
               align="center"
               className="font-ppmori uppercase text-[16px] sm:text-[24px] md:text-[36px] lg:text-[48px] xl:text-[64px] 2xl:text-[88px] leading-tight"
@@ -395,7 +337,7 @@ export default function Faq() {
           </div>
 
           <div
-            className="relative border border-black"
+            className={layoutConfig.desktop.arrowCell.className}
             style={{ gridRowStart: currentItems.length + 1 }}
           >
             <div
@@ -403,7 +345,7 @@ export default function Faq() {
                 "cursor-pointer absolute inset-0 flex items-center justify-center group"
               )}
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -412,28 +354,30 @@ export default function Faq() {
             >
               <Arrow
                 direction="left"
-                size={70}
-                hoverScale={1.2}
-                hoverColor="#D0FFAC"
-                transitionDuration={0.3}
-                className="w-[30px] h-[30px] sm:w-[20px] sm:h-[20px] md:w-[30px] md:h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[50px] xl:h-[50px] group-hover:brightness-110"
+                size={arrowConfig.desktop.size}
+                hoverScale={arrowConfig.desktop.hoverScale}
+                hoverColor={arrowConfig.desktop.hoverColor}
+                transitionDuration={arrowConfig.desktop.transitionDuration}
+                className={arrowConfig.desktop.className}
               />
             </div>
           </div>
 
           <div
-            className="col-span-3 col-start-7 row-start-4 border border-black w-full flex justify-center items-center p-2 sm:p-4"
+            className={layoutConfig.desktop.clipCell.className}
             style={{ gridRowStart: currentItems.length + 1 }}
           >
             <Image
-              src={clip}
-              alt="clip"
-              className="w-[30%] sm:w-[40%] md:w-[50%] mx-auto clip-image"
+              src={images.clipDesktop.src}
+              alt={images.clipDesktop.alt}
+              className={images.clipDesktop.className}
+              width={images.clipDesktop.width}
+              height={images.clipDesktop.height}
             />
           </div>
 
           <div
-            className="relative border border-black"
+            className={layoutConfig.desktop.arrowCell.className}
             style={{ gridRowStart: currentItems.length + 1 }}
           >
             <div
@@ -441,7 +385,7 @@ export default function Faq() {
                 "cursor-pointer absolute inset-0 flex items-center justify-center group"
               )}
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -450,11 +394,11 @@ export default function Faq() {
             >
               <Arrow
                 direction="right"
-                size={70}
-                hoverScale={1.2}
-                hoverColor="#D0FFAC"
-                transitionDuration={0.3}
-                className="w-[30px] h-[30px] sm:w-[20px] sm:h-[20px] md:w-[30px] md:h-[30px] lg:w-[40px] lg:h-[40px] xl:w-[50px] xl:h-[50px] group-hover:brightness-110"
+                size={arrowConfig.desktop.size}
+                hoverScale={arrowConfig.desktop.hoverScale}
+                hoverColor={arrowConfig.desktop.hoverColor}
+                transitionDuration={arrowConfig.desktop.transitionDuration}
+                className={arrowConfig.desktop.className}
               />
             </div>
           </div>
