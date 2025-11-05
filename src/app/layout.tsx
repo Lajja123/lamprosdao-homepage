@@ -126,7 +126,7 @@ export default function RootLayout({
               },
             },
             {
-              text: "Arbitrum DRIP Epoch 4 live - Earn Rewards",
+              text: "Arbitrum DRIP Epoch 5 live - Earn Rewards",
               link: {
                 text: "Earn Rewards",
                 url: "https://arbitrumdrip.com/",
