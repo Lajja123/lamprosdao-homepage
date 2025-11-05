@@ -45,3 +45,27 @@ export type {
   FaqItem,
   FaqProps,
 } from "./home/faq";
+export type {
+  AboutHeroVariant,
+  AboutHeroImageConfig,
+  AboutHeroTextConfig,
+  AboutHeroVisionMissionConfig,
+  AboutHeroLayoutConfig,
+  AboutHeroProps,
+} from "./about/hero";
+export type {
+  EthosVariant,
+  EthosImageConfig,
+  EthosItem,
+  EthosTextConfig,
+  EthosLayoutConfig,
+  EthosProps,
+} from "./about/ethos";
+export type {
+  JourneyVariant,
+  JourneyImageConfig,
+  JourneyItem,
+  JourneyTextConfig,
+  JourneyLayoutConfig,
+  JourneyProps,
+} from "./about/journey";

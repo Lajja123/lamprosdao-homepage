@@ -1,116 +1,92 @@
+"use client";
+import React from "react";
 import Typography from "@/components/UI/Typography";
 import Image from "next/image";
-import web12 from "@/assests/AboutUs/12.png";
-import web34 from "@/assests/AboutUs/34.png";
-import web56 from "@/assests/AboutUs/56.png";
-import web78 from "@/assests/AboutUs/78.png";
+import Grid, { GridCell } from "@/components/UI/Grid";
+import { useJourneyConfig } from "@/hooks/useJourneyConfig";
+import JourneyTitle from "./JourneyTitle";
 
 export default function Journey() {
-  const journeyData = [
-    {
-      number: "01",
-      date: "OCT '23",
-      title: "Formation of Lampros DAO",
-      color: "bg-[#DFF48D]",
-    },
-    {
-      number: "02",
-      date: "NOV '23 - FEB '24",
-      title: "NumbaNERDs Program (Optimism Collective)",
-      color: "bg-[#CBE9FF]",
-    },
-    {
-      number: "03",
-      date: "MAR '24 - APR '24",
-      title: "Open Data Community (ThankARB, Arbitrum DAO)",
-      color: "bg-[#DFCDF2]",
-    },
-    {
-      number: "04",
-      date: "MAR '24",
-      title: "Becoming a delegate in Arbitrum DAO and Optimism Collective",
-      color: "bg-[#FFBDA9]",
-    },
-    {
-      number: "05",
-      date: "JUN '24 - DEC '24",
-      title: "Arbitrum Governance & Development Initiative (AGDI)",
-      color: "bg-[#DFCDF2]",
-    },
-    {
-      number: "06",
-      date: "JUN '24 - NOV '24",
-      title: "LTIPP Research Bounty (Arbitrum DAO)",
-      color: "bg-[#FFBDA9]",
-    },
-    {
-      number: "07",
-      date: "JUN '24 - JAN '25",
-      title: "Contributing to Optimism Foundation Mission Requests",
-      color: "bg-[#DFCDF2]",
-    },
-    {
-      number: "08",
-      date: "DEC '24",
-      title:
-        "Ranked in Top 5 Active Delegate in Arbitrum DAO (Delegate Incentive Program)",
-      color: "bg-[#FFBDA9]",
-    },
-  ];
+  const {
+    journeyData,
+    images,
+    textConfig,
+    layoutConfig,
+    desktopItemPositions,
+  } = useJourneyConfig();
 
   return (
     <>
       {/* Mobile Layout */}
-      <div className="lg:hidden bg-[#1A1A1A]">
+      <div
+        className={layoutConfig.mobile.container.className}
+        style={{
+          backgroundColor: layoutConfig.mobile.container.backgroundColor,
+        }}
+      >
         {/* Header Section */}
-        <div className="border border-[#FFFFFF] p-8 md:p-6">
+        <div className={layoutConfig.mobile.header.className}>
           <Typography
-            variant="h2"
-            color="white"
-            className="uppercase font-ppmori tracking-wider text-center "
+            variant={textConfig.header.variant}
+            color={textConfig.header.color as `#${string}` | "white"}
+            className={`${textConfig.header.className} text-center`}
             align="center"
           >
-            O<span className="uppercase font-bohemian wavy-letter">U</span>r{" "}
-            <span className="uppercase font-bohemian wavy-letter">W</span>eb3{" "}
-            <br></br>
-            <span className="uppercase font-bohemian wavy-letter">J</span>our
-            <span className="uppercase font-bohemian wavy-letter">n</span>e
-            <span className="uppercase font-bohemian wavy-letter">y</span>
+            <JourneyTitle
+              text={textConfig.header.title.text}
+              wavyLetters={textConfig.header.title.wavyLetters}
+            />
           </Typography>
         </div>
 
         {/* Journey Items */}
         {journeyData.map((item, index) => (
-          <div key={index} className="border border-[#FFFFFF]">
+          <div
+            key={index}
+            className={layoutConfig.mobile.item.container.className}
+          >
             <div className="flex">
               {index % 2 === 0 ? (
                 <>
-                  <div className="flex-1 bg-[#222222] p-4 md:p-6">
+                  <div
+                    className={layoutConfig.mobile.item.contentCell.className}
+                    style={{
+                      backgroundColor:
+                        layoutConfig.mobile.item.contentCell.backgroundColor,
+                    }}
+                  >
                     <Typography
-                      variant="h5"
-                      color="white"
-                      weight="bold"
-                      className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-2"
+                      variant={textConfig.itemDate.variant}
+                      color={
+                        textConfig.itemDate.color as `#${string}` | "white"
+                      }
+                      weight={textConfig.itemDate.weight}
+                      className={`${textConfig.itemDate.className} text-sm md:text-base mb-2`}
                     >
                       {item.date}
                     </Typography>
                     <Typography
-                      variant="body1"
-                      color="white"
-                      weight="light"
-                      className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
+                      variant={textConfig.itemTitle.variant}
+                      color={
+                        textConfig.itemTitle.color as `#${string}` | "white"
+                      }
+                      weight={textConfig.itemTitle.weight}
+                      className={`${textConfig.itemTitle.className} text-sm md:text-base leading-relaxed`}
                     >
                       {item.title}
                     </Typography>
                   </div>
                   <div
-                    className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-l border-[#FFFFFF] p-4 md:p-6`}
+                    className={`${layoutConfig.mobile.item.numberCell.className} border-l border-white`}
+                    style={{ backgroundColor: item.color }}
                   >
                     <Typography
-                      variant="h2"
-                      color="primary"
-                      weight="normal"
-                      className="font-psygen text-2xl md:text-3xl"
+                      variant={textConfig.itemNumber.variant}
+                      color={
+                        textConfig.itemNumber.color as `#${string}` | "primary"
+                      }
+                      weight={textConfig.itemNumber.weight}
+                      className={`${textConfig.itemNumber.className} text-2xl md:text-3xl`}
                     >
                       {item.number}
                     </Typography>
@@ -119,31 +95,44 @@ export default function Journey() {
               ) : (
                 <>
                   <div
-                    className={`w-16 md:w-20 ${item.color} flex items-center justify-center border-r border-[#FFFFFF] p-4 md:p-6`}
+                    className={`${layoutConfig.mobile.item.numberCell.className} border-r border-white`}
+                    style={{ backgroundColor: item.color }}
                   >
                     <Typography
-                      variant="h2"
-                      color="primary"
-                      weight="normal"
-                      className="font-psygen text-2xl md:text-3xl"
+                      variant={textConfig.itemNumber.variant}
+                      color={
+                        textConfig.itemNumber.color as `#${string}` | "primary"
+                      }
+                      weight={textConfig.itemNumber.weight}
+                      className={`${textConfig.itemNumber.className} text-2xl md:text-3xl`}
                     >
                       {item.number}
                     </Typography>
                   </div>
-                  <div className="flex-1 bg-[#222222] p-4 md:p-6 text-left">
+                  <div
+                    className={`${layoutConfig.mobile.item.contentCell.className} text-left`}
+                    style={{
+                      backgroundColor:
+                        layoutConfig.mobile.item.contentCell.backgroundColor,
+                    }}
+                  >
                     <Typography
-                      variant="h5"
-                      color="white"
-                      weight="bold"
-                      className="uppercase tracking-wider font-ppmori text-sm md:text-base mb-2"
+                      variant={textConfig.itemDate.variant}
+                      color={
+                        textConfig.itemDate.color as `#${string}` | "white"
+                      }
+                      weight={textConfig.itemDate.weight}
+                      className={`${textConfig.itemDate.className} text-sm md:text-base mb-2`}
                     >
                       {item.date}
                     </Typography>
                     <Typography
-                      variant="body1"
-                      color="white"
-                      weight="light"
-                      className="tracking-wide font-ppmori text-sm md:text-base leading-relaxed"
+                      variant={textConfig.itemTitle.variant}
+                      color={
+                        textConfig.itemTitle.color as `#${string}` | "white"
+                      }
+                      weight={textConfig.itemTitle.weight}
+                      className={`${textConfig.itemTitle.className} text-sm md:text-base leading-relaxed`}
                     >
                       {item.title}
                     </Typography>
@@ -156,291 +145,162 @@ export default function Journey() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-10 lg:grid-rows-9 bg-[#1A1A1A]">
-        <div className="row-span-9 border border-[#FFFFFF]"></div>
-        <div className="col-span-8 border border-[#FFFFFF] flex items-center justify-center p-5">
-          <Typography
-            variant="h2"
-            color="white"
-            className="uppercase font-ppmori tracking-wider "
-          >
-            O<span className="uppercase font-bohemian wavy-letter">U</span>r{" "}
-            {""}
-            <span className="uppercase font-bohemian wavy-letter">
-              W
-            </span>eb3 {""}
-            <span className=" uppercase font-bohemian wavy-letter">J</span>our
-            <span className="uppercase font-bohemian wavy-letter">n</span>e
-            <span className="uppercase font-bohemian wavy-letter">y</span>
-          </Typography>
-        </div>
-        <div className="row-span-9 col-start-10 border border-[#FFFFFF]"></div>
-        <div className="col-span-4 row-span-2 col-start-2 row-start-2 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image
-            src={web12}
-            alt="Metallic sculpture"
-            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
-          />
-        </div>
-        <div className="col-span-3 col-start-6 row-start-2 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[0].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[0].title}
-          </Typography>
-        </div>
-        <div className="col-start-9 row-start-2 border border-[#FFFFFF] bg-[#DFF48D] flex items-center justify-center ">
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[0].number}
-          </Typography>
-        </div>
-        <div className="col-start-6 row-start-3 border border-[#FFFFFF] bg-[#CBE9FF] flex items-center justify-center">
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[1].number}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-7 row-start-3 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[1].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[1].title}
-          </Typography>
-        </div>
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+        style={{
+          backgroundColor: layoutConfig.desktop.grid.backgroundColor,
+        }}
+      >
+        {/* Empty cell left border */}
+        <GridCell
+          rowSpan={9}
+          className={layoutConfig.desktop.header.emptyCell.className}
+        />
 
-        <div
-          className={`col-start-2 row-start-4 border border-[#FFFFFF] flex items-center justify-center ${journeyData[2].color}`}
+        {/* Header Title */}
+        <GridCell
+          colSpan={8}
+          colStart={2}
+          rowStart={1}
+          className={layoutConfig.desktop.header.titleCell.className}
         >
           <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
+            variant={textConfig.header.variant}
+            color={textConfig.header.color as `#${string}` | "white"}
+            className={textConfig.header.className}
           >
-            {journeyData[2].number}
+            <JourneyTitle
+              text={textConfig.header.title.text}
+              wavyLetters={textConfig.header.title.wavyLetters}
+            />
           </Typography>
-        </div>
-        <div className="col-span-3 col-start-3 row-start-4 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[2].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[2].title}
-          </Typography>
-        </div>
-        <div className="col-span-4 row-span-2 col-start-6 row-start-4 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image
-            src={web34}
-            alt="Metallic sculpture"
-            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
-          />
-        </div>
-        <div className="col-span-3 col-start-2 row-start-5 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[3].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[3].title}
-          </Typography>
-        </div>
-        <div
-          className={`col-start-5 row-start-5 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[3].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[3].number}
-          </Typography>
-        </div>
-        <div className="col-span-4 row-span-2 col-start-2 row-start-6 border border-[#FFFFFF] flex items-center justify-center p-5 ">
-          <Image
-            src={web56}
-            alt="Metallic sculpture"
-            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
-          />
-        </div>
-        <div className="col-span-3 col-start-6 row-start-6 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[4].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[4].title}
-          </Typography>
-        </div>
-        <div
-          className={`col-start-9 row-start-6 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[4].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[4].number}
-          </Typography>
-        </div>
-        <div
-          className={`col-start-6 row-start-7 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[5].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[5].number}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-7 row-start-7 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[5].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[5].title}
-          </Typography>
-        </div>
-        <div className="col-span-4 row-span-2 col-start-6 row-start-8 border border-[#FFFFFF] flex items-center justify-center p-5">
-          <Image
-            src={web78}
-            alt="Metallic sculpture"
-            className="w-16 h-16 md:w-full md:h-80 mx-auto object-contain"
-          />
-        </div>
-        <div
-          className={`col-start-2 row-start-8 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[6].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[6].number}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-3 row-start-8 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[6].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[6].title}
-          </Typography>
-        </div>
-        <div className="col-span-3 col-start-2 row-start-9 border border-[#FFFFFF] flex flex-col justify-center gap-3 items-start px-15 py-5 ">
-          <Typography
-            variant="h5"
-            color="white"
-            weight="bold"
-            className="uppercase tracking-wider font-ppmori "
-          >
-            {journeyData[7].date}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="white"
-            weight="light"
-            className=" tracking-wide font-ppmori"
-          >
-            {journeyData[7].title}
-          </Typography>
-        </div>
-        <div
-          className={`col-start-5 row-start-9 border border-[#FFFFFF] flex items-center justify-center  ${journeyData[7].color}`}
-        >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="normal"
-            className="font-psygen"
-          >
-            {journeyData[7].number}
-          </Typography>
-        </div>
-      </div>
+        </GridCell>
+
+        {/* Empty cell right border */}
+        <GridCell
+          rowSpan={9}
+          colStart={10}
+          rowStart={1}
+          className={layoutConfig.desktop.header.emptyCell.className}
+        />
+
+        {/* Journey Items */}
+        {journeyData.map((item, index) => {
+          const positions = desktopItemPositions[index];
+          return (
+            <React.Fragment key={index}>
+              {/* Image Cell (if exists) */}
+              {positions.image && (
+                <GridCell
+                  colSpan={positions.image.colSpan}
+                  rowSpan={positions.image.rowSpan}
+                  colStart={positions.image.colStart}
+                  rowStart={positions.image.rowStart}
+                  className={layoutConfig.desktop.item.imageCell.className}
+                >
+                  <Image
+                    src={
+                      index < 2
+                        ? images.web12.src
+                        : index < 4
+                          ? images.web34.src
+                          : index < 6
+                            ? images.web56.src
+                            : images.web78.src
+                    }
+                    alt={
+                      index < 2
+                        ? images.web12.alt
+                        : index < 4
+                          ? images.web34.alt
+                          : index < 6
+                            ? images.web56.alt
+                            : images.web78.alt
+                    }
+                    className={
+                      index < 2
+                        ? images.web12.className
+                        : index < 4
+                          ? images.web34.className
+                          : index < 6
+                            ? images.web56.className
+                            : images.web78.className
+                    }
+                    width={
+                      index < 2
+                        ? images.web12.width
+                        : index < 4
+                          ? images.web34.width
+                          : index < 6
+                            ? images.web56.width
+                            : images.web78.width
+                    }
+                    height={
+                      index < 2
+                        ? images.web12.height
+                        : index < 4
+                          ? images.web34.height
+                          : index < 6
+                            ? images.web56.height
+                            : images.web78.height
+                    }
+                  />
+                </GridCell>
+              )}
+
+              {/* Content Cell */}
+              {positions.content && (
+                <GridCell
+                  colSpan={positions.content.colSpan}
+                  colStart={positions.content.colStart}
+                  rowStart={positions.content.rowStart}
+                  className={layoutConfig.desktop.item.contentCell.className}
+                >
+                  <Typography
+                    variant={textConfig.itemDate.variant}
+                    color={textConfig.itemDate.color as `#${string}` | "white"}
+                    weight={textConfig.itemDate.weight}
+                    className={textConfig.itemDate.className}
+                  >
+                    {item.date}
+                  </Typography>
+                  <Typography
+                    variant={textConfig.itemTitle.variant}
+                    color={textConfig.itemTitle.color as `#${string}` | "white"}
+                    weight={textConfig.itemTitle.weight}
+                    className={textConfig.itemTitle.className}
+                  >
+                    {item.title}
+                  </Typography>
+                </GridCell>
+              )}
+
+              {/* Number Cell */}
+              {positions.number && (
+                <GridCell
+                  colStart={positions.number.colStart}
+                  rowStart={positions.number.rowStart}
+                  className={layoutConfig.desktop.item.numberCell.className}
+                  style={{ backgroundColor: item.color }}
+                >
+                  <Typography
+                    variant={textConfig.itemNumber.variant}
+                    color={
+                      textConfig.itemNumber.color as `#${string}` | "primary"
+                    }
+                    weight={textConfig.itemNumber.weight}
+                    className={textConfig.itemNumber.className}
+                  >
+                    {item.number}
+                  </Typography>
+                </GridCell>
+              )}
+            </React.Fragment>
+          );
+        })}
+      </Grid>
     </>
   );
 }

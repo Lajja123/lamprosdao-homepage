@@ -14,6 +14,7 @@ export const colors = {
     lightGreen: "#D0FFAC",
     lightPurple: "#DFCDF2",
     offset: "#F3FBD4",
+    orange: "#FFBDA9",
   },
 
   // Background colors
