@@ -91,7 +91,6 @@ export type {
   GovernanceHeroProps,
 } from "./governance/hero";
 export type {
-  Protocol,
   DelegateImageConfig,
   DelegateTextConfig,
   DelegateLayoutConfig,

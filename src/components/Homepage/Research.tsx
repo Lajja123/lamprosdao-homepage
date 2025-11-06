@@ -231,7 +231,6 @@ export default function Research() {
                       label={buttonConfig.label}
                       color={buttonConfig.color}
                       textColor={buttonConfig.textColor}
-                      className="w-full sm:w-auto px-8 py-3 text-sm sm:text-base"
                     />
                   </Link>
                 </div>

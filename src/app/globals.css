@@ -79,18 +79,36 @@ body {
 
 /* Font utility classes using next/font CSS variables */
 .font-mori {
-  font-family: var(--font-pp-mori), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Arial, sans-serif;
+  font-family:
+    var(--font-pp-mori),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
 .font-bohemian {
-  font-family: var(--font-cs-bohemian), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Arial, sans-serif;
+  font-family:
+    var(--font-cs-bohemian),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
 .font-psygen {
-  font-family: var(--font-psygen), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Arial, sans-serif;
+  font-family:
+    var(--font-psygen),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
 /* Interactive Grid Cell Hover Effects */
@@ -189,10 +207,18 @@ body {
 
 @keyframes border-dash {
   0% {
-    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    background-position:
+      0 0,
+      0 100%,
+      0 0,
+      100% 0;
   }
   100% {
-    background-position: 10px 0, -10px 100%, 0 -10px, 100% 10px;
+    background-position:
+      10px 0,
+      -10px 100%,
+      0 -10px,
+      100% 10px;
   }
 }
 
@@ -220,3 +246,10 @@ body {
   display: inline-block;
   transform-origin: 50% 80%;
 } */
+
+/* Hero animation styles for 3D transforms */
+.hero-title-line {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
