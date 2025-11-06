@@ -9,7 +9,7 @@ import type {
   DelegateImageConfig,
   DelegateTextConfig,
   DelegateLayoutConfig,
-  Protocol,
+  DelegateProtocol,
 } from "@/types/governance/delegate";
 import { colors } from "@/theme";
 
@@ -32,7 +32,7 @@ export const useDelegateConfig = () => {
     };
 
     // Protocols
-    const protocols: Protocol[] = [
+    const protocols: DelegateProtocol[] = [
       {
         name: "Arbitrum",
         img: arbitrum,

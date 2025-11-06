@@ -1,7 +1,7 @@
 // Types for Governance Delegate component
 import type { StaticImageData } from "next/image";
 
-export interface Protocol {
+export interface DelegateProtocol {
   name: string;
   img: StaticImageData;
   alt: string;
