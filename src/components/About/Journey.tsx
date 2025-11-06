@@ -200,7 +200,7 @@ export default function Journey() {
                   rowStart={positions.image.rowStart}
                   className={layoutConfig.desktop.item.imageCell.className}
                 >
-                  <Image
+          <Image
                     src={
                       index < 2
                         ? images.web12.src
@@ -246,7 +246,7 @@ export default function Journey() {
                             ? images.web56.height
                             : images.web78.height
                     }
-                  />
+          />
                 </GridCell>
               )}
 
@@ -257,23 +257,23 @@ export default function Journey() {
                   colStart={positions.content.colStart}
                   rowStart={positions.content.rowStart}
                   className={layoutConfig.desktop.item.contentCell.className}
-                >
-                  <Typography
+        >
+          <Typography
                     variant={textConfig.itemDate.variant}
                     color={textConfig.itemDate.color as `#${string}` | "white"}
                     weight={textConfig.itemDate.weight}
                     className={textConfig.itemDate.className}
-                  >
+          >
                     {item.date}
-                  </Typography>
-                  <Typography
+          </Typography>
+          <Typography
                     variant={textConfig.itemTitle.variant}
                     color={textConfig.itemTitle.color as `#${string}` | "white"}
                     weight={textConfig.itemTitle.weight}
                     className={textConfig.itemTitle.className}
-                  >
+          >
                     {item.title}
-                  </Typography>
+          </Typography>
                 </GridCell>
               )}
 
@@ -284,17 +284,17 @@ export default function Journey() {
                   rowStart={positions.number.rowStart}
                   className={layoutConfig.desktop.item.numberCell.className}
                   style={{ backgroundColor: item.color }}
-                >
-                  <Typography
+        >
+          <Typography
                     variant={textConfig.itemNumber.variant}
                     color={
                       textConfig.itemNumber.color as `#${string}` | "primary"
                     }
                     weight={textConfig.itemNumber.weight}
                     className={textConfig.itemNumber.className}
-                  >
+          >
                     {item.number}
-                  </Typography>
+          </Typography>
                 </GridCell>
               )}
             </React.Fragment>

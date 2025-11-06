@@ -1,248 +1,255 @@
+"use client";
 import Typography from "../UI/Typography";
 import Image from "next/image";
-import delegate from "@/assests/Governance/Delegate.png";
-import arbitrum from "@/assests/Governance/Arbitrum.svg";
-import op from "@/assests/Governance/optimism.svg";
-import uniswap from "@/assests/Governance/uniswap.svg";
-import superfluid from "@/assests/Governance/superfluid_green.svg";
-import scroll from "@/assests/Governance/scroll.svg";
 import Link from "next/link";
+import Grid, { GridCell } from "../UI/Grid";
 import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
+import { useDelegateConfig } from "@/hooks/useDelegateConfig";
 
 export default function Delegate() {
   useSmoothScrollOnLoad();
-  const protocols = [
-    {
-      name: "Arbitrum",
-      img: arbitrum,
-      alt: "arbitrum",
-      href: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
-    },
-    {
-      name: "Optimism",
-      img: op,
-      alt: "optimism",
-      href: "https://vote.optimism.io/delegates/lamprosdao.eth",
-    },
-    {
-      name: "Uniswap",
-      img: uniswap,
-      alt: "uniswap",
-      href: "https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
-    },
-    {
-      name: "Superfluid",
-      img: superfluid,
-      alt: "superfluid",
-      href: "https://claim.superfluid.org/governance",
-    },
-    {
-      name: "Scroll",
-      img: scroll,
-      alt: "scroll",
-      href: "https://gov.scroll.io/delegates/lamprosdao.eth",
-    },
-  ];
+  const { images, protocols, textConfig, layoutConfig } = useDelegateConfig();
   return (
     <>
       {/* Mobile Layout */}
-      <div className="lg:hidden bg-[#1A1A1A]">
+      <div
+        className={layoutConfig.mobile.container.className}
+        style={{
+          backgroundColor: layoutConfig.mobile.container.backgroundColor,
+        }}
+      >
         {/* Image Section */}
-        <div className="border-b border-white p-4 md:p-6 flex items-center justify-center">
+        <div className={layoutConfig.mobile.imageSection.className}>
           <Image
-            src={delegate}
-            alt="delegate"
-            className="w-[200px] md:w-[300px]"
-            quality={100}
+            src={images.delegate.src}
+            alt={images.delegate.alt}
+            className={images.delegate.className}
+            quality={images.delegate.quality}
           />
         </div>
         {/* Header Section */}
-        <div className=" p-4 md:p-6 flex items-center justify-center">
+        <div className={layoutConfig.mobile.headerSection.className}>
           <Typography
-            variant="h1"
-            color="white"
-            className="tracking-wide uppercase  text-center"
+            variant={textConfig.title.variant}
+            color={textConfig.title.color as `#${string}` | "white"}
+            className={textConfig.title.className}
           >
-            <span className="uppercase font-bohemian wavy-letter">D</span>ele
-            <span className="uppercase font-bohemian wavy-letter">g</span>ate to{" "}
-            <br></br>
-            <span className="uppercase font-bohemian wavy-letter">L</span>am
-            <span className="uppercase font-bohemian wavy-letter">P</span>ros D
-            <span className="uppercase font-bohemian wavy-letter">A</span>O
+            {"Delegate to".split("").map((letter, index) => {
+              const isHighlighted = textConfig.title.wavyLetters.some(
+                (w) => w.position === index + 1
+              );
+              return (
+                <span
+                  key={index}
+                  className={
+                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                  }
+                >
+                  {letter}
+                </span>
+              );
+            })}
+            <br />
+            {"Lampros DAO".split("").map((letter, index) => {
+              const offset = "Delegate to ".length;
+              const isHighlighted = textConfig.title.wavyLetters.some(
+                (w) => w.position === offset + index + 1
+              );
+              return (
+                <span
+                  key={index}
+                  className={
+                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                  }
+                >
+                  {letter}
+                </span>
+              );
+            })}
           </Typography>
         </div>
 
         {/* Description Section */}
-        <div className="p-4 md:p-6">
+        <div className={layoutConfig.mobile.descriptionSection.className}>
           <div className="space-y-4">
-            <Typography
-              variant="subtitle2"
-              color="white"
-              weight="normal"
-              align="center"
-              className="tracking-wider font-ppmori text-sm md:text-base text-center"
-            >
-              Delegate your tokens to our team and become a part of shaping the
-              future of decentralized ecosystems.
-            </Typography>
-            <Typography
-              variant="subtitle2"
-              color="white"
-              weight="normal"
-              align="center"
-              className="tracking-wider font-ppmori text-sm md:text-base text-center"
-            >
-              By delegating your tokens to our team, you enable us to represent
-              your interests and drive meaningful governance decisions. Empower
-              effective governance in Web3.
-            </Typography>
+            {textConfig.descriptions.map((description, index) => (
+              <Typography
+                key={index}
+                variant={textConfig.description.variant}
+                color={textConfig.description.color as `#${string}` | "white"}
+                weight={textConfig.description.weight}
+                align={textConfig.description.align}
+                className={textConfig.description.className}
+              >
+                {description}
+              </Typography>
+            ))}
           </div>
         </div>
 
         {/* Delegation Buttons */}
         <div className="">
-          <div className="grid grid-cols-2 border border-white">
-            {/* Optimism */}
-            <Link
-              href="https://vote.optimism.io/delegates/lamprosdao.eth"
-              target="_blank"
-              className="flex items-center gap-3 p-4 bg-[#1A1A1A] border-r border-b border-white justify-center"
-            >
-              <Image src={op} alt="optimism" className="w-8 md:w-10" />
-              <Typography
-                variant="body2"
-                color="white"
-                weight="bold"
-                className="font-ppmori text-sm md:text-base"
-              >
-                Optimism
-              </Typography>
-            </Link>
-
-            {/* Arbitrum */}
-            <Link
-              href="https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
-              target="_blank"
-              className="flex items-center gap-3 p-4 bg-[#1A1A1A] border-b border-white justify-center"
-            >
-              <Image src={arbitrum} alt="arbitrum" className="w-8 md:w-10" />
-              <Typography
-                variant="body2"
-                color="white"
-                weight="bold"
-                className="font-ppmori text-sm md:text-base"
-              >
-                Arbitrum
-              </Typography>
-            </Link>
-
-            {/* Uniswap */}
-            <Link
-              href="https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25"
-              target="_blank"
-              className="flex items-center gap-3 p-4 bg-[#1A1A1A] border-r border-white justify-center"
-            >
-              <Image src={uniswap} alt="uniswap" className="w-8 md:w-10" />
-              <Typography
-                variant="body2"
-                color="white"
-                weight="bold"
-                className="font-ppmori text-sm md:text-base"
-              >
-                Uniswap
-              </Typography>
-            </Link>
-
-            {/* Superfluid */}
-            <Link
-              href="https://claim.superfluid.org/governance"
-              target="_blank"
-              className="flex items-center gap-3 p-4 bg-[#1A1A1A] justify-center"
-            >
-              <Image
-                src={superfluid}
-                alt="superfluid"
-                className="w-8 md:w-10"
-              />
-              <Typography
-                variant="body2"
-                color="white"
-                weight="bold"
-                align="center"
-                className="font-ppmori text-sm md:text-base"
-              >
-                Superfluid
-              </Typography>
-            </Link>
+          <div className={layoutConfig.mobile.buttonsGrid.className}>
+            {protocols.map((protocol, index) => {
+              const isFirstRow = index < 2;
+              const isLeft = index % 2 === 0;
+              return (
+                <Link
+                  key={protocol.name}
+                  href={protocol.href}
+                  target="_blank"
+                  className={`${layoutConfig.mobile.buttonCell.className} border ${
+                    isLeft ? "border-r" : ""
+                  } ${isFirstRow ? "border-b" : ""} border-white`}
+                  style={{
+                    backgroundColor:
+                      layoutConfig.mobile.buttonCell.backgroundColor,
+                  }}
+                >
+                  <Image
+                    src={protocol.img}
+                    alt={protocol.alt}
+                    className="w-8 md:w-10"
+                  />
+                  <Typography
+                    variant={textConfig.protocolButton.variant}
+                    color={
+                      textConfig.protocolButton.color as `#${string}` | "white"
+                    }
+                    weight={textConfig.protocolButton.weight}
+                    className={textConfig.protocolButton.className}
+                  >
+                    {protocol.name}
+                  </Typography>
+                </Link>
+              );
+            })}
+            {/* Empty cell for bottom-right */}
+            <div
+              className={`${layoutConfig.mobile.buttonCell.className} border border-l-0 border-t-0 border-white`}
+              style={{
+                backgroundColor: layoutConfig.mobile.buttonCell.backgroundColor,
+              }}
+            ></div>
           </div>
         </div>
       </div>
 
       {/* Desktop Layout */}
-
-      <div
+      <Grid
         id="delegate"
-        className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]"
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+        style={{
+          backgroundColor: layoutConfig.desktop.grid.backgroundColor,
+        }}
       >
-        <div className="border-l border-r border-b border-white"></div>
-        <div className="col-span-8 border border-black flex item-center justify-center p-10">
+        <GridCell
+          colSpan={1}
+          className={layoutConfig.desktop.emptyCell1.className}
+        />
+        <GridCell
+          colSpan={layoutConfig.desktop.titleCell.colSpan}
+          className={layoutConfig.desktop.titleCell.className}
+        >
           <Typography
-            variant="h2"
-            color="white"
-            className="tracking-wide uppercase"
+            variant={textConfig.titleDesktop.variant}
+            color={textConfig.titleDesktop.color as `#${string}` | "white"}
+            className={textConfig.titleDesktop.className}
           >
-            <span className="uppercase font-bohemian wavy-letter">D</span>ele
-            <span className="uppercase font-bohemian wavy-letter">g</span>ate to{" "}
-            <span className="uppercase font-bohemian wavy-letter">L</span>am
-            <span className="uppercase font-bohemian wavy-letter">P</span>ros D
-            <span className="uppercase font-bohemian wavy-letter">A</span>O
+            {textConfig.titleDesktop.text.split("").map((letter, index) => {
+              const isHighlighted = textConfig.titleDesktop.wavyLetters.some(
+                (w) => w.position === index + 1
+              );
+              return (
+                <span
+                  key={index}
+                  className={
+                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                  }
+                >
+                  {letter}
+                </span>
+              );
+            })}
           </Typography>
-        </div>
-        <div className=" col-start-10 border-b border-l border-r border-white"></div>
+        </GridCell>
+        <GridCell
+          colStart={layoutConfig.desktop.emptyCell2.colStart}
+          colSpan={1}
+          className={layoutConfig.desktop.emptyCell2.className}
+        />
 
-        {/* <div className="col-start-10 border border-white"></div> */}
-        <div className="row-span-4 row-start-2 border-l border-r border-b border-white flex items-end p-5 justify-center">
+        <GridCell
+          rowSpan={layoutConfig.desktop.verticalTextCell.rowSpan}
+          rowStart={layoutConfig.desktop.verticalTextCell.rowStart}
+          colSpan={layoutConfig.desktop.verticalTextCell.colSpan}
+          className={layoutConfig.desktop.verticalTextCell.className}
+        >
           <Typography
-            variant="caption"
-            color="white"
-            weight="normal"
-            className="[writing-mode:vertical-rl] rotate-180 tracking-[0.3em] "
+            variant={textConfig.verticalText.variant}
+            color={textConfig.verticalText.color as `#${string}` | "white"}
+            weight={textConfig.verticalText.weight}
+            className={textConfig.verticalText.className}
           >
-            [ Your Delegation Matters !! ]
+            {textConfig.verticalText.text}
           </Typography>
-        </div>
-        <div className="col-span-4 row-span-2 row-start-2 border border-white p-5 flex items-center flex-col gap-5 justify-center">
-          <Typography
-            variant="subtitle2"
-            color="white"
-            weight="normal"
-            className="tracking-wider font-ppmori  max-w-[500px] "
-          >
-            Delegate your tokens to our team and become a part of shaping the
-            future of decentralized ecosystems.{" "}
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            color="white"
-            weight="normal"
-            className="tracking-wider font-ppmori  max-w-[500px] "
-          >
-            By delegating your tokens to our team, you enable us to represent
-            your interests and drive meaningful governance decisions. Empower
-            effective governance in Web3.{" "}
-          </Typography>
-        </div>
-        <div className="col-span-4 row-span-2 col-start-6 row-start-2 border border-white flex items-center justify-center p-10">
+        </GridCell>
+        <GridCell
+          colSpan={layoutConfig.desktop.descriptionCell.colSpan}
+          rowSpan={layoutConfig.desktop.descriptionCell.rowSpan}
+          rowStart={layoutConfig.desktop.descriptionCell.rowStart}
+          className={layoutConfig.desktop.descriptionCell.className}
+        >
+          {textConfig.descriptions.map((description, index) => (
+            <Typography
+              key={index}
+              variant={textConfig.descriptionDesktop.variant}
+              color={
+                textConfig.descriptionDesktop.color as `#${string}` | "white"
+              }
+              weight={textConfig.descriptionDesktop.weight}
+              className={textConfig.descriptionDesktop.className}
+            >
+              {description}
+            </Typography>
+          ))}
+        </GridCell>
+        <GridCell
+          colSpan={layoutConfig.desktop.imageCell.colSpan}
+          rowSpan={layoutConfig.desktop.imageCell.rowSpan}
+          colStart={layoutConfig.desktop.imageCell.colStart}
+          rowStart={layoutConfig.desktop.imageCell.rowStart}
+          className={layoutConfig.desktop.imageCell.className}
+        >
           <Image
-            src={delegate}
-            alt="delegate"
-            className="w-[50%]"
-            quality={100}
+            src={images.delegateDesktop.src}
+            alt={images.delegateDesktop.alt}
+            className={images.delegateDesktop.className}
+            quality={images.delegateDesktop.quality}
           />
-        </div>
-        <div className="row-span-4 col-start-10 row-start-2 border border-white bg-[#CBE9FF]  "></div>
+        </GridCell>
+        <GridCell
+          rowSpan={layoutConfig.desktop.accentCell.rowSpan}
+          colStart={layoutConfig.desktop.accentCell.colStart}
+          rowStart={layoutConfig.desktop.accentCell.rowStart}
+          colSpan={layoutConfig.desktop.accentCell.colSpan}
+          className={layoutConfig.desktop.accentCell.className}
+          style={{
+            backgroundColor: layoutConfig.desktop.accentCell.backgroundColor,
+          }}
+        />
         {/* Infinite scrolling row - all platforms in one */}
-        <div className="col-span-8 col-start-2 row-start-4  bg-white overflow-x-hidden">
+        <GridCell
+          colSpan={layoutConfig.desktop.scrollRow.colSpan}
+          colStart={layoutConfig.desktop.scrollRow.colStart}
+          rowStart={layoutConfig.desktop.scrollRow.rowStart}
+          className={layoutConfig.desktop.scrollRow.className}
+          style={{
+            backgroundColor: layoutConfig.desktop.scrollRow.backgroundColor,
+          }}
+        >
           <div className="w-full relative">
             <div className="animate-scroll w-max flex py-5 items-center">
               {/* Continuous loop - duplicated array multiple times for seamless scrolling */}
@@ -258,10 +265,14 @@ export default function Delegate() {
                   />
                   <Link href={p.href} target="_blank" className="flex-shrink-0">
                     <Typography
-                      variant="body2"
-                      color="primary"
-                      weight="bold"
-                      className="font-ppmori hover:underline cursor-pointer whitespace-nowrap"
+                      variant={textConfig.protocolButtonDesktop.variant}
+                      color={
+                        textConfig.protocolButtonDesktop.color as
+                          | `#${string}`
+                          | "primary"
+                      }
+                      weight={textConfig.protocolButtonDesktop.weight}
+                      className={textConfig.protocolButtonDesktop.className}
                     >
                       {p.name}
                     </Typography>
@@ -270,9 +281,16 @@ export default function Delegate() {
               ))}
             </div>
           </div>
-        </div>
-        <div className="col-span-10 row-start-6 bg-[#1A1A1A] p-10 border border-black"></div>
-      </div>
+        </GridCell>
+        <GridCell
+          colSpan={layoutConfig.desktop.footerCell.colSpan}
+          rowStart={layoutConfig.desktop.footerCell.rowStart}
+          className={layoutConfig.desktop.footerCell.className}
+          style={{
+            backgroundColor: layoutConfig.desktop.footerCell.backgroundColor,
+          }}
+        />
+      </Grid>
     </>
   );
 }

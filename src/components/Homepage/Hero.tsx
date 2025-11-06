@@ -65,9 +65,11 @@ export default function Hero() {
           className={`relative w-full hidden md:block ${spacing.hero.desktop.paddingTop} ${spacing.hero.desktop.paddingTopLg} ${spacing.hero.desktop.paddingTop2xl} ${spacing.hero.desktop.paddingBottomLg} ${spacing.hero.desktop.paddingBottom}`}
         >
           {titleConfig.desktop.lines.map((line, index) => (
-            <div key={`desktop-line-${index}`}>
-              <HeroTitleLine line={line} variant="desktop" />
-            </div>
+            <>
+              <div key={`desktop-line-${index}`}>
+                <HeroTitleLine line={line} variant="desktop" />
+              </div>
+            </>
           ))}
         </div>
 

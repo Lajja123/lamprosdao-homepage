@@ -8,18 +8,11 @@ import React, {
 } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import vote1 from "@/assests/Governance/Vote.svg";
 import Typography from "../UI/Typography";
-import arbitrum from "@/assests/Governance/Arbitrum.svg";
-import op from "@/assests/Governance/optimism.svg";
-import uniswap from "@/assests/Governance/uniswap.svg";
-import superfluid from "@/assests/Governance/superfluid_green.svg";
-import scroll from "@/assests/Governance/scroll.svg";
-import bgImage1 from "@/assests/Governance/reportbg.png";
+import Grid, { GridCell } from "../UI/Grid";
 import Arrow from "../UI/Arrow";
 import Button from "../UI/Button";
-import linkLight from "@/assests/Governance/link-light.png";
-import voterIcon from "@/assests/Governance/voter.svg";
+import { useRecentVotesConfig } from "@/hooks/useRecentVotesConfig";
 import type {
   Proposal,
   Protocol,
@@ -29,46 +22,55 @@ import type {
 } from "@/types";
 
 // Memoized Loading Skeleton Component
-const LoadingSkeleton = React.memo(() => (
-  <>
-    {Array.from({ length: 4 }).map((_, index) => (
-      <React.Fragment key={index}>
-        <div
-          className={`row-start-${
-            index + 2
-          } border border-black p-6 flex items-center justify-center`}
-        >
-          <div className="w-8 h-8 bg-gray-300 animate-pulse rounded"></div>
-        </div>
-        <div
-          className={`col-span-2 row-start-${
-            index + 2
-          } border border-black p-6 flex items-center`}
-        >
-          <div className="w-24 h-4 bg-gray-300 animate-pulse rounded"></div>
-        </div>
-        <div
-          className={`col-span-6 col-start-4 row-start-${
-            index + 2
-          } border border-black p-6`}
-        >
-          <div className="w-full h-4 bg-gray-300 animate-pulse rounded mb-3"></div>
-          <div className="flex gap-2">
-            <div className="w-16 h-6 bg-gray-300 animate-pulse rounded-full"></div>
-            <div className="w-20 h-6 bg-gray-300 animate-pulse rounded-full"></div>
-          </div>
-        </div>
-        <div
-          className={`relative col-start-8 row-start-${
-            index + 2
-          } border-b border-white bg-[#2A2A2A] flex items-center justify-center`}
-        >
-          <div className="w-6 h-6 bg-gray-300 animate-pulse rounded"></div>
-        </div>
-      </React.Fragment>
-    ))}
-  </>
-));
+const LoadingSkeleton = React.memo(
+  ({ layoutConfig }: { layoutConfig: any }) => (
+    <>
+      {Array.from({ length: 4 }).map((_, index) => {
+        const rowStart = index + 2;
+        return (
+          <React.Fragment key={index}>
+            <GridCell
+              rowStart={rowStart}
+              className={layoutConfig.desktop.proposalNumberCell.className}
+            >
+              <div className="w-8 h-8 bg-gray-300 animate-pulse rounded"></div>
+            </GridCell>
+            <GridCell
+              colSpan={layoutConfig.desktop.proposalStatusCell.colSpan}
+              rowStart={rowStart}
+              className={layoutConfig.desktop.proposalStatusCell.className}
+            >
+              <div className="w-24 h-4 bg-gray-300 animate-pulse rounded"></div>
+            </GridCell>
+            <GridCell
+              colSpan={layoutConfig.desktop.proposalContentCell.colSpan}
+              colStart={layoutConfig.desktop.proposalContentCell.colStart}
+              rowStart={rowStart}
+              className={layoutConfig.desktop.proposalContentCell.className}
+            >
+              <div className="w-full h-4 bg-gray-300 animate-pulse rounded mb-3"></div>
+              <div className="flex gap-2">
+                <div className="w-16 h-6 bg-gray-300 animate-pulse rounded-full"></div>
+                <div className="w-20 h-6 bg-gray-300 animate-pulse rounded-full"></div>
+              </div>
+            </GridCell>
+            <GridCell
+              colStart={layoutConfig.desktop.proposalArrowCell.colStart}
+              rowStart={rowStart}
+              className={layoutConfig.desktop.proposalArrowCell.className}
+              style={{
+                backgroundColor:
+                  layoutConfig.desktop.proposalArrowCell.backgroundColor,
+              }}
+            >
+              <div className="w-6 h-6 bg-gray-300 animate-pulse rounded"></div>
+            </GridCell>
+          </React.Fragment>
+        );
+      })}
+    </>
+  )
+);
 
 LoadingSkeleton.displayName = "LoadingSkeleton";
 
@@ -106,6 +108,8 @@ const ProtocolButton = React.memo(
 ProtocolButton.displayName = "ProtocolButton";
 
 const RecentVotes = React.memo(function RecentVotes() {
+  const { images, protocols, textConfig, layoutConfig } =
+    useRecentVotesConfig();
   const [activeTab, setActiveTab] = useState("");
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [proposals, setProposals] = useState<Proposal[]>([]);
@@ -116,43 +120,6 @@ const RecentVotes = React.memo(function RecentVotes() {
   // Add a ref to track the latest request ID
   const latestRequestIdRef = useRef(0);
   const currentRequestId = useRef(0);
-
-  // Memoize protocols to prevent unnecessary re-renders
-  const protocols: Protocol[] = useMemo(
-    () => [
-      {
-        name: "Arbitrum",
-        value: "arbitrum",
-        icon: arbitrum,
-        link: "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642",
-      },
-      {
-        name: "Optimism",
-        value: "optimism",
-        icon: op,
-        link: "https://vote.optimism.io/delegates/lamprosdao.eth",
-      },
-      {
-        name: "Uniswap",
-        value: "uniswap",
-        icon: uniswap,
-        link: "",
-      },
-      {
-        name: "Superfluid",
-        value: "superfluid",
-        icon: superfluid,
-        link: "https://forum.superfluid.org/t/lampros-dao-delegate-thread/266",
-      },
-      {
-        name: "Scroll",
-        value: "scroll",
-        icon: scroll,
-        link: "",
-      },
-    ],
-    []
-  );
 
   // Memoize parseForumUrl function
   const parseForumUrl = useCallback((url: string): ParsedForumUrl | null => {
@@ -222,20 +189,15 @@ const RecentVotes = React.memo(function RecentVotes() {
   );
 
   // Memoize getProtocolIcon function
-  const getProtocolIcon = useCallback((protocol: string) => {
-    const iconMapping: Record<string, any> = {
-      arbitrum: arbitrum,
-      optimism: op,
-      uniswap: uniswap,
-      superfluid: superfluid,
-      scroll: scroll,
-    };
-
-    return (
-      iconMapping[protocol.toLowerCase()] ||
-      `/governance/${protocol.toLowerCase()}.svg`
-    );
-  }, []);
+  const getProtocolIcon = useCallback(
+    (protocol: string) => {
+      const protocolObj = protocols.find(
+        (p) => p.name.toLowerCase() === protocol.toLowerCase()
+      );
+      return protocolObj?.icon || `/governance/${protocol.toLowerCase()}.svg`;
+    },
+    [protocols]
+  );
 
   const fetchProposals = useCallback(async () => {
     currentRequestId.current += 1;
@@ -434,13 +396,18 @@ const RecentVotes = React.memo(function RecentVotes() {
   return (
     <>
       {/* Mobile Layout */}
-      <div className="lg:hidden">
-        <div className="border border-black p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#CBE9FF]">
+      <div className={layoutConfig.mobile.container.className}>
+        <div
+          className={layoutConfig.mobile.header.className}
+          style={{
+            backgroundColor: layoutConfig.mobile.header.backgroundColor,
+          }}
+        >
           <Typography
-            variant="h1"
-            color="primary"
-            weight="semibold"
-            className="tracking-wider"
+            variant={textConfig.titleMobile.variant}
+            color={textConfig.titleMobile.color as `#${string}` | "primary"}
+            weight={textConfig.titleMobile.weight}
+            className={textConfig.titleMobile.className}
           >
             Recent Votes
           </Typography>
@@ -522,29 +489,36 @@ const RecentVotes = React.memo(function RecentVotes() {
             </div>
           ) : (
             // Mobile vote cards
-            <div className="">
+            <div className={layoutConfig.mobile.content.className}>
               {proposals.map((proposal, index) => (
-                <div key={proposal.id} className="">
+                <div
+                  key={proposal.id}
+                  className={layoutConfig.mobile.voteCard.className}
+                >
                   {/* Vote Header */}
-                  <div className="flex items-stretch border border-black">
+                  <div className={layoutConfig.mobile.voteHeader.className}>
                     {/* Number cell */}
-                    <div className="w-14 md:w-16 p-3 border-r border-black flex items-center justify-center">
+                    <div className={layoutConfig.mobile.numberCell.className}>
                       <Typography
-                        variant="h4"
-                        color="primary"
-                        weight="light"
-                        className="font-psygen text-lg md:text-xl"
+                        variant={textConfig.proposalIdMobile.variant}
+                        color={
+                          textConfig.proposalIdMobile.color as
+                            | `#${string}`
+                            | "primary"
+                        }
+                        weight={textConfig.proposalIdMobile.weight}
+                        className={textConfig.proposalIdMobile.className}
                       >
                         {proposal.id}
                       </Typography>
                     </div>
                     {/* Status cell */}
-                    <div className="flex-1 p-3 flex items-start justify-start gap-2 flex-col">
+                    <div className={layoutConfig.mobile.statusCell.className}>
                       <Typography
                         variant="subtitle2"
                         color="primary"
                         weight="medium"
-                        className="font-ppmori text-xs md:text-sm "
+                        className="font-ppmori text-xs md:text-sm"
                       >
                         Voted{" "}
                       </Typography>
@@ -552,7 +526,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                         variant="subtitle2"
                         color="primary"
                         weight="medium"
-                        className="font-ppmori text-xs md:text-sm   text-[#A885CD]"
+                        className="font-ppmori text-xs md:text-sm text-[#A885CD]"
                       >
                         <span>{proposal.result}</span>
                       </Typography>
@@ -562,7 +536,11 @@ const RecentVotes = React.memo(function RecentVotes() {
                       onClick={() =>
                         setExpandedItem(expandedItem === index ? null : index)
                       }
-                      className="w-12 md:w-14 bg-[#1A1A1A] flex items-center justify-center"
+                      className={layoutConfig.mobile.arrowCell.className}
+                      style={{
+                        backgroundColor:
+                          layoutConfig.mobile.arrowCell.backgroundColor,
+                      }}
                     >
                       <Arrow
                         direction={expandedItem === index ? "up" : "down"}
@@ -574,7 +552,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                   </div>
 
                   {/* Proposal Title */}
-                  <div className="p-4 ">
+                  <div
+                    className={layoutConfig.mobile.proposalSection.className}
+                  >
                     <Typography
                       variant="body1"
                       color="primary"
@@ -616,14 +596,22 @@ const RecentVotes = React.memo(function RecentVotes() {
 
                   {/* Expandable content */}
                   {expandedItem === index && (
-                    <div className="mt-0 pt-4 border-t border-black p-4">
+                    <div
+                      className={
+                        layoutConfig.mobile.expandableContent.className
+                      }
+                      style={{
+                        backgroundColor:
+                          layoutConfig.mobile.expandableContent.backgroundColor,
+                      }}
+                    >
                       {proposal.voter && (
                         <div className="space-y-4">
                           {/* Voter Information */}
                           <div className="flex items-center space-x-3">
                             <div className="flex-shrink-0">
                               <Image
-                                src={voterIcon.src}
+                                src={images.voterIcon.src}
                                 alt={`${proposal.voter.name} icon`}
                                 width={32}
                                 height={32}
@@ -718,30 +706,51 @@ const RecentVotes = React.memo(function RecentVotes() {
         </div>
 
         {/* Footer Section */}
-        <div className="border border-black bg-[#DFF48D] p-5 md:p-6 flex items-center justify-center">
+        <div
+          className={layoutConfig.mobile.footer.className}
+          style={{
+            backgroundColor: layoutConfig.mobile.footer.backgroundColor,
+          }}
+        >
           <Link
             href="https://lamprosdao.notion.site/governance"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button label="See More" color="#000000" textColor="#FFFFFF" />
+            <Button
+              label={textConfig.seeMoreButton.label}
+              color={textConfig.seeMoreButton.color}
+              textColor={textConfig.seeMoreButton.textColor}
+            />
           </Link>
         </div>
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-8">
-        <div className=" border-b border-black bg-[#C5D9E8] p-6 flex items-center justify-center">
-          <div className="  flex items-center justify-center">
-            <Image src={vote1} alt="vote1" />
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+      >
+        <GridCell
+          className={layoutConfig.desktop.iconCell.className}
+          style={{
+            backgroundColor: layoutConfig.desktop.iconCell.backgroundColor,
+          }}
+        >
+          <div className="flex items-center justify-center">
+            <Image src={images.voteIcon.src} alt={images.voteIcon.alt} />
           </div>
-        </div>
-        <div className="col-span-6 border border-black p-10 flex items-center justify-between">
+        </GridCell>
+        <GridCell
+          colSpan={layoutConfig.desktop.headerCell.colSpan}
+          className={layoutConfig.desktop.headerCell.className}
+        >
           <Typography
-            variant="h2"
-            color="primary"
-            weight="semibold"
-            className="tracking-wide"
+            variant={textConfig.titleDesktop.variant}
+            color={textConfig.titleDesktop.color as `#${string}` | "primary"}
+            weight={textConfig.titleDesktop.weight}
+            className={textConfig.titleDesktop.className}
           >
             Recent Votes
           </Typography>
@@ -755,49 +764,75 @@ const RecentVotes = React.memo(function RecentVotes() {
               />
             ))}
           </div>
-        </div>
-        <div className=" col-start-8 border border-black"></div>
+        </GridCell>
+        <GridCell
+          colStart={layoutConfig.desktop.emptyCell.colStart}
+          colSpan={1}
+          className={layoutConfig.desktop.emptyCell.className}
+        />
 
         {/* Dynamic Vote Rows */}
         {loading ? (
           // Memoized loading skeleton
-          <LoadingSkeleton />
+          <LoadingSkeleton layoutConfig={layoutConfig} />
         ) : error ? (
           // Error state
-          <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
+          <GridCell
+            colSpan={layoutConfig.desktop.errorContainer.colSpan}
+            rowStart={layoutConfig.desktop.errorContainer.rowStart}
+            className={layoutConfig.desktop.errorContainer.className}
+          >
             <div className="text-center">
               <Typography
-                variant="h3"
-                color="primary"
-                weight="medium"
-                className="mb-2"
+                variant={textConfig.errorTitle.variant}
+                color={textConfig.errorTitle.color as `#${string}` | "primary"}
+                weight={textConfig.errorTitle.weight}
+                className={textConfig.errorTitle.className}
               >
                 Oops! Something Went Wrong
               </Typography>
-              <Typography variant="body1" color="primary" weight="normal">
+              <Typography
+                variant={textConfig.errorMessage.variant}
+                color={
+                  textConfig.errorMessage.color as `#${string}` | "primary"
+                }
+                weight={textConfig.errorMessage.weight}
+                className={textConfig.errorMessage.className}
+              >
                 {error}
               </Typography>
             </div>
-          </div>
+          </GridCell>
         ) : noData ? (
           // No data state
-          <div className="col-span-8 row-start-2 border border-black p-8 flex items-center justify-center">
+          <GridCell
+            colSpan={layoutConfig.desktop.noDataContainer.colSpan}
+            rowStart={layoutConfig.desktop.noDataContainer.rowStart}
+            className={layoutConfig.desktop.noDataContainer.className}
+          >
             <div className="text-center">
               <Typography
-                variant="h3"
-                color="primary"
-                weight="medium"
-                className="mb-2"
+                variant={textConfig.noDataTitle.variant}
+                color={textConfig.noDataTitle.color as `#${string}` | "primary"}
+                weight={textConfig.noDataTitle.weight}
+                className={textConfig.noDataTitle.className}
               >
                 No Votes Available
               </Typography>
-              <Typography variant="body1" color="primary" weight="normal">
+              <Typography
+                variant={textConfig.noDataMessage.variant}
+                color={
+                  textConfig.noDataMessage.color as `#${string}` | "primary"
+                }
+                weight={textConfig.noDataMessage.weight}
+                className={textConfig.noDataMessage.className}
+              >
                 There are no recent votes to display
                 {activeTab ? ` for ${activeTab}` : ""} at the moment. Please
                 check back later!
               </Typography>
             </div>
-          </div>
+          </GridCell>
         ) : (
           // Dynamic vote rows
           proposals.map((proposal, index) => {
@@ -806,46 +841,58 @@ const RecentVotes = React.memo(function RecentVotes() {
 
             return (
               <React.Fragment key={proposal.id}>
-                <div
-                  className={`row-start-${baseRow} border border-black p-6 flex items-center justify-center`}
+                <GridCell
+                  rowStart={baseRow}
+                  className={layoutConfig.desktop.proposalNumberCell.className}
                 >
                   <Typography
-                    variant="h4"
-                    color="primary"
-                    weight="light"
-                    className="font-psygen"
+                    variant={textConfig.proposalId.variant}
+                    color={
+                      textConfig.proposalId.color as `#${string}` | "primary"
+                    }
+                    weight={textConfig.proposalId.weight}
+                    className={textConfig.proposalId.className}
                   >
                     {proposal.id}
                   </Typography>
-                </div>
-                <div
-                  className={`col-span-2 row-start-${baseRow} border border-black p-6 flex items-start justify-center flex-col gap-3`}
+                </GridCell>
+                <GridCell
+                  colSpan={layoutConfig.desktop.proposalStatusCell.colSpan}
+                  rowStart={baseRow}
+                  className={layoutConfig.desktop.proposalStatusCell.className}
                 >
                   <Typography
-                    variant="body1"
-                    color="primary"
-                    weight="medium"
-                    className="font-ppmori "
+                    variant={textConfig.votedLabel.variant}
+                    color={
+                      textConfig.votedLabel.color as `#${string}` | "primary"
+                    }
+                    weight={textConfig.votedLabel.weight}
+                    className={`${textConfig.votedLabel.className} font-ppmori`}
                   >
                     Voted{" "}
                   </Typography>
                   <Typography
-                    variant="body1"
-                    color="primary"
-                    weight="medium"
-                    className={getVoteResultColor(proposal.result)}
+                    variant={textConfig.result.variant}
+                    color={textConfig.result.color as `#${string}` | "primary"}
+                    weight={textConfig.result.weight}
+                    className={`${textConfig.result.className} ${getVoteResultColor(proposal.result)}`}
                   >
                     {proposal.result}
                   </Typography>
-                </div>
-                <div
-                  className={`col-span-4 col-start-4 row-start-${baseRow} border border-black p-6 `}
+                </GridCell>
+                <GridCell
+                  colSpan={layoutConfig.desktop.proposalContentCell.colSpan}
+                  colStart={layoutConfig.desktop.proposalContentCell.colStart}
+                  rowStart={baseRow}
+                  className={layoutConfig.desktop.proposalContentCell.className}
                 >
                   <Typography
-                    variant="body1"
-                    color="primary"
-                    weight="normal"
-                    className="mb-4 mx-w-[600px]"
+                    variant={textConfig.proposalTitle.variant}
+                    color={
+                      textConfig.proposalTitle.color as `#${string}` | "primary"
+                    }
+                    weight={textConfig.proposalTitle.weight}
+                    className={textConfig.proposalTitle.className}
                   >
                     {proposal.title}
                   </Typography>
@@ -859,27 +906,40 @@ const RecentVotes = React.memo(function RecentVotes() {
                         className="w-5 h-5"
                       />
                       <Typography
-                        variant="caption"
-                        color="accent"
-                        weight="medium"
+                        variant={textConfig.protocolBadge.variant}
+                        color={
+                          textConfig.protocolBadge.color as
+                            | `#${string}`
+                            | "accent"
+                        }
+                        weight={textConfig.protocolBadge.weight}
+                        className={textConfig.protocolBadge.className}
                       >
                         {proposal.protocol}
                       </Typography>
                     </span>
                     <Typography
-                      variant="caption"
-                      color="accent"
-                      weight="medium"
-                      className={`px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
+                      variant={textConfig.typeBadge.variant}
+                      color={
+                        textConfig.typeBadge.color as `#${string}` | "accent"
+                      }
+                      weight={textConfig.typeBadge.weight}
+                      className={`${textConfig.typeBadge.className} px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
                         proposal.type
                       )}`}
                     >
                       {proposal.type}
                     </Typography>
                   </div>
-                </div>
-                <div
-                  className={`relative col-start-8 row-start-${baseRow} border-b border-white bg-[#2A2A2A] flex items-center justify-center cursor-pointer hover:bg-[#3A3A3A] transition-colors`}
+                </GridCell>
+                <GridCell
+                  colStart={layoutConfig.desktop.proposalArrowCell.colStart}
+                  rowStart={baseRow}
+                  className={layoutConfig.desktop.proposalArrowCell.className}
+                  style={{
+                    backgroundColor:
+                      layoutConfig.desktop.proposalArrowCell.backgroundColor,
+                  }}
                   onClick={() =>
                     setExpandedItem(expandedItem === index ? null : index)
                   }
@@ -887,7 +947,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: `url(${bgImage1.src})`,
+                      backgroundImage: `url(${images.bgImage.src})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center left",
                       backgroundRepeat: "no-repeat",
@@ -895,12 +955,21 @@ const RecentVotes = React.memo(function RecentVotes() {
                     }}
                   ></div>
                   <Arrow direction={expandedItem === index ? "up" : "down"} />
-                </div>
+                </GridCell>
 
                 {/* Expandable content for each proposal */}
                 {expandedItem === index && (
-                  <div
-                    className={`col-span-8 row-start-${expandedRow} border border-black bg-gray-50 p-6`}
+                  <GridCell
+                    colSpan={layoutConfig.desktop.expandableContentCell.colSpan}
+                    rowStart={expandedRow}
+                    className={
+                      layoutConfig.desktop.expandableContentCell.className
+                    }
+                    style={{
+                      backgroundColor:
+                        layoutConfig.desktop.expandableContentCell
+                          .backgroundColor,
+                    }}
                   >
                     {proposal.voter && (
                       <div className="space-y-6">
@@ -908,7 +977,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0">
                             <Image
-                              src={voterIcon.src}
+                              src={images.voterIcon.src}
                               alt={`${proposal.voter.name} icon`}
                               width={40}
                               height={40}
@@ -918,17 +987,26 @@ const RecentVotes = React.memo(function RecentVotes() {
                           </div>
                           <div className="flex-1">
                             <Typography
-                              variant="body2"
-                              color="primary"
-                              weight="medium"
-                              className="mb-1"
+                              variant={textConfig.voterName.variant}
+                              color={
+                                textConfig.voterName.color as
+                                  | `#${string}`
+                                  | "primary"
+                              }
+                              weight={textConfig.voterName.weight}
+                              className={textConfig.voterName.className}
                             >
                               {proposal.voter.name}
                             </Typography>
                             <Typography
-                              variant="body1"
-                              color="primary"
-                              weight="normal"
+                              variant={textConfig.voterInfo.variant}
+                              color={
+                                textConfig.voterInfo.color as
+                                  | `#${string}`
+                                  | "primary"
+                              }
+                              weight={textConfig.voterInfo.weight}
+                              className={textConfig.voterInfo.className}
                             >
                               Voted{" "}
                               <Typography
@@ -959,10 +1037,14 @@ const RecentVotes = React.memo(function RecentVotes() {
                         {proposal.hasRationale && (
                           <div className="mt-6">
                             <Typography
-                              variant="subtitle2"
-                              color="primary"
-                              weight="medium"
-                              className="mb-3"
+                              variant={textConfig.rationaleTitle.variant}
+                              color={
+                                textConfig.rationaleTitle.color as
+                                  | `#${string}`
+                                  | "primary"
+                              }
+                              weight={textConfig.rationaleTitle.weight}
+                              className={textConfig.rationaleTitle.className}
                             >
                               Rationale
                             </Typography>
@@ -993,7 +1075,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                         )}
                       </div>
                     )}
-                  </div>
+                  </GridCell>
                 )}
               </React.Fragment>
             );
@@ -1001,19 +1083,27 @@ const RecentVotes = React.memo(function RecentVotes() {
         )}
 
         {/* Footer Row - Always position at the bottom */}
-        <div
-          className={`col-span-9 row-start-11 
-         border border-black bg-[#DFF48D] p-10 flex items-center justify-center`}
+        <GridCell
+          colSpan={layoutConfig.desktop.footerCell.colSpan}
+          rowStart={layoutConfig.desktop.footerCell.rowStart}
+          className={layoutConfig.desktop.footerCell.className}
+          style={{
+            backgroundColor: layoutConfig.desktop.footerCell.backgroundColor,
+          }}
         >
           <Link
             href="https://lamprosdao.notion.site/governance"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button label="See More" color="#000000" textColor="#FFFFFF" />
+            <Button
+              label={textConfig.seeMoreButton.label}
+              color={textConfig.seeMoreButton.color}
+              textColor={textConfig.seeMoreButton.textColor}
+            />
           </Link>
-        </div>
-      </div>
+        </GridCell>
+      </Grid>
     </>
   );
 });

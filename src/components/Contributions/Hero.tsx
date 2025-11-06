@@ -1,12 +1,8 @@
 "use client";
-import clip from "@/assests/Contributions/clip.png";
 import Image from "next/image";
-import bgImage1 from "@/assests/HeroSection2/arrow-bg.png";
-import clip2 from "@/assests/Contributions/clip2.png";
 import Typography from "../UI/Typography";
-import arbitrum from "@/assests/Governance/Arbitrum.svg";
-import op from "@/assests/Governance/optimism.svg";
-import contributionsContent from "@/data/contributionsContent.json";
+import Grid, { GridCell } from "@/components/UI/Grid";
+import { useContributionsHeroConfig } from "@/hooks/useContributionsHeroConfig";
 
 interface HeroProps {
   activeChain: "arbitrum" | "optimism";
@@ -14,7 +10,19 @@ interface HeroProps {
 }
 
 export default function Hero({ activeChain, onChainChange }: HeroProps) {
-  const currentContent = contributionsContent[activeChain];
+  const {
+    images,
+    backgroundImages,
+    textConfig,
+    layoutConfig,
+    contributionsContent,
+  } = useContributionsHeroConfig();
+  const currentContent = contributionsContent[activeChain] || {
+    word: "",
+    subtitle: "",
+    description: "",
+    highlightedLetters: [],
+  };
 
   const handleButtonClick = (content: "arbitrum" | "optimism") => {
     onChainChange(content);
@@ -25,120 +33,139 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
       {/* Mobile Layout */}
       <div className="lg:hidden">
         {/* 3-Column Grid Section */}
-        <div className="grid grid-cols-6">
-          {/* First Column - Clip Image */}
-          <div className=" border border-black"></div>
-
-          {/* Second Column - Empty for now */}
-          <div className="border border-black relative">
+        <Grid
+          variant="custom"
+          noContainer
+          className={layoutConfig.mobile.grid.className}
+        >
+          <GridCell />
+          <GridCell className={layoutConfig.mobile.clipImageCell.className}>
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage1.src})`,
+                backgroundImage: `url(${backgroundImages.bgImage.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Image
-              src={clip}
-              alt="clip"
-              className="relative w-full h-full object-contain p-2 md:p-4 mx-auto"
+              src={images.clip.src}
+              alt={images.clip.alt}
+              className={images.clip.className}
             />
-          </div>
-
-          {/* Third Column - Empty for now */}
-          <div className="border border-black"></div>
-          <div className="border border-black"></div>
-          <div className="border border-black"></div>
-          <div className="border border-black"></div>
-
-        </div>
+          </GridCell>
+          <GridCell />
+          <GridCell />
+          <GridCell />
+          <GridCell />
+        </Grid>
         <div className="flex flex-col">
-
-           {/* Second Image Section */}
-           <div className="border border-black bg-[#DFF48D] p-4 md:p-6 flex items-center justify-center">
+          {/* Second Image Section */}
+          <div
+            className={layoutConfig.mobile.clip2ImageCell.className}
+            style={{
+              backgroundColor:
+                layoutConfig.mobile.clip2ImageCell.backgroundColor,
+            }}
+          >
             <Image
-              src={clip2}
-              alt="Metallic sculpture"
-              className="w-full mx-auto p-5"
+              src={images.clip2.src}
+              alt={images.clip2.alt}
+              className={images.clip2.className}
             />
           </div>
           {/* Text Section */}
-          <div className="border border-black p-4 md:p-6">
+          <div className={layoutConfig.mobile.textCell.className}>
             <Typography
-              variant="body2"
-              color="primary"
-              weight="semibold"
-              className="tracking-wider font-ppmori text-sm md:text-base"
+              variant={textConfig.intro.variant}
+              color={textConfig.intro.color as `#${string}` | "primary"}
+              weight={textConfig.intro.weight}
+              className={textConfig.intro.className}
             >
-              <div>
-                At Lampros DAO, we actively contribute to both governance and
-                research, ensuring that decentralized ecosystems remain
-                transparent, efficient, and community-driven. Through
-                governance, we engage in DAO discussions, voting, and
-                proposal-making, helping shape the direction of decentralized
-                decision-making. Our research efforts focus on analyzing
-                governance structures, incentive programs, and power
-                distribution to provide data-backed insights that drive informed
-                decisions.
-              </div>
-              <div className="mt-3 md:mt-4">
-                By working across multiple DAOs, we aim to improve governance
-                participation, develop analytical tools, and contribute to
-                ecosystem growth. Our work helps communities navigate
-                decentralization, ensuring long-term sustainability and
-                inclusivity.
-              </div>
+              {textConfig.intro.paragraphs.map((paragraph, index) => (
+                <div
+                  key={`paragraph-${index}`}
+                  className={index > 0 ? "mt-3 md:mt-4" : ""}
+                >
+                  {paragraph}
+                </div>
+              ))}
             </Typography>
           </div>
-
-         
         </div>
 
         {/* Chain Selection Section */}
-        <div className="bg-[#1A1A1A]">
-          <div className="flex flex-row justify-center gap-10 items-center  gap-4">
+        <div
+          className={layoutConfig.mobile.chainSelection.container.className}
+          style={{
+            backgroundColor:
+              layoutConfig.mobile.chainSelection.container.backgroundColor,
+          }}
+        >
+          <div
+            className={
+              layoutConfig.mobile.chainSelection.buttonContainer.className
+            }
+          >
             {/* Arbitrum Button */}
             <div className="bg-[#1A1A1A] flex items-center justify-center p-5 border-r border-white">
               <div
-                className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
+                className={`${layoutConfig.mobile.chainSelection.button.baseClassName} ${
                   activeChain === "arbitrum"
-                    ? "bg-white scale-105"
-                    : "bg-gray-300 hover:bg-gray-200"
+                    ? layoutConfig.mobile.chainSelection.button.activeClassName
+                    : layoutConfig.mobile.chainSelection.button
+                        .inactiveClassName
                 }`}
                 onClick={() => handleButtonClick("arbitrum")}
               >
-                <Image src={arbitrum} alt="arbitrum" className="w-6 md:w-10" />
+                <Image
+                  src={images.arbitrum.src}
+                  alt={images.arbitrum.alt}
+                  className={images.arbitrum.className}
+                />
                 <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="semibold"
-                  className="font-ppmori text-sm md:text-base"
+                  variant={textConfig.chainButtons.arbitrum.variant}
+                  color={
+                    textConfig.chainButtons.arbitrum.color as
+                      | `#${string}`
+                      | "primary"
+                  }
+                  weight={textConfig.chainButtons.arbitrum.weight}
+                  className={textConfig.chainButtons.arbitrum.className}
                 >
-                  Arbitrum
+                  {textConfig.chainButtons.arbitrum.label}
                 </Typography>
               </div>
             </div>
 
             {/* Optimism Button */}
-            <div className=" bg-[#1A1A1A] flex items-center p-5justify-center ">
+            <div className="bg-[#1A1A1A] flex items-center p-5 justify-center">
               <div
-                className={`rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300 ${
+                className={`${layoutConfig.mobile.chainSelection.button.baseClassName} ${
                   activeChain === "optimism"
-                    ? "bg-white scale-105"
-                    : "bg-gray-300 hover:bg-gray-200"
+                    ? layoutConfig.mobile.chainSelection.button.activeClassName
+                    : layoutConfig.mobile.chainSelection.button
+                        .inactiveClassName
                 }`}
                 onClick={() => handleButtonClick("optimism")}
               >
-                <Image src={op} alt="optimism" className="w-6 md:w-10" />
+                <Image
+                  src={images.optimism.src}
+                  alt={images.optimism.alt}
+                  className={images.optimism.className}
+                />
                 <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="semibold"
-                  className="font-ppmori text-sm md:text-base"
+                  variant={textConfig.chainButtons.optimism.variant}
+                  color={
+                    textConfig.chainButtons.optimism.color as
+                      | `#${string}`
+                      | "primary"
+                  }
+                  weight={textConfig.chainButtons.optimism.weight}
+                  className={textConfig.chainButtons.optimism.className}
                 >
-                  Optimism
+                  {textConfig.chainButtons.optimism.label}
                 </Typography>
               </div>
             </div>
@@ -146,7 +173,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         {/* Dynamic Content Section */}
-        <div className="border border-black p-5 md:p-6 flex items-center justify-center">
+        <div className={layoutConfig.mobile.dynamicContent.titleCell.className}>
           <Typography
             variant="h1"
             color="primary"
@@ -155,9 +182,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             className="tracking-wide uppercase"
           >
             {currentContent.word.split("").map((letter, index) => {
-              const isHighlighted = currentContent.highlightedLetters.includes(
-                letter.toUpperCase()
-              );
+              const isHighlighted = (
+                currentContent.highlightedLetters || []
+              ).includes(letter.toUpperCase());
               return (
                 <span
                   key={index}
@@ -172,7 +199,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           </Typography>
         </div>
 
-        <div className="border border-black bg-[#CBE9FF] p-5 md:p-6 flex items-center justify-center">
+        <div
+          className={layoutConfig.mobile.dynamicContent.subtitleCell.className}
+          style={{
+            backgroundColor:
+              layoutConfig.mobile.dynamicContent.subtitleCell.backgroundColor,
+          }}
+        >
           <Typography
             variant="body2"
             color="primary"
@@ -183,7 +216,11 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           </Typography>
         </div>
 
-        <div className="border border-black p-6 md:p-6 flex items-center justify-center">
+        <div
+          className={
+            layoutConfig.mobile.dynamicContent.descriptionCell.className
+          }
+        >
           <Typography
             variant="body2"
             color="primary"
@@ -196,113 +233,167 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-10">
-        <div className="border border-black ">1</div>
-        <div className="border border-black ">2</div>
-        <div className="border border-black ">3</div>
-        <div className="border border-black ">4</div>
-        <div className="relative border border-black ">
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+      >
+        <GridCell />
+        <GridCell />
+        <GridCell />
+        <GridCell />
+        <GridCell className={layoutConfig.desktop.clipImageCell.className}>
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url(${bgImage1.src})`,
+              backgroundImage: `url(${backgroundImages.bgImage.src})`,
               backgroundSize: "cover",
               backgroundPosition: "top center",
               backgroundRepeat: "no-repeat",
             }}
           ></div>
           <Image
-            src={clip}
-            alt="clip"
+            src={images.clip.src}
+            alt={images.clip.alt}
             className="relative w-full h-full object-contain p-5 mx-auto"
-          />{" "}
-        </div>
-        <div className="border border-black ">6</div>
-        <div className="border border-black ">7</div>
-        <div className="border border-black ">8</div>
-        <div className="border border-black ">9</div>
-        <div className="border border-black ">10</div>
-        <div className="col-span-5  p-10">
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="semibold"
-            className="tracking-wider font-ppmori text-xl  mx-auto px-10 py-10"
-          >
-            <div>
-              At Lampros DAO, we actively contribute to both governance and
-              research, ensuring that decentralized ecosystems remain
-              transparent, efficient, and community-driven. Through governance,
-              we engage in DAO discussions, voting, and proposal-making, helping
-              shape the direction of decentralized decision-making. Our research
-              efforts focus on analyzing governance structures, incentive
-              programs, and power distribution to provide data-backed insights
-              that drive informed decisions.
-            </div>
-            <div className="mt-4">
-              By working across multiple DAOs, we aim to improve governance
-              participation, develop analytical tools, and contribute to
-              ecosystem growth. Our work helps communities navigate
-              decentralization, ensuring long-term sustainability and
-              inclusivity.
-            </div>
-          </Typography>
-        </div>
-        <div className="col-span-5 col-start-6 bg-[#DFF48D] p-5 flex items-center justify-center ">
-          <Image
-            src={clip2}
-            alt="Metallic sculpture"
-            className=" w-1/2 mx-auto"
           />
-        </div>
+        </GridCell>
+        <GridCell />
+        <GridCell />
+        <GridCell />
+        <GridCell />
+        <GridCell />
+        <GridCell
+          colSpan={layoutConfig.desktop.textCell.colSpan}
+          className={layoutConfig.desktop.textCell.className}
+        >
+          <Typography
+            variant={textConfig.intro.variant}
+            color={textConfig.intro.color as `#${string}` | "primary"}
+            weight={textConfig.intro.weight}
+            className="tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
+          >
+            {textConfig.intro.paragraphs.map((paragraph, index) => (
+              <div
+                key={`paragraph-${index}`}
+                className={index > 0 ? "mt-4" : ""}
+              >
+                {paragraph}
+              </div>
+            ))}
+          </Typography>
+        </GridCell>
+        <GridCell
+          colSpan={layoutConfig.desktop.clip2ImageCell.colSpan}
+          colStart={layoutConfig.desktop.clip2ImageCell.colStart}
+          className={layoutConfig.desktop.clip2ImageCell.className}
+          style={{
+            backgroundColor:
+              layoutConfig.desktop.clip2ImageCell.backgroundColor,
+          }}
+        >
+          <Image
+            src={images.clip2Desktop.src}
+            alt={images.clip2Desktop.alt}
+            className={images.clip2Desktop.className}
+          />
+        </GridCell>
 
-        <div className="row-start-3 border border-white bg-[#1A1A1A]"></div>
-        <div className="col-span-4 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
+        <GridCell
+          className={layoutConfig.desktop.chainSelection.emptyCell.className}
+        />
+        <GridCell
+          colSpan={
+            layoutConfig.desktop.chainSelection.arbitrumButtonCell.colSpan
+          }
+          rowStart={
+            layoutConfig.desktop.chainSelection.arbitrumButtonCell.rowStart
+          }
+          className={
+            layoutConfig.desktop.chainSelection.arbitrumButtonCell.className
+          }
+        >
           <div
-            className={` rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300  ${
+            className={`${layoutConfig.desktop.chainSelection.button.baseClassName} ${
               activeChain === "arbitrum"
-                ? "bg-white scale-105"
-                : "bg-gray-300 hover:bg-gray-200"
+                ? layoutConfig.desktop.chainSelection.button.activeClassName
+                : layoutConfig.desktop.chainSelection.button.inactiveClassName
             }`}
             onClick={() => handleButtonClick("arbitrum")}
           >
-            <Image src={arbitrum} alt="arbitrum" />
+            <Image
+              src={images.arbitrumDesktop.src}
+              alt={images.arbitrumDesktop.alt}
+            />
             <Typography
-              variant="subtitle2"
-              color="primary"
-              weight="semibold"
-              className="font-ppmori "
+              variant={textConfig.chainButtons.arbitrum.variant}
+              color={
+                textConfig.chainButtons.arbitrum.color as
+                  | `#${string}`
+                  | "primary"
+              }
+              weight={textConfig.chainButtons.arbitrum.weight}
+              className="font-ppmori"
             >
-              Arbitrum
+              {textConfig.chainButtons.arbitrum.label}
             </Typography>
           </div>
-        </div>
-        <div className="col-span-4 col-start-6 row-start-3 border border-white bg-[#1A1A1A] flex items-center justify-center p-2">
+        </GridCell>
+        <GridCell
+          colSpan={
+            layoutConfig.desktop.chainSelection.optimismButtonCell.colSpan
+          }
+          colStart={
+            layoutConfig.desktop.chainSelection.optimismButtonCell.colStart
+          }
+          rowStart={
+            layoutConfig.desktop.chainSelection.optimismButtonCell.rowStart
+          }
+          className={
+            layoutConfig.desktop.chainSelection.optimismButtonCell.className
+          }
+        >
           <div
-            className={` will-change-transform rounded-full my-10 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300 ${
+            className={`will-change-transform ${layoutConfig.desktop.chainSelection.button.baseClassName} my-10 ${
               activeChain === "optimism"
-                ? "bg-white scale-105"
-                : "bg-gray-300 hover:bg-gray-200"
+                ? layoutConfig.desktop.chainSelection.button.activeClassName
+                : layoutConfig.desktop.chainSelection.button.inactiveClassName
             }`}
             onClick={() => handleButtonClick("optimism")}
           >
-            <Image src={op} alt="optimism" />
+            <Image
+              src={images.optimismDesktop.src}
+              alt={images.optimismDesktop.alt}
+            />
             <Typography
-              variant="subtitle2"
-              color="primary"
-              weight="semibold"
-              className="font-ppmori "
+              variant={textConfig.chainButtons.optimism.variant}
+              color={
+                textConfig.chainButtons.optimism.color as
+                  | `#${string}`
+                  | "primary"
+              }
+              weight={textConfig.chainButtons.optimism.weight}
+              className="font-ppmori"
             >
-              Optimism
+              {textConfig.chainButtons.optimism.label}
             </Typography>
           </div>
-        </div>
-        <div className="col-start-10 row-start-3 border border-white bg-[#1A1A1A]"></div>
-      </div>
+        </GridCell>
+        <GridCell className="col-start-10 row-start-3 bg-[#1A1A1A]" />
+      </Grid>
 
-      <div className="hidden lg:grid lg:grid-cols-10  ">
-        <div className=" border border-black"></div>
-        <div className="col-span-8  border border-black  flex items-center justify-center p-10">
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.dynamicContent.grid.className}
+      >
+        <GridCell
+          className={layoutConfig.desktop.dynamicContent.emptyCell1.className}
+        />
+        <GridCell
+          colSpan={layoutConfig.desktop.dynamicContent.titleCell.colSpan}
+          className={layoutConfig.desktop.dynamicContent.titleCell.className}
+        >
           <Typography
             variant="h2"
             color="primary"
@@ -310,9 +401,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             className="tracking-wide uppercase"
           >
             {currentContent.word.split("").map((letter, index) => {
-              const isHighlighted = currentContent.highlightedLetters.includes(
-                letter.toUpperCase()
-              );
+              const isHighlighted = (
+                currentContent.highlightedLetters || []
+              ).includes(letter.toUpperCase());
               return (
                 <span
                   key={index}
@@ -325,10 +416,24 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               );
             })}
           </Typography>
-        </div>
-        <div className="col-start-10  border border-black">3</div>
-        <div className="row-start-2  border border-black">4</div>
-        <div className="col-span-8 row-start-2  border border-black bg-[#CBE9FF] flex items-center justify-center p-5">
+        </GridCell>
+        <GridCell
+          colStart={layoutConfig.desktop.dynamicContent.emptyCell2.colStart}
+          className={layoutConfig.desktop.dynamicContent.emptyCell2.className}
+        />
+        <GridCell
+          rowStart={layoutConfig.desktop.dynamicContent.emptyCell3.rowStart}
+          className={layoutConfig.desktop.dynamicContent.emptyCell3.className}
+        />
+        <GridCell
+          colSpan={layoutConfig.desktop.dynamicContent.subtitleCell.colSpan}
+          rowStart={layoutConfig.desktop.dynamicContent.subtitleCell.rowStart}
+          className={layoutConfig.desktop.dynamicContent.subtitleCell.className}
+          style={{
+            backgroundColor:
+              layoutConfig.desktop.dynamicContent.subtitleCell.backgroundColor,
+          }}
+        >
           <Typography
             variant="body2"
             color="primary"
@@ -337,19 +442,30 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           >
             {currentContent.subtitle}
           </Typography>
-        </div>
-        <div className="col-start-10 row-start-2  border border-black">6</div>
-        <div className="col-span-10 row-start-3  border border-black flex items-center justify-center p-5">
+        </GridCell>
+        <GridCell
+          colStart={layoutConfig.desktop.dynamicContent.emptyCell4.colStart}
+          rowStart={layoutConfig.desktop.dynamicContent.emptyCell4.rowStart}
+        />
+        <GridCell
+          colSpan={layoutConfig.desktop.dynamicContent.descriptionCell.colSpan}
+          rowStart={
+            layoutConfig.desktop.dynamicContent.descriptionCell.rowStart
+          }
+          className={
+            layoutConfig.desktop.dynamicContent.descriptionCell.className
+          }
+        >
           <Typography
             variant="body2"
             color="primary"
             weight="semibold"
-            className="tracking-wider font-ppmori text-xl  max-w-[1200px] p-5 mx-auto"
+            className="tracking-wider font-ppmori text-xl max-w-[1200px] p-5 mx-auto"
           >
             {currentContent.description}
           </Typography>
-        </div>
-      </div>
+        </GridCell>
+      </Grid>
     </>
   );
 }

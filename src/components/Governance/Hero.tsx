@@ -1,121 +1,134 @@
+"use client";
 import Image from "next/image";
-import clip from "@/assests/Governance/Clip.png";
 import Typography from "../UI/Typography";
 import Link from "next/link";
-
-import arbitrum from "@/assests/Governance/Arbitrum.svg";
-import op from "@/assests/Governance/optimism.svg";
-import superfluid from "@/assests/Governance/superfluid_green.svg";
-import { Grid, GridCell } from "../UI/Grid";
-import euphoria from "@/assests/Governance/euphoria.jpg";
-import hirangi from "@/assests/Governance/hirangi.jpg";
-import chain from "@/assests/Governance/chain-l.jpg";
-import link from "@/assests/Governance/link.svg";
-import scroll from "@/assests/Governance/scroll.svg";
+import Grid, { GridCell } from "../UI/Grid";
+import { useGovernanceHeroConfig } from "@/hooks/useGovernanceHeroConfig";
 
 export default function Hero() {
-  const teamMembers = [
-    {
-      name: "Euphoria",
-      icon: "↗",
-      link: "https://x.com/Euphoria_0077",
-      src: euphoria,
-    },
-    {
-      name: "Chain_L",
-      icon: "↗",
-      link: "https://x.com/chain_haya",
-      src: chain,
-    },
-    {
-      name: "Hirangi",
-      icon: "↗",
-      link: "https://x.com/HirangiPandya",
-      src: hirangi,
-    },
-  ];
+  const { images, teamMembers, delegations, textConfig, layoutConfig } =
+    useGovernanceHeroConfig();
 
   return (
     <>
       {/* Mobile Layout */}
       <div className="lg:hidden">
         {/* Main Content Section */}
-        <div className="flex flex-col ">
-          <div className="bg-[#000000] ">
+        <div className={layoutConfig.mobile.mainContent.container.className}>
+          <div
+            className={layoutConfig.mobile.mainContent.titleSection.className}
+            style={{
+              backgroundColor:
+                layoutConfig.mobile.mainContent.titleSection.backgroundColor,
+            }}
+          >
             <Typography
-              variant="h1"
-              weight="semibold"
-              align="center"
-              color="light-purple"
-              className="uppercase font-csbohemian tracking-wider leading-[0.95] border-b border-gray py-5"
+              variant={textConfig.title.variant}
+              weight={textConfig.title.weight}
+              align={textConfig.title.align}
+              color={textConfig.title.color as `#${string}` | "light-purple"}
+              className={textConfig.title.className}
             >
-              G<span className="uppercase font-bohemian wavy-letter">o</span>v
-              <span className="uppercase font-bohemian wavy-letter">e</span>
-              rnance
+              {textConfig.title.text.split("").map((letter, index) => {
+                const isHighlighted = textConfig.title.wavyLetters.some(
+                  (w) => w.position === index + 1
+                );
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
             </Typography>
             {/* Image Section */}
-            <div className="p-5 md:p-6 flex items-center justify-center">
+            <div
+              className={layoutConfig.mobile.mainContent.imageSection.className}
+            >
               <Image
-                src={clip}
-                alt="Metallic sculpture"
-                quality={100}
-                className="w-[200px] md:w-[250px]"
+                src={images.clip.src}
+                alt={images.clip.alt}
+                quality={images.clip.quality}
+                className={images.clip.className}
               />
             </div>
           </div>
           {/* Text Section */}
-          <div className="p-4 md:p-6 flex items-center justify-center">
+          <div
+            className={layoutConfig.mobile.mainContent.textSection.className}
+          >
             <Typography
-              variant="body2"
-              color="primary"
-              weight="semibold"
-              align="center"
-              className="tracking-wider font-ppmori text-sm md:text-base text-center"
+              variant={textConfig.description.variant}
+              color={textConfig.description.color as `#${string}` | "primary"}
+              weight={textConfig.description.weight}
+              align={textConfig.description.align}
+              className={textConfig.description.className}
             >
-              Lampros DAO is an open community of builders and governance
-              enthusiasts committed to transparency, decentralization, and
-              inclusivity. Through active participation in governance and
-              collaborative efforts, we strive to create a more transparent,
-              inclusive, and resilient Web3 landscape.
+              {textConfig.description.text}
             </Typography>
           </div>
 
           {/* Team Section */}
-          <div className="bg-[#DFCDF2] p-6 md:p-6 flex items-center justify-center">
+          <div
+            className={layoutConfig.mobile.mainContent.teamHeader.className}
+            style={{
+              backgroundColor:
+                layoutConfig.mobile.mainContent.teamHeader.backgroundColor,
+            }}
+          >
             <Typography
-              variant="h3"
-              color="primary"
-              weight="normal"
-              className="tracking-wider font-ppmori text-xl md:text-2xl text-center"
+              variant={textConfig.teamHeader.variant}
+              color={textConfig.teamHeader.color as `#${string}` | "primary"}
+              weight={textConfig.teamHeader.weight}
+              className={textConfig.teamHeader.className}
             >
-              Our Team Members
+              {textConfig.teamHeader.text}
             </Typography>
           </div>
 
           {/* Team Members */}
-          <div className="grid grid-cols-3 border-t border-black">
+          <div className={layoutConfig.mobile.mainContent.teamGrid.className}>
             {teamMembers.map((member) => (
               <Link
                 key={member.name}
                 href={member.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-between border-b border-r last:border-r-0 border-black hover:opacity-80 transition-opacity duration-300"
+                className={
+                  layoutConfig.mobile.mainContent.teamMemberCard.className
+                }
               >
-                <div className="w-full flex items-center justify-center p-6">
+                <div
+                  className={
+                    layoutConfig.mobile.mainContent.teamMemberCard
+                      .imageContainer.className
+                  }
+                >
                   <Image
                     src={member.src}
                     alt={member.name}
-                    className="w-14 h-14 rounded-full border-1 border-black"
+                    className={
+                      layoutConfig.mobile.mainContent.teamMemberCard.image
+                        .className
+                    }
                     quality={100}
                   />
                 </div>
-                <div className="w-full border-t border-black p-3 flex items-center justify-center">
+                <div
+                  className={
+                    layoutConfig.mobile.mainContent.teamMemberCard.nameContainer
+                      .className
+                  }
+                >
                   <Typography
                     variant="body1"
                     color="primary"
                     weight="semibold"
-                    className="font-ppmori text-xs md:text-base text-center"
+                    className={`${layoutConfig.mobile.mainContent.teamMemberCard.name.className} font-ppmori`}
                   >
                     {member.name}
                   </Typography>
@@ -126,195 +139,184 @@ export default function Hero() {
         </div>
 
         {/* Delegations Section */}
-        <div className="bg-[#1A1A1A]">
-          <div className=" p-6 md:p-6 flex items-center justify-center border-b border-white">
+        <div
+          className={layoutConfig.mobile.delegations.container.className}
+          style={{
+            backgroundColor:
+              layoutConfig.mobile.delegations.container.backgroundColor,
+          }}
+        >
+          <div
+            className={layoutConfig.mobile.delegations.titleSection.className}
+          >
             <Typography
-              variant="h1"
+              variant={textConfig.delegationsTitle.variant}
               align="center"
-              className="tracking-wider font-ppmori text-white "
+              className={`${textConfig.delegationsTitle.className} ${layoutConfig.mobile.delegations.title.className}`}
             >
-              O<span className="uppercase font-bohemian wavy-letter">U</span>R{" "}
-              <br></br>D
-              <span className="uppercase font-bohemian wavy-letter">E</span>LEG
-              <span className="uppercase font-bohemian wavy-letter">A</span>TIO
-              <span className="uppercase font-bohemian wavy-letter">N</span>S
+              {textConfig.delegationsTitle.text
+                .split("")
+                .map((letter, index) => {
+                  const isHighlighted =
+                    textConfig.delegationsTitle.wavyLetters.some(
+                      (w) => w.position === index + 1
+                    );
+                  return (
+                    <span key={index}>
+                      {letter === " " ? (
+                        <br />
+                      ) : (
+                        <span
+                          className={
+                            isHighlighted
+                              ? "uppercase font-bohemian wavy-letter"
+                              : ""
+                          }
+                        >
+                          {letter}
+                        </span>
+                      )}
+                    </span>
+                  );
+                })}
             </Typography>
           </div>
 
-          <div className="grid grid-cols-2">
-            {/* Arbitrum */}
-            <div className="border-r border-b border-white p-6 flex items-center justify-center">
-              <Link
-                href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
-                  <Image
-                    src={arbitrum}
-                    alt="arbitrum"
-                    className="w-6 md:w-10"
-                    quality={100}
-                  />
-                  <Typography
-                    variant="subtitle2"
-                    color="primary"
-                    weight="semibold"
-                    className="font-ppmori text-sm md:text-base"
+          <div className={layoutConfig.mobile.delegations.grid.className}>
+            {delegations.map((delegation, index) => {
+              const isFirstRow = index < 2;
+              const isLeft = index % 2 === 0;
+              return (
+                <div
+                  key={delegation.name}
+                  className={`${layoutConfig.mobile.delegations.buttonCell.className} ${
+                    isLeft ? "border-r" : "border-l"
+                  } ${isFirstRow ? "border-b" : ""} border-white`}
+                >
+                  <Link
+                    href={delegation.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Arbitrum
-                  </Typography>
+                    <div
+                      className={
+                        layoutConfig.mobile.delegations.button.className
+                      }
+                    >
+                      <Image
+                        src={delegation.icon}
+                        alt={delegation.name.toLowerCase()}
+                        className="w-6 md:w-10"
+                        quality={100}
+                      />
+                      <Typography
+                        variant={textConfig.delegationButton.variant}
+                        color={
+                          textConfig.delegationButton.color as
+                            | `#${string}`
+                            | "primary"
+                        }
+                        weight={textConfig.delegationButton.weight}
+                        className={textConfig.delegationButton.className}
+                      >
+                        {delegation.name}
+                      </Typography>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-
-            {/* Optimism */}
-            <div className="border-l border-b border-white p-6 flex items-center justify-center">
-              <Link
-                href="https://vote.optimism.io/delegates/lamprosdao.eth"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
-                  <Image
-                    src={op}
-                    alt="optimism"
-                    className="w-6 md:w-10"
-                    quality={100}
-                  />
-                  <Typography
-                    variant="subtitle2"
-                    color="primary"
-                    weight="semibold"
-                    className="font-ppmori text-sm md:text-base"
-                  >
-                    Optimism
-                  </Typography>
-                </div>
-              </Link>
-            </div>
-
-            {/* Scroll */}
-            <div className="border-r border-white p-6 flex items-center justify-center">
-              <Link
-                href="https://forum.scroll.io/t/lampros-dao-delegate-thread/1091?u=euphoria"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
-                  <Image
-                    src={scroll}
-                    alt="scroll"
-                    className="w-6 md:w-10"
-                    quality={100}
-                  />
-                  <Typography
-                    variant="subtitle2"
-                    color="primary"
-                    weight="semibold"
-                    className="font-ppmori text-sm md:text-base"
-                  >
-                    Scroll
-                  </Typography>
-                </div>
-              </Link>
-            </div>
-
-            {/* Superfluid */}
-            <div className="border-l border-white p-6 flex items-center justify-center">
-              <Link
-                href="https://forum.superfluid.org/t/lampros-dao-delegate-thread/266?u=euphoria"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg bg-white cursor-pointer transition-all duration-300 hover:scale-105">
-                  <Image
-                    src={superfluid}
-                    alt="superfluid"
-                    className="w-6 md:w-10"
-                    quality={100}
-                  />
-                  <Typography
-                    variant="subtitle2"
-                    color="primary"
-                    weight="semibold"
-                    className="font-ppmori text-sm md:text-base"
-                  >
-                    Superfluid
-                  </Typography>
-                </div>
-              </Link>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-8">
-        <GridCell rowSpan={3} className="col-span-1" />
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+      >
+        <GridCell
+          rowSpan={layoutConfig.desktop.emptyCell1.rowSpan}
+          colSpan={1}
+          className={layoutConfig.desktop.emptyCell1.className}
+        />
 
         <GridCell
-          colSpan={2}
-          rowSpan={2}
-          className="p-5 flex items-center justify-center"
+          colSpan={layoutConfig.desktop.imageCell.colSpan}
+          rowSpan={layoutConfig.desktop.imageCell.rowSpan}
+          className={layoutConfig.desktop.imageCell.className}
         >
-          <Image src={clip} alt="Metallic sculpture" quality={100} />
+          <Image
+            src={images.clipDesktop.src}
+            alt={images.clipDesktop.alt}
+            quality={images.clipDesktop.quality}
+          />
         </GridCell>
 
         <GridCell
-          colSpan={4}
-          rowSpan={2}
-          className="col-start-4 flex items-center justify-center p-5"
+          colSpan={layoutConfig.desktop.textCell.colSpan}
+          rowSpan={layoutConfig.desktop.textCell.rowSpan}
+          colStart={layoutConfig.desktop.textCell.colStart}
+          className={layoutConfig.desktop.textCell.className}
         >
           <Typography
-            variant="body2"
-            color="primary"
-            weight="semibold"
-            className="mx-w-[500px] tracking-wider font-ppmori text-xl  mx-auto px-10 py-10"
+            variant={textConfig.description.variant}
+            color={textConfig.description.color as `#${string}` | "primary"}
+            weight={textConfig.description.weight}
+            className="mx-w-[500px] tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
           >
-            Lampros DAO is an open community of builders and governance
-            enthusiasts committed to transparency, decentralization, and
-            inclusivity. Through active participation in governance and
-            collaborative efforts, we strive to create a more transparent,
-            inclusive, and resilient Web3 landscape.
+            {textConfig.description.text}
           </Typography>
         </GridCell>
 
-        <GridCell rowSpan={3} className="col-start-8" />
+        <GridCell
+          rowSpan={layoutConfig.desktop.emptyCell2.rowSpan}
+          colStart={layoutConfig.desktop.emptyCell2.colStart}
+          className={layoutConfig.desktop.emptyCell2.className}
+        />
 
         <GridCell
-          colSpan={6}
-          className="col-start-2 row-start-3 bg-[#DFCDF2] flex items-center justify-center p-10"
+          colSpan={layoutConfig.desktop.teamHeaderCell.colSpan}
+          colStart={layoutConfig.desktop.teamHeaderCell.colStart}
+          rowStart={layoutConfig.desktop.teamHeaderCell.rowStart}
+          className={layoutConfig.desktop.teamHeaderCell.className}
+          style={{
+            backgroundColor:
+              layoutConfig.desktop.teamHeaderCell.backgroundColor,
+          }}
         >
           <Typography
-            variant="h3"
-            color="primary"
-            weight="normal"
-            className="tracking-wider font-ppmori text-3xl "
+            variant={textConfig.teamHeaderDesktop.variant}
+            color={
+              textConfig.teamHeaderDesktop.color as `#${string}` | "primary"
+            }
+            weight={textConfig.teamHeaderDesktop.weight}
+            className={textConfig.teamHeaderDesktop.className}
           >
-            Our Team Members
+            {textConfig.teamHeaderDesktop.text}
           </Typography>
         </GridCell>
 
         {teamMembers.map((member, index) => (
           <GridCell
             key={member.name}
-            colSpan={2}
-            className={`col-start-${
-              2 + index * 2
-            } row-start-4 flex items-center justify-center p-10 gap-4`}
+            colSpan={layoutConfig.desktop.teamMemberCell.colSpan}
+            colStart={2 + index * 2}
+            rowStart={4}
+            className={layoutConfig.desktop.teamMemberCell.className}
           >
             <Link
               href={member.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center  hover:opacity-80 transition-opacity duration-300"
+              className={layoutConfig.desktop.teamMemberLink.className}
             >
               <div className="p-4">
                 <Image
                   src={member.src}
-                  alt="link"
-                  className="w-12 h-12 rounded-full border-1  border-black"
+                  alt={member.name}
+                  className={layoutConfig.desktop.teamMemberImage.className}
                   quality={100}
                 />
               </div>
@@ -322,139 +324,125 @@ export default function Hero() {
                 variant="body1"
                 color="primary"
                 weight="semibold"
-                className="font-ppmori"
+                className={`${layoutConfig.desktop.teamMemberName.className} font-ppmori`}
               >
                 {member.name}
               </Typography>
-              <Image src={link} alt="link" className="w-10 " />
+              <Image
+                src={images.link.src}
+                alt="link"
+                className={images.link.className}
+              />
             </Link>
           </GridCell>
         ))}
-        <GridCell rowSpan={3} className="col-start-8" />
-      </div>
+        <GridCell
+          rowSpan={layoutConfig.desktop.emptyCell2.rowSpan}
+          colStart={layoutConfig.desktop.emptyCell2.colStart}
+          className={layoutConfig.desktop.emptyCell2.className}
+        />
+      </Grid>
 
       {/* OUR DELEGATIONS Section */}
-      <div className=" grid-cols-8 mt-0 bg-[#1A1A1A] hidden lg:grid">
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.delegations.grid.className}
+        style={{
+          backgroundColor:
+            layoutConfig.desktop.delegations.grid.backgroundColor,
+        }}
+      >
         <GridCell
-          rowSpan={3}
-          className="col-span-1 border-t border-l border-r border-white "
+          rowSpan={layoutConfig.desktop.delegations.emptyCell1.rowSpan}
+          colSpan={1}
+          className={layoutConfig.desktop.delegations.emptyCell1.className}
         />
 
         <GridCell
-          colSpan={6}
-          className="col-start-2 flex items-center justify-center p-10 "
+          colSpan={layoutConfig.desktop.delegations.titleCell.colSpan}
+          colStart={layoutConfig.desktop.delegations.titleCell.colStart}
+          className={layoutConfig.desktop.delegations.titleCell.className}
         >
           <Typography
-            variant="h2"
-            className="tracking-wider font-ppmori  text-white"
+            variant={textConfig.delegationsTitleDesktop.variant}
+            className={textConfig.delegationsTitleDesktop.className}
           >
-            O<span className="uppercase font-bohemian wavy-letter">U</span>R D
-            <span className="uppercase font-bohemian wavy-letter">E</span>LEG
-            <span className="uppercase font-bohemian wavy-letter">A</span>TIO
-            <span className="uppercase font-bohemian wavy-letter">N</span>S
+            {textConfig.delegationsTitleDesktop.text
+              .split("")
+              .map((letter, index) => {
+                const isHighlighted =
+                  textConfig.delegationsTitleDesktop.wavyLetters.some(
+                    (w) => w.position === index + 1
+                  );
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
           </Typography>
         </GridCell>
 
-        <GridCell className="row-start-2 border-t border-l border-r border-white" />
+        <GridCell
+          rowStart={layoutConfig.desktop.delegations.emptyCell2.rowStart}
+          className={layoutConfig.desktop.delegations.emptyCell2.className}
+        />
 
         <GridCell
-          colSpan={6}
-          className="row-start-2  p-6 border border-white flex flex-row justify-around items-center gap-5"
+          colSpan={layoutConfig.desktop.delegations.buttonsCell.colSpan}
+          rowStart={layoutConfig.desktop.delegations.buttonsCell.rowStart}
+          className={layoutConfig.desktop.delegations.buttonsCell.className}
         >
-          <Link
-            href="https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div
-              className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
+          {delegations.map((delegation) => (
+            <Link
+              key={delegation.name}
+              href={delegation.link}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Image
-                src={arbitrum}
-                alt="arbitrum"
-                className="w-7"
-                quality={100}
-              />
-              <Typography
-                variant="subtitle2"
-                color="primary"
-                weight="semibold"
-                className="font-ppmori hover:underline"
+              <div
+                className={layoutConfig.desktop.delegations.button.className}
               >
-                Arbitrum
-              </Typography>
-              <Image src={link} alt="link" className="w-8" />
-            </div>
-          </Link>
-          <Link
-            href="https://vote.optimism.io/delegates/lamprosdao.eth"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div
-              className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
-            >
-              <Image src={op} alt="optimism" className="w-7" quality={100} />
-              <Typography
-                variant="subtitle2"
-                color="primary"
-                weight="semibold"
-                className="font-ppmori hover:underline"
-              >
-                Optimism
-              </Typography>
-              <Image src={link} alt="link" className="w-8" />
-            </div>
-          </Link>
-          <Link
-            href="https://forum.scroll.io/t/lampros-dao-delegate-thread/1091?u=euphoria"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div
-              className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
-            >
-              <Image src={scroll} alt="scroll" className="w-7" quality={100} />
-              <Typography
-                variant="subtitle2"
-                color="primary"
-                weight="semibold"
-                className="font-ppmori hover:underline"
-              >
-                Scroll
-              </Typography>
-              <Image src={link} alt="link" className="w-8" />
-            </div>
-          </Link>
-          <Link
-            href="https://forum.superfluid.org/t/lampros-dao-delegate-thread/266?u=euphoria"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div
-              className={`rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 ${"bg-white scale-105"}`}
-            >
-              <Image
-                src={superfluid}
-                alt="superfluid"
-                className="w-7"
-                quality={100}
-              />
-              <Typography
-                variant="subtitle2"
-                color="primary"
-                weight="semibold"
-                className="font-ppmori hover:underline"
-              >
-                Superfluid
-              </Typography>
-              <Image src={link} alt="link" className="w-7" />
-            </div>
-          </Link>
+                <Image
+                  src={delegation.icon}
+                  alt={delegation.name.toLowerCase()}
+                  className="w-7"
+                  quality={100}
+                />
+                <Typography
+                  variant={textConfig.delegationButtonDesktop.variant}
+                  color={
+                    textConfig.delegationButtonDesktop.color as
+                      | `#${string}`
+                      | "primary"
+                  }
+                  weight={textConfig.delegationButtonDesktop.weight}
+                  className={textConfig.delegationButtonDesktop.className}
+                >
+                  {delegation.name}
+                </Typography>
+                <Image
+                  src={images.linkDesktop.src}
+                  alt="link"
+                  className={images.linkDesktop.className}
+                />
+              </div>
+            </Link>
+          ))}
         </GridCell>
 
-        <GridCell className="col-start-8 row-start-3 border border-white" />
-      </div>
+        <GridCell
+          colStart={layoutConfig.desktop.delegations.emptyCell3.colStart}
+          rowStart={layoutConfig.desktop.delegations.emptyCell3.rowStart}
+          className={layoutConfig.desktop.delegations.emptyCell3.className}
+        />
+      </Grid>
     </>
   );
 }

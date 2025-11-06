@@ -69,3 +69,38 @@ export type {
   JourneyLayoutConfig,
   JourneyProps,
 } from "./about/journey";
+export type {
+  ContributionsHeroImageConfig,
+  ContributionsHeroTextConfig,
+  ContributionsHeroLayoutConfig,
+  ContributionsHeroProps,
+} from "./contributions/hero";
+export type {
+  ContributionItem,
+  ContributionsReportsImageConfig,
+  ContributionsReportsTextConfig,
+  ContributionsReportsLayoutConfig,
+  ContributionsReportsProps,
+} from "./contributions/reports";
+export type {
+  TeamMember,
+  Delegation,
+  GovernanceHeroImageConfig,
+  GovernanceHeroTextConfig,
+  GovernanceHeroLayoutConfig,
+  GovernanceHeroProps,
+} from "./governance/hero";
+export type {
+  Protocol,
+  DelegateImageConfig,
+  DelegateTextConfig,
+  DelegateLayoutConfig,
+  DelegateProps,
+} from "./governance/delegate";
+export type {
+  RecentVotesImageConfig,
+  RecentVotesTextConfig,
+  RecentVotesLayoutConfig,
+  RecentVotesProps,
+  RecentVotesConfigHookReturn,
+} from "./governance/recentVotes";
