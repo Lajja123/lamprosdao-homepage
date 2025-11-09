@@ -1,13 +1,148 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Typography from "@/components/UI/Typography";
 import Grid, { GridCell } from "@/components/UI/Grid";
 import { useSection2Config } from "@/hooks/useSection2Config";
 import { colors } from "@/theme";
 
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Section2() {
   const { images, backgroundImages, textConfig, layoutConfig } =
     useSection2Config();
+
+  // Refs for animation elements
+  const desktopClipRef = useRef<HTMLDivElement>(null);
+  const desktopTextRef = useRef<HTMLDivElement>(null);
+  const mobileClipRef = useRef<HTMLDivElement>(null);
+  const mobileTextRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Desktop clip image animation
+    if (desktopClipRef.current) {
+      gsap.set(desktopClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const clipAnimation = gsap.to(desktopClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (clipAnimation.scrollTrigger) {
+        scrollTriggers.push(clipAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop text content animation
+    if (desktopTextRef.current) {
+      gsap.set(desktopTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const textAnimation = gsap.to(desktopTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (textAnimation.scrollTrigger) {
+        scrollTriggers.push(textAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile clip image animation
+    if (mobileClipRef.current) {
+      gsap.set(mobileClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const mobileClipAnimation = gsap.to(mobileClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileClipAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileClipAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile text content animation
+    if (mobileTextRef.current) {
+      gsap.set(mobileTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileTextAnimation = gsap.to(mobileTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileTextAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileTextAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      // Cleanup only the ScrollTrigger instances we created
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, []);
 
   return (
     <div className="w-full">
@@ -43,7 +178,10 @@ export default function Section2() {
           <GridCell type="basic" className="p-10"></GridCell>
           <GridCell type="spannedContent">
             <div className={layoutConfig.desktop.contentCell.className}>
-              <div className={layoutConfig.desktop.clipContainer.className}>
+              <div
+                ref={desktopClipRef}
+                className={layoutConfig.desktop.clipContainer.className}
+              >
                 <Image
                   src={images.clip.src}
                   alt={images.clip.alt}
@@ -54,7 +192,10 @@ export default function Section2() {
                 />
               </div>
 
-              <div className={layoutConfig.desktop.textContainer.className}>
+              <div
+                ref={desktopTextRef}
+                className={layoutConfig.desktop.textContainer.className}
+              >
                 {textConfig.paragraphs.map((paragraph, index) => (
                   <Typography
                     key={`desktop-paragraph-${index}`}
@@ -177,7 +318,10 @@ export default function Section2() {
           </div>
           <div className="col-span-3 row-span-8 col-start-2 row-start-2 border border-black ">
             <div className="flex flex-col items-center justify-between w-full h-full">
-              <div className={layoutConfig.mobile.clipContainer.className}>
+              <div
+                ref={mobileClipRef}
+                className={layoutConfig.mobile.clipContainer.className}
+              >
                 <Image
                   src={images.clip.src}
                   alt={images.clip.alt}
@@ -188,7 +332,10 @@ export default function Section2() {
                 />
               </div>
 
-              <div className={layoutConfig.mobile.textContainer.className}>
+              <div
+                ref={mobileTextRef}
+                className={layoutConfig.mobile.textContainer.className}
+              >
                 {textConfig.paragraphs.map((paragraph, index) => (
                   <Typography
                     key={`mobile-paragraph-${index}`}

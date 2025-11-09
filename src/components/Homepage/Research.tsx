@@ -1,7 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Typography } from "@/components/UI/Typography";
 import Button from "@/components/UI/Button";
 import Arrow from "../UI/Arrow";
@@ -9,6 +11,11 @@ import Grid, { GridCell } from "@/components/UI/Grid";
 import researchContent from "@/data/researchContent.json";
 import { useResearchConfig } from "@/hooks/useResearchConfig";
 import ResearchTitle from "./ResearchTitle";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Research() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,6 +31,259 @@ export default function Research() {
     titleWavyConfigs,
     layoutConfig,
   } = useResearchConfig();
+
+  // Refs for animation elements
+  const desktopTitleRef = useRef<HTMLDivElement>(null);
+  const desktopDescriptionRef = useRef<HTMLDivElement>(null);
+  const desktopButtonRef = useRef<HTMLDivElement>(null);
+  const mobileTitleRef = useRef<HTMLDivElement>(null);
+  const mobileDescriptionRef = useRef<HTMLDivElement>(null);
+  const mobileButtonRef = useRef<HTMLDivElement>(null);
+  const isInitialMountRef = useRef(true);
+
+  // Initial reveal animations on mount
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Desktop title animation
+    if (desktopTitleRef.current) {
+      gsap.set(desktopTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(desktopTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop description animation
+    if (desktopDescriptionRef.current) {
+      gsap.set(desktopDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(desktopDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop button animation
+    if (desktopButtonRef.current) {
+      gsap.set(desktopButtonRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const buttonAnimation = gsap.to(desktopButtonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.4,
+        scrollTrigger: {
+          trigger: desktopButtonRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (buttonAnimation.scrollTrigger) {
+        scrollTriggers.push(buttonAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile title animation
+    if (mobileTitleRef.current) {
+      gsap.set(mobileTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileTitleAnimation = gsap.to(mobileTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileTitleAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileTitleAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile description animation
+    if (mobileDescriptionRef.current) {
+      gsap.set(mobileDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileDescAnimation = gsap.to(mobileDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileDescAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileDescAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile button animation
+    if (mobileButtonRef.current) {
+      gsap.set(mobileButtonRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const mobileButtonAnimation = gsap.to(mobileButtonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.4,
+        scrollTrigger: {
+          trigger: mobileButtonRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileButtonAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileButtonAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, []);
+
+  // Smooth content transitions when currentIndex changes
+  useEffect(() => {
+    // Skip animation on initial mount
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
+
+    const elements = [
+      { ref: desktopTitleRef },
+      { ref: desktopDescriptionRef },
+      { ref: desktopButtonRef },
+      { ref: mobileTitleRef },
+      { ref: mobileDescriptionRef },
+      { ref: mobileButtonRef },
+    ];
+
+    const timeline = gsap.timeline();
+
+    // Animate out current content
+    elements.forEach(({ ref }) => {
+      if (ref.current) {
+        timeline.to(
+          ref.current,
+          {
+            opacity: 0,
+            y: -20,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          0
+        );
+      }
+    });
+
+    // Wait for React to update DOM, then animate in new content
+    timeline.call(
+      () => {
+        // Use double requestAnimationFrame to ensure DOM has fully updated
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const inTimeline = gsap.timeline();
+
+            // Animate in all elements simultaneously
+            elements.forEach(({ ref }) => {
+              if (ref.current) {
+                // Set initial state for new content
+                gsap.set(ref.current, {
+                  opacity: 0,
+                  y: 20,
+                });
+
+                // Animate in at the same time (position 0 means all start together)
+                inTimeline.to(
+                  ref.current,
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                  },
+                  0
+                );
+              }
+            });
+          });
+        });
+      },
+      null,
+      0.3
+    );
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) =>
@@ -63,7 +323,7 @@ export default function Research() {
           {/* Content section - spans 3 columns, 4 rows */}
           <GridCell type="researchContent">
             <div className={layoutConfig.desktop.contentCell.className}>
-              <div>
+              <div ref={desktopTitleRef}>
                 <Typography
                   variant="h2"
                   weight="normal"
@@ -78,7 +338,7 @@ export default function Research() {
                 </Typography>
               </div>
 
-              <div>
+              <div ref={desktopDescriptionRef}>
                 <Typography
                   variant="subtitle2"
                   weight="normal"
@@ -89,7 +349,7 @@ export default function Research() {
                 </Typography>
               </div>
 
-              <div>
+              <div ref={desktopButtonRef}>
                 <Link
                   href={currentItem.link}
                   target="_blank"
@@ -195,7 +455,7 @@ export default function Research() {
             {/* Row 1 - Main content spanning all columns */}
             <div className={layoutConfig.mobile.contentCell.className}>
               <div className="space-y-6 sm:space-y-8 py-8 sm:py-12">
-                <div>
+                <div ref={mobileTitleRef}>
                   <Typography
                     variant="h2"
                     weight="normal"
@@ -210,7 +470,7 @@ export default function Research() {
                   </Typography>
                 </div>
 
-                <div>
+                <div ref={mobileDescriptionRef}>
                   <Typography
                     variant="subtitle2"
                     weight="normal"
@@ -221,7 +481,7 @@ export default function Research() {
                   </Typography>
                 </div>
 
-                <div className="flex justify-center sm:justify-start">
+                <div ref={mobileButtonRef} className="flex justify-center sm:justify-start">
                   <Link
                     href={currentItem.link}
                     target="_blank"

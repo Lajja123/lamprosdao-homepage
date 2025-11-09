@@ -1,8 +1,16 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Typography from "../UI/Typography";
 import Grid, { GridCell } from "@/components/UI/Grid";
 import { useContributionsHeroConfig } from "@/hooks/useContributionsHeroConfig";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface HeroProps {
   activeChain: "arbitrum" | "optimism";
@@ -24,6 +32,361 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
     highlightedLetters: [],
   };
 
+  // Refs for animation elements
+  // Mobile refs
+  const mobileClipImageRef = useRef<HTMLDivElement>(null);
+  const mobileClip2ImageRef = useRef<HTMLDivElement>(null);
+  const mobileTextRef = useRef<HTMLDivElement>(null);
+  const mobileTitleRef = useRef<HTMLDivElement>(null);
+  const mobileSubtitleRef = useRef<HTMLDivElement>(null);
+  const mobileDescriptionRef = useRef<HTMLDivElement>(null);
+
+  // Desktop refs
+  const desktopClipImageRef = useRef<HTMLDivElement>(null);
+  const desktopTextRef = useRef<HTMLDivElement>(null);
+  const desktopClip2ImageRef = useRef<HTMLDivElement>(null);
+  const desktopTitleRef = useRef<HTMLDivElement>(null);
+  const desktopSubtitleRef = useRef<HTMLDivElement>(null);
+  const desktopDescriptionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile clip image animation
+    if (mobileClipImageRef.current) {
+      gsap.set(mobileClipImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(mobileClipImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileClipImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile clip2 image animation
+    if (mobileClip2ImageRef.current) {
+      gsap.set(mobileClip2ImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(mobileClip2ImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileClip2ImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile text animation
+    if (mobileTextRef.current) {
+      gsap.set(mobileTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const textAnimation = gsap.to(mobileTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: mobileTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (textAnimation.scrollTrigger) {
+        scrollTriggers.push(textAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile title animation
+    if (mobileTitleRef.current) {
+      gsap.set(mobileTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(mobileTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile subtitle animation
+    if (mobileSubtitleRef.current) {
+      gsap.set(mobileSubtitleRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const subtitleAnimation = gsap.to(mobileSubtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileSubtitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (subtitleAnimation.scrollTrigger) {
+        scrollTriggers.push(subtitleAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile description animation
+    if (mobileDescriptionRef.current) {
+      gsap.set(mobileDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(mobileDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: mobileDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop clip image animation
+    if (desktopClipImageRef.current) {
+      gsap.set(desktopClipImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(desktopClipImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopClipImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop text animation
+    if (desktopTextRef.current) {
+      gsap.set(desktopTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const textAnimation = gsap.to(desktopTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.1,
+        scrollTrigger: {
+          trigger: desktopTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (textAnimation.scrollTrigger) {
+        scrollTriggers.push(textAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop clip2 image animation
+    if (desktopClip2ImageRef.current) {
+      gsap.set(desktopClip2ImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(desktopClip2ImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopClip2ImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop title animation
+    if (desktopTitleRef.current) {
+      gsap.set(desktopTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(desktopTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop subtitle animation
+    if (desktopSubtitleRef.current) {
+      gsap.set(desktopSubtitleRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const subtitleAnimation = gsap.to(desktopSubtitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopSubtitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (subtitleAnimation.scrollTrigger) {
+        scrollTriggers.push(subtitleAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop description animation
+    if (desktopDescriptionRef.current) {
+      gsap.set(desktopDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(desktopDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: desktopDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [activeChain]);
+
   const handleButtonClick = (content: "arbitrum" | "optimism") => {
     onChainChange(content);
   };
@@ -41,19 +404,24 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           <GridCell />
           <GridCell className={layoutConfig.mobile.clipImageCell.className}>
             <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${backgroundImages.bgImage.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "top center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <Image
-              src={images.clip.src}
-              alt={images.clip.alt}
-              className={images.clip.className}
-            />
+              ref={mobileClipImageRef}
+              className="relative"
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${backgroundImages.bgImage.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "top center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></div>
+              <Image
+                src={images.clip.src}
+                alt={images.clip.alt}
+                className={images.clip.className}
+              />
+            </div>
           </GridCell>
           <GridCell />
           <GridCell />
@@ -63,6 +431,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <div className="flex flex-col">
           {/* Second Image Section */}
           <div
+            ref={mobileClip2ImageRef}
             className={layoutConfig.mobile.clip2ImageCell.className}
             style={{
               backgroundColor:
@@ -76,7 +445,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             />
           </div>
           {/* Text Section */}
-          <div className={layoutConfig.mobile.textCell.className}>
+          <div ref={mobileTextRef} className={layoutConfig.mobile.textCell.className}>
             <Typography
               variant={textConfig.intro.variant}
               color={textConfig.intro.color as `#${string}` | "primary"}
@@ -173,7 +542,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         {/* Dynamic Content Section */}
-        <div className={layoutConfig.mobile.dynamicContent.titleCell.className}>
+        <div ref={mobileTitleRef} className={layoutConfig.mobile.dynamicContent.titleCell.className}>
           <Typography
             variant="h1"
             color="primary"
@@ -200,6 +569,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         <div
+          ref={mobileSubtitleRef}
           className={layoutConfig.mobile.dynamicContent.subtitleCell.className}
           style={{
             backgroundColor:
@@ -217,6 +587,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         <div
+          ref={mobileDescriptionRef}
           className={
             layoutConfig.mobile.dynamicContent.descriptionCell.className
           }
@@ -243,20 +614,22 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <GridCell />
         <GridCell />
         <GridCell className={layoutConfig.desktop.clipImageCell.className}>
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${backgroundImages.bgImage.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "top center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-          <Image
-            src={images.clip.src}
-            alt={images.clip.alt}
-            className="relative w-full h-full object-contain p-5 mx-auto"
-          />
+          <div ref={desktopClipImageRef} className="relative">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${backgroundImages.bgImage.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "top center",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <Image
+              src={images.clip.src}
+              alt={images.clip.alt}
+              className="relative w-full h-full object-contain p-5 mx-auto"
+            />
+          </div>
         </GridCell>
         <GridCell />
         <GridCell />
@@ -267,12 +640,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           colSpan={layoutConfig.desktop.textCell.colSpan}
           className={layoutConfig.desktop.textCell.className}
         >
-          <Typography
-            variant={textConfig.intro.variant}
-            color={textConfig.intro.color as `#${string}` | "primary"}
-            weight={textConfig.intro.weight}
-            className="tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
-          >
+          <div ref={desktopTextRef}>
+            <Typography
+              variant={textConfig.intro.variant}
+              color={textConfig.intro.color as `#${string}` | "primary"}
+              weight={textConfig.intro.weight}
+              className="tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
+            >
             {textConfig.intro.paragraphs.map((paragraph, index) => (
               <div
                 key={`paragraph-${index}`}
@@ -280,8 +654,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               >
                 {paragraph}
               </div>
-            ))}
-          </Typography>
+              ))}
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colSpan={layoutConfig.desktop.clip2ImageCell.colSpan}
@@ -292,11 +667,14 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               layoutConfig.desktop.clip2ImageCell.backgroundColor,
           }}
         >
-          <Image
-            src={images.clip2Desktop.src}
-            alt={images.clip2Desktop.alt}
-            className={images.clip2Desktop.className}
-          />
+          <div ref={desktopClip2ImageRef}      className="w-full h-full object-contain p-5 mx-auto flex items-center justify-center"
+          >
+            <Image
+              src={images.clip2Desktop.src}
+              alt={images.clip2Desktop.alt}
+              className={images.clip2Desktop.className}
+            />
+          </div>
         </GridCell>
 
         <GridCell
@@ -394,12 +772,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           colSpan={layoutConfig.desktop.dynamicContent.titleCell.colSpan}
           className={layoutConfig.desktop.dynamicContent.titleCell.className}
         >
-          <Typography
-            variant="h2"
-            color="primary"
-            weight="light"
-            className="tracking-wide uppercase"
-          >
+          <div ref={desktopTitleRef}>
+            <Typography
+              variant="h2"
+              color="primary"
+              weight="light"
+              className="tracking-wide uppercase"
+            >
             {currentContent.word.split("").map((letter, index) => {
               const isHighlighted = (
                 currentContent.highlightedLetters || []
@@ -415,7 +794,8 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
                 </span>
               );
             })}
-          </Typography>
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colStart={layoutConfig.desktop.dynamicContent.emptyCell2.colStart}
@@ -434,14 +814,16 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               layoutConfig.desktop.dynamicContent.subtitleCell.backgroundColor,
           }}
         >
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="normal"
-            className="tracking-wider"
-          >
-            {currentContent.subtitle}
-          </Typography>
+          <div ref={desktopSubtitleRef}>
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="normal"
+              className="tracking-wider"
+            >
+              {currentContent.subtitle}
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colStart={layoutConfig.desktop.dynamicContent.emptyCell4.colStart}
@@ -456,14 +838,16 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             layoutConfig.desktop.dynamicContent.descriptionCell.className
           }
         >
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="semibold"
-            className="tracking-wider font-ppmori text-xl max-w-[1200px] p-5 mx-auto"
-          >
-            {currentContent.description}
-          </Typography>
+          <div ref={desktopDescriptionRef}>
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="semibold"
+              className="tracking-wider font-ppmori text-xl max-w-[1200px] p-5 mx-auto"
+            >
+              {currentContent.description}
+            </Typography>
+          </div>
         </GridCell>
       </Grid>
     </>

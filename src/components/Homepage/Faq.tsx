@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef, Fragment } from "react";
+import { useState, useRef, Fragment, useEffect } from "react";
 import { Typography } from "@/components/UI/Typography";
 import Arrow from "../UI/Arrow";
 import { NumberCell, ContentCell, IconCell } from "@/components/UI/FaqCell";
@@ -27,6 +27,8 @@ export default function Faq() {
 
   // Refs for animations
   const answerRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const questionRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const isInitialMountRef = useRef(true);
 
   // Function to set answer ref
   const setAnswerRef = (itemId: number, element: HTMLDivElement | null) => {
@@ -34,6 +36,15 @@ export default function Faq() {
       answerRefs.current.set(itemId, element);
     } else {
       answerRefs.current.delete(itemId);
+    }
+  };
+
+  // Function to set question ref
+  const setQuestionRef = (itemId: number, element: HTMLDivElement | null) => {
+    if (element) {
+      questionRefs.current.set(itemId, element);
+    } else {
+      questionRefs.current.delete(itemId);
     }
   };
 
@@ -114,6 +125,90 @@ export default function Faq() {
 
   const currentItems = getCurrentSectionItems();
 
+  // Initial reveal animations for questions on mount and section change
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Animate all current question elements
+    currentItems.forEach((item) => {
+      const questionElement = questionRefs.current.get(item.id);
+      if (questionElement) {
+        // Set initial state
+        gsap.set(questionElement, {
+          opacity: 0,
+          y: 30,
+        });
+
+        // Create scroll-triggered animation
+        const questionAnimation = gsap.to(questionElement, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: questionElement,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (questionAnimation.scrollTrigger) {
+          scrollTriggers.push(questionAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSection]);
+
+  // Smooth transitions when section changes
+  useEffect(() => {
+    // Skip animation on initial mount
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
+
+    // Wait for React to update DOM, then animate in new questions
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const inTimeline = gsap.timeline();
+
+        // Animate in all new questions simultaneously
+        currentItems.forEach((item) => {
+          const questionElement = questionRefs.current.get(item.id);
+          if (questionElement) {
+            // Set initial state for new content
+            gsap.set(questionElement, {
+              opacity: 0,
+              y: 20,
+            });
+
+            // Animate in at the same time
+            inTimeline.to(
+              questionElement,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out",
+              },
+              0
+            );
+          }
+        });
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSection]);
+
   // Render FAQ item component
   const renderFaqItem = (
     item: FaqItem,
@@ -134,17 +229,19 @@ export default function Faq() {
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
         >
           <div>
-            <Typography
-              variant="body2"
-              color={textConfig.questionColor as `#${string}` | "primary"}
-              weight="semibold"
-              className={combineStyles(
-                textConfig.questionClassName,
-                "break-words"
-              )}
-            >
-              {item.question}
-            </Typography>
+            <div ref={(el) => setQuestionRef(item.id, el)}>
+              <Typography
+                variant="body2"
+                color={textConfig.questionColor as `#${string}` | "primary"}
+                weight="semibold"
+                className={combineStyles(
+                  textConfig.questionClassName,
+                  "break-words"
+                )}
+              >
+                {item.question}
+              </Typography>
+            </div>
             <div
               ref={(el) => setAnswerRef(item.id, el)}
               className="overflow-hidden"

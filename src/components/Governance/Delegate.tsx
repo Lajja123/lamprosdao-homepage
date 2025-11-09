@@ -1,4 +1,7 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Typography from "../UI/Typography";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,9 +9,228 @@ import Grid, { GridCell } from "../UI/Grid";
 import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
 import { useDelegateConfig } from "@/hooks/useDelegateConfig";
 
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Delegate() {
   useSmoothScrollOnLoad();
   const { images, protocols, textConfig, layoutConfig } = useDelegateConfig();
+
+  // Refs for animation elements
+  // Mobile refs
+  const mobileImageRef = useRef<HTMLDivElement>(null);
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  const mobileDescriptionRef = useRef<HTMLDivElement>(null);
+
+  // Desktop refs
+  const desktopTitleRef = useRef<HTMLDivElement>(null);
+  const desktopVerticalTextRef = useRef<HTMLDivElement>(null);
+  const desktopDescriptionRef = useRef<HTMLDivElement>(null);
+  const desktopImageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile image animation
+    if (mobileImageRef.current) {
+      gsap.set(mobileImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(mobileImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile header animation
+    if (mobileHeaderRef.current) {
+      gsap.set(mobileHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(mobileHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile description animation
+    if (mobileDescriptionRef.current) {
+      gsap.set(mobileDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(mobileDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: mobileDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop title animation
+    if (desktopTitleRef.current) {
+      gsap.set(desktopTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(desktopTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop vertical text animation
+    if (desktopVerticalTextRef.current) {
+      gsap.set(desktopVerticalTextRef.current, {
+        opacity: 0,
+        x: -30,
+      });
+
+      const verticalTextAnimation = gsap.to(desktopVerticalTextRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.1,
+        scrollTrigger: {
+          trigger: desktopVerticalTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (verticalTextAnimation.scrollTrigger) {
+        scrollTriggers.push(verticalTextAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop description animation
+    if (desktopDescriptionRef.current) {
+      gsap.set(desktopDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(desktopDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop image animation
+    if (desktopImageRef.current) {
+      gsap.set(desktopImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(desktopImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: desktopImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, []);
+
   return (
     <>
       {/* Mobile Layout */}
@@ -19,7 +241,10 @@ export default function Delegate() {
         }}
       >
         {/* Image Section */}
-        <div className={layoutConfig.mobile.imageSection.className}>
+        <div
+          ref={mobileImageRef}
+          className={layoutConfig.mobile.imageSection.className}
+        >
           <Image
             src={images.delegate.src}
             alt={images.delegate.alt}
@@ -28,7 +253,10 @@ export default function Delegate() {
           />
         </div>
         {/* Header Section */}
-        <div className={layoutConfig.mobile.headerSection.className}>
+        <div
+          ref={mobileHeaderRef}
+          className={layoutConfig.mobile.headerSection.className}
+        >
           <Typography
             variant={textConfig.title.variant}
             color={textConfig.title.color as `#${string}` | "white"}
@@ -70,7 +298,10 @@ export default function Delegate() {
         </div>
 
         {/* Description Section */}
-        <div className={layoutConfig.mobile.descriptionSection.className}>
+        <div
+          ref={mobileDescriptionRef}
+          className={layoutConfig.mobile.descriptionSection.className}
+        >
           <div className="space-y-4">
             {textConfig.descriptions.map((description, index) => (
               <Typography
@@ -153,27 +384,29 @@ export default function Delegate() {
           colSpan={layoutConfig.desktop.titleCell.colSpan}
           className={layoutConfig.desktop.titleCell.className}
         >
-          <Typography
-            variant={textConfig.titleDesktop.variant}
-            color={textConfig.titleDesktop.color as `#${string}` | "white"}
-            className={textConfig.titleDesktop.className}
-          >
-            {textConfig.titleDesktop.text.split("").map((letter, index) => {
-              const isHighlighted = textConfig.titleDesktop.wavyLetters.some(
-                (w) => w.position === index + 1
-              );
-              return (
-                <span
-                  key={index}
-                  className={
-                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
-                  }
-                >
-                  {letter}
-                </span>
-              );
-            })}
-          </Typography>
+          <div ref={desktopTitleRef}>
+            <Typography
+              variant={textConfig.titleDesktop.variant}
+              color={textConfig.titleDesktop.color as `#${string}` | "white"}
+              className={textConfig.titleDesktop.className}
+            >
+              {textConfig.titleDesktop.text.split("").map((letter, index) => {
+                const isHighlighted = textConfig.titleDesktop.wavyLetters.some(
+                  (w) => w.position === index + 1
+                );
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colStart={layoutConfig.desktop.emptyCell2.colStart}
@@ -187,14 +420,16 @@ export default function Delegate() {
           colSpan={layoutConfig.desktop.verticalTextCell.colSpan}
           className={layoutConfig.desktop.verticalTextCell.className}
         >
-          <Typography
-            variant={textConfig.verticalText.variant}
-            color={textConfig.verticalText.color as `#${string}` | "white"}
-            weight={textConfig.verticalText.weight}
-            className={textConfig.verticalText.className}
-          >
-            {textConfig.verticalText.text}
-          </Typography>
+          <div ref={desktopVerticalTextRef}>
+            <Typography
+              variant={textConfig.verticalText.variant}
+              color={textConfig.verticalText.color as `#${string}` | "white"}
+              weight={textConfig.verticalText.weight}
+              className={textConfig.verticalText.className}
+            >
+              {textConfig.verticalText.text}
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colSpan={layoutConfig.desktop.descriptionCell.colSpan}
@@ -202,33 +437,37 @@ export default function Delegate() {
           rowStart={layoutConfig.desktop.descriptionCell.rowStart}
           className={layoutConfig.desktop.descriptionCell.className}
         >
-          {textConfig.descriptions.map((description, index) => (
-            <Typography
-              key={index}
-              variant={textConfig.descriptionDesktop.variant}
-              color={
-                textConfig.descriptionDesktop.color as `#${string}` | "white"
-              }
-              weight={textConfig.descriptionDesktop.weight}
-              className={textConfig.descriptionDesktop.className}
-            >
-              {description}
-            </Typography>
-          ))}
+          <div ref={desktopDescriptionRef}>
+            {textConfig.descriptions.map((description, index) => (
+              <Typography
+                key={index}
+                variant={textConfig.descriptionDesktop.variant}
+                color={
+                  textConfig.descriptionDesktop.color as `#${string}` | "white"
+                }
+                weight={textConfig.descriptionDesktop.weight}
+                className={textConfig.descriptionDesktop.className}
+              >
+                {description}
+              </Typography>
+            ))}
+          </div>
         </GridCell>
         <GridCell
           colSpan={layoutConfig.desktop.imageCell.colSpan}
           rowSpan={layoutConfig.desktop.imageCell.rowSpan}
           colStart={layoutConfig.desktop.imageCell.colStart}
           rowStart={layoutConfig.desktop.imageCell.rowStart}
-          className={layoutConfig.desktop.imageCell.className}
         >
-          <Image
-            src={images.delegateDesktop.src}
-            alt={images.delegateDesktop.alt}
-            className={images.delegateDesktop.className}
-            quality={images.delegateDesktop.quality}
-          />
+          <div ref={desktopImageRef}           className={layoutConfig.desktop.imageCell.className}
+          >
+            <Image
+              src={images.delegateDesktop.src}
+              alt={images.delegateDesktop.alt}
+              className={images.delegateDesktop.className}
+              quality={images.delegateDesktop.quality}
+            />
+          </div>
         </GridCell>
         <GridCell
           rowSpan={layoutConfig.desktop.accentCell.rowSpan}

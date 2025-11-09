@@ -159,18 +159,18 @@ export const useJourneyConfig = () => {
       {
         // Item 0
         image: { colSpan: 4, rowSpan: 2, colStart: 2, rowStart: 2 },
-        content: { colSpan: 3, colStart: 6, rowStart: 2 },
+        content: { colSpan: 3, rowStart: 2 },
         number: { colStart: 9, rowStart: 2 },
       },
       {
         // Item 1
         number: { colStart: 6, rowStart: 3 },
-        content: { colSpan: 3, colStart: 7, rowStart: 3 },
+        content: { colSpan: 3, rowStart: 3 },
       },
       {
         // Item 2
         number: { colStart: 2, rowStart: 4 },
-        content: { colSpan: 3, colStart: 3, rowStart: 4 },
+        content: { colSpan: 3, rowStart: 4 },
         image: { colSpan: 4, rowSpan: 2, colStart: 6, rowStart: 4 },
       },
       {
@@ -181,19 +181,19 @@ export const useJourneyConfig = () => {
       {
         // Item 4
         image: { colSpan: 4, rowSpan: 2, colStart: 2, rowStart: 6 },
-        content: { colSpan: 3, colStart: 6, rowStart: 6 },
+        content: { colSpan: 3, rowStart: 6 },
         number: { colStart: 9, rowStart: 6 },
       },
       {
         // Item 5
         number: { colStart: 6, rowStart: 7 },
-        content: { colSpan: 3, colStart: 7, rowStart: 7 },
+        content: { colSpan: 3, rowStart: 7 },
       },
       {
         // Item 6
         image: { colSpan: 4, rowSpan: 2, colStart: 6, rowStart: 8 },
         number: { colStart: 2, rowStart: 8 },
-        content: { colSpan: 3, colStart: 3, rowStart: 8 },
+        content: { colSpan: 3, rowStart: 8 },
       },
       {
         // Item 7

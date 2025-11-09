@@ -8,6 +8,8 @@ import React, {
 } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Typography from "../UI/Typography";
 import Grid, { GridCell } from "../UI/Grid";
 import Arrow from "../UI/Arrow";
@@ -20,6 +22,11 @@ import type {
   ParsedForumUrl,
   NotionProposalData,
 } from "@/types";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // Memoized Loading Skeleton Component
 const LoadingSkeleton = React.memo(
@@ -120,6 +127,20 @@ const RecentVotes = React.memo(function RecentVotes() {
   // Add a ref to track the latest request ID
   const latestRequestIdRef = useRef(0);
   const currentRequestId = useRef(0);
+
+  // Refs for animation elements
+  // Mobile refs
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  const mobileProtocolButtonsRef = useRef<HTMLDivElement>(null);
+  const mobileVoteCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileFooterRef = useRef<HTMLDivElement>(null);
+
+  // Desktop refs
+  const desktopIconRef = useRef<HTMLDivElement>(null);
+  const desktopHeaderRef = useRef<HTMLDivElement>(null);
+  const desktopProtocolButtonsRef = useRef<HTMLDivElement>(null);
+  const desktopProposalRowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopFooterRef = useRef<HTMLDivElement>(null);
 
   // Memoize parseForumUrl function
   const parseForumUrl = useCallback((url: string): ParsedForumUrl | null => {
@@ -393,11 +414,266 @@ const RecentVotes = React.memo(function RecentVotes() {
     fetchProposals();
   }, [fetchProposals]);
 
+  // Animation useEffect
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile header animation
+    if (mobileHeaderRef.current) {
+      gsap.set(mobileHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(mobileHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile protocol buttons animation
+    if (mobileProtocolButtonsRef.current) {
+      gsap.set(mobileProtocolButtonsRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const buttonsAnimation = gsap.to(mobileProtocolButtonsRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileProtocolButtonsRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (buttonsAnimation.scrollTrigger) {
+        scrollTriggers.push(buttonsAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile vote cards animation
+    mobileVoteCardRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const cardAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (cardAnimation.scrollTrigger) {
+          scrollTriggers.push(cardAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Mobile footer animation
+    if (mobileFooterRef.current) {
+      gsap.set(mobileFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(mobileFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop icon animation
+    if (desktopIconRef.current) {
+      gsap.set(desktopIconRef.current, {
+        opacity: 0,
+        scale: 0.9,
+      });
+
+      const iconAnimation = gsap.to(desktopIconRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopIconRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (iconAnimation.scrollTrigger) {
+        scrollTriggers.push(iconAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop header animation
+    if (desktopHeaderRef.current) {
+      gsap.set(desktopHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(desktopHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.1,
+        scrollTrigger: {
+          trigger: desktopHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop protocol buttons animation
+    if (desktopProtocolButtonsRef.current) {
+      gsap.set(desktopProtocolButtonsRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const buttonsAnimation = gsap.to(desktopProtocolButtonsRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopProtocolButtonsRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (buttonsAnimation.scrollTrigger) {
+        scrollTriggers.push(buttonsAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop proposal rows animation
+    desktopProposalRowRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const rowAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (rowAnimation.scrollTrigger) {
+          scrollTriggers.push(rowAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Desktop footer animation
+    if (desktopFooterRef.current) {
+      gsap.set(desktopFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(desktopFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [proposals.length, loading]);
+
   return (
     <>
       {/* Mobile Layout */}
       <div className={layoutConfig.mobile.container.className}>
         <div
+          ref={mobileHeaderRef}
           className={layoutConfig.mobile.header.className}
           style={{
             backgroundColor: layoutConfig.mobile.header.backgroundColor,
@@ -411,7 +687,10 @@ const RecentVotes = React.memo(function RecentVotes() {
           >
             Recent Votes
           </Typography>
-          <div className="flex items-center gap-2 flex-wrap justify-center">
+          <div
+            ref={mobileProtocolButtonsRef}
+            className="flex items-center gap-2 flex-wrap justify-center"
+          >
             {protocols.map((protocol) => (
               <ProtocolButton
                 key={protocol.name}
@@ -493,6 +772,9 @@ const RecentVotes = React.memo(function RecentVotes() {
               {proposals.map((proposal, index) => (
                 <div
                   key={proposal.id}
+                  ref={(el) => {
+                    mobileVoteCardRefs.current[index] = el;
+                  }}
                   className={layoutConfig.mobile.voteCard.className}
                 >
                   {/* Vote Header */}
@@ -707,6 +989,7 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         {/* Footer Section */}
         <div
+          ref={mobileFooterRef}
           className={layoutConfig.mobile.footer.className}
           style={{
             backgroundColor: layoutConfig.mobile.footer.backgroundColor,
@@ -738,7 +1021,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             backgroundColor: layoutConfig.desktop.iconCell.backgroundColor,
           }}
         >
-          <div className="flex items-center justify-center">
+          <div ref={desktopIconRef} className="flex items-center justify-center">
             <Image src={images.voteIcon.src} alt={images.voteIcon.alt} />
           </div>
         </GridCell>
@@ -746,15 +1029,20 @@ const RecentVotes = React.memo(function RecentVotes() {
           colSpan={layoutConfig.desktop.headerCell.colSpan}
           className={layoutConfig.desktop.headerCell.className}
         >
-          <Typography
-            variant={textConfig.titleDesktop.variant}
-            color={textConfig.titleDesktop.color as `#${string}` | "primary"}
-            weight={textConfig.titleDesktop.weight}
-            className={textConfig.titleDesktop.className}
+          <div ref={desktopHeaderRef}>
+            <Typography
+              variant={textConfig.titleDesktop.variant}
+              color={textConfig.titleDesktop.color as `#${string}` | "primary"}
+              weight={textConfig.titleDesktop.weight}
+              className={textConfig.titleDesktop.className}
+            >
+              Recent Votes
+            </Typography>
+          </div>
+          <div
+            ref={desktopProtocolButtonsRef}
+            className="flex items-center gap-2"
           >
-            Recent Votes
-          </Typography>
-          <div className="flex items-center gap-2">
             {protocols.map((protocol) => (
               <ProtocolButton
                 key={protocol.name}
@@ -842,6 +1130,9 @@ const RecentVotes = React.memo(function RecentVotes() {
             return (
               <React.Fragment key={proposal.id}>
                 <GridCell
+                  ref={(el) => {
+                    desktopProposalRowRefs.current[index] = el;
+                  }}
                   rowStart={baseRow}
                   className={layoutConfig.desktop.proposalNumberCell.className}
                 >
@@ -1091,17 +1382,19 @@ const RecentVotes = React.memo(function RecentVotes() {
             backgroundColor: layoutConfig.desktop.footerCell.backgroundColor,
           }}
         >
-          <Link
-            href="https://lamprosdao.notion.site/governance"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              label={textConfig.seeMoreButton.label}
-              color={textConfig.seeMoreButton.color}
-              textColor={textConfig.seeMoreButton.textColor}
-            />
-          </Link>
+          <div ref={desktopFooterRef}>
+            <Link
+              href="https://lamprosdao.notion.site/governance"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={textConfig.seeMoreButton.label}
+                color={textConfig.seeMoreButton.color}
+                textColor={textConfig.seeMoreButton.textColor}
+              />
+            </Link>
+          </div>
         </GridCell>
       </Grid>
     </>

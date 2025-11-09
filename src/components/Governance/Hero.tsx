@@ -1,13 +1,296 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Typography from "../UI/Typography";
 import Link from "next/link";
 import Grid, { GridCell } from "../UI/Grid";
 import { useGovernanceHeroConfig } from "@/hooks/useGovernanceHeroConfig";
 
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Hero() {
   const { images, teamMembers, delegations, textConfig, layoutConfig } =
     useGovernanceHeroConfig();
+
+  // Refs for animation elements
+  // Mobile refs
+  const mobileTitleRef = useRef<HTMLDivElement>(null);
+  const mobileClipImageRef = useRef<HTMLDivElement>(null);
+  const mobileDescriptionRef = useRef<HTMLDivElement>(null);
+  const mobileTeamHeaderRef = useRef<HTMLDivElement>(null);
+  const mobileTeamMemberRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Desktop refs
+  const desktopClipImageRef = useRef<HTMLDivElement>(null);
+  const desktopDescriptionRef = useRef<HTMLDivElement>(null);
+  const desktopTeamHeaderRef = useRef<HTMLDivElement>(null);
+  const desktopTeamMemberRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile title animation
+    if (mobileTitleRef.current) {
+      gsap.set(mobileTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(mobileTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile clip image animation
+    if (mobileClipImageRef.current) {
+      gsap.set(mobileClipImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(mobileClipImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileClipImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile description animation
+    if (mobileDescriptionRef.current) {
+      gsap.set(mobileDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(mobileDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: mobileDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile team header animation
+    if (mobileTeamHeaderRef.current) {
+      gsap.set(mobileTeamHeaderRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const teamHeaderAnimation = gsap.to(mobileTeamHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTeamHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (teamHeaderAnimation.scrollTrigger) {
+        scrollTriggers.push(teamHeaderAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile team member images animation
+    mobileTeamMemberRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          scale: 0.8,
+          y: 20,
+        });
+
+        const memberAnimation = gsap.to(ref, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (memberAnimation.scrollTrigger) {
+          scrollTriggers.push(memberAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Desktop clip image animation
+    if (desktopClipImageRef.current) {
+      gsap.set(desktopClipImageRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const imageAnimation = gsap.to(desktopClipImageRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopClipImageRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (imageAnimation.scrollTrigger) {
+        scrollTriggers.push(imageAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop description animation
+    if (desktopDescriptionRef.current) {
+      gsap.set(desktopDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(desktopDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopDescriptionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop team header animation
+    if (desktopTeamHeaderRef.current) {
+      gsap.set(desktopTeamHeaderRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const teamHeaderAnimation = gsap.to(desktopTeamHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTeamHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (teamHeaderAnimation.scrollTrigger) {
+        scrollTriggers.push(teamHeaderAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop team member images animation
+    desktopTeamMemberRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          scale: 0.8,
+          y: 20,
+        });
+
+        const memberAnimation = gsap.to(ref, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (memberAnimation.scrollTrigger) {
+          scrollTriggers.push(memberAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [teamMembers.length]);
 
   return (
     <>
@@ -22,31 +305,34 @@ export default function Hero() {
                 layoutConfig.mobile.mainContent.titleSection.backgroundColor,
             }}
           >
-            <Typography
-              variant={textConfig.title.variant}
-              weight={textConfig.title.weight}
-              align={textConfig.title.align}
-              color={textConfig.title.color as `#${string}` | "light-purple"}
-              className={textConfig.title.className}
-            >
-              {textConfig.title.text.split("").map((letter, index) => {
-                const isHighlighted = textConfig.title.wavyLetters.some(
-                  (w) => w.position === index + 1
-                );
-                return (
-                  <span
-                    key={index}
-                    className={
-                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
-                    }
-                  >
-                    {letter}
-                  </span>
-                );
-              })}
-            </Typography>
+            <div ref={mobileTitleRef}>
+              <Typography
+                variant={textConfig.title.variant}
+                weight={textConfig.title.weight}
+                align={textConfig.title.align}
+                color={textConfig.title.color as `#${string}` | "light-purple"}
+                className={textConfig.title.className}
+              >
+                {textConfig.title.text.split("").map((letter, index) => {
+                  const isHighlighted = textConfig.title.wavyLetters.some(
+                    (w) => w.position === index + 1
+                  );
+                  return (
+                    <span
+                      key={index}
+                      className={
+                        isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                      }
+                    >
+                      {letter}
+                    </span>
+                  );
+                })}
+              </Typography>
+            </div>
             {/* Image Section */}
             <div
+              ref={mobileClipImageRef}
               className={layoutConfig.mobile.mainContent.imageSection.className}
             >
               <Image
@@ -59,6 +345,7 @@ export default function Hero() {
           </div>
           {/* Text Section */}
           <div
+            ref={mobileDescriptionRef}
             className={layoutConfig.mobile.mainContent.textSection.className}
           >
             <Typography
@@ -74,6 +361,7 @@ export default function Hero() {
 
           {/* Team Section */}
           <div
+            ref={mobileTeamHeaderRef}
             className={layoutConfig.mobile.mainContent.teamHeader.className}
             style={{
               backgroundColor:
@@ -92,7 +380,7 @@ export default function Hero() {
 
           {/* Team Members */}
           <div className={layoutConfig.mobile.mainContent.teamGrid.className}>
-            {teamMembers.map((member) => (
+            {teamMembers.map((member, index) => (
               <Link
                 key={member.name}
                 href={member.link}
@@ -103,35 +391,42 @@ export default function Hero() {
                 }
               >
                 <div
-                  className={
-                    layoutConfig.mobile.mainContent.teamMemberCard
-                      .imageContainer.className
-                  }
+                  ref={(el) => {
+                    mobileTeamMemberRefs.current[index] = el;
+                  }}
+                  className="flex flex-col items-center justify-between w-full"
                 >
-                  <Image
-                    src={member.src}
-                    alt={member.name}
+                  <div
                     className={
-                      layoutConfig.mobile.mainContent.teamMemberCard.image
+                      layoutConfig.mobile.mainContent.teamMemberCard
+                        .imageContainer.className
+                    }
+                  >
+                    <Image
+                      src={member.src}
+                      alt={member.name}
+                      className={
+                        layoutConfig.mobile.mainContent.teamMemberCard.image
+                          .className
+                      }
+                      quality={100}
+                    />
+                  </div>
+                  <div
+                    className={
+                      layoutConfig.mobile.mainContent.teamMemberCard.nameContainer
                         .className
                     }
-                    quality={100}
-                  />
-                </div>
-                <div
-                  className={
-                    layoutConfig.mobile.mainContent.teamMemberCard.nameContainer
-                      .className
-                  }
-                >
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    weight="semibold"
-                    className={`${layoutConfig.mobile.mainContent.teamMemberCard.name.className} font-ppmori`}
                   >
-                    {member.name}
-                  </Typography>
+                    <Typography
+                      variant="body1"
+                      color="primary"
+                      weight="semibold"
+                      className={`${layoutConfig.mobile.mainContent.teamMemberCard.name.className} font-ppmori`}
+                    >
+                      {member.name}
+                    </Typography>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -247,11 +542,13 @@ export default function Hero() {
           rowSpan={layoutConfig.desktop.imageCell.rowSpan}
           className={layoutConfig.desktop.imageCell.className}
         >
-          <Image
-            src={images.clipDesktop.src}
-            alt={images.clipDesktop.alt}
-            quality={images.clipDesktop.quality}
-          />
+          <div ref={desktopClipImageRef}>
+            <Image
+              src={images.clipDesktop.src}
+              alt={images.clipDesktop.alt}
+              quality={images.clipDesktop.quality}
+            />
+          </div>
         </GridCell>
 
         <GridCell
@@ -260,14 +557,16 @@ export default function Hero() {
           colStart={layoutConfig.desktop.textCell.colStart}
           className={layoutConfig.desktop.textCell.className}
         >
-          <Typography
-            variant={textConfig.description.variant}
-            color={textConfig.description.color as `#${string}` | "primary"}
-            weight={textConfig.description.weight}
-            className="mx-w-[500px] tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
-          >
-            {textConfig.description.text}
-          </Typography>
+          <div ref={desktopDescriptionRef}>
+            <Typography
+              variant={textConfig.description.variant}
+              color={textConfig.description.color as `#${string}` | "primary"}
+              weight={textConfig.description.weight}
+              className="mx-w-[500px] tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
+            >
+              {textConfig.description.text}
+            </Typography>
+          </div>
         </GridCell>
 
         <GridCell
@@ -286,16 +585,18 @@ export default function Hero() {
               layoutConfig.desktop.teamHeaderCell.backgroundColor,
           }}
         >
-          <Typography
-            variant={textConfig.teamHeaderDesktop.variant}
-            color={
-              textConfig.teamHeaderDesktop.color as `#${string}` | "primary"
-            }
-            weight={textConfig.teamHeaderDesktop.weight}
-            className={textConfig.teamHeaderDesktop.className}
-          >
-            {textConfig.teamHeaderDesktop.text}
-          </Typography>
+          <div ref={desktopTeamHeaderRef}>
+            <Typography
+              variant={textConfig.teamHeaderDesktop.variant}
+              color={
+                textConfig.teamHeaderDesktop.color as `#${string}` | "primary"
+              }
+              weight={textConfig.teamHeaderDesktop.weight}
+              className={textConfig.teamHeaderDesktop.className}
+            >
+              {textConfig.teamHeaderDesktop.text}
+            </Typography>
+          </div>
         </GridCell>
 
         {teamMembers.map((member, index) => (
@@ -312,27 +613,34 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={layoutConfig.desktop.teamMemberLink.className}
             >
-              <div className="p-4">
+              <div
+                ref={(el) => {
+                  desktopTeamMemberRefs.current[index] = el;
+                }}
+                className="flex items-center gap-4"
+              >
+                <div className="p-4">
+                  <Image
+                    src={member.src}
+                    alt={member.name}
+                    className={layoutConfig.desktop.teamMemberImage.className}
+                    quality={100}
+                  />
+                </div>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  weight="semibold"
+                  className={`${layoutConfig.desktop.teamMemberName.className} font-ppmori`}
+                >
+                  {member.name}
+                </Typography>
                 <Image
-                  src={member.src}
-                  alt={member.name}
-                  className={layoutConfig.desktop.teamMemberImage.className}
-                  quality={100}
+                  src={images.link.src}
+                  alt="link"
+                  className={images.link.className}
                 />
               </div>
-              <Typography
-                variant="body1"
-                color="primary"
-                weight="semibold"
-                className={`${layoutConfig.desktop.teamMemberName.className} font-ppmori`}
-              >
-                {member.name}
-              </Typography>
-              <Image
-                src={images.link.src}
-                alt="link"
-                className={images.link.className}
-              />
             </Link>
           </GridCell>
         ))}

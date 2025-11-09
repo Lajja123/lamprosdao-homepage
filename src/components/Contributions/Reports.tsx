@@ -1,11 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../UI/Button";
 import Grid, { GridCell } from "../UI/Grid";
 import Typography from "../UI/Typography";
 import Link from "next/link";
 import { useContributionsReportsConfig } from "@/hooks/useContributionsReportsConfig";
 import type { ContributionItem } from "@/types/contributions/reports";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ReportsProps {
   activeChain: "arbitrum" | "optimism";
@@ -16,6 +23,190 @@ export default function Reports({ activeChain }: ReportsProps) {
     useContributionsReportsConfig();
   const contributions = contributionsData[activeChain]?.contributions;
   const items = (contributions?.items as ContributionItem[]) || [];
+
+  // Refs for animation elements
+  // Mobile refs
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  const mobileItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileFooterRef = useRef<HTMLDivElement | null>(null);
+
+  // Desktop refs
+  const desktopHeaderRef = useRef<HTMLDivElement>(null);
+  const desktopItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopFooterRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile header animation
+    if (mobileHeaderRef.current) {
+      gsap.set(mobileHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(mobileHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile items animation
+    mobileItemRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const itemAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (itemAnimation.scrollTrigger) {
+          scrollTriggers.push(itemAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Mobile footer animation
+    if (mobileFooterRef.current) {
+      gsap.set(mobileFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(mobileFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop header animation
+    if (desktopHeaderRef.current) {
+      gsap.set(desktopHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(desktopHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop items animation
+    desktopItemRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const itemAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (itemAnimation.scrollTrigger) {
+          scrollTriggers.push(itemAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Desktop footer animation
+    if (desktopFooterRef.current) {
+      gsap.set(desktopFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(desktopFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [items.length, activeChain]);
+
   return (
     <>
       {/* Mobile Layout */}
@@ -26,7 +217,7 @@ export default function Reports({ activeChain }: ReportsProps) {
         }}
       >
         {/* Header Section */}
-        <div className={layoutConfig.mobile.header.className}>
+        <div ref={mobileHeaderRef} className={layoutConfig.mobile.header.className}>
           <Typography
             variant={textConfig.header.variant}
             color={textConfig.header.color as `#${string}` | "yellow"}
@@ -43,6 +234,9 @@ export default function Reports({ activeChain }: ReportsProps) {
           {items.map((item, index) => (
             <div
               key={item.id}
+              ref={(el) => {
+                mobileItemRefs.current[index] = el;
+              }}
               className={layoutConfig.mobile.item.container.className}
             >
               {/* Header Row */}
@@ -94,7 +288,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                 >
                   {item.description}
                 </Typography>
-                <div>
+                <div className="mt-4">
                   <Link
                     href={item.link || "#"}
                     target="_blank"
@@ -116,6 +310,7 @@ export default function Reports({ activeChain }: ReportsProps) {
         {/* Footer Section */}
         {contributions.showSeeMoreButton && (
           <div
+            ref={mobileFooterRef}
             className={layoutConfig.mobile.footer.className}
             style={{
               backgroundColor: layoutConfig.mobile.footer.backgroundColor,
@@ -152,14 +347,16 @@ export default function Reports({ activeChain }: ReportsProps) {
           colSpan={layoutConfig.desktop.header.titleCell.colSpan}
           className={layoutConfig.desktop.header.titleCell.className}
         >
-          <Typography
-            variant={textConfig.headerDesktop.variant}
-            color={textConfig.headerDesktop.color as `#${string}` | "yellow"}
-            weight={textConfig.headerDesktop.weight}
-            className={textConfig.headerDesktop.className}
-          >
-            {contributions?.header || ""}{" "}
-          </Typography>
+          <div ref={desktopHeaderRef}>
+            <Typography
+              variant={textConfig.headerDesktop.variant}
+              color={textConfig.headerDesktop.color as `#${string}` | "yellow"}
+              weight={textConfig.headerDesktop.weight}
+              className={textConfig.headerDesktop.className}
+            >
+              {contributions?.header || ""}{" "}
+            </Typography>
+          </div>
         </GridCell>
         <GridCell
           colStart={layoutConfig.desktop.header.emptyCell2.colStart}
@@ -294,31 +491,37 @@ export default function Reports({ activeChain }: ReportsProps) {
                     layoutConfig.desktop.item.descriptionCell.className
                   }
                 >
-                  <Typography
-                    variant={textConfig.itemDescriptionDesktop.variant}
-                    color={
-                      textConfig.itemDescriptionDesktop.color as
-                        | `#${string}`
-                        | "white"
-                    }
-                    weight={textConfig.itemDescriptionDesktop.weight}
-                    className={textConfig.itemDescriptionDesktop.className}
+                  <div
+                    ref={(el) => {
+                      desktopItemRefs.current[i] = el;
+                    }}
                   >
-                    {leftItem.description}
-                  </Typography>
-                  <div>
-                    <Link
-                      href={leftItem.link || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Typography
+                      variant={textConfig.itemDescriptionDesktop.variant}
+                      color={
+                        textConfig.itemDescriptionDesktop.color as
+                          | `#${string}`
+                          | "white"
+                      }
+                      weight={textConfig.itemDescriptionDesktop.weight}
+                      className={textConfig.itemDescriptionDesktop.className}
                     >
-                      <Button
-                        label={leftItem.buttonLabel}
-                        color={leftItem.buttonColor}
-                        textColor={leftItem.buttonTextColor}
-                        className={layoutConfig.desktop.item.button.className}
-                      />
-                    </Link>
+                      {leftItem.description}
+                    </Typography>
+                    <div className="mt-4">
+                      <Link
+                        href={leftItem.link || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button
+                          label={leftItem.buttonLabel}
+                          color={leftItem.buttonColor}
+                          textColor={leftItem.buttonTextColor}
+                          className={layoutConfig.desktop.item.button.className}
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </GridCell>
                 <GridCell
@@ -340,31 +543,37 @@ export default function Reports({ activeChain }: ReportsProps) {
                     rowStart={rowBase + 1}
                     className={`${layoutConfig.desktop.item.descriptionCell.className} border-b border-white`}
                   >
-                    <Typography
-                      variant={textConfig.itemDescriptionDesktop.variant}
-                      color={
-                        textConfig.itemDescriptionDesktop.color as
-                          | `#${string}`
-                          | "white"
-                      }
-                      weight={textConfig.itemDescriptionDesktop.weight}
-                      className={textConfig.itemDescriptionDesktop.className}
+                    <div
+                      ref={(el) => {
+                        desktopItemRefs.current[i + 1] = el;
+                      }}
                     >
-                      {rightItem.description}
-                    </Typography>
-                    <div>
-                      <Link
-                        href={rightItem.link || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Typography
+                        variant={textConfig.itemDescriptionDesktop.variant}
+                        color={
+                          textConfig.itemDescriptionDesktop.color as
+                            | `#${string}`
+                            | "white"
+                        }
+                        weight={textConfig.itemDescriptionDesktop.weight}
+                        className={textConfig.itemDescriptionDesktop.className}
                       >
-                        <Button
-                          label={rightItem.buttonLabel}
-                          color={rightItem.buttonColor}
-                          textColor={rightItem.buttonTextColor}
-                          className={layoutConfig.desktop.item.button.className}
-                        />
-                      </Link>
+                        {rightItem.description}
+                      </Typography>
+                      <div className="mt-4">
+                        <Link
+                          href={rightItem.link || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            label={rightItem.buttonLabel}
+                            color={rightItem.buttonColor}
+                            textColor={rightItem.buttonTextColor}
+                            className={layoutConfig.desktop.item.button.className}
+                          />
+                        </Link>
+                      </div>
                     </div>
                   </GridCell>
                 )}
@@ -380,17 +589,19 @@ export default function Reports({ activeChain }: ReportsProps) {
               backgroundColor: layoutConfig.desktop.footer.backgroundColor,
             }}
           >
-            <Link
-              href="https://lamprosdao.notion.site/arbitrum-contributions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                label={textConfig.seeMoreButton.label}
-                color={textConfig.seeMoreButton.color}
-                textColor={textConfig.seeMoreButton.textColor}
-              />
-            </Link>
+            <div ref={desktopFooterRef}>
+              <Link
+                href="https://lamprosdao.notion.site/arbitrum-contributions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  label={textConfig.seeMoreButton.label}
+                  color={textConfig.seeMoreButton.color}
+                  textColor={textConfig.seeMoreButton.textColor}
+                />
+              </Link>
+            </div>
           </GridCell>
         )}
         {contributions?.showSeeMoreButton && items.length > 4 && (
@@ -402,17 +613,19 @@ export default function Reports({ activeChain }: ReportsProps) {
               backgroundColor: layoutConfig.desktop.footer.backgroundColor,
             }}
           >
-            <Link
-              href="https://lamprosdao.notion.site/arbitrum-contributions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                label={textConfig.seeMoreButton.label}
-                color={textConfig.seeMoreButton.color}
-                textColor={textConfig.seeMoreButton.textColor}
-              />
-            </Link>
+            <div ref={desktopFooterRef}>
+              <Link
+                href="https://lamprosdao.notion.site/arbitrum-contributions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  label={textConfig.seeMoreButton.label}
+                  color={textConfig.seeMoreButton.color}
+                  textColor={textConfig.seeMoreButton.textColor}
+                />
+              </Link>
+            </div>
           </GridCell>
         )}
       </Grid>

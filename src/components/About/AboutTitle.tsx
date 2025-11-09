@@ -11,7 +11,7 @@ export const AboutTitle = ({ text, wavyLetters }: AboutTitleProps) => {
     return <>{text}</>;
   }
 
-  const parts: React.ReactElement[] = [];
+  const parts: (React.ReactElement | string)[] = [];
   let currentIndex = 0;
 
   // Sort wavy letters by position
@@ -24,11 +24,25 @@ export const AboutTitle = ({ text, wavyLetters }: AboutTitleProps) => {
     if (currentIndex < wavyLetter.position) {
       const beforeText = text.substring(currentIndex, wavyLetter.position);
       if (beforeText) {
-        parts.push(
-          <span key={`before-${idx}`} className="inline-block">
-            {beforeText}
-          </span>
-        );
+        // Check if beforeText ends with a space - if so, split it to preserve the space
+        if (beforeText.endsWith(" ")) {
+          const textWithoutSpace = beforeText.slice(0, -1);
+          if (textWithoutSpace) {
+            parts.push(
+              <span key={`before-${idx}`} className="inline-block">
+                {textWithoutSpace}
+              </span>
+            );
+          }
+          // Add space as a regular text node (not inline-block) to ensure it's preserved
+          parts.push(" ");
+        } else {
+          parts.push(
+            <span key={`before-${idx}`} className="inline-block">
+              {beforeText}
+            </span>
+          );
+        }
       }
     }
 
