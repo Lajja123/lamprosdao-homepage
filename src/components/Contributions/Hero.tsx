@@ -34,7 +34,6 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
   // Refs for animation elements
   // Mobile refs
-  const mobileClipImageRef = useRef<HTMLDivElement>(null);
   const mobileClip2ImageRef = useRef<HTMLDivElement>(null);
   const mobileTextRef = useRef<HTMLDivElement>(null);
   const mobileTitleRef = useRef<HTMLDivElement>(null);
@@ -42,7 +41,6 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
   const mobileDescriptionRef = useRef<HTMLDivElement>(null);
 
   // Desktop refs
-  const desktopClipImageRef = useRef<HTMLDivElement>(null);
   const desktopTextRef = useRef<HTMLDivElement>(null);
   const desktopClip2ImageRef = useRef<HTMLDivElement>(null);
   const desktopTitleRef = useRef<HTMLDivElement>(null);
@@ -51,34 +49,6 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
   useEffect(() => {
     const scrollTriggers: ScrollTrigger[] = [];
-
-    // Mobile clip image animation
-    if (mobileClipImageRef.current) {
-      gsap.set(mobileClipImageRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        y: 30,
-      });
-
-      const imageAnimation = gsap.to(mobileClipImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileClipImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (imageAnimation.scrollTrigger) {
-        scrollTriggers.push(imageAnimation.scrollTrigger);
-      }
-    }
 
     // Mobile clip2 image animation
     if (mobileClip2ImageRef.current) {
@@ -213,34 +183,6 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
 
       if (descAnimation.scrollTrigger) {
         scrollTriggers.push(descAnimation.scrollTrigger);
-      }
-    }
-
-    // Desktop clip image animation
-    if (desktopClipImageRef.current) {
-      gsap.set(desktopClipImageRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        y: 30,
-      });
-
-      const imageAnimation = gsap.to(desktopClipImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopClipImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (imageAnimation.scrollTrigger) {
-        scrollTriggers.push(imageAnimation.scrollTrigger);
       }
     }
 
@@ -403,10 +345,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         >
           <GridCell />
           <GridCell className={layoutConfig.mobile.clipImageCell.className}>
-            <div
-              ref={mobileClipImageRef}
-              className="relative"
-            >
+            <div className="relative">
               <div
                 className="absolute inset-0"
                 style={{
@@ -445,7 +384,10 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             />
           </div>
           {/* Text Section */}
-          <div ref={mobileTextRef} className={layoutConfig.mobile.textCell.className}>
+          <div
+            ref={mobileTextRef}
+            className={layoutConfig.mobile.textCell.className}
+          >
             <Typography
               variant={textConfig.intro.variant}
               color={textConfig.intro.color as `#${string}` | "primary"}
@@ -542,7 +484,10 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         {/* Dynamic Content Section */}
-        <div ref={mobileTitleRef} className={layoutConfig.mobile.dynamicContent.titleCell.className}>
+        <div
+          ref={mobileTitleRef}
+          className={layoutConfig.mobile.dynamicContent.titleCell.className}
+        >
           <Typography
             variant="h1"
             color="primary"
@@ -614,7 +559,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <GridCell />
         <GridCell />
         <GridCell className={layoutConfig.desktop.clipImageCell.className}>
-          <div ref={desktopClipImageRef} className="relative">
+          <div className="relative">
             <div
               className="absolute inset-0"
               style={{
@@ -647,13 +592,13 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               weight={textConfig.intro.weight}
               className="tracking-wider font-ppmori text-xl mx-auto px-10 py-10"
             >
-            {textConfig.intro.paragraphs.map((paragraph, index) => (
-              <div
-                key={`paragraph-${index}`}
-                className={index > 0 ? "mt-4" : ""}
-              >
-                {paragraph}
-              </div>
+              {textConfig.intro.paragraphs.map((paragraph, index) => (
+                <div
+                  key={`paragraph-${index}`}
+                  className={index > 0 ? "mt-4" : ""}
+                >
+                  {paragraph}
+                </div>
               ))}
             </Typography>
           </div>
@@ -667,7 +612,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               layoutConfig.desktop.clip2ImageCell.backgroundColor,
           }}
         >
-          <div ref={desktopClip2ImageRef}      className="w-full h-full object-contain p-5 mx-auto flex items-center justify-center"
+          <div
+            ref={desktopClip2ImageRef}
+            className="w-full h-full object-contain p-5 mx-auto flex items-center justify-center"
           >
             <Image
               src={images.clip2Desktop.src}
@@ -779,21 +726,21 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
               weight="light"
               className="tracking-wide uppercase"
             >
-            {currentContent.word.split("").map((letter, index) => {
-              const isHighlighted = (
-                currentContent.highlightedLetters || []
-              ).includes(letter.toUpperCase());
-              return (
-                <span
-                  key={index}
-                  className={
-                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
-                  }
-                >
-                  {letter}
-                </span>
-              );
-            })}
+              {currentContent.word.split("").map((letter, index) => {
+                const isHighlighted = (
+                  currentContent.highlightedLetters || []
+                ).includes(letter.toUpperCase());
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
             </Typography>
           </div>
         </GridCell>
