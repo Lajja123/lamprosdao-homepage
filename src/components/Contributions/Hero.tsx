@@ -370,39 +370,39 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <div className="flex flex-col">
           {/* Second Image Section */}
           <div
-            ref={mobileClip2ImageRef}
             className={layoutConfig.mobile.clip2ImageCell.className}
             style={{
               backgroundColor:
                 layoutConfig.mobile.clip2ImageCell.backgroundColor,
             }}
           >
-            <Image
-              src={images.clip2.src}
-              alt={images.clip2.alt}
-              className={images.clip2.className}
-            />
+            <div ref={mobileClip2ImageRef}>
+              <Image
+                src={images.clip2.src}
+                alt={images.clip2.alt}
+                className={images.clip2.className}
+              />
+            </div>
           </div>
           {/* Text Section */}
-          <div
-            ref={mobileTextRef}
-            className={layoutConfig.mobile.textCell.className}
-          >
-            <Typography
-              variant={textConfig.intro.variant}
-              color={textConfig.intro.color as `#${string}` | "primary"}
-              weight={textConfig.intro.weight}
-              className={textConfig.intro.className}
-            >
-              {textConfig.intro.paragraphs.map((paragraph, index) => (
-                <div
-                  key={`paragraph-${index}`}
-                  className={index > 0 ? "mt-3 md:mt-4" : ""}
-                >
-                  {paragraph}
-                </div>
-              ))}
-            </Typography>
+          <div className={layoutConfig.mobile.textCell.className}>
+            <div ref={mobileTextRef}>
+              <Typography
+                variant={textConfig.intro.variant}
+                color={textConfig.intro.color as `#${string}` | "primary"}
+                weight={textConfig.intro.weight}
+                className={textConfig.intro.className}
+              >
+                {textConfig.intro.paragraphs.map((paragraph, index) => (
+                  <div
+                    key={`paragraph-${index}`}
+                    className={index > 0 ? "mt-3 md:mt-4" : ""}
+                  >
+                    {paragraph}
+                  </div>
+                ))}
+              </Typography>
+            </div>
           </div>
         </div>
 
@@ -484,67 +484,68 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         </div>
 
         {/* Dynamic Content Section */}
-        <div
-          ref={mobileTitleRef}
-          className={layoutConfig.mobile.dynamicContent.titleCell.className}
-        >
-          <Typography
-            variant="h1"
-            color="primary"
-            align="center"
-            weight="light"
-            className="tracking-wide uppercase"
-          >
-            {currentContent.word.split("").map((letter, index) => {
-              const isHighlighted = (
-                currentContent.highlightedLetters || []
-              ).includes(letter.toUpperCase());
-              return (
-                <span
-                  key={index}
-                  className={
-                    isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
-                  }
-                >
-                  {letter}
-                </span>
-              );
-            })}
-          </Typography>
+        <div className={layoutConfig.mobile.dynamicContent.titleCell.className}>
+          <div ref={mobileTitleRef}>
+            <Typography
+              variant="h1"
+              color="primary"
+              align="center"
+              weight="light"
+              className="tracking-wide uppercase"
+            >
+              {currentContent.word.split("").map((letter, index) => {
+                const isHighlighted = (
+                  currentContent.highlightedLetters || []
+                ).includes(letter.toUpperCase());
+                return (
+                  <span
+                    key={index}
+                    className={
+                      isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                    }
+                  >
+                    {letter}
+                  </span>
+                );
+              })}
+            </Typography>
+          </div>
         </div>
 
         <div
-          ref={mobileSubtitleRef}
           className={layoutConfig.mobile.dynamicContent.subtitleCell.className}
           style={{
             backgroundColor:
               layoutConfig.mobile.dynamicContent.subtitleCell.backgroundColor,
           }}
         >
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="normal"
-            className="tracking-wider text-sm md:text-base text-center"
-          >
-            {currentContent.subtitle}
-          </Typography>
+          <div ref={mobileSubtitleRef}>
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="normal"
+              className="tracking-wider text-sm md:text-base text-center"
+            >
+              {currentContent.subtitle}
+            </Typography>
+          </div>
         </div>
 
         <div
-          ref={mobileDescriptionRef}
           className={
             layoutConfig.mobile.dynamicContent.descriptionCell.className
           }
         >
-          <Typography
-            variant="body2"
-            color="primary"
-            weight="semibold"
-            className="tracking-wider font-ppmori text-sm md:text-base text-center"
-          >
-            {currentContent.description}
-          </Typography>
+          <div ref={mobileDescriptionRef}>
+            <Typography
+              variant="body2"
+              color="primary"
+              weight="semibold"
+              className="tracking-wider font-ppmori text-sm md:text-base text-center"
+            >
+              {currentContent.description}
+            </Typography>
+          </div>
         </div>
       </div>
 

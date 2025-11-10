@@ -673,23 +673,24 @@ const RecentVotes = React.memo(function RecentVotes() {
       {/* Mobile Layout */}
       <div className={layoutConfig.mobile.container.className}>
         <div
-          ref={mobileHeaderRef}
           className={layoutConfig.mobile.header.className}
           style={{
             backgroundColor: layoutConfig.mobile.header.backgroundColor,
           }}
         >
-          <Typography
-            variant={textConfig.titleMobile.variant}
-            color={textConfig.titleMobile.color as `#${string}` | "primary"}
-            weight={textConfig.titleMobile.weight}
-            className={textConfig.titleMobile.className}
-          >
-            Recent Votes
-          </Typography>
+          <div ref={mobileHeaderRef}>
+            <Typography
+              variant={textConfig.titleMobile.variant}
+              color={textConfig.titleMobile.color as `#${string}` | "primary"}
+              weight={textConfig.titleMobile.weight}
+              className={textConfig.titleMobile.className}
+            >
+              Recent Votes
+            </Typography>
+          </div>
           <div
-            ref={mobileProtocolButtonsRef}
             className="flex items-center gap-2 flex-wrap justify-center"
+            ref={mobileProtocolButtonsRef}
           >
             {protocols.map((protocol) => (
               <ProtocolButton
@@ -772,215 +773,219 @@ const RecentVotes = React.memo(function RecentVotes() {
               {proposals.map((proposal, index) => (
                 <div
                   key={proposal.id}
-                  ref={(el) => {
-                    mobileVoteCardRefs.current[index] = el;
-                  }}
                   className={layoutConfig.mobile.voteCard.className}
                 >
-                  {/* Vote Header */}
-                  <div className={layoutConfig.mobile.voteHeader.className}>
-                    {/* Number cell */}
-                    <div className={layoutConfig.mobile.numberCell.className}>
-                      <Typography
-                        variant={textConfig.proposalIdMobile.variant}
-                        color={
-                          textConfig.proposalIdMobile.color as
-                            | `#${string}`
-                            | "primary"
-                        }
-                        weight={textConfig.proposalIdMobile.weight}
-                        className={textConfig.proposalIdMobile.className}
-                      >
-                        {proposal.id}
-                      </Typography>
-                    </div>
-                    {/* Status cell */}
-                    <div className={layoutConfig.mobile.statusCell.className}>
-                      <Typography
-                        variant="subtitle2"
-                        color="primary"
-                        weight="medium"
-                        className="font-ppmori text-xs md:text-sm"
-                      >
-                        Voted{" "}
-                      </Typography>
-                      <Typography
-                        variant="subtitle2"
-                        color="primary"
-                        weight="medium"
-                        className="font-ppmori text-xs md:text-sm text-[#A885CD]"
-                      >
-                        <span>{proposal.result}</span>
-                      </Typography>
-                    </div>
-                    {/* Arrow cell */}
-                    <button
-                      onClick={() =>
-                        setExpandedItem(expandedItem === index ? null : index)
-                      }
-                      className={layoutConfig.mobile.arrowCell.className}
-                      style={{
-                        backgroundColor:
-                          layoutConfig.mobile.arrowCell.backgroundColor,
-                      }}
-                    >
-                      <Arrow
-                        direction={expandedItem === index ? "up" : "down"}
-                        color="#FFFFFF"
-                        rounded={true}
-                        size={24}
-                      />
-                    </button>
-                  </div>
-
-                  {/* Proposal Title */}
                   <div
-                    className={layoutConfig.mobile.proposalSection.className}
+                    ref={(el) => {
+                      mobileVoteCardRefs.current[index] = el;
+                    }}
                   >
-                    <Typography
-                      variant="body1"
-                      color="primary"
-                      weight="normal"
-                      className="text-sm md:text-base pb-3"
-                    >
-                      {proposal.title}
-                    </Typography>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm flex items-center gap-2">
-                        <Image
-                          src={proposal.icon}
-                          alt={proposal.protocol}
-                          width={16}
-                          height={16}
-                          className="w-4 h-4"
+                    {/* Vote Header */}
+                    <div className={layoutConfig.mobile.voteHeader.className}>
+                      {/* Number cell */}
+                      <div className={layoutConfig.mobile.numberCell.className}>
+                        <Typography
+                          variant={textConfig.proposalIdMobile.variant}
+                          color={
+                            textConfig.proposalIdMobile.color as
+                              | `#${string}`
+                              | "primary"
+                          }
+                          weight={textConfig.proposalIdMobile.weight}
+                          className={textConfig.proposalIdMobile.className}
+                        >
+                          {proposal.id}
+                        </Typography>
+                      </div>
+                      {/* Status cell */}
+                      <div className={layoutConfig.mobile.statusCell.className}>
+                        <Typography
+                          variant="subtitle2"
+                          color="primary"
+                          weight="medium"
+                          className="font-ppmori text-xs md:text-sm"
+                        >
+                          Voted{" "}
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          color="primary"
+                          weight="medium"
+                          className="font-ppmori text-xs md:text-sm text-[#A885CD]"
+                        >
+                          <span>{proposal.result}</span>
+                        </Typography>
+                      </div>
+                      {/* Arrow cell */}
+                      <button
+                        onClick={() =>
+                          setExpandedItem(expandedItem === index ? null : index)
+                        }
+                        className={layoutConfig.mobile.arrowCell.className}
+                        style={{
+                          backgroundColor:
+                            layoutConfig.mobile.arrowCell.backgroundColor,
+                        }}
+                      >
+                        <Arrow
+                          direction={expandedItem === index ? "up" : "down"}
+                          color="#FFFFFF"
+                          rounded={true}
+                          size={24}
                         />
+                      </button>
+                    </div>
+
+                    {/* Proposal Title */}
+                    <div
+                      className={layoutConfig.mobile.proposalSection.className}
+                    >
+                      <Typography
+                        variant="body1"
+                        color="primary"
+                        weight="normal"
+                        className="text-sm md:text-base pb-3"
+                      >
+                        {proposal.title}
+                      </Typography>
+                      <div className="flex gap-2 flex-wrap">
+                        <span className="px-3 py-1 border-2 border-[#A885CD] rounded-full bg-transparent text-xs md:text-sm flex items-center gap-2">
+                          <Image
+                            src={proposal.icon}
+                            alt={proposal.protocol}
+                            width={16}
+                            height={16}
+                            className="w-4 h-4"
+                          />
+                          <Typography
+                            variant="caption"
+                            color="accent"
+                            weight="medium"
+                            className="text-xs md:text-sm"
+                          >
+                            {proposal.protocol}
+                          </Typography>
+                        </span>
                         <Typography
                           variant="caption"
                           color="accent"
                           weight="medium"
-                          className="text-xs md:text-sm"
+                          className={`px-3 py-1 border-2 rounded-full text-xs md:text-sm ${getTypeStyle(
+                            proposal.type
+                          )}`}
                         >
-                          {proposal.protocol}
+                          {proposal.type}
                         </Typography>
-                      </span>
-                      <Typography
-                        variant="caption"
-                        color="accent"
-                        weight="medium"
-                        className={`px-3 py-1 border-2 rounded-full text-xs md:text-sm ${getTypeStyle(
-                          proposal.type
-                        )}`}
-                      >
-                        {proposal.type}
-                      </Typography>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Expandable content */}
-                  {expandedItem === index && (
-                    <div
-                      className={
-                        layoutConfig.mobile.expandableContent.className
-                      }
-                      style={{
-                        backgroundColor:
-                          layoutConfig.mobile.expandableContent.backgroundColor,
-                      }}
-                    >
-                      {proposal.voter && (
-                        <div className="space-y-4">
-                          {/* Voter Information */}
-                          <div className="flex items-center space-x-3">
-                            <div className="flex-shrink-0">
-                              <Image
-                                src={images.voterIcon.src}
-                                alt={`${proposal.voter.name} icon`}
-                                width={32}
-                                height={32}
-                                className="rounded-full"
-                                quality={100}
-                              />
-                            </div>
-                            <div className="flex-1">
-                              <Typography
-                                variant="body2"
-                                color="primary"
-                                weight="medium"
-                                className="mb-1 text-sm md:text-base"
-                              >
-                                {proposal.voter.name}
-                              </Typography>
-                              <Typography
-                                variant="body1"
-                                color="primary"
-                                weight="normal"
-                                className="text-xs md:text-sm"
-                              >
-                                Voted
+                    {/* Expandable content */}
+                    {expandedItem === index && (
+                      <div
+                        className={
+                          layoutConfig.mobile.expandableContent.className
+                        }
+                        style={{
+                          backgroundColor:
+                            layoutConfig.mobile.expandableContent
+                              .backgroundColor,
+                        }}
+                      >
+                        {proposal.voter && (
+                          <div className="space-y-4">
+                            {/* Voter Information */}
+                            <div className="flex items-center space-x-3">
+                              <div className="flex-shrink-0">
+                                <Image
+                                  src={images.voterIcon.src}
+                                  alt={`${proposal.voter.name} icon`}
+                                  width={32}
+                                  height={32}
+                                  className="rounded-full"
+                                  quality={100}
+                                />
+                              </div>
+                              <div className="flex-1">
                                 <Typography
-                                  variant="body1"
+                                  variant="body2"
                                   color="primary"
                                   weight="medium"
-                                  className="inline text-[#A885CD]"
+                                  className="mb-1 text-sm md:text-base"
                                 >
-                                  {proposal.result}
-                                </Typography>{" "}
-                                on{" "}
-                                <Typography
-                                  variant="body1"
-                                  color="primary"
-                                  weight="medium"
-                                  className="inline text-[#A885CD]"
-                                >
-                                  {proposal.hasRationale &&
-                                  proposal.forumCreatedAt
-                                    ? formatDate(proposal.forumCreatedAt)
-                                    : formatDate(proposal.endDate)}
+                                  {proposal.voter.name}
                                 </Typography>
-                              </Typography>
-                            </div>
-                          </div>
-
-                          {/* Rationale Section */}
-                          {proposal.hasRationale && (
-                            <div className="mt-4">
-                              <Typography
-                                variant="subtitle2"
-                                color="primary"
-                                weight="medium"
-                                className="mb-2 text-sm md:text-base"
-                              >
-                                Rationale
-                              </Typography>
-                              <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-                                {proposal.forumContent ? (
-                                  <div
-                                    className="prose prose-sm max-w-none text-xs md:text-sm [&_a]:text-[#A885CD] [&_a]:underline [&_a:hover]:text-[#8B6FA8]"
-                                    style={{
-                                      color: "#1A1A1A",
-                                      fontFamily: "PPMori, sans-serif",
-                                    }}
-                                    dangerouslySetInnerHTML={{
-                                      __html: proposal.forumContent,
-                                    }}
-                                  />
-                                ) : (
-                                  <a
-                                    href={proposal.commentLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs md:text-sm text-[#A885CD] hover:text-[#8B6FA8] underline break-all"
+                                <Typography
+                                  variant="body1"
+                                  color="primary"
+                                  weight="normal"
+                                  className="text-xs md:text-sm"
+                                >
+                                  Voted
+                                  <Typography
+                                    variant="body1"
+                                    color="primary"
+                                    weight="medium"
+                                    className="inline text-[#A885CD]"
                                   >
-                                    {proposal.commentLink}
-                                  </a>
-                                )}
+                                    {proposal.result}
+                                  </Typography>{" "}
+                                  on{" "}
+                                  <Typography
+                                    variant="body1"
+                                    color="primary"
+                                    weight="medium"
+                                    className="inline text-[#A885CD]"
+                                  >
+                                    {proposal.hasRationale &&
+                                    proposal.forumCreatedAt
+                                      ? formatDate(proposal.forumCreatedAt)
+                                      : formatDate(proposal.endDate)}
+                                  </Typography>
+                                </Typography>
                               </div>
                             </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )}
+
+                            {/* Rationale Section */}
+                            {proposal.hasRationale && (
+                              <div className="mt-4">
+                                <Typography
+                                  variant="subtitle2"
+                                  color="primary"
+                                  weight="medium"
+                                  className="mb-2 text-sm md:text-base"
+                                >
+                                  Rationale
+                                </Typography>
+                                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                  {proposal.forumContent ? (
+                                    <div
+                                      className="prose prose-sm max-w-none text-xs md:text-sm [&_a]:text-[#A885CD] [&_a]:underline [&_a:hover]:text-[#8B6FA8]"
+                                      style={{
+                                        color: "#1A1A1A",
+                                        fontFamily: "PPMori, sans-serif",
+                                      }}
+                                      dangerouslySetInnerHTML={{
+                                        __html: proposal.forumContent,
+                                      }}
+                                    />
+                                  ) : (
+                                    <a
+                                      href={proposal.commentLink}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-xs md:text-sm text-[#A885CD] hover:text-[#8B6FA8] underline break-all"
+                                    >
+                                      {proposal.commentLink}
+                                    </a>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -989,23 +994,24 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         {/* Footer Section */}
         <div
-          ref={mobileFooterRef}
           className={layoutConfig.mobile.footer.className}
           style={{
             backgroundColor: layoutConfig.mobile.footer.backgroundColor,
           }}
         >
-          <Link
-            href="https://lamprosdao.notion.site/governance"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              label={textConfig.seeMoreButton.label}
-              color={textConfig.seeMoreButton.color}
-              textColor={textConfig.seeMoreButton.textColor}
-            />
-          </Link>
+          <div ref={mobileFooterRef}>
+            <Link
+              href="https://lamprosdao.notion.site/governance"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                label={textConfig.seeMoreButton.label}
+                color={textConfig.seeMoreButton.color}
+                textColor={textConfig.seeMoreButton.textColor}
+              />
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -1021,7 +1027,10 @@ const RecentVotes = React.memo(function RecentVotes() {
             backgroundColor: layoutConfig.desktop.iconCell.backgroundColor,
           }}
         >
-          <div ref={desktopIconRef} className="flex items-center justify-center">
+          <div
+            ref={desktopIconRef}
+            className="flex items-center justify-center"
+          >
             <Image src={images.voteIcon.src} alt={images.voteIcon.alt} />
           </div>
         </GridCell>

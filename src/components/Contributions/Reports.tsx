@@ -217,19 +217,18 @@ export default function Reports({ activeChain }: ReportsProps) {
         }}
       >
         {/* Header Section */}
-        <div
-          ref={mobileHeaderRef}
-          className={layoutConfig.mobile.header.className}
-        >
-          <Typography
-            variant={textConfig.header.variant}
-            color={textConfig.header.color as `#${string}` | "yellow"}
-            weight={textConfig.header.weight}
-            align={textConfig.header.align}
-            className={textConfig.header.className}
-          >
-            {contributions?.header || ""}
-          </Typography>
+        <div className={layoutConfig.mobile.header.className}>
+          <div ref={mobileHeaderRef}>
+            <Typography
+              variant={textConfig.header.variant}
+              color={textConfig.header.color as `#${string}` | "yellow"}
+              weight={textConfig.header.weight}
+              align={textConfig.header.align}
+              className={textConfig.header.className}
+            >
+              {contributions?.header || ""}
+            </Typography>
+          </div>
         </div>
 
         {/* Contribution Items */}
@@ -237,9 +236,6 @@ export default function Reports({ activeChain }: ReportsProps) {
           {items.map((item, index) => (
             <div
               key={item.id}
-              ref={(el) => {
-                mobileItemRefs.current[index] = el;
-              }}
               className={layoutConfig.mobile.item.container.className}
             >
               {/* Header Row */}
@@ -281,29 +277,35 @@ export default function Reports({ activeChain }: ReportsProps) {
 
               {/* Body */}
               <div className={layoutConfig.mobile.item.body.className}>
-                <Typography
-                  variant={textConfig.itemDescription.variant}
-                  color={
-                    textConfig.itemDescription.color as `#${string}` | "white"
-                  }
-                  weight={textConfig.itemDescription.weight}
-                  className={textConfig.itemDescription.className}
+                <div
+                  ref={(el) => {
+                    mobileItemRefs.current[index] = el;
+                  }}
                 >
-                  {item.description}
-                </Typography>
-                <div className="mt-4">
-                  <Link
-                    href={item.link || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Typography
+                    variant={textConfig.itemDescription.variant}
+                    color={
+                      textConfig.itemDescription.color as `#${string}` | "white"
+                    }
+                    weight={textConfig.itemDescription.weight}
+                    className={textConfig.itemDescription.className}
                   >
-                    <Button
-                      label={item.buttonLabel}
-                      color={item.buttonColor}
-                      textColor={item.buttonTextColor}
-                      className={layoutConfig.mobile.item.button.className}
-                    />
-                  </Link>
+                    {item.description}
+                  </Typography>
+                  <div className="mt-4">
+                    <Link
+                      href={item.link || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        label={item.buttonLabel}
+                        color={item.buttonColor}
+                        textColor={item.buttonTextColor}
+                        className={layoutConfig.mobile.item.button.className}
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -313,23 +315,24 @@ export default function Reports({ activeChain }: ReportsProps) {
         {/* Footer Section */}
         {contributions.showSeeMoreButton && (
           <div
-            ref={mobileFooterRef}
             className={layoutConfig.mobile.footer.className}
             style={{
               backgroundColor: layoutConfig.mobile.footer.backgroundColor,
             }}
           >
-            <Link
-              href="https://lamprosdao.notion.site/arbitrum-contributions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                label={textConfig.seeMoreButton.label}
-                color={textConfig.seeMoreButton.color}
-                textColor={textConfig.seeMoreButton.textColor}
-              />
-            </Link>
+            <div ref={mobileFooterRef}>
+              <Link
+                href="https://lamprosdao.notion.site/arbitrum-contributions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  label={textConfig.seeMoreButton.label}
+                  color={textConfig.seeMoreButton.color}
+                  textColor={textConfig.seeMoreButton.textColor}
+                />
+              </Link>
+            </div>
           </div>
         )}
       </div>

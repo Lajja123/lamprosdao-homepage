@@ -109,7 +109,7 @@ export const useContributionsReportsConfig = () => {
         },
         footer: {
           className:
-            "border-t border-white p-4 md:p-6 flex items-center justify-center bg-[#000000]",
+            "border-t border-white p-6 md:p-6 flex items-center justify-center bg-[#000000]",
           backgroundColor: colors.primary.black,
         },
       },
