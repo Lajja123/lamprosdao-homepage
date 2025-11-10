@@ -49,7 +49,7 @@ const socialPlatforms = [
   "medium",
   "linkedin",
   "discord",
-  "notion",
+  "farcaster",
   "telegram",
   "twitter",
 ] as const;
