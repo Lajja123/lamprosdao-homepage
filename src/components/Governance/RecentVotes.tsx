@@ -1139,46 +1139,58 @@ const RecentVotes = React.memo(function RecentVotes() {
             return (
               <React.Fragment key={proposal.id}>
                 <GridCell
-                  ref={(el) => {
-                    desktopProposalRowRefs.current[index] = el;
-                  }}
                   rowStart={baseRow}
                   className={layoutConfig.desktop.proposalNumberCell.className}
                 >
-                  <Typography
-                    variant={textConfig.proposalId.variant}
-                    color={
-                      textConfig.proposalId.color as `#${string}` | "primary"
-                    }
-                    weight={textConfig.proposalId.weight}
-                    className={textConfig.proposalId.className}
+                  <div
+                    ref={(el) => {
+                      desktopProposalRowRefs.current[index] = el;
+                    }}
                   >
-                    {proposal.id}
-                  </Typography>
+                    <Typography
+                      variant={textConfig.proposalId.variant}
+                      color={
+                        textConfig.proposalId.color as `#${string}` | "primary"
+                      }
+                      weight={textConfig.proposalId.weight}
+                      className={textConfig.proposalId.className}
+                    >
+                      {proposal.id}
+                    </Typography>
+                  </div>
                 </GridCell>
                 <GridCell
                   colSpan={layoutConfig.desktop.proposalStatusCell.colSpan}
                   rowStart={baseRow}
                   className={layoutConfig.desktop.proposalStatusCell.className}
                 >
-                  <Typography
-                    variant={textConfig.votedLabel.variant}
-                    color={
-                      textConfig.votedLabel.color as `#${string}` | "primary"
-                    }
-                    weight={textConfig.votedLabel.weight}
-                    className={`${textConfig.votedLabel.className} font-ppmori`}
+                  <div
+                    ref={(el) => {
+                      desktopProposalRowRefs.current[index] = el;
+                    }}
                   >
-                    Voted{" "}
-                  </Typography>
-                  <Typography
-                    variant={textConfig.result.variant}
-                    color={textConfig.result.color as `#${string}` | "primary"}
-                    weight={textConfig.result.weight}
-                    className={`${textConfig.result.className} ${getVoteResultColor(proposal.result)}`}
-                  >
-                    {proposal.result}
-                  </Typography>
+                    {" "}
+                    <Typography
+                      variant={textConfig.votedLabel.variant}
+                      color={
+                        textConfig.votedLabel.color as `#${string}` | "primary"
+                      }
+                      weight={textConfig.votedLabel.weight}
+                      className={`${textConfig.votedLabel.className} font-ppmori`}
+                    >
+                      Voted{" "}
+                    </Typography>
+                    <Typography
+                      variant={textConfig.result.variant}
+                      color={
+                        textConfig.result.color as `#${string}` | "primary"
+                      }
+                      weight={textConfig.result.weight}
+                      className={`${textConfig.result.className} ${getVoteResultColor(proposal.result)}`}
+                    >
+                      {proposal.result}
+                    </Typography>
+                  </div>
                 </GridCell>
                 <GridCell
                   colSpan={layoutConfig.desktop.proposalContentCell.colSpan}
@@ -1186,50 +1198,58 @@ const RecentVotes = React.memo(function RecentVotes() {
                   rowStart={baseRow}
                   className={layoutConfig.desktop.proposalContentCell.className}
                 >
-                  <Typography
-                    variant={textConfig.proposalTitle.variant}
-                    color={
-                      textConfig.proposalTitle.color as `#${string}` | "primary"
-                    }
-                    weight={textConfig.proposalTitle.weight}
-                    className={textConfig.proposalTitle.className}
+                  <div
+                    ref={(el) => {
+                      desktopProposalRowRefs.current[index] = el;
+                    }}
                   >
-                    {proposal.title}
-                  </Typography>
-                  <div className="flex gap-3">
-                    <span className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent flex items-center gap-2">
-                      <Image
-                        src={proposal.icon}
-                        alt={proposal.protocol}
-                        width={20}
-                        height={20}
-                        className="w-5 h-5"
-                      />
-                      <Typography
-                        variant={textConfig.protocolBadge.variant}
-                        color={
-                          textConfig.protocolBadge.color as
-                            | `#${string}`
-                            | "accent"
-                        }
-                        weight={textConfig.protocolBadge.weight}
-                        className={textConfig.protocolBadge.className}
-                      >
-                        {proposal.protocol}
-                      </Typography>
-                    </span>
                     <Typography
-                      variant={textConfig.typeBadge.variant}
+                      variant={textConfig.proposalTitle.variant}
                       color={
-                        textConfig.typeBadge.color as `#${string}` | "accent"
+                        textConfig.proposalTitle.color as
+                          | `#${string}`
+                          | "primary"
                       }
-                      weight={textConfig.typeBadge.weight}
-                      className={`${textConfig.typeBadge.className} px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
-                        proposal.type
-                      )}`}
+                      weight={textConfig.proposalTitle.weight}
+                      className={textConfig.proposalTitle.className}
                     >
-                      {proposal.type}
+                      {proposal.title}
                     </Typography>
+                    <div className="flex gap-3">
+                      <span className="px-4 py-1.5 border-2 border-[#A885CD] rounded-full bg-transparent flex items-center gap-2">
+                        <Image
+                          src={proposal.icon}
+                          alt={proposal.protocol}
+                          width={20}
+                          height={20}
+                          className="w-5 h-5"
+                        />
+                        <Typography
+                          variant={textConfig.protocolBadge.variant}
+                          color={
+                            textConfig.protocolBadge.color as
+                              | `#${string}`
+                              | "accent"
+                          }
+                          weight={textConfig.protocolBadge.weight}
+                          className={textConfig.protocolBadge.className}
+                        >
+                          {proposal.protocol}
+                        </Typography>
+                      </span>
+                      <Typography
+                        variant={textConfig.typeBadge.variant}
+                        color={
+                          textConfig.typeBadge.color as `#${string}` | "accent"
+                        }
+                        weight={textConfig.typeBadge.weight}
+                        className={`${textConfig.typeBadge.className} px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
+                          proposal.type
+                        )}`}
+                      >
+                        {proposal.type}
+                      </Typography>
+                    </div>
                   </div>
                 </GridCell>
                 <GridCell
@@ -1254,7 +1274,13 @@ const RecentVotes = React.memo(function RecentVotes() {
                       backgroundBlendMode: "multiply",
                     }}
                   ></div>
-                  <Arrow direction={expandedItem === index ? "up" : "down"} />
+                  <div
+                    ref={(el) => {
+                      desktopProposalRowRefs.current[index] = el;
+                    }}
+                  >
+                    <Arrow direction={expandedItem === index ? "up" : "down"} />
+                  </div>
                 </GridCell>
 
                 {/* Expandable content for each proposal */}

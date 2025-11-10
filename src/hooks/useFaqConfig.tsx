@@ -95,7 +95,7 @@ export const useFaqConfig = () => {
         hoverColor: colors.accent.lightGreen,
         transitionDuration: 0.3,
         className:
-          "w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110",
+          "w-8 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110",
       },
     };
 
