@@ -1,20 +1,17 @@
+"use client";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../UI/Button";
-import { GridCell } from "../UI/Grid";
+import Grid, { GridCell } from "../UI/Grid";
 import Typography from "../UI/Typography";
-import bgImage1 from "@/assests/Governance/reportbg.png";
-import contributionsData from "@/data/contributionsContent.json";
-import link from "@/assests/Governance/link.svg";
-import Image from "next/image";
 import Link from "next/link";
+import { useContributionsReportsConfig } from "@/hooks/useContributionsReportsConfig";
+import type { ContributionItem } from "@/types/contributions/reports";
 
-interface ContributionItem {
-  id: string;
-  title: string;
-  description: string;
-  buttonLabel: string;
-  link?: string; // Optional link property
-  buttonColor: string;
-  buttonTextColor: string;
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 interface ReportsProps {
@@ -22,58 +19,260 @@ interface ReportsProps {
 }
 
 export default function Reports({ activeChain }: ReportsProps) {
-  const contributions = contributionsData[activeChain].contributions;
-  const items = contributions.items as ContributionItem[];
+  const { backgroundImages, textConfig, layoutConfig, contributionsData } =
+    useContributionsReportsConfig();
+  const contributions = contributionsData[activeChain]?.contributions;
+  const items = (contributions?.items as ContributionItem[]) || [];
+
+  // Refs for animation elements
+  // Mobile refs
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  const mobileItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileFooterRef = useRef<HTMLDivElement | null>(null);
+
+  // Desktop refs
+  const desktopHeaderRef = useRef<HTMLDivElement>(null);
+  const desktopItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopFooterRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Mobile header animation
+    if (mobileHeaderRef.current) {
+      gsap.set(mobileHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(mobileHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile items animation
+    mobileItemRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const itemAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (itemAnimation.scrollTrigger) {
+          scrollTriggers.push(itemAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Mobile footer animation
+    if (mobileFooterRef.current) {
+      gsap.set(mobileFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(mobileFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop header animation
+    if (desktopHeaderRef.current) {
+      gsap.set(desktopHeaderRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const headerAnimation = gsap.to(desktopHeaderRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopHeaderRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggers.push(headerAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop items animation
+    desktopItemRefs.current.forEach((ref, index) => {
+      if (ref) {
+        gsap.set(ref, {
+          opacity: 0,
+          y: 40,
+        });
+
+        const itemAnimation = gsap.to(ref, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.1 * index,
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        });
+
+        if (itemAnimation.scrollTrigger) {
+          scrollTriggers.push(itemAnimation.scrollTrigger);
+        }
+      }
+    });
+
+    // Desktop footer animation
+    if (desktopFooterRef.current) {
+      gsap.set(desktopFooterRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const footerAnimation = gsap.to(desktopFooterRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopFooterRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (footerAnimation.scrollTrigger) {
+        scrollTriggers.push(footerAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, [items.length, activeChain]);
+
   return (
     <>
       {/* Mobile Layout */}
-      <div className="lg:hidden bg-[#1A1A1A]">
+      <div
+        className={layoutConfig.mobile.container.className}
+        style={{
+          backgroundColor: layoutConfig.mobile.container.backgroundColor,
+        }}
+      >
         {/* Header Section */}
-        <div className="border-b border-white p-4 md:p-6 flex items-center justify-center">
+        <div
+          ref={mobileHeaderRef}
+          className={layoutConfig.mobile.header.className}
+        >
           <Typography
-            variant="h4"
-            color="yellow"
-            weight="semibold"
-            align="center"
-            className="uppercase tracking-wider font-ppmori "
+            variant={textConfig.header.variant}
+            color={textConfig.header.color as `#${string}` | "yellow"}
+            weight={textConfig.header.weight}
+            align={textConfig.header.align}
+            className={textConfig.header.className}
           >
-            {contributions.header}
+            {contributions?.header || ""}
           </Typography>
         </div>
 
         {/* Contribution Items */}
         <div className="">
           {items.map((item, index) => (
-            <div key={item.id} className="border border-white">
+            <div
+              key={item.id}
+              ref={(el) => {
+                mobileItemRefs.current[index] = el;
+              }}
+              className={layoutConfig.mobile.item.container.className}
+            >
               {/* Header Row */}
-              <div className="flex items-stretch bg-[#1A1A1A] border-b border-white">
+              <div className={layoutConfig.mobile.item.headerRow.className}>
                 {/* Number cell */}
-                <div className="w-14 md:w-16 p-4 border-r border-white relative flex items-center justify-center">
+                <div className={layoutConfig.mobile.item.numberCell.className}>
                   <div
                     className="absolute inset-0 opacity-20"
                     style={{
-                      backgroundImage: `url(${bgImage1.src})`,
+                      backgroundImage: `url(${backgroundImages.reportsBg.src})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }}
                   ></div>
                   <Typography
-                    variant="h5"
-                    color="white"
-                    weight="bold"
-                    className="uppercase tracking-wider font-psygen z-10 text-lg md:text-xl"
+                    variant={textConfig.itemNumber.variant}
+                    color={
+                      textConfig.itemNumber.color as `#${string}` | "white"
+                    }
+                    weight={textConfig.itemNumber.weight}
+                    className={textConfig.itemNumber.className}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </Typography>
                 </div>
                 {/* Title cell */}
-                <div className="flex-1 p-4">
+                <div className={layoutConfig.mobile.item.titleCell.className}>
                   <Typography
-                    variant="h5"
-                    color="white"
-                    weight="semibold"
-                    className="uppercase tracking-wider font-ppmori text-sm md:text-base"
+                    variant={textConfig.itemTitle.variant}
+                    color={textConfig.itemTitle.color as `#${string}` | "white"}
+                    weight={textConfig.itemTitle.weight}
+                    className={textConfig.itemTitle.className}
                   >
                     {item.title}
                   </Typography>
@@ -81,16 +280,18 @@ export default function Reports({ activeChain }: ReportsProps) {
               </div>
 
               {/* Body */}
-              <div className="p-4 md:p-6 bg-[#1A1A1A] border-t border-white">
+              <div className={layoutConfig.mobile.item.body.className}>
                 <Typography
-                  variant="body2"
-                  color="white"
-                  weight="normal"
-                  className="tracking-wider font-ppmori text-sm md:text-base mb-6"
+                  variant={textConfig.itemDescription.variant}
+                  color={
+                    textConfig.itemDescription.color as `#${string}` | "white"
+                  }
+                  weight={textConfig.itemDescription.weight}
+                  className={textConfig.itemDescription.className}
                 >
                   {item.description}
                 </Typography>
-                <div>
+                <div className="mt-4">
                   <Link
                     href={item.link || "#"}
                     target="_blank"
@@ -100,7 +301,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                       label={item.buttonLabel}
                       color={item.buttonColor}
                       textColor={item.buttonTextColor}
-                      className="p-3"
+                      className={layoutConfig.mobile.item.button.className}
                     />
                   </Link>
                 </div>
@@ -111,32 +312,59 @@ export default function Reports({ activeChain }: ReportsProps) {
 
         {/* Footer Section */}
         {contributions.showSeeMoreButton && (
-          <div className="border-t border-white p-4 md:p-6 flex items-center justify-center bg-[#000000]">
+          <div
+            ref={mobileFooterRef}
+            className={layoutConfig.mobile.footer.className}
+            style={{
+              backgroundColor: layoutConfig.mobile.footer.backgroundColor,
+            }}
+          >
             <Link
               href="https://lamprosdao.notion.site/arbitrum-contributions"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button label="See More" color="#D0FFAC" textColor="#0B0B0B" />
+              <Button
+                label={textConfig.seeMoreButton.label}
+                color={textConfig.seeMoreButton.color}
+                textColor={textConfig.seeMoreButton.textColor}
+              />
             </Link>
           </div>
         )}
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-10 bg-[#1A1A1A]">
-        <div className="border-b border-r border-l border-white"></div>
-        <div className="col-span-8 border-b border-r border-l border-white flex items-center justify-center p-10">
-          <Typography
-            variant="subtitle1"
-            color="yellow"
-            weight="semibold"
-            className="uppercase tracking-wider font-ppmori"
-          >
-            {contributions.header}{" "}
-          </Typography>
-        </div>
-        <div className="col-start-10 border-b border-r border-l border-white flex items-center justify-center p-10"></div>
+      <Grid
+        variant="custom"
+        noContainer
+        className={layoutConfig.desktop.grid.className}
+        style={{
+          backgroundColor: layoutConfig.desktop.grid.backgroundColor,
+        }}
+      >
+        <GridCell
+          className={layoutConfig.desktop.header.emptyCell1.className}
+        />
+        <GridCell
+          colSpan={layoutConfig.desktop.header.titleCell.colSpan}
+          className={layoutConfig.desktop.header.titleCell.className}
+        >
+          <div ref={desktopHeaderRef}>
+            <Typography
+              variant={textConfig.headerDesktop.variant}
+              color={textConfig.headerDesktop.color as `#${string}` | "yellow"}
+              weight={textConfig.headerDesktop.weight}
+              className={textConfig.headerDesktop.className}
+            >
+              {contributions?.header || ""}{" "}
+            </Typography>
+          </div>
+        </GridCell>
+        <GridCell
+          colStart={layoutConfig.desktop.header.emptyCell2.colStart}
+          className={layoutConfig.desktop.header.emptyCell2.className}
+        />
 
         {items
           .map((_, idx) => idx)
@@ -151,188 +379,261 @@ export default function Reports({ activeChain }: ReportsProps) {
               : null;
             const rowBase = 2 + pairIndex * 2;
             return (
-              <>
-                <div
+              <React.Fragment key={`pair-${i}`}>
+                <GridCell
                   key={`num-left-${i}`}
-                  className={`row-start-${rowBase} border border-white relative  flex items-center justify-center`}
+                  rowStart={rowBase}
+                  className={layoutConfig.desktop.item.numberCell.className}
                 >
                   <div
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: `url(${bgImage1.src})`,
+                      backgroundImage: `url(${backgroundImages.reportsBg.src})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }}
                   ></div>
                   <Typography
-                    variant="h5"
-                    color="white"
-                    weight="bold"
-                    className="uppercase tracking-wider font-psygen z-10"
+                    variant={textConfig.itemNumberDesktop.variant}
+                    color={
+                      textConfig.itemNumberDesktop.color as
+                        | `#${string}`
+                        | "white"
+                    }
+                    weight={textConfig.itemNumberDesktop.weight}
+                    className={textConfig.itemNumberDesktop.className}
                   >
                     {leftNumber}
                   </Typography>
-                </div>
-                <div
+                </GridCell>
+                <GridCell
                   key={`title-left-${i}`}
-                  className={`col-span-4 row-start-${rowBase} border border-white flex items-center justify-start p-10 `}
+                  colSpan={layoutConfig.desktop.item.titleCell.colSpan}
+                  rowStart={rowBase}
+                  className={layoutConfig.desktop.item.titleCell.className}
                 >
                   <Typography
-                    variant="h5"
-                    color="white"
-                    weight="semibold"
-                    className="uppercase tracking-wider font-ppmori "
+                    variant={textConfig.itemTitleDesktop.variant}
+                    color={
+                      textConfig.itemTitleDesktop.color as
+                        | `#${string}`
+                        | "white"
+                    }
+                    weight={textConfig.itemTitleDesktop.weight}
+                    className={textConfig.itemTitleDesktop.className}
                   >
                     {leftItem.title}
                   </Typography>
-                </div>
+                </GridCell>
 
                 {rightItem && (
-                  <div
+                  <GridCell
                     key={`num-right-${i + 1}`}
-                    className={`col-start-6 row-start-${rowBase} border border-white relative flex items-center justify-center`}
+                    colStart={6}
+                    rowStart={rowBase}
+                    className={layoutConfig.desktop.item.numberCell.className}
                   >
                     <div
                       className="absolute inset-0"
                       style={{
-                        backgroundImage: `url(${bgImage1.src})`,
+                        backgroundImage: `url(${backgroundImages.reportsBg.src})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
                       }}
                     ></div>
                     <Typography
-                      variant="h5"
-                      color="white"
-                      weight="bold"
-                      className="uppercase tracking-wider font-psygen z-10"
+                      variant={textConfig.itemNumberDesktop.variant}
+                      color={
+                        textConfig.itemNumberDesktop.color as
+                          | `#${string}`
+                          | "white"
+                      }
+                      weight={textConfig.itemNumberDesktop.weight}
+                      className={textConfig.itemNumberDesktop.className}
                     >
                       {rightNumber}
                     </Typography>
-                  </div>
+                  </GridCell>
                 )}
 
                 {rightItem && (
-                  <div
+                  <GridCell
                     key={`title-right-${i + 1}`}
-                    className={`col-span-4  flex items-center justify-start p-10 col-start-7 row-start-${rowBase} border border-white`}
+                    colSpan={layoutConfig.desktop.item.titleCell.colSpan}
+                    colStart={7}
+                    rowStart={rowBase}
+                    className={layoutConfig.desktop.item.titleCell.className}
                   >
                     <Typography
-                      variant="h5"
-                      color="white"
-                      weight="semibold"
-                      className="uppercase tracking-wider font-ppmori "
+                      variant={textConfig.itemTitleDesktop.variant}
+                      color={
+                        textConfig.itemTitleDesktop.color as
+                          | `#${string}`
+                          | "white"
+                      }
+                      weight={textConfig.itemTitleDesktop.weight}
+                      className={textConfig.itemTitleDesktop.className}
                     >
                       {rightItem.title}
                     </Typography>
-                  </div>
+                  </GridCell>
                 )}
 
-                <div
+                <GridCell
                   key={`spacer-${i}`}
-                  className={`row-start-${rowBase + 1}`}
-                ></div>
-                <div
+                  rowStart={rowBase + 1}
+                  className={layoutConfig.desktop.item.spacerCell.className}
+                />
+                <GridCell
                   key={`desc-left-${i}`}
-                  className={`col-span-4 row-start-${
-                    rowBase + 1
-                  } border-r border-white p-10 flex flex-col gap-6 `}
+                  colSpan={layoutConfig.desktop.item.descriptionCell.colSpan}
+                  rowStart={rowBase + 1}
+                  className={
+                    layoutConfig.desktop.item.descriptionCell.className
+                  }
                 >
-                  <Typography
-                    variant="body2"
-                    color="white"
-                    weight="normal"
-                    className=" tracking-wider font-ppmori max-w-[600px]"
-                  >
-                    {leftItem.description}
-                  </Typography>
-                  <div>
-                    <Link
-                      href={leftItem.link || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button
-                        label={leftItem.buttonLabel}
-                        color={leftItem.buttonColor}
-                        textColor={leftItem.buttonTextColor}
-                      ></Button>
-                    </Link>
-                  </div>
-                </div>
-                <div
-                  key={`desc-spacer-${i}`}
-                  className={`col-start-6 row-start-${rowBase + 1} ${
-                    rightItem ? "border-b border-white" : ""
-                  }`}
-                ></div>
-
-                {rightItem && (
                   <div
-                    key={`desc-right-${i + 1}`}
-                    className={`col-span-4 col-start-7 row-start-${
-                      rowBase + 1
-                    } p-10 flex flex-col gap-6 border-b border-white`}
+                    ref={(el) => {
+                      desktopItemRefs.current[i] = el;
+                    }}
                   >
                     <Typography
-                      variant="body2"
-                      color="white"
-                      weight="normal"
-                      className=" tracking-wider font-ppmori max-w-[600px]"
+                      variant={textConfig.itemDescriptionDesktop.variant}
+                      color={
+                        textConfig.itemDescriptionDesktop.color as
+                          | `#${string}`
+                          | "white"
+                      }
+                      weight={textConfig.itemDescriptionDesktop.weight}
+                      className={textConfig.itemDescriptionDesktop.className}
                     >
-                      {rightItem.description}
+                      {leftItem.description}
                     </Typography>
-                    <div>
+                    <div className="mt-4">
                       <Link
-                        href={rightItem.link || "#"}
+                        href={leftItem.link || "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <Button
-                          label={rightItem.buttonLabel}
-                          color={rightItem.buttonColor}
-                          textColor={rightItem.buttonTextColor}
-                          className=""
-                        ></Button>
+                          label={leftItem.buttonLabel}
+                          color={leftItem.buttonColor}
+                          textColor={leftItem.buttonTextColor}
+                          className={layoutConfig.desktop.item.button.className}
+                        />
                       </Link>
                     </div>
                   </div>
+                </GridCell>
+                <GridCell
+                  key={`desc-spacer-${i}`}
+                  colStart={
+                    layoutConfig.desktop.item.descriptionSpacerCell.colStart
+                  }
+                  rowStart={rowBase + 1}
+                  className={
+                    rightItem ? "border-b border-white" : "border-none"
+                  }
+                />
+
+                {rightItem && (
+                  <GridCell
+                    key={`desc-right-${i + 1}`}
+                    colSpan={layoutConfig.desktop.item.descriptionCell.colSpan}
+                    colStart={7}
+                    rowStart={rowBase + 1}
+                    className={`${layoutConfig.desktop.item.descriptionCell.className} border-b border-white`}
+                  >
+                    <div
+                      ref={(el) => {
+                        desktopItemRefs.current[i + 1] = el;
+                      }}
+                    >
+                      <Typography
+                        variant={textConfig.itemDescriptionDesktop.variant}
+                        color={
+                          textConfig.itemDescriptionDesktop.color as
+                            | `#${string}`
+                            | "white"
+                        }
+                        weight={textConfig.itemDescriptionDesktop.weight}
+                        className={textConfig.itemDescriptionDesktop.className}
+                      >
+                        {rightItem.description}
+                      </Typography>
+                      <div className="mt-4">
+                        <Link
+                          href={rightItem.link || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button
+                            label={rightItem.buttonLabel}
+                            color={rightItem.buttonColor}
+                            textColor={rightItem.buttonTextColor}
+                            className={
+                              layoutConfig.desktop.item.button.className
+                            }
+                          />
+                        </Link>
+                      </div>
+                    </div>
+                  </GridCell>
                 )}
-              </>
+              </React.Fragment>
             );
           })}
-        {contributions.showSeeMoreButton && items.length <= 4 && (
-          <div className="col-span-10 row-start-6 border-t border-white p-10 flex items-center justify-center bg-[#000000]">
-            <Link
-              href="https://lamprosdao.notion.site/arbitrum-contributions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                label="See More"
-                color="#D0FFAC"
-                textColor="#0B0B0B"
-              ></Button>
-            </Link>
-          </div>
+        {contributions?.showSeeMoreButton && items.length <= 4 && (
+          <GridCell
+            colSpan={layoutConfig.desktop.footer.colSpan}
+            rowStart={6}
+            className={layoutConfig.desktop.footer.className}
+            style={{
+              backgroundColor: layoutConfig.desktop.footer.backgroundColor,
+            }}
+          >
+            <div ref={desktopFooterRef}>
+              <Link
+                href="https://lamprosdao.notion.site/arbitrum-contributions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  label={textConfig.seeMoreButton.label}
+                  color={textConfig.seeMoreButton.color}
+                  textColor={textConfig.seeMoreButton.textColor}
+                />
+              </Link>
+            </div>
+          </GridCell>
         )}
-        {contributions.showSeeMoreButton && items.length > 4 && (
-          <div className="col-span-10 row-start-8 border-t border-white p-10 flex items-center justify-center bg-[#000000]">
-            <Link
-              href="https://lamprosdao.notion.site/arbitrum-contributions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                label="See More"
-                color="#D0FFAC"
-                textColor="#0B0B0B"
-              ></Button>
-            </Link>
-          </div>
+        {contributions?.showSeeMoreButton && items.length > 4 && (
+          <GridCell
+            colSpan={layoutConfig.desktop.footer.colSpan}
+            rowStart={8}
+            className={layoutConfig.desktop.footer.className}
+            style={{
+              backgroundColor: layoutConfig.desktop.footer.backgroundColor,
+            }}
+          >
+            <div ref={desktopFooterRef}>
+              <Link
+                href="https://lamprosdao.notion.site/arbitrum-contributions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  label={textConfig.seeMoreButton.label}
+                  color={textConfig.seeMoreButton.color}
+                  textColor={textConfig.seeMoreButton.textColor}
+                />
+              </Link>
+            </div>
+          </GridCell>
         )}
-      </div>
+      </Grid>
     </>
   );
 }

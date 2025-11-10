@@ -1,18 +1,18 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Clip from "@/assests/HeroSection3/Clip.svg";
-import Clip2 from "@/assests/HeroSection3/Clip2.svg";
-import { Typography } from "@/components/UI/Typography";
-import Button from "@/components/UI/Button";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
-import Arrow from "../UI/Arrow";
-import Grid, { GridCell } from "@/components/UI/Grid";
-import researchContent from "@/data/researchContent.json";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Typography } from "@/components/UI/Typography";
+import Button from "@/components/UI/Button";
+import Arrow from "../UI/Arrow";
+import Grid, { GridCell } from "@/components/UI/Grid";
+import researchContent from "@/data/researchContent.json";
+import { useResearchConfig } from "@/hooks/useResearchConfig";
+import ResearchTitle from "./ResearchTitle";
 
+// Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -22,22 +22,264 @@ export default function Research() {
   const { researchItems } = researchContent;
   const currentItem = researchItems[currentIndex];
 
-  // Refs for animation elements
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const leftArrowRef = useRef<HTMLButtonElement>(null);
-  const rightArrowRef = useRef<HTMLButtonElement>(null);
-  const clip2Ref = useRef<HTMLDivElement>(null);
+  const {
+    images,
+    backgroundImages,
+    textConfig,
+    buttonConfig,
+    arrowConfig,
+    titleWavyConfigs,
+    layoutConfig,
+  } = useResearchConfig();
 
-  // Mobile refs
-  const mobileContentRef = useRef<HTMLDivElement>(null);
+  // Refs for animation elements
+  const desktopTitleRef = useRef<HTMLDivElement>(null);
+  const desktopDescriptionRef = useRef<HTMLDivElement>(null);
+  const desktopButtonRef = useRef<HTMLDivElement>(null);
   const mobileTitleRef = useRef<HTMLDivElement>(null);
   const mobileDescriptionRef = useRef<HTMLDivElement>(null);
   const mobileButtonRef = useRef<HTMLDivElement>(null);
+  const isInitialMountRef = useRef(true);
+
+  // Initial reveal animations on mount
+  useEffect(() => {
+    const scrollTriggers: ScrollTrigger[] = [];
+
+    // Desktop title animation
+    if (desktopTitleRef.current) {
+      gsap.set(desktopTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const titleAnimation = gsap.to(desktopTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (titleAnimation.scrollTrigger) {
+        scrollTriggers.push(titleAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop description animation
+    if (desktopDescriptionRef.current) {
+      gsap.set(desktopDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const descAnimation = gsap.to(desktopDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (descAnimation.scrollTrigger) {
+        scrollTriggers.push(descAnimation.scrollTrigger);
+      }
+    }
+
+    // Desktop button animation
+    if (desktopButtonRef.current) {
+      gsap.set(desktopButtonRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const buttonAnimation = gsap.to(desktopButtonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (buttonAnimation.scrollTrigger) {
+        scrollTriggers.push(buttonAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile title animation
+    if (mobileTitleRef.current) {
+      gsap.set(mobileTitleRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileTitleAnimation = gsap.to(mobileTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileTitleAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileTitleAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile description animation
+    if (mobileDescriptionRef.current) {
+      gsap.set(mobileDescriptionRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileDescAnimation = gsap.to(mobileDescriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileDescAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileDescAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile button animation
+    if (mobileButtonRef.current) {
+      gsap.set(mobileButtonRef.current, {
+        opacity: 0,
+        y: 30,
+      });
+
+      const mobileButtonAnimation = gsap.to(mobileButtonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileTitleRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileButtonAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileButtonAnimation.scrollTrigger);
+      }
+    }
+
+    return () => {
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
+    };
+  }, []);
+
+  // Smooth content transitions when currentIndex changes
+  useEffect(() => {
+    // Skip animation on initial mount
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
+
+    const elements = [
+      { ref: desktopTitleRef },
+      { ref: desktopDescriptionRef },
+      { ref: desktopButtonRef },
+      { ref: mobileTitleRef },
+      { ref: mobileDescriptionRef },
+      { ref: mobileButtonRef },
+    ];
+
+    const timeline = gsap.timeline();
+
+    // Animate out current content
+    elements.forEach(({ ref }) => {
+      if (ref.current) {
+        timeline.to(
+          ref.current,
+          {
+            opacity: 0,
+            y: -20,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          0
+        );
+      }
+    });
+
+    // Wait for React to update DOM, then animate in new content
+    timeline.call(
+      () => {
+        // Use double requestAnimationFrame to ensure DOM has fully updated
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const inTimeline = gsap.timeline();
+
+            // Animate in all elements simultaneously
+            elements.forEach(({ ref }) => {
+              if (ref.current) {
+                // Set initial state for new content
+                gsap.set(ref.current, {
+                  opacity: 0,
+                  y: 20,
+                });
+
+                // Animate in at the same time (position 0 means all start together)
+                inTimeline.to(
+                  ref.current,
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                  },
+                  0
+                );
+              }
+            });
+          });
+        });
+      },
+      [],
+      0.3
+    );
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) =>
@@ -51,408 +293,68 @@ export default function Research() {
     );
   };
 
-  // Scroll-triggered reveal animations
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      // Main image - blur and scale reveal
-      if (imageRef.current) {
-        gsap.fromTo(
-          imageRef.current,
-          {
-            opacity: 0,
-            scale: 0.8,
-            filter: "blur(20px)",
-            rotation: -5,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)",
-            rotation: 0,
-            duration: 1.2,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: imageRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Content section - slide in from right with stagger
-      if (contentRef.current) {
-        gsap.fromTo(
-          contentRef.current,
-          {
-            opacity: 0,
-            x: 50,
-          },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: contentRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Title - letter-by-letter reveal with stagger
-      if (titleRef.current) {
-        const titleElements = titleRef.current.querySelectorAll(
-          "span, .font-bohemian"
-        );
-        gsap.fromTo(
-          titleElements.length > 0 ? titleElements : titleRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.05,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: titleRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Description - fade in with delay
-      if (descriptionRef.current) {
-        gsap.fromTo(
-          descriptionRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: 0.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: descriptionRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Button - scale and fade
-      if (buttonRef.current) {
-        gsap.fromTo(
-          buttonRef.current,
-          {
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.6,
-            delay: 0.3,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: buttonRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Clip2 image - rotate and scale reveal with continuous pulse
-      if (clip2Ref.current) {
-        gsap.fromTo(
-          clip2Ref.current,
-          {
-            opacity: 0,
-            scale: 0.5,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "elastic.out(1, 0.5)",
-            scrollTrigger: {
-              trigger: clip2Ref.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-            onComplete: () => {
-              // Continuous subtle pulse animation
-              gsap.to(clip2Ref.current, {
-                scale: 1.05,
-                duration: 2,
-                ease: "power2.inOut",
-                yoyo: true,
-                repeat: -1,
-              });
-            },
-          }
-        );
-      }
-
-      // Mobile animations
-      if (mobileContentRef.current) {
-        gsap.fromTo(
-          mobileContentRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: mobileContentRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      if (mobileTitleRef.current) {
-        const mobileTitleElements = mobileTitleRef.current.querySelectorAll(
-          "span, .font-bohemian"
-        );
-        gsap.fromTo(
-          mobileTitleElements.length > 0
-            ? mobileTitleElements
-            : mobileTitleRef.current,
-          {
-            opacity: 0,
-            y: 20,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.03,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: mobileTitleRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      if (mobileDescriptionRef.current) {
-        gsap.fromTo(
-          mobileDescriptionRef.current,
-          {
-            opacity: 0,
-            y: 15,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay: 0.15,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: mobileDescriptionRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      if (mobileButtonRef.current) {
-        gsap.fromTo(
-          mobileButtonRef.current,
-          {
-            opacity: 0,
-            scale: 0.9,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.5,
-            delay: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: mobileButtonRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // Parallax effect on background images
-      const arrowBgElements = sectionRef.current?.querySelectorAll(".arrow-bg");
-      arrowBgElements?.forEach((el) => {
-        gsap.to(el, {
-          yPercent: -30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      });
-    }, sectionRef);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
-  // Re-animate content when currentIndex changes
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const elementsToAnimate = [
-      titleRef.current,
-      descriptionRef.current,
-      buttonRef.current,
-      mobileTitleRef.current,
-      mobileDescriptionRef.current,
-      mobileButtonRef.current,
-    ].filter(Boolean);
-
-    if (elementsToAnimate.length > 0) {
-      // Quick fade out then fade in with scale
-      gsap.to(elementsToAnimate, {
-        opacity: 0,
-        y: -10,
-        scale: 0.98,
-        duration: 0.2,
-        ease: "power2.in",
-        onComplete: () => {
-          gsap.fromTo(
-            elementsToAnimate,
-            {
-              opacity: 0,
-              y: 10,
-              scale: 0.98,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.4,
-              ease: "power2.out",
-            }
-          );
-        },
-      });
-    }
-  }, [currentIndex]);
-
-  // Function to render title with wavy letters (static styling only)
-  const renderTitleWithWavyLetters = (title: string) => {
-    switch (title) {
-      case "Our Journey & Impact":
-        return (
-          <>
-            <span className="uppercase font-bohemian inline-block">O</span>
-            ur <span className="uppercase font-bohemian inline-block">J</span>
-            ourney &{" "}
-            <span className="uppercase font-bohemian inline-block">I</span>
-            mpact
-          </>
-        );
-      case "Governance & Research":
-        return (
-          <>
-            <span className="uppercase font-bohemian inline-block">G</span>
-            overnance &{" "}
-            <span className="uppercase font-bohemian inline-block">R</span>
-            esearch
-          </>
-        );
-      case "Workshops & Education":
-        return (
-          <>
-            <span className="uppercase font-bohemian inline-block">W</span>
-            orkshops &{" "}
-            <span className="uppercase font-bohemian inline-block">E</span>
-            ducation
-          </>
-        );
-      default:
-        return title;
-    }
-  };
+  const currentWavyConfig = titleWavyConfigs[currentItem.title.trim()];
 
   return (
-    <div ref={sectionRef} className="w-full bg-[#121212] text-white">
+    <div
+      className={layoutConfig.desktop.container.className}
+      style={{
+        backgroundColor: layoutConfig.desktop.container.backgroundColor,
+      }}
+    >
       {/* Desktop Layout - Original research grid */}
-      <div className="hidden lg:block">
+      <div className={layoutConfig.desktop.grid.className}>
         <Grid variant="research" className="relative w-full">
           {/* Main image - spans 3 columns, 5 rows */}
-          <GridCell type="researchImage" ref={imageRef}>
+          <GridCell type="researchImage">
             <Image
-              src={Clip}
-              alt="Metallic sculpture"
-              className="w-[40%] sm:w-[45%] md:w-[50%] lg:w-[55%] xl:w-[60%] mx-auto"
+              src={images.clip.src}
+              alt={images.clip.alt}
+              className={images.clip.className}
+              width={images.clip.width}
+              height={images.clip.height}
             />
           </GridCell>
 
           {/* Content section - spans 3 columns, 4 rows */}
           <GridCell type="researchContent">
-            <div
-              ref={contentRef}
-              className="space-y-4 sm:space-y-5 md:space-y-6 px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-10  flex flex-col justify-center"
-            >
-              <div ref={titleRef}>
+            <div className={layoutConfig.desktop.contentCell.className}>
+              <div ref={desktopTitleRef}>
                 <Typography
                   variant="h2"
                   weight="normal"
                   align="left"
-                  color="#E9FCE4"
-                  className="uppercase tracking-[-0.02em] leading-[0.95]"
+                  color={textConfig.titleColor as `#${string}`}
+                  className={textConfig.titleClassName}
                 >
-                  {renderTitleWithWavyLetters(currentItem.title)}
+                  <ResearchTitle
+                    title={currentItem.title}
+                    wavyConfig={currentWavyConfig}
+                  />
                 </Typography>
               </div>
 
-              <div ref={descriptionRef}>
+              <div ref={desktopDescriptionRef}>
                 <Typography
                   variant="subtitle2"
                   weight="normal"
-                  color="#C7C7C7"
-                  className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl leading-relaxed text-sm sm:text-base md:text-lg"
+                  color={textConfig.descriptionColor as `#${string}`}
+                  className={textConfig.descriptionClassName}
                 >
                   {currentItem.description}
                 </Typography>
               </div>
 
-              <div ref={buttonRef}>
+              <div ref={desktopButtonRef}>
                 <Link
                   href={currentItem.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button
-                    label="Know More"
-                    color="#D0FFAC"
-                    textColor="#000000"
+                    label={buttonConfig.label}
+                    color={buttonConfig.color}
+                    textColor={buttonConfig.textColor}
                   />
                 </Link>
               </div>
@@ -460,38 +362,42 @@ export default function Research() {
           </GridCell>
 
           {/* Arrow cell - row 5, column 4 */}
-          <GridCell type="researchIcon" className="relative overflow-hidden">
+          <GridCell
+            type="researchIcon"
+            className={layoutConfig.desktop.iconCell.className}
+          >
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <button
-              ref={leftArrowRef}
               onClick={handlePrevious}
               className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
             >
               <Arrow
                 direction="left"
-                size={70}
-                hoverScale={1.2}
-                hoverColor="#D0FFAC"
-                className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px] transition-all duration-300 group-hover:brightness-110"
+                size={arrowConfig.desktop.size}
+                hoverScale={arrowConfig.desktop.hoverScale}
+                hoverColor={arrowConfig.desktop.hoverColor}
+                className={arrowConfig.desktop.className}
               />
             </button>
           </GridCell>
 
           {/* Clip2 image - row 5, column 5 */}
           <GridCell type="researchIcon" className="col-start-5 row-start-5 p-5">
-            <div ref={clip2Ref}>
+            <div>
               <Image
-                src={Clip2}
-                alt="Emblem"
-                className="p-3 sm:p-4 md:p-5 w-full"
+                src={images.clip2.src}
+                alt={images.clip2.alt}
+                className={images.clip2.className}
+                width={images.clip2.width}
+                height={images.clip2.height}
               />
             </div>
           </GridCell>
@@ -502,25 +408,24 @@ export default function Research() {
             className="col-start-6 row-start-5 relative overflow-hidden"
           >
             <div
-              className="absolute inset-0 "
+              className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <button
-              ref={rightArrowRef}
               onClick={handleNext}
               className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
             >
               <Arrow
                 direction="right"
-                size={70}
-                hoverScale={1.2}
-                hoverColor="#D0FFAC"
-                className="sm:w-[60px] sm:h-[60px] md:w-[65px] md:h-[65px] lg:w-[70px] lg:h-[70px] transition-all duration-300 group-hover:brightness-110"
+                size={arrowConfig.desktop.size}
+                hoverScale={arrowConfig.desktop.hoverScale}
+                hoverColor={arrowConfig.desktop.hoverColor}
+                className={arrowConfig.desktop.className}
               />
             </button>
           </GridCell>
@@ -529,34 +434,35 @@ export default function Research() {
 
       {/* Mobile Layout - Grid-like structure */}
       <div className="lg:hidden">
-        <div className="w-full overflow-x-auto">
+        <div className={layoutConfig.mobile.grid.className}>
           <div className="min-w-[320px] grid grid-cols-3 border border-white">
             <GridCell
               type="researchImage"
-              ref={imageRef}
-              className="border-b border-white"
+              className={layoutConfig.mobile.imageCell.className}
             >
               <Image
-                src={Clip}
-                alt="Metallic sculpture"
-                className="w-[60%] sm:w-[45%] md:w-[50%] lg:w-[55%] xl:w-[60%] mx-auto"
+                src={images.clipMobile.src}
+                alt={images.clipMobile.alt}
+                className={images.clipMobile.className}
+                width={images.clipMobile.width}
+                height={images.clipMobile.height}
               />
             </GridCell>
             {/* Row 1 - Main content spanning all columns */}
-            <div className="col-span-3 p-4 sm:p-6">
-              <div
-                ref={mobileContentRef}
-                className="space-y-6 sm:space-y-8 py-8 sm:py-12"
-              >
+            <div className={layoutConfig.mobile.contentCell.className}>
+              <div className="space-y-6 sm:space-y-8 py-8 sm:py-12">
                 <div ref={mobileTitleRef}>
                   <Typography
                     variant="h2"
                     weight="normal"
                     align="center"
-                    color="#E9FCE4"
-                    className="uppercase "
+                    color={textConfig.titleColor as `#${string}`}
+                    className="uppercase"
                   >
-                    {renderTitleWithWavyLetters(currentItem.title)}
+                    <ResearchTitle
+                      title={currentItem.title}
+                      wavyConfig={currentWavyConfig}
+                    />
                   </Typography>
                 </div>
 
@@ -564,7 +470,7 @@ export default function Research() {
                   <Typography
                     variant="subtitle2"
                     weight="normal"
-                    color="#C7C7C7"
+                    color={textConfig.descriptionColor as `#${string}`}
                     align="center"
                   >
                     {currentItem.description}
@@ -581,10 +487,9 @@ export default function Research() {
                     rel="noopener noreferrer"
                   >
                     <Button
-                      label="Know More"
-                      color="#D0FFAC"
-                      textColor="#000000"
-                      className="w-full sm:w-auto px-8 py-3 text-sm sm:text-base"
+                      label={buttonConfig.label}
+                      color={buttonConfig.color}
+                      textColor={buttonConfig.textColor}
                     />
                   </Link>
                 </div>
@@ -592,13 +497,13 @@ export default function Research() {
             </div>
 
             {/* Row 2 - Navigation controls in grid format */}
-            <div className="col-span-3 grid grid-cols-3">
+            <div className={layoutConfig.mobile.navigationCell.className}>
               {/* Left arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
                   className="absolute inset-0"
                   style={{
-                    backgroundImage: `url(${bgImage2.src})`,
+                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
@@ -610,11 +515,11 @@ export default function Research() {
                 >
                   <Arrow
                     direction="left"
-                    size={30}
-                    hoverScale={1.15}
-                    hoverColor="#D0FFAC"
-                    transitionDuration={0.3}
-                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                    size={arrowConfig.mobile.size}
+                    hoverScale={arrowConfig.mobile.hoverScale}
+                    hoverColor={arrowConfig.mobile.hoverColor}
+                    transitionDuration={arrowConfig.mobile.transitionDuration}
+                    className={arrowConfig.mobile.className}
                   />
                 </button>
               </div>
@@ -622,9 +527,11 @@ export default function Research() {
               {/* Clip2 image - center */}
               <div className="col-span-1 border border-white flex items-center justify-center p-5">
                 <Image
-                  src={Clip2}
-                  alt="Emblem"
-                  className="w-full sm:w-16 sm:h-16 md:w-20 md:h-20"
+                  src={images.clip2Mobile.src}
+                  alt={images.clip2Mobile.alt}
+                  className={images.clip2Mobile.className}
+                  width={images.clip2Mobile.width}
+                  height={images.clip2Mobile.height}
                 />
               </div>
 
@@ -633,7 +540,7 @@ export default function Research() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    backgroundImage: `url(${bgImage2.src})`,
+                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
@@ -645,11 +552,11 @@ export default function Research() {
                 >
                   <Arrow
                     direction="right"
-                    size={30}
-                    hoverScale={1.15}
-                    hoverColor="#D0FFAC"
-                    transitionDuration={0.3}
-                    className="w-6 h-6 sm:w-8 sm:h-8 transition-all duration-300 group-hover:brightness-110"
+                    size={arrowConfig.mobile.size}
+                    hoverScale={arrowConfig.mobile.hoverScale}
+                    hoverColor={arrowConfig.mobile.hoverColor}
+                    transitionDuration={arrowConfig.mobile.transitionDuration}
+                    className={arrowConfig.mobile.className}
                   />
                 </button>
               </div>

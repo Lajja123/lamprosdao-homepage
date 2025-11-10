@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lampros DAO Homepage
 
-## Getting Started
+The official website for Lampros DAO, a decentralized autonomous organization focused on bridging mainstream adoption with blockchain technology.
 
-First, run the development server:
+## 🚀 Tech Stack
 
+- **Framework**: Next.js 15.5.4 (App Router)
+- **React**: 19.1.0
+- **Styling**: Tailwind CSS 4
+- **Animations**: GSAP 3.13.0
+- **TypeScript**: 5.x
+- **API Integration**: Notion API
+- **Package Manager**: Yarn
+
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- Yarn (or npm/pnpm)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd lamprosdao-homepage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file (see `.env.example` for required variables):
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Fill in your environment variables:
+- `NOTION_API_KEY`: Your Notion API key
+- `NOTION_DATABASE_ID`: Your Notion database ID
+- `NEXT_PUBLIC_BASE_URL`: Base URL for the application
 
-## Learn More
+5. Run the development server:
+```bash
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn start` - Start production server
+- `yarn lint` - Run ESLint
+- `yarn format` - Format code with Prettier
+- `yarn type-check` - Run TypeScript type checking
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### API Routes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/api/notion-proposals`: Fetches governance proposals from Notion
+- `/api/arbitrum-new-topics`: Fetches new topics from Arbitrum forum
+- `/api/fetch-forum-post`: Fetches forum post details
+- `/api/mock-data`: Mock data endpoint for development
+
+
+## 🎨 Design System
+
+The project uses:
+- **Custom Fonts**: CSBohemian, PPMori, Psygen (located in `src/app/fonts/`)
+- **Tailwind CSS**: For utility-first styling
+- **GSAP**: For animations and scroll triggers
+- **Component-based Architecture**: Reusable UI components
+
+
+## 🔗 Links
+
+- [Lampros DAO Website](https://lamprosdao.com)
+- [Notion Integration](https://www.notion.so)
+
+Built with ❤️ by the Lampros DAO team

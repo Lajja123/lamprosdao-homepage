@@ -3,235 +3,210 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import hand from "@/assests/HeroSection2/hand.svg";
-import hugeicon from "@/assests/HeroSection2/hugeicons.svg";
-import bgImage1 from "@/assests/HeroSection2/arrow-bg.png";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
-import clip from "@/assests/HeroSection2/clip.png";
-import arrow from "@/assests/HeroSection2/arrow.svg";
 import Typography from "@/components/UI/Typography";
 import Grid, { GridCell } from "@/components/UI/Grid";
-import mobileBgImage from "@/assests/HeroSection2/m-bg.png";
-import mobileArrow from "@/assests/HeroSection2/m-arrow.svg";
+import { useSection2Config } from "@/hooks/useSection2Config";
+import { colors } from "@/theme";
 
+// Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function Section2() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const handRef = useRef<HTMLDivElement>(null);
-  const clipRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const arrowRef = useRef<HTMLDivElement>(null);
-  const hugeiconRef = useRef<HTMLDivElement>(null);
+  const { images, backgroundImages, textConfig, layoutConfig } =
+    useSection2Config();
 
-  // Add cursor-tracking ripple effects for interactive grid cells
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const interactiveCells = sectionRef.current?.querySelectorAll(
-      ".grid-cell-interactive"
-    );
-
-    if (!interactiveCells) return;
-
-    const handleMouseEnter = (e: MouseEvent) => {
-      const target = e.currentTarget as HTMLElement;
-      const ripple = target.querySelector(".ripple-effect") as HTMLElement;
-      if (!ripple) return;
-
-      const rect = target.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-      ripple.classList.add("active");
-
-      setTimeout(() => {
-        ripple.classList.remove("active");
-      }, 800);
-    };
-
-    interactiveCells.forEach((cell) => {
-      cell.addEventListener("mouseenter", handleMouseEnter as EventListener);
-    });
-
-    return () => {
-      interactiveCells.forEach((cell) => {
-        cell.removeEventListener(
-          "mouseenter",
-          handleMouseEnter as EventListener
-        );
-      });
-    };
-  }, []);
+  // Refs for animation elements
+  const desktopClipRef = useRef<HTMLDivElement>(null);
+  const desktopTextRef = useRef<HTMLDivElement>(null);
+  const mobileClipRef = useRef<HTMLDivElement>(null);
+  const mobileTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    const scrollTriggers: ScrollTrigger[] = [];
 
-    const ctx = gsap.context(() => {
-      const elements = [
-        { ref: handRef, delay: 0 },
-        { ref: textRef, delay: 0.2 },
-        { ref: arrowRef, delay: 0.15 },
-        { ref: hugeiconRef, delay: 0.25 },
-      ];
-
-      elements.forEach(({ ref, delay }) => {
-        if (ref.current) {
-          gsap.fromTo(
-            ref.current,
-            {
-              opacity: 0,
-              y: 30,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              delay,
-              scrollTrigger: {
-                trigger: ref.current,
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        }
+    // Desktop clip image animation
+    if (desktopClipRef.current) {
+      gsap.set(desktopClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
       });
 
-      // Clip image with blur filter animation
-      if (clipRef.current) {
-        gsap.fromTo(
-          clipRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            filter: "blur(20px)",
-          },
-          {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 0.1,
-            scrollTrigger: {
-              trigger: clipRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
+      const clipAnimation = gsap.to(desktopClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (clipAnimation.scrollTrigger) {
+        scrollTriggers.push(clipAnimation.scrollTrigger);
       }
-    }, sectionRef);
+    }
+
+    // Desktop text content animation
+    if (desktopTextRef.current) {
+      gsap.set(desktopTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const textAnimation = gsap.to(desktopTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (textAnimation.scrollTrigger) {
+        scrollTriggers.push(textAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile clip image animation
+    if (mobileClipRef.current) {
+      gsap.set(mobileClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const mobileClipAnimation = gsap.to(mobileClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileClipAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileClipAnimation.scrollTrigger);
+      }
+    }
+
+    // Mobile text content animation
+    if (mobileTextRef.current) {
+      gsap.set(mobileTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
+
+      const mobileTextAnimation = gsap.to(mobileTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (mobileTextAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileTextAnimation.scrollTrigger);
+      }
+    }
 
     return () => {
-      ctx.revert();
+      // Cleanup only the ScrollTrigger instances we created
+      scrollTriggers.forEach((trigger) => {
+        trigger.kill();
+      });
     };
   }, []);
 
   return (
-    <div ref={sectionRef} className="w-full">
+    <div className="w-full">
       {/* Desktop Layout - Original 10-column grid */}
-      <div className="hidden lg:block">
+      <div className={layoutConfig.desktop.grid.className}>
         <Grid>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight">
+            <div
+              className={layoutConfig.desktop.handCell.className}
+              style={{
+                backgroundColor: layoutConfig.desktop.handCell.backgroundColor,
+              }}
+            >
+              <Image
+                src={images.hand.src}
+                alt={images.hand.alt}
+                className={images.hand.className}
+                width={images.hand.width}
+                height={images.hand.height}
+              />
+            </div>
           </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell
-            type="withHeight"
-            className="bg-[#D0FFAC] flex items-center justify-center"
-          >
-            <Image
-              src={hand}
-              alt="hand"
-              className=" mx-auto w-full h-full object-contain p-5"
-            />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
 
-          <GridCell type="basic" className="p-10 grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
+          <GridCell type="basic" className="p-10"></GridCell>
           <GridCell type="spannedContent">
-            <div className="flex items-center justify-between w-full h-full">
+            <div className={layoutConfig.desktop.contentCell.className}>
               <div
-                ref={clipRef}
-                className="flex-shrink-0 w-1/3 h-full flex items-center justify-center"
+                ref={desktopClipRef}
+                className={layoutConfig.desktop.clipContainer.className}
               >
                 <Image
-                  src={clip}
-                  alt="clip"
-                  className="w-full h-full object-contain"
-                  quality={100}
+                  src={images.clip.src}
+                  alt={images.clip.alt}
+                  className={images.clip.className}
+                  quality={images.clip.quality}
+                  width={images.clip.width}
+                  height={images.clip.height}
                 />
               </div>
 
               <div
-                ref={textRef}
-                className="flex-1 w-2/3 pl-8 space-y-4 lg:space-y-8"
+                ref={desktopTextRef}
+                className={layoutConfig.desktop.textContainer.className}
               >
-                <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="bold"
-                  className="tracking-wide font-ppmori max-w-[800px]"
-                >
-                  In the vibrant world of blockchain, Lampros DAO stands as a
-                  beacon, illuminating the path for innovators, dreamers, and
-                  builders. Founded with a profound vision to seamlessly merge
-                  blockchain technology with mainstream applications, we've
-                  steadily grown into a robust community hub.
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="bold"
-                  className="tracking-wide font-ppmori max-w-[800px]"
-                >
-                  Our ethos is rooted in fostering growth - both of the
-                  individual and the collective. With each project we support,
-                  every developer we guide, and each event we host, we inch
-                  closer to a future where blockchain isn't just a buzzword, but
-                  an integral part of our digital tapestry.
-                </Typography>
+                {textConfig.paragraphs.map((paragraph, index) => (
+                  <Typography
+                    key={`desktop-paragraph-${index}`}
+                    variant={textConfig.variant}
+                    color={textConfig.color}
+                    weight={textConfig.weight}
+                    className={textConfig.className}
+                  >
+                    {paragraph}
+                  </Typography>
+                ))}
               </div>
             </div>
           </GridCell>
@@ -244,202 +219,162 @@ export default function Section2() {
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage1.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Image
-              src={arrow}
-              alt="arrow"
-              className="relative w-full h-full object-contain p-2 mx-auto "
+              src={images.arrow.src}
+              alt={images.arrow.alt}
+              className={images.arrow.className}
+              width={images.arrow.width}
+              height={images.arrow.height}
             />
           </GridCell>
 
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell className="relative">
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell className={layoutConfig.desktop.iconCell.className}>
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Image
-              src={hugeicon}
-              alt="hugeicon"
-              className="relative mx-auto w-full h-full object-contain p-5"
+              src={images.hugeicon.src}
+              alt={images.hugeicon.alt}
+              className={images.hugeicon.className}
+              width={images.hugeicon.width}
+              height={images.hugeicon.height}
             />
           </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
-          <GridCell type="withHeight" className="grid-cell-interactive">
-            <div className="ripple-effect" />
-            <div className="pattern-overlay" />
-          </GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
+          <GridCell type="withHeight"></GridCell>
         </Grid>
       </div>
 
-      {/* Mobile Layout - 3-column grid */}
+      {/* Mobile Layout */}
       <div className="lg:hidden">
-        <div className="grid grid-cols-5 grid-rows-10 ">
+        <div className={layoutConfig.mobile.grid.className}>
           <div className="border border-black ">1</div>
-          <div className="col-span-2 border border-black relative flex items-center justify-center">
+          <div className={layoutConfig.mobile.arrowCell.className}>
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${mobileBgImage.src})`,
+                backgroundImage: `url(${backgroundImages.mobileBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Image
-              src={mobileArrow}
-              alt="arrow"
-              className="relative mx-auto   object-contain p-5 flex justify-center"
+              src={images.mobileArrow.src}
+              alt={images.mobileArrow.alt}
+              className={images.mobileArrow.className}
+              width={images.mobileArrow.width}
+              height={images.mobileArrow.height}
             />
           </div>
           <div className="col-start-4 border border-black">3</div>
           <div className="col-start-5 border border-black">4</div>
           <div className="row-start-2 border border-black">5</div>
-          <div className="col-start-1 row-start-3 border border-black    ">
-            6
-          </div>
+          <div className="col-start-1 row-start-3 border border-black ">6</div>
           <div className="col-start-1 row-start-4 border border-black">7</div>
           <div className="col-start-1 row-start-5 border border-black">8</div>
-          <div className="col-start-1 row-start-6 border border-black  relative  ">
+          <div className={layoutConfig.mobile.iconCell.className}>
             <div
               className="absolute inset-0"
               style={{
-                backgroundImage: `url(${bgImage2.src})`,
+                backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
             <Image
-              src={hugeicon}
-              alt="hugeicon"
-              className="relative mx-auto w-full h-full object-contain p-5"
+              src={images.hugeicon.src}
+              alt={images.hugeicon.alt}
+              className={images.hugeicon.className}
+              width={images.hugeicon.width}
+              height={images.hugeicon.height}
             />
           </div>
           <div className="col-start-1 row-start-7 border border-black">10</div>
-          <div className="col-start-1 row-start-8 border border-black    ">
-            11
-          </div>
-          <div className="col-start-1 row-start-9 border border-black   ">
-            12
-          </div>
-          <div className="col-start-1 row-start-10 border border-black    ">
+          <div className="col-start-1 row-start-8 border border-black ">11</div>
+          <div className="col-start-1 row-start-9 border border-black ">12</div>
+          <div className="col-start-1 row-start-10 border border-black ">
             13
           </div>
-          <div className="col-span-3 row-span-8 col-start-2 row-start-2 border border-black    ">
+          <div className="col-span-3 row-span-8 col-start-2 row-start-2 border border-black ">
             <div className="flex flex-col items-center justify-between w-full h-full">
               <div
-                ref={clipRef}
-                className=" w-full  flex items-center justify-center"
+                ref={mobileClipRef}
+                className={layoutConfig.mobile.clipContainer.className}
               >
                 <Image
-                  src={clip}
-                  alt="clip"
-                  className="w-full h-full object-contain"
-                  quality={100}
+                  src={images.clip.src}
+                  alt={images.clip.alt}
+                  className={images.clip.className}
+                  quality={images.clip.quality}
+                  width={images.clip.width}
+                  height={images.clip.height}
                 />
               </div>
 
-              <div ref={textRef} className="flex-1 px-5 py-5 ">
-                <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="bold"
-                  className="tracking-wide font-ppmori max-w-[800px]"
-                >
-                  In the vibrant world of blockchain, Lampros DAO stands as a
-                  beacon, illuminating the path for innovators, dreamers, and
-                  builders. Founded with a profound vision to seamlessly merge
-                  blockchain technology with mainstream applications, we've
-                  steadily grown into a robust community hub.
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="primary"
-                  weight="bold"
-                  className="tracking-wide font-ppmori max-w-[800px] py-5"
-                >
-                  Our ethos is rooted in fostering growth - both of the
-                  individual and the collective. With each project we support,
-                  every developer we guide, and each event we host, we inch
-                  closer to a future where blockchain isn't just a buzzword, but
-                  an integral part of our digital tapestry.
-                </Typography>
+              <div
+                ref={mobileTextRef}
+                className={layoutConfig.mobile.textContainer.className}
+              >
+                {textConfig.paragraphs.map((paragraph, index) => (
+                  <Typography
+                    key={`mobile-paragraph-${index}`}
+                    variant={textConfig.variant}
+                    color={textConfig.color}
+                    weight={textConfig.weight}
+                    className={`${textConfig.className} ${index === 1 ? "py-5" : ""}`}
+                  >
+                    {paragraph}
+                  </Typography>
+                ))}
               </div>
             </div>
           </div>
-          <div className="col-span-3 col-start-2 row-start-10 border border-black    ">
+          <div className="col-span-3 col-start-2 row-start-10 border border-black ">
             15
           </div>
-          <div className="col-start-5 row-start-2 border border-black    ">
-            16
-          </div>
-          <div className="col-start-5 row-start-3 border border-black    ">
-            17
-          </div>
-          <div className="col-start-5 row-start-4 border border-black    ">
-            18
-          </div>
-          <div className="col-start-5 row-start-5 border border-black   bg-[#D0FFAC] flex items-center justify-center  ">
+          <div className="col-start-5 row-start-2 border border-black ">16</div>
+          <div className="col-start-5 row-start-3 border border-black ">17</div>
+          <div className="col-start-5 row-start-4 border border-black ">18</div>
+          <div
+            className={`col-start-5 row-start-5 border border-black ${layoutConfig.mobile.handCell.className}`}
+            style={{
+              backgroundColor: layoutConfig.mobile.handCell.backgroundColor,
+            }}
+          >
             <Image
-              src={hand}
-              alt="hand"
-              className=" mx-auto w-full h-full object-contain p-5"
+              src={images.hand.src}
+              alt={images.hand.alt}
+              className={images.hand.className}
+              width={images.hand.width}
+              height={images.hand.height}
             />
           </div>
-          <div className="col-start-5 row-start-6 border border-black    ">
-            20
-          </div>
-          <div className="col-start-5 row-start-7 border border-black    ">
-            21
-          </div>
-          <div className="col-start-5 row-start-8 border border-black    ">
-            22
-          </div>
-          <div className="col-start-5 row-start-9 border border-black    ">
-            23
-          </div>
-          <div className="col-start-5 row-start-10 border border-black    ">
+          <div className="col-start-5 row-start-6 border border-black ">20</div>
+          <div className="col-start-5 row-start-7 border border-black ">21</div>
+          <div className="col-start-5 row-start-8 border border-black ">22</div>
+          <div className="col-start-5 row-start-9 border border-black ">23</div>
+          <div className="col-start-5 row-start-10 border border-black ">
             24
           </div>
         </div>

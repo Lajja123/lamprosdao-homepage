@@ -116,7 +116,7 @@ export const Button: React.FC<ButtonProps> = ({
   }, []);
 
   const base =
-    "inline-flex items-center justify-center transition will-change-transform p-4 sm:px-3 md:px-6  sm:py-3 cursor-pointer";
+    "inline-flex items-center justify-center transition will-change-transform sm:px-3 md:py-2 md:px-6 py-3 px-5 cursor-pointer";
   const radius = roundedClassMap[rounded];
 
   const style: React.CSSProperties = {};
@@ -157,8 +157,8 @@ export const Button: React.FC<ButtonProps> = ({
     textColor && textColor.startsWith("#")
       ? (textColor as `#${string}`)
       : isPalette(textColor)
-      ? textColor
-      : "primary";
+        ? textColor
+        : "primary";
 
   // Determine fill animation color based on button variant
   const getFillColor = () => {
@@ -205,7 +205,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {/* Center fill animation background */}
       <div
-        className="absolute inset-0 scale-0 group-hover:scale-100 origin-center transition-transform duration-500 ease-out"
+        className="absolute inset-0 scale-0 group-hover:scale-100 origin-center  transition-transform duration-500 ease-out"
         style={{
           backgroundColor: getFillColor(),
         }}

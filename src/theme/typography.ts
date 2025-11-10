@@ -11,7 +11,6 @@ export type FontDefinition = {
 export const fontFamilies = {
   display: "var(--font-display)", // CS Bohemian Demo
   body: "var(--font-body)", // PP Mori
-  mono: 'var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace)',
 } as const;
 
 export const typeScale = {
