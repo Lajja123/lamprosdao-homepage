@@ -458,8 +458,11 @@ export default function Delegate() {
           rowSpan={layoutConfig.desktop.imageCell.rowSpan}
           colStart={layoutConfig.desktop.imageCell.colStart}
           rowStart={layoutConfig.desktop.imageCell.rowStart}
+          className={layoutConfig.desktop.imageCell.className}
         >
-          <div ref={desktopImageRef}           className={layoutConfig.desktop.imageCell.className}
+          <div
+            ref={desktopImageRef}
+            className="p-10 w-full h-full flex items-center justify-center"
           >
             <Image
               src={images.delegateDesktop.src}

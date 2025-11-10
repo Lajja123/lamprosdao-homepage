@@ -83,9 +83,8 @@ export default function Research() {
         y: 0,
         duration: 1,
         ease: "power2.out",
-        delay: 0.2,
         scrollTrigger: {
-          trigger: desktopDescriptionRef.current,
+          trigger: desktopTitleRef.current,
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none none",
@@ -110,9 +109,8 @@ export default function Research() {
         y: 0,
         duration: 1,
         ease: "power2.out",
-        delay: 0.4,
         scrollTrigger: {
-          trigger: desktopButtonRef.current,
+          trigger: desktopTitleRef.current,
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none none",
@@ -163,9 +161,8 @@ export default function Research() {
         y: 0,
         duration: 1,
         ease: "power2.out",
-        delay: 0.2,
         scrollTrigger: {
-          trigger: mobileDescriptionRef.current,
+          trigger: mobileTitleRef.current,
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none none",
@@ -190,9 +187,8 @@ export default function Research() {
         y: 0,
         duration: 1,
         ease: "power2.out",
-        delay: 0.4,
         scrollTrigger: {
-          trigger: mobileButtonRef.current,
+          trigger: mobileTitleRef.current,
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none none",
@@ -280,7 +276,7 @@ export default function Research() {
           });
         });
       },
-      null,
+      [],
       0.3
     );
   }, [currentIndex]);
@@ -481,7 +477,10 @@ export default function Research() {
                   </Typography>
                 </div>
 
-                <div ref={mobileButtonRef} className="flex justify-center sm:justify-start">
+                <div
+                  ref={mobileButtonRef}
+                  className="flex justify-center sm:justify-start"
+                >
                   <Link
                     href={currentItem.link}
                     target="_blank"

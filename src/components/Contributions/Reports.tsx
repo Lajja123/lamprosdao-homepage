@@ -217,7 +217,10 @@ export default function Reports({ activeChain }: ReportsProps) {
         }}
       >
         {/* Header Section */}
-        <div ref={mobileHeaderRef} className={layoutConfig.mobile.header.className}>
+        <div
+          ref={mobileHeaderRef}
+          className={layoutConfig.mobile.header.className}
+        >
           <Typography
             variant={textConfig.header.variant}
             color={textConfig.header.color as `#${string}` | "yellow"}
@@ -570,7 +573,9 @@ export default function Reports({ activeChain }: ReportsProps) {
                             label={rightItem.buttonLabel}
                             color={rightItem.buttonColor}
                             textColor={rightItem.buttonTextColor}
-                            className={layoutConfig.desktop.item.button.className}
+                            className={
+                              layoutConfig.desktop.item.button.className
+                            }
                           />
                         </Link>
                       </div>

@@ -141,13 +141,13 @@ export const useDelegateConfig = () => {
         },
         imageSection: {
           className:
-            "border-b border-white p-4 md:p-6 flex items-center justify-center",
+            "border-b border-white p-10 md:p-6 flex items-center justify-center",
         },
         headerSection: {
-          className: "p-4 md:p-6 flex items-center justify-center",
+          className: "p-6 md:p-6 flex items-center justify-center",
         },
         descriptionSection: {
-          className: "p-4 md:p-6",
+          className: "p-6 md:p-6",
         },
         buttonsGrid: {
           className: "grid grid-cols-2 border border-white",

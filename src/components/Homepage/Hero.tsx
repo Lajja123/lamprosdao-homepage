@@ -6,6 +6,9 @@ import { Typography } from "@/components/UI/Typography";
 import { useHeroConfig } from "@/hooks/useHeroConfig";
 import HeroTitleLine from "./HeroTitleLine";
 import { colors, spacing } from "@/theme";
+import clip from "@/assests/common/clip.svg";
+import Vector from "@/assests/HeroSection1/Vector.svg";
+import hero from "@/assests/HeroSection1/hero.png";
 
 export default function Hero() {
   const { images, titleConfig, subtitleConfig, layoutConfig } = useHeroConfig();
@@ -114,8 +117,8 @@ export default function Hero() {
         className={`absolute w-full hidden md:block z-0 ${spacing.position.top.desktop}`}
       >
         <Image
-          src={images.clip.src}
-          alt={images.clip.alt}
+          src={clip}
+          alt="clip"
           className={images.clip.className}
           quality={images.clip.quality}
           width={images.clip.width}
@@ -127,8 +130,8 @@ export default function Hero() {
 
       <div className={`relative w-full block md:hidden z-0 `}>
         <Image
-          src={images.vector.src}
-          alt={images.vector.alt}
+          src={Vector}
+          alt="Vector"
           className={images.vector.className}
           quality={images.vector.quality}
           width={images.vector.width}
@@ -140,8 +143,8 @@ export default function Hero() {
       <div ref={heroRef} className="w-full h-max relative">
         <div className="absolute inset-0 w-full h-full z-0 hidden md:block top-5">
           <Image
-            src={images.hero.src}
-            alt={images.hero.alt}
+            src={hero}
+            alt="hero"
             className={images.hero.className}
             width={images.hero.width}
             height={images.hero.height}
