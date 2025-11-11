@@ -4,7 +4,6 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
-import DesktopOnly from "@/components/UI/DesktopOnly";
 
 // Lazy load non-critical components
 const Footer = dynamic(() => import("@/components/Footer/Footer"), {
@@ -18,7 +17,6 @@ const PPMori = localFont({
   src: "./fonts/PPMori-Regular.otf",
   display: "swap",
   variable: "--font-pp-mori",
-  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -34,7 +32,6 @@ const CSBohemian = localFont({
   src: "./fonts/CSBohemian-Regular.otf",
   display: "swap",
   variable: "--font-cs-bohemian",
-  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -50,7 +47,6 @@ const Psygen = localFont({
   src: "./fonts/Psygen-Regular.otf",
   display: "swap",
   variable: "--font-psygen",
-  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
