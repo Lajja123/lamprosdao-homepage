@@ -120,13 +120,15 @@ export default function Navbar({ centerContent }: NavbarProps) {
       ref={navbarRef}
       className="relative flex items-start md:items-start justify-between z-10  md:border-none border-b border-[#BFAFCF]"
     >
-      {/* Left: Logo */}
       <div ref={logoRef} className=" p-5 pb-2">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
             className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-48 w-30"
+            priority
+            width={200}
+            height={60}
           />
         </Link>
       </div>
@@ -317,18 +319,15 @@ export default function Navbar({ centerContent }: NavbarProps) {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black bg-opacity-50"
             onClick={() => setIsMenuOpen(false)}
           />
 
-          {/* Menu Panel */}
           <div
             ref={panelRef}
             className="absolute top-0 right-0 w-full h-full bg-white shadow-xl"
           >
-            {/* Close Button */}
             <div className="flex justify-end p-4">
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -350,9 +349,6 @@ export default function Navbar({ centerContent }: NavbarProps) {
                 </svg>
               </button>
             </div>
-
-            {/* Mobile Center Content */}
-            {/*  */}
 
             {/* Mobile Navigation */}
             <div className="p-6">

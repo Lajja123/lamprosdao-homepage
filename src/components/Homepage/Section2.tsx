@@ -137,7 +137,6 @@ export default function Section2() {
     }
 
     return () => {
-      // Cleanup only the ScrollTrigger instances we created
       scrollTriggers.forEach((trigger) => {
         trigger.kill();
       });
@@ -166,6 +165,8 @@ export default function Section2() {
                 className={images.hand.className}
                 width={images.hand.width}
                 height={images.hand.height}
+                loading="lazy"
+                quality={85}
               />
             </div>
           </GridCell>
@@ -231,6 +232,7 @@ export default function Section2() {
               className={images.arrow.className}
               width={images.arrow.width}
               height={images.arrow.height}
+              loading="lazy"
             />
           </GridCell>
 
@@ -256,6 +258,7 @@ export default function Section2() {
               className={images.hugeicon.className}
               width={images.hugeicon.width}
               height={images.hugeicon.height}
+              loading="lazy"
             />
           </GridCell>
           <GridCell type="withHeight"></GridCell>
@@ -284,6 +287,7 @@ export default function Section2() {
               className={images.mobileArrow.className}
               width={images.mobileArrow.width}
               height={images.mobileArrow.height}
+              loading="lazy"
             />
           </div>
           <div className="col-start-4 border border-black">3</div>
@@ -308,6 +312,7 @@ export default function Section2() {
               className={images.hugeicon.className}
               width={images.hugeicon.width}
               height={images.hugeicon.height}
+              loading="lazy"
             />
           </div>
           <div className="col-start-1 row-start-7 border border-black">10</div>

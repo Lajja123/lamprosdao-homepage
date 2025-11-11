@@ -38,7 +38,7 @@ export const useSection2Config = () => {
         src: clip,
         alt: "clip",
         className: "w-full h-full object-contain",
-        quality: 100,
+        quality: 85,
         width: 800,
         height: 800,
       },

@@ -321,7 +321,9 @@ export default function Hero() {
                     <span
                       key={index}
                       className={
-                        isHighlighted ? "uppercase font-bohemian wavy-letter" : ""
+                        isHighlighted
+                          ? "uppercase font-bohemian wavy-letter"
+                          : ""
                       }
                     >
                       {letter}
@@ -414,8 +416,8 @@ export default function Hero() {
                   </div>
                   <div
                     className={
-                      layoutConfig.mobile.mainContent.teamMemberCard.nameContainer
-                        .className
+                      layoutConfig.mobile.mainContent.teamMemberCard
+                        .nameContainer.className
                     }
                   >
                     <Typography
@@ -479,14 +481,10 @@ export default function Hero() {
 
           <div className={layoutConfig.mobile.delegations.grid.className}>
             {delegations.map((delegation, index) => {
-              const isFirstRow = index < 2;
-              const isLeft = index % 2 === 0;
               return (
                 <div
                   key={delegation.name}
-                  className={`${layoutConfig.mobile.delegations.buttonCell.className} ${
-                    isLeft ? "border-r" : "border-l"
-                  } ${isFirstRow ? "border-b" : ""} border-white`}
+                  className={`${layoutConfig.mobile.delegations.buttonCell.className} border border-white`}
                 >
                   <Link
                     href={delegation.link}
@@ -720,7 +718,7 @@ export default function Hero() {
                 <Image
                   src={delegation.icon}
                   alt={delegation.name.toLowerCase()}
-                  className="w-7"
+                  className="w-5 md:w-7"
                   quality={100}
                 />
                 <Typography
@@ -735,11 +733,6 @@ export default function Hero() {
                 >
                   {delegation.name}
                 </Typography>
-                <Image
-                  src={images.linkDesktop.src}
-                  alt="link"
-                  className={images.linkDesktop.className}
-                />
               </div>
             </Link>
           ))}

@@ -103,7 +103,9 @@ export default function FloatingCTA() {
         >
           {/* Handshake Icon */}
           <div className="flex items-center gap-2">
-            <span className="font-bold text-sm tracking-wide">Delegate Us</span>
+            <span className="font-bold text-sm tracking-wide">
+              Delegate to Us
+            </span>
           </div>
 
           {/* Expanding text on hover */}

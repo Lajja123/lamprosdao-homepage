@@ -33,44 +33,47 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-display: optional;
+  font-display: swap;
   font-feature-settings: "kern" 1;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility;
 }
 
-/* Marquee animation */
+/* Marquee animation - GPU accelerated */
 .marquee {
   position: relative;
 }
 .marquee__track {
   width: max-content;
   animation: marquee-scroll linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .marquee:hover .marquee__track {
   animation-play-state: paused;
 }
 @keyframes marquee-scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
-/* Infinite scroll animation for delegate platforms */
+/* Infinite scroll animation for delegate platforms - GPU accelerated */
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   100% {
-    transform: translateX(-33.333%);
+    transform: translateX(-33.333%) translateZ(0);
   }
 }
 
 .animate-scroll {
   animation: scroll 30s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-scroll:hover {

@@ -17,7 +17,6 @@ export const smoothScrollTo = (target: string | HTMLElement, duration: number = 
 
 // Create a smooth scroll behavior for the entire page
 export const initSmoothScroll = () => {
-  // Add smooth scrolling to all anchor links
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   
   anchorLinks.forEach(link => {
@@ -66,7 +65,6 @@ export const createOptimizedScrollAnimation = (
         scrub,
         once,
         toggleActions: once ? "play none none none" : "play none none reverse",
-        // Performance optimizations
         fastScrollEnd: true,
         anticipatePin: 1,
         refreshPriority: -1
@@ -119,7 +117,6 @@ export const createParallax = (
       start: "top bottom",
       end: "bottom top",
       scrub: true,
-      // Performance optimizations
       fastScrollEnd: true,
       anticipatePin: 1
     }

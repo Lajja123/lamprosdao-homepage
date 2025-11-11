@@ -383,7 +383,7 @@ export default function Research() {
                 direction="left"
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
-                hoverColor={arrowConfig.desktop.hoverColor}
+                hoverColor="#DFF48D"
                 className={arrowConfig.desktop.className}
               />
             </button>
@@ -424,7 +424,7 @@ export default function Research() {
                 direction="right"
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
-                hoverColor={arrowConfig.desktop.hoverColor}
+                hoverColor="#DFF48D"
                 className={arrowConfig.desktop.className}
               />
             </button>
@@ -517,7 +517,7 @@ export default function Research() {
                     direction="left"
                     size={arrowConfig.mobile.size}
                     hoverScale={arrowConfig.mobile.hoverScale}
-                    hoverColor={arrowConfig.mobile.hoverColor}
+                    hoverColor="#DFF48D"
                     transitionDuration={arrowConfig.mobile.transitionDuration}
                     className={arrowConfig.mobile.className}
                   />
@@ -554,7 +554,7 @@ export default function Research() {
                     direction="right"
                     size={arrowConfig.mobile.size}
                     hoverScale={arrowConfig.mobile.hoverScale}
-                    hoverColor={arrowConfig.mobile.hoverColor}
+                    hoverColor="#DFF48D"
                     transitionDuration={arrowConfig.mobile.transitionDuration}
                     className={arrowConfig.mobile.className}
                   />

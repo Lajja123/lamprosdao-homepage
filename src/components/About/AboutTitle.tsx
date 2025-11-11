@@ -34,7 +34,6 @@ export const AboutTitle = ({ text, wavyLetters }: AboutTitleProps) => {
               </span>
             );
           }
-          // Add space as a regular text node (not inline-block) to ensure it's preserved
           parts.push(" ");
         } else {
           parts.push(

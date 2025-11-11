@@ -1279,7 +1279,10 @@ const RecentVotes = React.memo(function RecentVotes() {
                       desktopProposalRowRefs.current[index] = el;
                     }}
                   >
-                    <Arrow direction={expandedItem === index ? "up" : "down"} />
+                    <Arrow
+                      direction={expandedItem === index ? "up" : "down"}
+                      hoverColor="#DFF48D"
+                    />
                   </div>
                 </GridCell>
 

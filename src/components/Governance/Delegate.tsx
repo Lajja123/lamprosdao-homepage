@@ -9,7 +9,6 @@ import Grid, { GridCell } from "../UI/Grid";
 import { useSmoothScrollOnLoad } from "@/hooks/smoothScrollToSection";
 import { useDelegateConfig } from "@/hooks/useDelegateConfig";
 
-// Register GSAP plugins
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -18,7 +17,6 @@ export default function Delegate() {
   useSmoothScrollOnLoad();
   const { images, protocols, textConfig, layoutConfig } = useDelegateConfig();
 
-  // Refs for animation elements
   // Mobile refs
   const mobileImageRef = useRef<HTMLDivElement>(null);
   const mobileHeaderRef = useRef<HTMLDivElement>(null);

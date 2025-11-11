@@ -68,13 +68,13 @@ export type GovernanceHeroTextConfig = {
     wavyLetters: Array<{ letter: string; position: number }>;
   };
   delegationButton: {
-    variant?: "subtitle2";
+    variant?: "body2";
     color?: string;
     weight?: "semibold";
     className?: string;
   };
   delegationButtonDesktop: {
-    variant?: "subtitle2";
+    variant?: "body2";
     color?: string;
     weight?: "semibold";
     className?: string;

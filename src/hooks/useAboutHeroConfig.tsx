@@ -10,7 +10,6 @@ import type {
 } from "@/types/about/hero";
 import { colors } from "@/theme";
 
-// About Hero component configuration hook
 export const useAboutHeroConfig = () => {
   const config = useMemo(() => {
     // Image configurations

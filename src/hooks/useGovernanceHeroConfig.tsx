@@ -8,6 +8,7 @@ import hirangi from "@/assests/Governance/hirangi.jpg";
 import chain from "@/assests/Governance/chain-l.jpg";
 import link from "@/assests/Governance/link.svg";
 import scroll from "@/assests/Governance/scroll.svg";
+import uniswap from "@/assests/Governance/uniswap.svg";
 import type {
   GovernanceHeroImageConfig,
   GovernanceHeroTextConfig,
@@ -73,7 +74,7 @@ export const useGovernanceHeroConfig = () => {
     const delegations: Delegation[] = [
       {
         name: "Arbitrum",
-        link: "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642",
+        link: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
         icon: arbitrum,
       },
       {
@@ -83,13 +84,18 @@ export const useGovernanceHeroConfig = () => {
       },
       {
         name: "Scroll",
-        link: "https://forum.scroll.io/t/lampros-dao-delegate-thread/1091?u=euphoria",
+        link: "https://gov.scroll.io/delegates/lamprosdao.eth",
         icon: scroll,
       },
       {
         name: "Superfluid",
-        link: "https://forum.superfluid.org/t/lampros-dao-delegate-thread/266?u=euphoria",
+        link: "https://claim.superfluid.org/governance",
         icon: superfluid,
+      },
+      {
+        name: "Uniswap",
+        link: "https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
+        icon: uniswap,
       },
     ];
 
@@ -154,13 +160,13 @@ export const useGovernanceHeroConfig = () => {
         ],
       },
       delegationButton: {
-        variant: "subtitle2",
+        variant: "body2",
         color: "primary",
         weight: "semibold",
         className: "font-ppmori text-sm md:text-base",
       },
       delegationButtonDesktop: {
-        variant: "subtitle2",
+        variant: "body2",
         color: "primary",
         weight: "semibold",
         className: "font-ppmori hover:underline",
@@ -194,7 +200,7 @@ export const useGovernanceHeroConfig = () => {
           },
           teamMemberCard: {
             className:
-              "flex flex-col items-center justify-between border-b border-r last:border-r-0 border-black hover:opacity-80 transition-opacity duration-300",
+              "flex flex-col items-center justify-between  border-r last:border-r-0 border-black hover:opacity-80 transition-opacity duration-300",
             imageContainer: {
               className: "w-full flex items-center justify-center p-6",
             },
@@ -306,12 +312,12 @@ export const useGovernanceHeroConfig = () => {
           },
           button: {
             className:
-              "rounded-full p-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 bg-white scale-105",
+              "rounded-full px-6 py-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 bg-white scale-105",
           },
           emptyCell3: {
             colStart: 8,
             rowStart: 3,
-            className: "border border-white",
+            className: "border border-white ",
           },
         },
       },

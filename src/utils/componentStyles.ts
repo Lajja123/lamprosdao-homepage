@@ -1,4 +1,3 @@
-// Component-specific style presets that extend commonStyles
 import { commonStyles, combineStyles } from "./commonStyles";
 
 export const componentStyles = {

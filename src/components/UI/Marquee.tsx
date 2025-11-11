@@ -65,8 +65,9 @@ export default function Marquee({ items, speedMs = 70000 }: MarqueeProps) {
         src={star}
         alt="separator"
         className="h-3 w-3 opacity-80"
-        width={100}
-        height={100}
+        width={12}
+        height={12}
+        loading="lazy"
       />
     </li>
   ));

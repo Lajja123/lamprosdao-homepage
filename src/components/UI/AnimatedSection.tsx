@@ -63,7 +63,6 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     });
 
     if (animation === 'stagger' && section.children.length > 0) {
-      // Stagger animation for multiple children
       tl.to(Array.from(section.children), {
         y: 0,
         opacity: 1,
@@ -73,7 +72,6 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         delay: delay
       });
     } else {
-      // Single element animation
       tl.to(section, {
         y: 0,
         x: 0,

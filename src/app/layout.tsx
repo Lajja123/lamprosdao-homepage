@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import dynamic from "next/dynamic";
 import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
 import DesktopOnly from "@/components/UI/DesktopOnly";
-import Footer from "@/components/Footer/Footer";
-import FloatingCTA from "@/components/UI/FloatingCTA";
+
+// Lazy load non-critical components
+const Footer = dynamic(() => import("@/components/Footer/Footer"), {
+  loading: () => null,
+});
+const FloatingCTA = dynamic(() => import("@/components/UI/FloatingCTA"), {
+  loading: () => null,
+});
 
 const PPMori = localFont({
   src: "./fonts/PPMori-Regular.otf",
-  display: "optional",
+  display: "swap",
   variable: "--font-pp-mori",
-  adjustFontFallback: false,
+  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -25,9 +32,9 @@ const PPMori = localFont({
 
 const CSBohemian = localFont({
   src: "./fonts/CSBohemian-Regular.otf",
-  display: "optional",
+  display: "swap",
   variable: "--font-cs-bohemian",
-  adjustFontFallback: false,
+  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -41,9 +48,9 @@ const CSBohemian = localFont({
 
 const Psygen = localFont({
   src: "./fonts/Psygen-Regular.otf",
-  display: "optional",
+  display: "swap",
   variable: "--font-psygen",
-  adjustFontFallback: false,
+  adjustFontFallback: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -52,7 +59,7 @@ const Psygen = localFont({
     "Arial",
     "sans-serif",
   ],
-  preload: true,
+  preload: false, // Less critical font, don't preload
 });
 
 export default function RootLayout({
@@ -61,36 +68,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <html lang="en">
-    //   <body
-    //     className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} min-h-screen flex flex-col justify-between`}
-    //   >
-    //     <DesktopOnly />
-    //     <div className="hidden md:block">
-    //       <Marquee
-    //         items={[
-    //           {
-    //             text: "Lampros DAO ranks #1 on the Scroll Delegator Program - View on X",
-    //             link: {
-    //               text: "View on X",
-    //               url: "https://x.com/lamprosdao/status/1972921578825412711",
-    //             },
-    //           },
-    //           "MegaETH Public Sale Dune Dashboard by Lampros DAO is now live - Explore the Dashboard",
-    //           "Arbitrum Expansion Dune Dashboard, now tracking Orbit chains settling on Arbitrum and Ethereum - Explore the Dashboard",
-    //           "Proud to be in Optimism Top 100 Delegates - View Delegate Profile",
-    //           "Arbitrum DRIP Epoch 4 live - Earn Rewards",
-    //           "Check out our latest X space on Arbitrum Orbit Chain Revenues & AEP flows - Broadcast link",
-    //         ]}
-    //       />
-    //       <Navbar />
-    //       {children}
-    //       <Footer />
-    //       <FloatingCTA />
-    //       </div>
-    //   </body>
-    // </html>
-
     <html lang="en">
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} flex flex-col justify-between`}

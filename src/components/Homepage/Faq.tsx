@@ -281,7 +281,6 @@ export default function Faq() {
       {/* Mobile Layout */}
       <div className="block md:hidden">
         <div className={layoutConfig.mobile.grid.className}>
-          {/* Mobile Header Row: FAQ text (2 cols) + Question image (1 col) */}
           <div className={layoutConfig.mobile.headerRow.className}>
             <div className={layoutConfig.mobile.titleCell.className}>
               <Typography
@@ -319,9 +318,7 @@ export default function Faq() {
             </Fragment>
           ))}
 
-          {/* Mobile Footer Row: Left Arrow (1 col) + Clip (1 col) + Right Arrow (1 col) */}
           <div className={layoutConfig.mobile.footerRow.className}>
-            {/* Left arrow */}
             <div className={layoutConfig.mobile.arrowCell.className}>
               <div
                 className={combineStyles(

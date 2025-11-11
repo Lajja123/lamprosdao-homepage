@@ -6,11 +6,11 @@ export const metadata = {
   openGraph: {
     title: "Contribution",
     // description: "About Page Description...",
-    url: "https://lamprosdao.vercel.app/contribution",
+    url: "https://lamprosdao.com/contribution",
     siteName: "Lampros DAO",
     images: [
       {
-        url: "https://lamprosdao.vercel.app/OGImages/contribution.png",
+        url: "https://lamprosdao.com/OGImages/contribution.png",
         width: 1200,
         height: 630,
         alt: "Contribution Lampros DAO",
