@@ -101,7 +101,11 @@ const ProtocolButton = React.memo(
             : "bg-white text-gray-700 border border-[#A885CD]"
         }`}
       >
-        <Image src={protocol.icon} alt={protocol.name} className="w-5 md:w-7" />
+        <Image
+          src={protocol.icon}
+          alt={protocol.name}
+          className={protocol.className}
+        />
       </button>
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-[#2F2B2B] text-white text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
@@ -127,6 +131,8 @@ const RecentVotes = React.memo(function RecentVotes() {
   // Add a ref to track the latest request ID
   const latestRequestIdRef = useRef(0);
   const currentRequestId = useRef(0);
+  // Prevent re-running entrance animations on protocol changes
+  const hasAnimatedOnceRef = useRef(false);
 
   // Refs for animation elements
   // Mobile refs
@@ -414,9 +420,13 @@ const RecentVotes = React.memo(function RecentVotes() {
     fetchProposals();
   }, [fetchProposals]);
 
-  // Animation useEffect
+  // Animation useEffect - run once after initial data load
   useEffect(() => {
+    if (hasAnimatedOnceRef.current) return;
+    if (loading) return;
     const scrollTriggers: ScrollTrigger[] = [];
+    // mark as executed so we don't re-init animations on protocol tab changes
+    hasAnimatedOnceRef.current = true;
 
     // Mobile header animation
     if (mobileHeaderRef.current) {
@@ -666,7 +676,7 @@ const RecentVotes = React.memo(function RecentVotes() {
         trigger.kill();
       });
     };
-  }, [proposals.length, loading]);
+  }, [loading]);
 
   return (
     <>

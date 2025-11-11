@@ -18,9 +18,8 @@ export default function Hero() {
     useAboutHeroConfig();
 
   // Refs for animation elements
-  const aboutImageRef = useRef<HTMLDivElement>(null);
   const aboutContentRef = useRef<HTMLDivElement>(null);
-  
+
   // Mobile Vision & Mission refs
   const mobileVisionImageRef = useRef<HTMLDivElement>(null);
   const mobileVisionTitleRef = useRef<HTMLDivElement>(null);
@@ -28,7 +27,7 @@ export default function Hero() {
   const mobileMissionImageRef = useRef<HTMLDivElement>(null);
   const mobileMissionTitleRef = useRef<HTMLDivElement>(null);
   const mobileMissionDescriptionRef = useRef<HTMLDivElement>(null);
-  
+
   // Desktop Vision & Mission refs
   const desktopVisionImageRef = useRef<HTMLDivElement>(null);
   const desktopVisionTitleRef = useRef<HTMLDivElement>(null);
@@ -39,34 +38,6 @@ export default function Hero() {
 
   useEffect(() => {
     const scrollTriggers: ScrollTrigger[] = [];
-
-    // About image animation
-    if (aboutImageRef.current) {
-      gsap.set(aboutImageRef.current, {
-        opacity: 0,
-        scale: 0.9,
-        y: 30,
-      });
-
-      const imageAnimation = gsap.to(aboutImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: aboutImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (imageAnimation.scrollTrigger) {
-        scrollTriggers.push(imageAnimation.scrollTrigger);
-      }
-    }
 
     // About content animation
     if (aboutContentRef.current) {
@@ -156,20 +127,23 @@ export default function Hero() {
         y: 40,
       });
 
-      const mobileVisionDescriptionAnimation = gsap.to(mobileVisionDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: mobileVisionDescriptionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const mobileVisionDescriptionAnimation = gsap.to(
+        mobileVisionDescriptionRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: mobileVisionDescriptionRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (mobileVisionDescriptionAnimation.scrollTrigger) {
         scrollTriggers.push(mobileVisionDescriptionAnimation.scrollTrigger);
@@ -184,20 +158,23 @@ export default function Hero() {
         y: 30,
       });
 
-      const mobileMissionImageAnimation = gsap.to(mobileMissionImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileMissionImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const mobileMissionImageAnimation = gsap.to(
+        mobileMissionImageRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileMissionImageRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (mobileMissionImageAnimation.scrollTrigger) {
         scrollTriggers.push(mobileMissionImageAnimation.scrollTrigger);
@@ -211,19 +188,22 @@ export default function Hero() {
         y: 40,
       });
 
-      const mobileMissionTitleAnimation = gsap.to(mobileMissionTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileMissionTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const mobileMissionTitleAnimation = gsap.to(
+        mobileMissionTitleRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileMissionTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (mobileMissionTitleAnimation.scrollTrigger) {
         scrollTriggers.push(mobileMissionTitleAnimation.scrollTrigger);
@@ -237,20 +217,23 @@ export default function Hero() {
         y: 40,
       });
 
-      const mobileMissionDescriptionAnimation = gsap.to(mobileMissionDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: mobileMissionDescriptionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const mobileMissionDescriptionAnimation = gsap.to(
+        mobileMissionDescriptionRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: mobileMissionDescriptionRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (mobileMissionDescriptionAnimation.scrollTrigger) {
         scrollTriggers.push(mobileMissionDescriptionAnimation.scrollTrigger);
@@ -265,20 +248,23 @@ export default function Hero() {
         y: 30,
       });
 
-      const desktopVisionImageAnimation = gsap.to(desktopVisionImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopVisionImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopVisionImageAnimation = gsap.to(
+        desktopVisionImageRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopVisionImageRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopVisionImageAnimation.scrollTrigger) {
         scrollTriggers.push(desktopVisionImageAnimation.scrollTrigger);
@@ -292,19 +278,22 @@ export default function Hero() {
         y: 40,
       });
 
-      const desktopVisionTitleAnimation = gsap.to(desktopVisionTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopVisionTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopVisionTitleAnimation = gsap.to(
+        desktopVisionTitleRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopVisionTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopVisionTitleAnimation.scrollTrigger) {
         scrollTriggers.push(desktopVisionTitleAnimation.scrollTrigger);
@@ -318,20 +307,23 @@ export default function Hero() {
         y: 40,
       });
 
-      const desktopVisionDescriptionAnimation = gsap.to(desktopVisionDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: desktopVisionDescriptionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopVisionDescriptionAnimation = gsap.to(
+        desktopVisionDescriptionRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: desktopVisionDescriptionRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopVisionDescriptionAnimation.scrollTrigger) {
         scrollTriggers.push(desktopVisionDescriptionAnimation.scrollTrigger);
@@ -346,20 +338,23 @@ export default function Hero() {
         y: 30,
       });
 
-      const desktopMissionImageAnimation = gsap.to(desktopMissionImageRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopMissionImageRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopMissionImageAnimation = gsap.to(
+        desktopMissionImageRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopMissionImageRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopMissionImageAnimation.scrollTrigger) {
         scrollTriggers.push(desktopMissionImageAnimation.scrollTrigger);
@@ -373,19 +368,22 @@ export default function Hero() {
         y: 40,
       });
 
-      const desktopMissionTitleAnimation = gsap.to(desktopMissionTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopMissionTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopMissionTitleAnimation = gsap.to(
+        desktopMissionTitleRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopMissionTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopMissionTitleAnimation.scrollTrigger) {
         scrollTriggers.push(desktopMissionTitleAnimation.scrollTrigger);
@@ -399,20 +397,23 @@ export default function Hero() {
         y: 40,
       });
 
-      const desktopMissionDescriptionAnimation = gsap.to(desktopMissionDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: desktopMissionDescriptionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const desktopMissionDescriptionAnimation = gsap.to(
+        desktopMissionDescriptionRef.current,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: desktopMissionDescriptionRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
       if (desktopMissionDescriptionAnimation.scrollTrigger) {
         scrollTriggers.push(desktopMissionDescriptionAnimation.scrollTrigger);
@@ -433,7 +434,6 @@ export default function Hero() {
       <div className={layoutConfig.main.container.className}>
         {/* Image Section */}
         <div
-          
           className={layoutConfig.main.imageSection.className}
           style={{
             backgroundColor: layoutConfig.main.imageSection.backgroundColor,
@@ -444,12 +444,12 @@ export default function Hero() {
             width: "100%",
           }}
         >
-          <div ref={aboutImageRef}>
-          <Image
-            src={images.about.src}
-            alt={images.about.alt}
-            className={images.about.className}
-            quality={images.about.quality}
+          <div>
+            <Image
+              src={images.about.src}
+              alt={images.about.alt}
+              className={images.about.className}
+              quality={images.about.quality}
               width={images.about.width}
               height={images.about.height}
             />
@@ -467,7 +467,7 @@ export default function Hero() {
               className={textConfig.title.className}
             >
               <AboutTitle
-                text={textConfig.title.text} 
+                text={textConfig.title.text}
                 wavyLetters={
                   textConfig.title.wavyLetter
                     ? [textConfig.title.wavyLetter]
@@ -548,7 +548,9 @@ export default function Hero() {
                 <Typography
                   variant="body2"
                   color={
-                    visionMissionConfig.descriptionColor as `#${string}` | "white"
+                    visionMissionConfig.descriptionColor as
+                      | `#${string}`
+                      | "white"
                   }
                   weight="normal"
                   align="center"
@@ -605,7 +607,9 @@ export default function Hero() {
                 <Typography
                   variant="body2"
                   color={
-                    visionMissionConfig.descriptionColor as `#${string}` | "white"
+                    visionMissionConfig.descriptionColor as
+                      | `#${string}`
+                      | "white"
                   }
                   weight="normal"
                   align="center"
@@ -647,7 +651,9 @@ export default function Hero() {
                 variant="h3"
                 weight="semibold"
                 align="center"
-                color={visionMissionConfig.titleColor as `#${string}` | "offset"}
+                color={
+                  visionMissionConfig.titleColor as `#${string}` | "offset"
+                }
                 className={visionMissionConfig.titleClassName}
               >
                 <AboutTitle
@@ -736,7 +742,9 @@ export default function Hero() {
                 variant="h3"
                 weight="semibold"
                 align="center"
-                color={visionMissionConfig.titleColor as `#${string}` | "offset"}
+                color={
+                  visionMissionConfig.titleColor as `#${string}` | "offset"
+                }
                 className={visionMissionConfig.titleClassName}
               >
                 <AboutTitle

@@ -6,6 +6,7 @@ export interface Protocol {
   img: StaticImageData;
   alt: string;
   href: string;
+  className?: string;
 }
 
 export type DelegateImageConfig = {

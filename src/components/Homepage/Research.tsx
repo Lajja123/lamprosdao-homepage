@@ -1,9 +1,8 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Typography } from "@/components/UI/Typography";
 import Button from "@/components/UI/Button";
 import Arrow from "../UI/Arrow";
@@ -11,11 +10,7 @@ import Grid, { GridCell } from "@/components/UI/Grid";
 import researchContent from "@/data/researchContent.json";
 import { useResearchConfig } from "@/hooks/useResearchConfig";
 import ResearchTitle from "./ResearchTitle";
-
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { loadGsap, loadGsapWithScrollTrigger } from "@/utils/gsapLoader";
 
 export default function Research() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,166 +37,146 @@ export default function Research() {
   const isInitialMountRef = useRef(true);
 
   // Initial reveal animations on mount
-  useEffect(() => {
+  useLayoutEffect(() => {
+    let isMounted = true;
     const scrollTriggers: ScrollTrigger[] = [];
 
-    // Desktop title animation
-    if (desktopTitleRef.current) {
-      gsap.set(desktopTitleRef.current, {
-        opacity: 0,
-        y: 40,
-      });
-
-      const titleAnimation = gsap.to(desktopTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (titleAnimation.scrollTrigger) {
-        scrollTriggers.push(titleAnimation.scrollTrigger);
+    const collectTrigger = (animation: any) => {
+      const trigger = animation?.scrollTrigger as ScrollTrigger | undefined;
+      if (trigger) {
+        scrollTriggers.push(trigger);
       }
-    }
+    };
 
-    // Desktop description animation
-    if (desktopDescriptionRef.current) {
-      gsap.set(desktopDescriptionRef.current, {
-        opacity: 0,
-        y: 40,
-      });
+    const animate = async () => {
+      const { gsap } = await loadGsapWithScrollTrigger();
+      if (!isMounted) return;
 
-      const descAnimation = gsap.to(desktopDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      const setAndAnimate = (
+        ref: { current: HTMLElement | null },
+        fromVars: Record<string, unknown>,
+        toVars: Record<string, unknown>
+      ) => {
+        if (!ref.current) return;
+        gsap.set(ref.current, fromVars);
+        const animation = gsap.to(ref.current, toVars);
+        collectTrigger(animation);
+      };
 
-      if (descAnimation.scrollTrigger) {
-        scrollTriggers.push(descAnimation.scrollTrigger);
-      }
-    }
+      setAndAnimate(
+        desktopTitleRef,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
-    // Desktop button animation
-    if (desktopButtonRef.current) {
-      gsap.set(desktopButtonRef.current, {
-        opacity: 0,
-        y: 30,
-      });
+      setAndAnimate(
+        desktopDescriptionRef,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
-      const buttonAnimation = gsap.to(desktopButtonRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: desktopTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      setAndAnimate(
+        desktopButtonRef,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: desktopTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
-      if (buttonAnimation.scrollTrigger) {
-        scrollTriggers.push(buttonAnimation.scrollTrigger);
-      }
-    }
+      setAndAnimate(
+        mobileTitleRef,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
-    // Mobile title animation
-    if (mobileTitleRef.current) {
-      gsap.set(mobileTitleRef.current, {
-        opacity: 0,
-        y: 40,
-      });
+      setAndAnimate(
+        mobileDescriptionRef,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
 
-      const mobileTitleAnimation = gsap.to(mobileTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
+      setAndAnimate(
+        mobileButtonRef,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: mobileTitleRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+    };
 
-      if (mobileTitleAnimation.scrollTrigger) {
-        scrollTriggers.push(mobileTitleAnimation.scrollTrigger);
-      }
-    }
-
-    // Mobile description animation
-    if (mobileDescriptionRef.current) {
-      gsap.set(mobileDescriptionRef.current, {
-        opacity: 0,
-        y: 40,
-      });
-
-      const mobileDescAnimation = gsap.to(mobileDescriptionRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (mobileDescAnimation.scrollTrigger) {
-        scrollTriggers.push(mobileDescAnimation.scrollTrigger);
-      }
-    }
-
-    // Mobile button animation
-    if (mobileButtonRef.current) {
-      gsap.set(mobileButtonRef.current, {
-        opacity: 0,
-        y: 30,
-      });
-
-      const mobileButtonAnimation = gsap.to(mobileButtonRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: mobileTitleRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-      });
-
-      if (mobileButtonAnimation.scrollTrigger) {
-        scrollTriggers.push(mobileButtonAnimation.scrollTrigger);
-      }
-    }
+    const rafId = requestAnimationFrame(animate);
 
     return () => {
+      isMounted = false;
+      cancelAnimationFrame(rafId);
       scrollTriggers.forEach((trigger) => {
         trigger.kill();
       });
@@ -210,75 +185,83 @@ export default function Research() {
 
   // Smooth content transitions when currentIndex changes
   useEffect(() => {
-    // Skip animation on initial mount
     if (isInitialMountRef.current) {
       isInitialMountRef.current = false;
       return;
     }
 
-    const elements = [
-      { ref: desktopTitleRef },
-      { ref: desktopDescriptionRef },
-      { ref: desktopButtonRef },
-      { ref: mobileTitleRef },
-      { ref: mobileDescriptionRef },
-      { ref: mobileButtonRef },
-    ];
+    let isMounted = true;
+    let timeline: any = null;
 
-    const timeline = gsap.timeline();
+    const runAnimation = async () => {
+      const gsap = await loadGsap();
+      if (!isMounted) return;
 
-    // Animate out current content
-    elements.forEach(({ ref }) => {
-      if (ref.current) {
-        timeline.to(
-          ref.current,
-          {
-            opacity: 0,
-            y: -20,
-            duration: 0.3,
-            ease: "power2.in",
-          },
-          0
-        );
-      }
-    });
+      const elements = [
+        { ref: desktopTitleRef },
+        { ref: desktopDescriptionRef },
+        { ref: desktopButtonRef },
+        { ref: mobileTitleRef },
+        { ref: mobileDescriptionRef },
+        { ref: mobileButtonRef },
+      ];
 
-    // Wait for React to update DOM, then animate in new content
-    timeline.call(
-      () => {
-        // Use double requestAnimationFrame to ensure DOM has fully updated
-        requestAnimationFrame(() => {
+      timeline = gsap.timeline();
+
+      elements.forEach(({ ref }) => {
+        if (ref.current) {
+          timeline.to(
+            ref.current,
+            {
+              opacity: 0,
+              y: -20,
+              duration: 0.3,
+              ease: "power2.in",
+            },
+            0
+          );
+        }
+      });
+
+      timeline.call(
+        () => {
           requestAnimationFrame(() => {
-            const inTimeline = gsap.timeline();
+            requestAnimationFrame(() => {
+              const inTimeline = gsap.timeline();
 
-            // Animate in all elements simultaneously
-            elements.forEach(({ ref }) => {
-              if (ref.current) {
-                // Set initial state for new content
-                gsap.set(ref.current, {
-                  opacity: 0,
-                  y: 20,
-                });
+              elements.forEach(({ ref }) => {
+                if (ref.current) {
+                  gsap.set(ref.current, {
+                    opacity: 0,
+                    y: 20,
+                  });
 
-                // Animate in at the same time (position 0 means all start together)
-                inTimeline.to(
-                  ref.current,
-                  {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.5,
-                    ease: "power2.out",
-                  },
-                  0
-                );
-              }
+                  inTimeline.to(
+                    ref.current,
+                    {
+                      opacity: 1,
+                      y: 0,
+                      duration: 0.5,
+                      ease: "power2.out",
+                    },
+                    0
+                  );
+                }
+              });
             });
           });
-        });
-      },
-      [],
-      0.3
-    );
+        },
+        [],
+        0.3
+      );
+    };
+
+    runAnimation();
+
+    return () => {
+      isMounted = false;
+      timeline?.kill();
+    };
   }, [currentIndex]);
 
   const handlePrevious = () => {

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { loadGsap } from "@/utils/gsapLoader";
 import { Typography } from "@/components/UI/Typography";
 import { useHeroConfig } from "@/hooks/useHeroConfig";
 import HeroTitleLine from "./HeroTitleLine";
@@ -20,20 +20,22 @@ export default function Hero() {
   useEffect(() => {
     if (!heroRef.current) return;
 
-    // Use requestAnimationFrame to avoid blocking initial render
-    const rafId = requestAnimationFrame(() => {
-      // Create master timeline with smooth easing
-      const masterTl = gsap.timeline({
+    let isMounted = true;
+    let timeline: any = null;
+
+    const rafId = requestAnimationFrame(async () => {
+      const gsap = await loadGsap();
+      if (!isMounted) return;
+
+      timeline = gsap.timeline({
         defaults: { ease: "power4.out" },
         delay: 0.1,
       });
 
-      // Animate mobile title lines with enhanced stagger and scale
       if (titleMobileRef.current) {
         const mobileLines = Array.from(titleMobileRef.current.children);
 
         mobileLines.forEach((line, index) => {
-          // Set initial state with more dramatic effect
           gsap.set(line, {
             y: 60,
             opacity: 0,
@@ -41,8 +43,7 @@ export default function Hero() {
             rotationX: 15,
           });
 
-          // Animate each line with individual timing
-          masterTl.to(
+          timeline.to(
             line,
             {
               y: 0,
@@ -57,12 +58,10 @@ export default function Hero() {
         });
       }
 
-      // Animate desktop title lines with enhanced stagger and scale
       if (titleDesktopRef.current) {
         const desktopLines = Array.from(titleDesktopRef.current.children);
 
         desktopLines.forEach((line, index) => {
-          // Set initial state with more dramatic effect
           gsap.set(line, {
             y: 60,
             opacity: 0,
@@ -70,8 +69,7 @@ export default function Hero() {
             rotationX: 15,
           });
 
-          // Animate each line with individual timing
-          masterTl.to(
+          timeline.to(
             line,
             {
               y: 0,
@@ -86,7 +84,6 @@ export default function Hero() {
         });
       }
 
-      // Animate subtitle with smooth fade and slide
       if (subtitleRef.current) {
         gsap.set(subtitleRef.current, {
           y: 40,
@@ -94,7 +91,7 @@ export default function Hero() {
           scale: 0.98,
         });
 
-        masterTl.to(
+        timeline.to(
           subtitleRef.current,
           {
             y: 0,
@@ -103,13 +100,15 @@ export default function Hero() {
             duration: 1,
             ease: "power2.out",
           },
-          ">0.2" // Start 0.4s after previous animation
+          ">0.2"
         );
       }
     });
 
     return () => {
+      isMounted = false;
       cancelAnimationFrame(rafId);
+      timeline?.kill();
     };
   }, [titleConfig]);
 

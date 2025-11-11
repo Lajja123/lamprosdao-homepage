@@ -1,6 +1,9 @@
 // app/api/fetch-forum-post/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
+// Cache this route for 1 hour (ISR)
+export const revalidate = 3600;
+
 interface ForumPost {
   post_number: number;
   cooked: string;
@@ -41,7 +44,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const response = await fetch(forumUrl);
+    const response = await fetch(forumUrl, { next: { revalidate: 3600 } });
 
     if (!response.ok) {
       console.error(

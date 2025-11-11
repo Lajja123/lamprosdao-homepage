@@ -338,7 +338,7 @@ export default function Delegate() {
                   <Image
                     src={protocol.img}
                     alt={protocol.alt}
-                    className="w-8 md:w-10"
+                    className={protocol.className}
                   />
                   <Typography
                     variant={textConfig.protocolButton.variant}
@@ -501,7 +501,7 @@ export default function Delegate() {
                   <Image
                     src={p.img}
                     alt={p.alt}
-                    className="w-10 flex-shrink-0"
+                    className={p.className || "w-10 flex-shrink-0"}
                   />
                   <Link href={p.href} target="_blank" className="flex-shrink-0">
                     <Typography

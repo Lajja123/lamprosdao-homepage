@@ -24,6 +24,7 @@ export interface Protocol {
   value: string;
   icon: any;
   link: string;
+  className?: string;
 }
 
 export interface ForumPostResponse {

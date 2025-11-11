@@ -1,6 +1,9 @@
 import { Client } from "@notionhq/client";
 import { NextRequest } from "next/server";
 
+// Cache this route for 1 hour (ISR)
+export const revalidate = 3600;
+
 // Types for Notion API
 type NotionProperty =
   | {
@@ -170,9 +173,6 @@ export async function GET(request: NextRequest): Promise<Response> {
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
-      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-      Pragma: "no-cache",
-      Expires: "0",
     };
 
     // Helper function to parse dates for sorting
@@ -380,9 +380,8 @@ export async function GET(request: NextRequest): Promise<Response> {
     );
 
     // Wait for all protocols to complete
-    const allProtocolResults: SimplifiedRecord[][] = await Promise.all(
-      protocolPromises
-    );
+    const allProtocolResults: SimplifiedRecord[][] =
+      await Promise.all(protocolPromises);
 
     let finalRecords: SimplifiedRecord[];
 

@@ -58,7 +58,7 @@ export const useEthosConfig = () => {
         variant: "h2",
         color: colors.text.primary,
         weight: "normal",
-        className: "font-psygen text-2xl md:text-3xl",
+        className: "font-psygen text-2xl md:text-3xl ",
       },
       itemContent: {
         variant: "h6",
@@ -95,7 +95,7 @@ export const useEthosConfig = () => {
           },
           numberCell: {
             className:
-              "w-16 md:w-20 flex items-center justify-center border-l border-black p-4 md:p-6",
+              "w-16 md:w-20 flex items-center justify-center border-l border-black py-4 px-10",
             backgroundColor: colors.accent.yellow,
           },
           contentCell: {

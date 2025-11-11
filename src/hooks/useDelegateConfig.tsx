@@ -4,7 +4,7 @@ import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
-import scroll from "@/assests/Governance/scroll.svg";
+import scroll from "@/assests/Governance/scroll.png";
 import type {
   DelegateImageConfig,
   DelegateTextConfig,
@@ -38,30 +38,36 @@ export const useDelegateConfig = () => {
         img: arbitrum,
         alt: "arbitrum",
         href: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
+        className: "w-8 md:w-10 object-contain",
       },
       {
         name: "Optimism",
         img: op,
         alt: "optimism",
         href: "https://vote.optimism.io/delegates/lamprosdao.eth",
+        className: "w-8 md:w-10 object-contain",
       },
       {
         name: "Uniswap",
         img: uniswap,
         alt: "uniswap",
         href: "https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
+        className: "w-8 md:w-10 object-contain",
       },
       {
         name: "Superfluid",
         img: superfluid,
         alt: "superfluid",
         href: "https://claim.superfluid.org/governance",
+        className: "w-8 md:w-10 object-contain",
       },
+
       {
         name: "Scroll",
         img: scroll,
         alt: "scroll",
         href: "https://gov.scroll.io/delegates/lamprosdao.eth",
+        className: "w-8  md:w-10  rounded-full bg-[#FFEEDA] object-contain",
       },
     ];
 

@@ -120,7 +120,7 @@ export const useJourneyConfig = () => {
           },
           numberCell: {
             className:
-              "w-16 md:w-20 flex items-center justify-center border-l border-white p-4 md:p-6",
+              "w-16 md:w-20 flex items-center justify-center border-l border-white py-4 px-10",
           },
         },
       },

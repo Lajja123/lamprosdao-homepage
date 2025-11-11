@@ -12,6 +12,7 @@ export interface Delegation {
   name: string;
   link: string;
   icon: StaticImageData;
+  className?: string;
 }
 
 export type GovernanceHeroImageConfig = {

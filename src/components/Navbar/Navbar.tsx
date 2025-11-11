@@ -40,6 +40,30 @@ export default function Navbar({ centerContent }: NavbarProps) {
     return pathname.startsWith(href);
   };
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    const body = document.body;
+    const originalOverflow = body.style.overflow;
+    const originalPosition = body.style.position;
+    const originalWidth = body.style.width;
+
+    if (isMenuOpen) {
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.width = "100%";
+    } else {
+      body.style.overflow = originalOverflow;
+      body.style.position = originalPosition;
+      body.style.width = originalWidth;
+    }
+
+    return () => {
+      body.style.overflow = originalOverflow;
+      body.style.position = originalPosition;
+      body.style.width = originalWidth;
+    };
+  }, [isMenuOpen]);
+
   // Initial navbar animation
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -120,12 +144,12 @@ export default function Navbar({ centerContent }: NavbarProps) {
       ref={navbarRef}
       className="relative flex items-start md:items-start justify-between z-10  md:border-none border-b border-[#BFAFCF]"
     >
-      <div ref={logoRef} className=" p-5 pb-2">
+      <div ref={logoRef} className=" p-5 ">
         <Link href="/">
           <Image
             src={logo}
             alt="Lampros DAO logo"
-            className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-48 w-30"
+            className="cursor-pointer hover:scale-105 transition-transform duration-300 md:w-48 w-30 h-5"
             priority
             width={200}
             height={60}
@@ -292,7 +316,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
       </div>
 
       {/* Mobile Hamburger Menu Button */}
-      <div className="md:hidden flex items-center p-4 z-50 pb-2 bg-[#BFAFCF]">
+      <div className="md:hidden flex items-center p-4 z-50  bg-[#BFAFCF]">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex flex-col justify-center items-center w-8 h-8 space-y-1 group"
@@ -320,36 +344,14 @@ export default function Navbar({ centerContent }: NavbarProps) {
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div
-            className="absolute inset-0 bg-black bg-opacity-50"
+            className="absolute inset-0 "
             onClick={() => setIsMenuOpen(false)}
           />
 
           <div
             ref={panelRef}
-            className="absolute top-0 right-0 w-full h-full bg-white shadow-xl"
+            className="absolute top-27 right-0 w-full h-full bg-white shadow-xl"
           >
-            <div className="flex justify-end p-4">
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors duration-200"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-5 h-5 text-[#BFAFCF]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
             {/* Mobile Navigation */}
             <div className="p-6">
               <ul ref={listRef} className="space-y-4">

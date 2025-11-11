@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import clip from "@/assests/Governance/Clip.png";
+import clip from "@/assests/Governance/clip.png";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
@@ -7,7 +7,7 @@ import euphoria from "@/assests/Governance/euphoria.jpg";
 import hirangi from "@/assests/Governance/hirangi.jpg";
 import chain from "@/assests/Governance/chain-l.jpg";
 import link from "@/assests/Governance/link.svg";
-import scroll from "@/assests/Governance/scroll.svg";
+import scroll from "@/assests/Governance/scroll.png";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import type {
   GovernanceHeroImageConfig,
@@ -25,13 +25,13 @@ export const useGovernanceHeroConfig = () => {
       clip: {
         src: clip,
         alt: "Metallic sculpture",
-        className: "w-[200px] md:w-[250px]",
+        className: "w-[200px] md:w-[200px]",
         quality: 100,
       },
       clipDesktop: {
         src: clip,
         alt: "Metallic sculpture",
-        className: "",
+        className: "w-[200px] md:w-[250px]",
         quality: 100,
       },
       link: {
@@ -76,26 +76,33 @@ export const useGovernanceHeroConfig = () => {
         name: "Arbitrum",
         link: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
         icon: arbitrum,
+        className: "w-7 md:w-8 object-contain ",
       },
       {
         name: "Optimism",
         link: "https://vote.optimism.io/delegates/lamprosdao.eth",
         icon: op,
+        className: "w-7 md:w-8 object-contain ",
       },
       {
         name: "Scroll",
         link: "https://gov.scroll.io/delegates/lamprosdao.eth",
         icon: scroll,
+        className:
+          "w-7 md:w-8 rounded-full bg-[#FFEEDA] object-contain border ",
       },
       {
         name: "Superfluid",
         link: "https://claim.superfluid.org/governance",
         icon: superfluid,
+        className:
+          "w-7 md:w-8 rounded-full bg-[#FFEEDA] object-contain border ",
       },
       {
         name: "Uniswap",
         link: "https://www.tally.xyz/gov/uniswap/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
         icon: uniswap,
+        className: "w-7 md:w-8 object-contain ",
       },
     ];
 

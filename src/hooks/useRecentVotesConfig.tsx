@@ -4,7 +4,7 @@ import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
-import scroll from "@/assests/Governance/scroll.svg";
+import scroll from "@/assests/Governance/scroll.png";
 import bgImage1 from "@/assests/Governance/reportbg.png";
 import linkLight from "@/assests/Governance/link-light.png";
 import voterIcon from "@/assests/Governance/voter.svg";
@@ -14,7 +14,7 @@ import type {
   RecentVotesLayoutConfig,
   RecentVotesConfigHookReturn,
 } from "@/types/governance/recentVotes";
-import type { Protocol } from "@/types";
+import type { Protocol } from "@/types/governance";
 import { colors } from "@/theme";
 
 export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
@@ -46,30 +46,36 @@ export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
         value: "arbitrum",
         icon: arbitrum,
         link: "https://forum.arbitrum.foundation/t/lampros-dao-delegate-communication-thread/26642",
+        className: "w-5 md:w-7 object-contain",
       },
       {
         name: "Optimism",
         value: "optimism",
         icon: op,
         link: "https://vote.optimism.io/delegates/lamprosdao.eth",
+        className: "w-5 md:w-7 object-contain  ",
       },
       {
         name: "Uniswap",
         value: "uniswap",
         icon: uniswap,
         link: "",
+        className: "w-5 md:w-7 object-contain  ",
       },
       {
         name: "Superfluid",
         value: "superfluid",
         icon: superfluid,
         link: "https://forum.superfluid.org/t/lampros-dao-delegate-thread/266",
+        className: "w-5 md:w-7 object-contain  ",
       },
       {
         name: "Scroll",
         value: "scroll",
         icon: scroll,
         link: "",
+        className:
+          "w-5 md:w-7 rounded-full bg-[#FFEEDA] object-contain border ",
       },
     ];
 
@@ -215,8 +221,7 @@ export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
           className: "flex-1 p-3 flex items-start justify-start gap-2 flex-col",
         },
         arrowCell: {
-          className:
-            "w-12 md:w-14 bg-[#1A1A1A] flex items-center justify-center",
+          className: " bg-[#1A1A1A] flex items-center justify-center  px-10",
           backgroundColor: colors.primary.dark,
         },
         proposalSection: {

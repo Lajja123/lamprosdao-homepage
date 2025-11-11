@@ -118,7 +118,7 @@ export const useContributionsHeroConfig = () => {
             backgroundColor: colors.primary.dark,
           },
           buttonContainer: {
-            className: "flex flex-row justify-center gap-10 items-center gap-4",
+            className: "flex flex-row justify-center  items-center ",
           },
           button: {
             baseClassName:

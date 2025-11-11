@@ -499,7 +499,7 @@ export default function Hero() {
                       <Image
                         src={delegation.icon}
                         alt={delegation.name.toLowerCase()}
-                        className="w-6 md:w-10"
+                        className={delegation.className}
                         quality={100}
                       />
                       <Typography
@@ -545,6 +545,7 @@ export default function Hero() {
               src={images.clipDesktop.src}
               alt={images.clipDesktop.alt}
               quality={images.clipDesktop.quality}
+              className={images.clipDesktop.className}
             />
           </div>
         </GridCell>
@@ -718,7 +719,7 @@ export default function Hero() {
                 <Image
                   src={delegation.icon}
                   alt={delegation.name.toLowerCase()}
-                  className="w-5 md:w-7"
+                  className={delegation.className || "w-5 md:w-7"}
                   quality={100}
                 />
                 <Typography
