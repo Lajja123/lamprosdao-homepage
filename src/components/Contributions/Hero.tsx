@@ -327,7 +327,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         trigger.kill();
       });
     };
-  }, [activeChain]);
+  }, []);
 
   const handleButtonClick = (content: "arbitrum" | "optimism") => {
     onChainChange(content);

@@ -123,8 +123,9 @@ export const useContributionsHeroConfig = () => {
           button: {
             baseClassName:
               "rounded-full py-2 px-6 flex items-center justify-center gap-4 shadow-lg w-full cursor-pointer transition-all duration-300",
-            activeClassName: "bg-white scale-105",
-            inactiveClassName: "bg-gray-300 hover:bg-gray-200",
+            activeClassName: "bg-[#DFCDF2] hover:scale-105 ",
+            inactiveClassName:
+              "bg-gray-200 hover:bg-[#DFCDF2] hover:scale-105  ",
           },
         },
         dynamicContent: {
@@ -183,9 +184,10 @@ export const useContributionsHeroConfig = () => {
           },
           button: {
             baseClassName:
-              "rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300",
-            activeClassName: "bg-white scale-105",
-            inactiveClassName: "bg-gray-300 hover:bg-gray-200",
+              " rounded-full my-5 p-5 flex items-center justify-center gap-4 shadow-lg w-full mx-10 cursor-pointer transition-all duration-300",
+            activeClassName: "bg-[#DFCDF2] hover:scale-105 ",
+            inactiveClassName:
+              "bg-gray-200 hover:bg-[#DFCDF2] hover:scale-105  ",
           },
         },
         dynamicContent: {
