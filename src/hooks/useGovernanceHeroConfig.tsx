@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import clip from "@/assests/Governance/clip.png"
+import clip from "@/assests/Governance/clip.png";
 import arbitrum from "@/assests/Governance/Arbitrum.svg";
 import op from "@/assests/Governance/optimism.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
