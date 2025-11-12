@@ -2,10 +2,12 @@ import ContributionsWrapper from "@/components/Contributions/ContributionsWrappe
 
 export const metadata = {
   title: "Contribution",
-  // description: "About Page Description...",
+  description:
+    "Driving impact through governance, development, research, and ecosystem growth.",
   openGraph: {
     title: "Contribution",
-    // description: "About Page Description...",
+    description:
+      " Driving impact through governance, development, research, and ecosystem growth.",
     url: "https://lamprosdao.com/contribution",
     siteName: "Lampros DAO",
     images: [

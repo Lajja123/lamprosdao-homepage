@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Governance",
+  description:
+    "Participating as delegates across DAOs through active engagement, discussion, and voting.",
   openGraph: {
     title: "Governance",
+    description:
+      "Participating as delegates across DAOs through active engagement, discussion, and voting.",
     url: "https://lamprosdao.com/governance",
     siteName: "Lampros DAO",
     images: [

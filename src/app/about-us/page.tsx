@@ -4,10 +4,12 @@ import Journey from "@/components/About/Journey";
 
 export const metadata = {
   title: "About Us",
-  // description: "About Page Description...",
+  description:
+    "An open collective contributing to governance, development, research, and education across the Ethereum and Layer 2 ecosystems.",
   openGraph: {
     title: "About Us",
-    // description: "About Page Description...",
+    description:
+      "An open collective contributing to governance, development, research, and education across the Ethereum and Layer 2 ecosystems.",
     url: "https://lamprosdao.com/about-us",
     siteName: "Lampros DAO",
     images: [
