@@ -32,11 +32,7 @@ const HeroTitleLine = ({ line, variant = "mobile" }: HeroTitleLineProps) => {
       if (currentIndex < wavyLetter.position) {
         const beforeText = text.substring(currentIndex, wavyLetter.position);
         if (beforeText) {
-          parts.push(
-            <span key={`before-${idx}`} className="inline-block">
-              {beforeText}
-            </span>
-          );
+          parts.push(<span key={`before-${idx}`}>{beforeText}</span>);
         }
       }
 

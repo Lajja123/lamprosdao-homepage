@@ -16,8 +16,13 @@ import type {
 } from "@/types/governance/recentVotes";
 import type { Protocol } from "@/types/governance";
 import { colors } from "@/theme";
+import { StaticImageData } from "next/image";
 
 export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
+  // Image configurations
+  const backgroundImages: Record<string, StaticImageData> = {
+    reportsBg: bgImage1,
+  };
   const config = useMemo(() => {
     // Image configurations
     const images: RecentVotesImageConfig = {
@@ -306,6 +311,7 @@ export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
     };
 
     return {
+      backgroundImages,
       images,
       protocols,
       textConfig,

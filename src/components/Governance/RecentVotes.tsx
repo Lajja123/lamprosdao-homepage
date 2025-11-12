@@ -119,7 +119,7 @@ const ProtocolButton = React.memo(
 ProtocolButton.displayName = "ProtocolButton";
 
 const RecentVotes = React.memo(function RecentVotes() {
-  const { images, protocols, textConfig, layoutConfig } =
+  const { images, protocols, textConfig, layoutConfig, backgroundImages } =
     useRecentVotesConfig();
   const [activeTab, setActiveTab] = useState("");
   const [expandedItem, setExpandedItem] = useState<number | null>(null);
@@ -826,23 +826,29 @@ const RecentVotes = React.memo(function RecentVotes() {
                           <span>{proposal.result}</span>
                         </Typography>
                       </div>
-                      {/* Arrow cell */}
                       <button
                         onClick={() =>
                           setExpandedItem(expandedItem === index ? null : index)
                         }
-                        className={layoutConfig.mobile.arrowCell.className}
-                        style={{
-                          backgroundColor:
-                            layoutConfig.mobile.arrowCell.backgroundColor,
-                        }}
+                        className={`${layoutConfig.mobile.arrowCell.className} relative overflow-hidden`}
                       >
-                        <Arrow
-                          direction={expandedItem === index ? "up" : "down"}
-                          color="#FFFFFF"
-                          rounded={true}
-                          size={24}
-                        />
+                        <div
+                          className="absolute inset-0 opacity-20"
+                          style={{
+                            backgroundImage: `url(${backgroundImages.reportsBg.src})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                        <div className="relative z-10">
+                          <Arrow
+                            direction={expandedItem === index ? "up" : "down"}
+                            color="#FFFFFF"
+                            rounded={true}
+                            size={24}
+                          />
+                        </div>
                       </button>
                     </div>
 
@@ -1277,11 +1283,10 @@ const RecentVotes = React.memo(function RecentVotes() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: `url(${images.bgImage.src})`,
+                      backgroundImage: `url(${backgroundImages.reportsBg.src})`,
                       backgroundSize: "cover",
-                      backgroundPosition: "center left",
+                      backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
-                      backgroundBlendMode: "multiply",
                     }}
                   ></div>
                   <div

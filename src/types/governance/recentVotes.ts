@@ -2,11 +2,20 @@
 import type { StaticImageData } from "next/image";
 import type { Protocol } from "@/types";
 
+export type VotesImageConfig = {
+  src: string | StaticImageData;
+  alt: string;
+  className?: string;
+  quality?: number;
+  width?: number;
+  height?: number;
+};
 export interface RecentVotesImageConfig {
   voteIcon: {
     src: string | StaticImageData;
     alt: string;
   };
+
   bgImage: {
     src: string | StaticImageData;
     alt: string;
@@ -242,4 +251,5 @@ export interface RecentVotesConfigHookReturn {
   protocols: Protocol[];
   textConfig: RecentVotesTextConfig;
   layoutConfig: RecentVotesLayoutConfig;
+  backgroundImages: Record<string, StaticImageData>;
 }

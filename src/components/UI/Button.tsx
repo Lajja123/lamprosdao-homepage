@@ -205,7 +205,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {/* Center fill animation background */}
       <div
-        className="absolute inset-0 scale-0 group-hover:scale-100 origin-center  transition-transform duration-500 ease-out"
+        className="absolute inset-0 origin-center  transition-transform duration-500 ease-out scale-0 group-hover:scale-100 "
         style={{
           backgroundColor: getFillColor(),
           borderRadius: "100px",

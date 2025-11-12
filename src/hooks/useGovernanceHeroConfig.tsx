@@ -76,7 +76,7 @@ export const useGovernanceHeroConfig = () => {
         name: "Arbitrum",
         link: "https://www.tally.xyz/gov/arbitrum/delegate/0xf070cd4b5ba73a6b6a939dde513f79862bffcd25",
         icon: arbitrum,
-        className: "w-7 md:w-8 object-contain ",
+        className: "w-7 md:w-8 object-contain   ",
       },
       {
         name: "Optimism",
@@ -176,7 +176,7 @@ export const useGovernanceHeroConfig = () => {
         variant: "body2",
         color: "primary",
         weight: "semibold",
-        className: "font-ppmori hover:underline",
+        className: "font-ppmori transition-colors group-hover:underline",
       },
     };
 
@@ -319,7 +319,7 @@ export const useGovernanceHeroConfig = () => {
           },
           button: {
             className:
-              "rounded-full px-6 py-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer transition-all duration-300 bg-white scale-105",
+              "group rounded-full px-6 py-4 flex border border-white items-center justify-center gap-3 shadow-lg cursor-pointer bg-white transition-transform duration-500 hover:scale-105",
           },
           emptyCell3: {
             colStart: 8,
