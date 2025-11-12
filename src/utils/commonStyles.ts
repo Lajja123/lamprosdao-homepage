@@ -35,7 +35,7 @@ export const commonStyles = {
     responsive:
       "min-w-[768px] lg:min-w-[1024px] grid grid-cols-8 lg:grid-cols-10 border border-black",
     research:
-      "min-w-[320px] sm:min-w-[640px] md:min-w-[768px] grid grid-cols-6  border border-white",
+      "min-w-[320px] sm:min-w-[640px] md:min-w-[768px] grid grid-cols-6 ",
   },
 
   background: {
@@ -115,7 +115,7 @@ export const commonStyles = {
         "row-span-3 border border-black relative flex items-center justify-center",
       icon: "border border-black h-30 relative flex items-center justify-center",
       researchContent:
-        "col-span-3 row-span-4 border-l border-white flex items-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px]",
+        "col-span-3 row-span-4 border-l border-t  border-white flex items-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px]",
       researchImage:
         "col-span-3 row-span-5 flex items-center min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[550px]",
       researchArrow:

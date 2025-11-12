@@ -1,12 +1,17 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import type { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Typography from "@/components/UI/Typography";
 import Grid, { GridCell } from "@/components/UI/Grid";
 import { useSection2Config } from "@/hooks/useSection2Config";
 import { colors } from "@/theme";
-import { loadGsapWithScrollTrigger } from "@/utils/gsapLoader";
+
+// Register GSAP plugins
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Section2() {
   const { images, backgroundImages, textConfig, layoutConfig } =
@@ -19,122 +24,119 @@ export default function Section2() {
   const mobileTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let isMounted = true;
     const scrollTriggers: ScrollTrigger[] = [];
 
-    const collectTrigger = (animation: any) => {
-      const trigger = animation?.scrollTrigger as ScrollTrigger | undefined;
-      if (trigger) {
-        scrollTriggers.push(trigger);
+    // Desktop clip image animation
+    if (desktopClipRef.current) {
+      gsap.set(desktopClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
+
+      const clipAnimation = gsap.to(desktopClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: desktopClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
+
+      if (clipAnimation.scrollTrigger) {
+        scrollTriggers.push(clipAnimation.scrollTrigger);
       }
-    };
+    }
 
-    const rafId = requestAnimationFrame(async () => {
-      const { gsap } = await loadGsapWithScrollTrigger();
-      if (!isMounted) return;
+    // Desktop text content animation
+    if (desktopTextRef.current) {
+      gsap.set(desktopTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
 
-      if (desktopClipRef.current) {
-        gsap.set(desktopClipRef.current, {
-          opacity: 0,
-          scale: 0.9,
-          y: 30,
-        });
+      const textAnimation = gsap.to(desktopTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: desktopTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
 
-        const animation = gsap.to(desktopClipRef.current, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: desktopClipRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
-
-        collectTrigger(animation);
+      if (textAnimation.scrollTrigger) {
+        scrollTriggers.push(textAnimation.scrollTrigger);
       }
+    }
 
-      if (desktopTextRef.current) {
-        gsap.set(desktopTextRef.current, {
-          opacity: 0,
-          y: 40,
-        });
+    // Mobile clip image animation
+    if (mobileClipRef.current) {
+      gsap.set(mobileClipRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        y: 30,
+      });
 
-        const animation = gsap.to(desktopTextRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: desktopTextRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
+      const mobileClipAnimation = gsap.to(mobileClipRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mobileClipRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
 
-        collectTrigger(animation);
+      if (mobileClipAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileClipAnimation.scrollTrigger);
       }
+    }
 
-      if (mobileClipRef.current) {
-        gsap.set(mobileClipRef.current, {
-          opacity: 0,
-          scale: 0.9,
-          y: 30,
-        });
+    // Mobile text content animation
+    if (mobileTextRef.current) {
+      gsap.set(mobileTextRef.current, {
+        opacity: 0,
+        y: 40,
+      });
 
-        const animation = gsap.to(mobileClipRef.current, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: mobileClipRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
+      const mobileTextAnimation = gsap.to(mobileTextRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: mobileTextRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      });
 
-        collectTrigger(animation);
+      if (mobileTextAnimation.scrollTrigger) {
+        scrollTriggers.push(mobileTextAnimation.scrollTrigger);
       }
-
-      if (mobileTextRef.current) {
-        gsap.set(mobileTextRef.current, {
-          opacity: 0,
-          y: 40,
-        });
-
-        const animation = gsap.to(mobileTextRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: mobileTextRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
-
-        collectTrigger(animation);
-      }
-    });
+    }
 
     return () => {
-      isMounted = false;
-      cancelAnimationFrame(rafId);
       scrollTriggers.forEach((trigger) => {
         trigger.kill();
       });
@@ -168,7 +170,6 @@ export default function Section2() {
               />
             </div>
           </GridCell>
-          <GridCell type="withHeight"></GridCell>
           <GridCell type="withHeight"></GridCell>
           <GridCell type="withHeight"></GridCell>
           <GridCell type="withHeight"></GridCell>

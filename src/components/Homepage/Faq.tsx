@@ -8,14 +8,18 @@ import { combineStyles } from "@/utils/commonStyles";
 import faqContent from "@/data/faqContent.json";
 import { useFaqConfig } from "@/hooks/useFaqConfig";
 import type { FaqItem } from "@/types/home/faq";
-import type { ScrollTrigger } from "gsap/ScrollTrigger";
-import { loadGsap, loadGsapWithScrollTrigger } from "@/utils/gsapLoader";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Faq() {
   const [currentSection, setCurrentSection] = useState(0);
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
   const faqItems = faqContent.faqItems;
-  const itemsPerSection = 3;
+  const itemsPerSection = 4;
   const totalSections = Math.ceil(faqItems.length / itemsPerSection);
 
   const { images, backgroundImages, textConfig, arrowConfig, layoutConfig } =
@@ -123,23 +127,20 @@ export default function Faq() {
 
   // Initial reveal animations for questions on mount and section change
   useEffect(() => {
-    let isMounted = true;
     const scrollTriggers: ScrollTrigger[] = [];
 
-    const rafId = requestAnimationFrame(async () => {
-      const { gsap } = await loadGsapWithScrollTrigger();
-      if (!isMounted) return;
-
-      currentItems.forEach((item) => {
-        const questionElement = questionRefs.current.get(item.id);
-        if (!questionElement) return;
-
+    // Animate all current question elements
+    currentItems.forEach((item) => {
+      const questionElement = questionRefs.current.get(item.id);
+      if (questionElement) {
+        // Set initial state
         gsap.set(questionElement, {
           opacity: 0,
           y: 30,
         });
 
-        const animation = gsap.to(questionElement, {
+        // Create scroll-triggered animation
+        const questionAnimation = gsap.to(questionElement, {
           opacity: 1,
           y: 0,
           duration: 0.8,
@@ -153,16 +154,13 @@ export default function Faq() {
           },
         });
 
-        const trigger = animation?.scrollTrigger as ScrollTrigger | undefined;
-        if (trigger) {
-          scrollTriggers.push(trigger);
+        if (questionAnimation.scrollTrigger) {
+          scrollTriggers.push(questionAnimation.scrollTrigger);
         }
-      });
+      }
     });
 
     return () => {
-      isMounted = false;
-      cancelAnimationFrame(rafId);
       scrollTriggers.forEach((trigger) => {
         trigger.kill();
       });
@@ -172,32 +170,29 @@ export default function Faq() {
 
   // Smooth transitions when section changes
   useEffect(() => {
+    // Skip animation on initial mount
     if (isInitialMountRef.current) {
       isInitialMountRef.current = false;
       return;
     }
 
-    let isMounted = true;
-    let timeline: any = null;
-
-    const scheduleAnimation = () => {
+    // Wait for React to update DOM, then animate in new questions
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(async () => {
-          const gsap = await loadGsap();
-          if (!isMounted) return;
+        const inTimeline = gsap.timeline();
 
-          timeline = gsap.timeline();
-
-          currentItems.forEach((item) => {
-            const questionElement = questionRefs.current.get(item.id);
-            if (!questionElement) return;
-
+        // Animate in all new questions simultaneously
+        currentItems.forEach((item) => {
+          const questionElement = questionRefs.current.get(item.id);
+          if (questionElement) {
+            // Set initial state for new content
             gsap.set(questionElement, {
               opacity: 0,
               y: 20,
             });
 
-            timeline.to(
+            // Animate in at the same time
+            inTimeline.to(
               questionElement,
               {
                 opacity: 1,
@@ -207,17 +202,10 @@ export default function Faq() {
               },
               0
             );
-          });
+          }
         });
       });
-    };
-
-    scheduleAnimation();
-
-    return () => {
-      isMounted = false;
-      timeline?.kill();
-    };
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
