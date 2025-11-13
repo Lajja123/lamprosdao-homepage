@@ -243,31 +243,32 @@ export default function Reports({ activeChain }: ReportsProps) {
                 {/* Number cell */}
                 <div className={layoutConfig.mobile.item.numberCell.className}>
                   <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                      backgroundImage: `url(${backgroundImages.reportsImage.src})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
-                  <div
-                    className="absolute inset-0 z-10"
+                    className="w-full h-full"
                     style={{
                       background:
-                        "linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                        " linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                     }}
-                  ></div>
-                  <Typography
-                    variant={textConfig.itemNumber.variant}
-                    color={
-                      textConfig.itemNumber.color as `#${string}` | "white"
-                    }
-                    weight={textConfig.itemNumber.weight}
-                    className={`${textConfig.itemNumber.className} relative z-20`}
                   >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
+                    <div
+                      className="w-full h-full absolute top-0 left-0 z-10"
+                      style={{
+                        backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        mixBlendMode: "normal",
+                      }}
+                    ></div>
+                    <Typography
+                      variant={textConfig.itemNumber.variant}
+                      color={
+                        textConfig.itemNumber.color as `#${string}` | "white"
+                      }
+                      weight={textConfig.itemNumber.weight}
+                      className={`${textConfig.itemNumber.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </Typography>
+                  </div>
                 </div>
                 {/* Title cell */}
                 <div className={layoutConfig.mobile.item.titleCell.className}>
@@ -396,33 +397,34 @@ export default function Reports({ activeChain }: ReportsProps) {
                   className={layoutConfig.desktop.item.numberCell.className}
                 >
                   <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                      backgroundImage: `url(${backgroundImages.reportsImage.src})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
-                  <div
-                    className="absolute inset-0 z-10"
+                    className="w-full h-full"
                     style={{
                       background:
-                        "linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                        " linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                     }}
-                  ></div>
-                  <Typography
-                    variant={textConfig.itemNumberDesktop.variant}
-                    color={
-                      textConfig.itemNumberDesktop.color as
-                        | `#${string}`
-                        | "white"
-                    }
-                    weight={textConfig.itemNumberDesktop.weight}
-                    className={`${textConfig.itemNumberDesktop.className} relative z-20`}
                   >
-                    {leftNumber}
-                  </Typography>
+                    <div
+                      className="w-full h-full absolute top-0 left-0 z-10"
+                      style={{
+                        backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        mixBlendMode: "normal",
+                      }}
+                    ></div>
+                    <Typography
+                      variant={textConfig.itemNumberDesktop.variant}
+                      color={
+                        textConfig.itemNumberDesktop.color as
+                          | `#${string}`
+                          | "white"
+                      }
+                      weight={textConfig.itemNumberDesktop.weight}
+                      className={`${textConfig.itemNumberDesktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                    >
+                      {leftNumber}
+                    </Typography>
+                  </div>
                 </GridCell>
                 <GridCell
                   key={`title-left-${i}`}
@@ -452,33 +454,34 @@ export default function Reports({ activeChain }: ReportsProps) {
                     className={layoutConfig.desktop.item.numberCell.className}
                   >
                     <div
-                      className="absolute inset-0 z-0 "
-                      style={{
-                        backgroundImage: `url(${backgroundImages.reportsImage.src})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                    ></div>
-                    <div
-                      className="absolute inset-0 z-10"
+                      className="w-full h-full"
                       style={{
                         background:
-                          "linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                          " linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                       }}
-                    ></div>
-                    <Typography
-                      variant={textConfig.itemNumberDesktop.variant}
-                      color={
-                        textConfig.itemNumberDesktop.color as
-                          | `#${string}`
-                          | "white"
-                      }
-                      weight={textConfig.itemNumberDesktop.weight}
-                      className={`${textConfig.itemNumberDesktop.className} relative z-20`}
                     >
-                      {rightNumber}
-                    </Typography>
+                      <div
+                        className="w-full h-full absolute top-0 left-0 z-10"
+                        style={{
+                          backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          mixBlendMode: "normal",
+                        }}
+                      ></div>
+                      <Typography
+                        variant={textConfig.itemNumberDesktop.variant}
+                        color={
+                          textConfig.itemNumberDesktop.color as
+                            | `#${string}`
+                            | "white"
+                        }
+                        weight={textConfig.itemNumberDesktop.weight}
+                        className={`${textConfig.itemNumberDesktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                      >
+                        {rightNumber}
+                      </Typography>
+                    </div>
                   </GridCell>
                 )}
 

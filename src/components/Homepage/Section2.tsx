@@ -220,16 +220,12 @@ export default function Section2() {
             <div
               className="w-full h-full"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
             >
               <div
-                className="w-full h-full"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
                   backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
@@ -240,10 +236,9 @@ export default function Section2() {
               <Image
                 src={images.arrow.src}
                 alt={images.arrow.alt}
-                className={`${images.arrow.className} relative z-20`}
+                className={`${images.arrow.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                 width={images.arrow.width}
                 height={images.arrow.height}
-                loading="lazy"
               />
             </div>
           </GridCell>
@@ -258,16 +253,12 @@ export default function Section2() {
             <div
               className="w-full h-full"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             >
               <div
-                className="w-full h-full"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
                   backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
@@ -278,10 +269,7 @@ export default function Section2() {
               <Image
                 src={images.hugeicon.src}
                 alt={images.hugeicon.alt}
-                className={`${images.hugeicon.className} relative z-20`}
-                width={images.hugeicon.width}
-                height={images.hugeicon.height}
-                loading="lazy"
+                className={`${images.hugeicon.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
               />
             </div>
           </GridCell>
@@ -299,16 +287,12 @@ export default function Section2() {
             <div
               className="w-full h-full"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
             >
               <div
-                className="w-full h-full"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
                   backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
@@ -319,10 +303,9 @@ export default function Section2() {
               <Image
                 src={images.mobileArrow.src}
                 alt={images.mobileArrow.alt}
-                className={`${images.mobileArrow.className} relative z-20`}
+                className={`${images.mobileArrow.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                 width={images.mobileArrow.width}
                 height={images.mobileArrow.height}
-                loading="lazy"
               />
             </div>
           </div>
@@ -336,16 +319,12 @@ export default function Section2() {
             <div
               className="w-full h-full"
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             >
               <div
-                className="w-full h-full"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
                   backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
@@ -356,7 +335,7 @@ export default function Section2() {
               <Image
                 src={images.hugeicon.src}
                 alt={images.hugeicon.alt}
-                className={`${images.hugeicon.className} `}
+                className={`${images.hugeicon.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                 width={images.hugeicon.width}
                 height={images.hugeicon.height}
                 loading="lazy"

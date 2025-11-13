@@ -13,7 +13,7 @@ export const useContributionsReportsConfig = () => {
   const config = useMemo(() => {
     // Image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      reportsImage: bgImage,
+      arrowBg: bgImage,
     };
 
     // Text configuration

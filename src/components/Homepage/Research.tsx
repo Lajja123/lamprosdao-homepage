@@ -359,33 +359,34 @@ export default function Research() {
             className={layoutConfig.desktop.iconCell.className}
           >
             <div
-              className="absolute inset-0 z-10"
-              style={{
-                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
-            ></div>
-            <button
-              onClick={handlePrevious}
-              className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
             >
-              <Arrow
-                direction="left"
-                size={arrowConfig.desktop.size}
-                hoverScale={arrowConfig.desktop.hoverScale}
-                hoverColor="#DFF48D"
-                className={`${arrowConfig.desktop.className} relative z-20`}
-              />
-            </button>
+              <div
+                className="w-full h-full absolute top-0 left-0 z-10"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <button
+                onClick={handlePrevious}
+                className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
+              >
+                <Arrow
+                  direction="left"
+                  size={arrowConfig.desktop.size}
+                  hoverScale={arrowConfig.desktop.hoverScale}
+                  hoverColor="#DFF48D"
+                  className={`${arrowConfig.desktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 `}
+                />
+              </button>
+            </div>
           </GridCell>
 
           {/* Clip2 image - row 5, column 5 */}
@@ -407,33 +408,34 @@ export default function Research() {
             className="col-start-6 row-start-5 relative overflow-hidden"
           >
             <div
-              className="absolute inset-0 z-10"
-              style={{
-                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
-            ></div>
-            <button
-              onClick={handleNext}
-              className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
             >
-              <Arrow
-                direction="right"
-                size={arrowConfig.desktop.size}
-                hoverScale={arrowConfig.desktop.hoverScale}
-                hoverColor="#DFF48D"
-                className={`${arrowConfig.desktop.className} relative z-20`}
-              />
-            </button>
+              <div
+                className="w-full h-full absolute top-0 left-0 z-10"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <button
+                onClick={handleNext}
+                className="w-full h-full flex items-center justify-center cursor-pointer overflow-hidden group"
+              >
+                <Arrow
+                  direction="right"
+                  size={arrowConfig.desktop.size}
+                  hoverScale={arrowConfig.desktop.hoverScale}
+                  hoverColor="#DFF48D"
+                  className={`${arrowConfig.desktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                />
+              </button>
+            </div>
           </GridCell>
         </Grid>
       </div>
@@ -514,34 +516,35 @@ export default function Research() {
               {/* Left arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-0 z-0"
+                  className="w-full h-full"
                   style={{
                     background:
-                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                      " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
-                ></div>
-                <button
-                  onClick={handlePrevious}
-                  className="w-full h-full flex items-center justify-center group"
                 >
-                  <Arrow
-                    direction="left"
-                    size={arrowConfig.mobile.size}
-                    hoverScale={arrowConfig.mobile.hoverScale}
-                    hoverColor="#DFF48D"
-                    transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={`${arrowConfig.mobile.className} relative z-20`}
-                  />
-                </button>
+                  <div
+                    className="w-full h-full absolute top-0 left-0 z-10"
+                    style={{
+                      backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      mixBlendMode: "normal",
+                    }}
+                  ></div>
+                  <button
+                    onClick={handlePrevious}
+                    className="w-full h-full flex items-center justify-center group"
+                  >
+                    <Arrow
+                      direction="left"
+                      size={arrowConfig.mobile.size}
+                      hoverScale={arrowConfig.mobile.hoverScale}
+                      hoverColor="#DFF48D"
+                      transitionDuration={arrowConfig.mobile.transitionDuration}
+                      className={`${arrowConfig.mobile.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                    />
+                  </button>
+                </div>
               </div>
 
               {/* Clip2 image - center */}
@@ -558,34 +561,35 @@ export default function Research() {
               {/* Right arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0 z-10"
-                  style={{
-                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <div
-                  className="absolute inset-0 z-0"
+                  className="w-full h-full"
                   style={{
                     background:
-                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                      " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
-                ></div>
-                <button
-                  onClick={handleNext}
-                  className="w-full h-full flex items-center justify-center group"
                 >
-                  <Arrow
-                    direction="right"
-                    size={arrowConfig.mobile.size}
-                    hoverScale={arrowConfig.mobile.hoverScale}
-                    hoverColor="#DFF48D"
-                    transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={`${arrowConfig.mobile.className} relative z-20`}
-                  />
-                </button>
+                  <div
+                    className="w-full h-full absolute top-0 left-0 z-10"
+                    style={{
+                      backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      mixBlendMode: "normal",
+                    }}
+                  ></div>
+                  <button
+                    onClick={handleNext}
+                    className="w-full h-full flex items-center justify-center group"
+                  >
+                    <Arrow
+                      direction="right"
+                      size={arrowConfig.mobile.size}
+                      hoverScale={arrowConfig.mobile.hoverScale}
+                      hoverColor="#DFF48D"
+                      transitionDuration={arrowConfig.mobile.transitionDuration}
+                      className={`${arrowConfig.mobile.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -836,32 +836,29 @@ const RecentVotes = React.memo(function RecentVotes() {
                         onClick={() =>
                           setExpandedItem(expandedItem === index ? null : index)
                         }
-                        className={`${layoutConfig.mobile.arrowCell.className} relative overflow-hidden`}
+                        style={{
+                          background:
+                            " linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                        }}
+                        className={`${layoutConfig.mobile.arrowCell.className} w-full h-full`}
                       >
                         <div
-                          className="absolute inset-0 z-0 opacity-20"
+                          className="w-full h-full absolute top-0 left-0 z-10"
                           style={{
-                            backgroundImage: backgroundImages?.VoteBg?.src ? `url(${backgroundImages.VoteBg.src})` : "none",
+                            backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                             backgroundSize: "cover",
-                            backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
+                            mixBlendMode: "normal",
                           }}
                         ></div>
-                        <div
-                          className="absolute inset-0"
-                          style={{
-                            background:
-                              "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
-                          }}
-                        ></div>
-                        <div className="relative z-20">
-                          <Arrow
-                            direction={expandedItem === index ? "up" : "down"}
-                            color="#FFFFFF"
-                            rounded={true}
-                            size={24}
-                          />
-                        </div>
+
+                        <Arrow
+                          direction={expandedItem === index ? "up" : "down"}
+                          color="#FFFFFF"
+                          rounded={true}
+                          size={24}
+                          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                        />
                       </button>
                     </div>
 
@@ -1212,7 +1209,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                         textConfig.result.color as `#${string}` | "primary"
                       }
                       weight={textConfig.result.weight}
-                      className={`${textConfig.result.className} ${getVoteResultColor(proposal.result)}`}
+                      className={`${
+                        textConfig.result.className
+                      } ${getVoteResultColor(proposal.result)}`}
                     >
                       {proposal.result}
                     </Typography>
@@ -1269,7 +1268,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                           textConfig.typeBadge.color as `#${string}` | "accent"
                         }
                         weight={textConfig.typeBadge.weight}
-                        className={`${textConfig.typeBadge.className} px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
+                        className={`${
+                          textConfig.typeBadge.className
+                        } px-4 py-1.5 border-2 rounded-full ${getTypeStyle(
                           proposal.type
                         )}`}
                       >
@@ -1291,19 +1292,18 @@ const RecentVotes = React.memo(function RecentVotes() {
                   }
                 >
                   <div
-                    className="absolute inset-0 z-0"
                     style={{
-                      backgroundImage: backgroundImages?.VoteBg?.src ? `url(${backgroundImages.VoteBg.src})` : "none",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      background:
+                        " linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                     }}
                   ></div>
                   <div
-                    className="absolute inset-0"
+                    className="w-full h-full absolute top-0 left-0 z-10"
                     style={{
-                      background:
-                        "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                      backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      mixBlendMode: "normal",
                     }}
                   ></div>
                   <div
@@ -1314,7 +1314,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                     <Arrow
                       direction={expandedItem === index ? "up" : "down"}
                       hoverColor="#DFF48D"
-                      className={`relative z-20`}
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                     />
                   </div>
                 </GridCell>

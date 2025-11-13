@@ -59,8 +59,6 @@ export const useSection2Config = () => {
     // Background image configurations
     const backgroundImages: Record<string, StaticImageData> = {
       arrowBg: bgImage,
-      hugeiconBg: bgImage,
-      mobileBg: mobileBgImage,
     };
 
     // Text configuration

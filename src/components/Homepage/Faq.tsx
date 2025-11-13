@@ -49,9 +49,6 @@ export default function Faq() {
     }
   };
 
-  
-  
-
   const handlePrevious = () => {
     setCurrentSection((prev) => (prev > 0 ? prev - 1 : totalSections - 1));
   };
@@ -207,8 +204,6 @@ export default function Faq() {
               0
             );
           }
-
-         
         });
       });
     });
@@ -231,7 +226,7 @@ export default function Faq() {
           numberColor={textConfig.numberColor as `#${string}` | "primary"}
           numberClassName={textConfig.numberClassName}
         />
-        
+
         <ContentCell
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
         >
@@ -328,21 +323,19 @@ export default function Faq() {
           <div className={layoutConfig.mobile.footerRow.className}>
             <div className={layoutConfig.mobile.arrowCell.className}>
               <div
-                className={combineStyles(
-                  "cursor-pointer absolute inset-0 flex items-center justify-center"
-                )}
+                className="w-full h-full"
                 style={{
-                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
+                  background:
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                 }}
               >
                 <div
-                  className="absolute inset-0 z-0"
+                  className="w-full h-full absolute top-0 left-0 z-10"
                   style={{
-                    background:
-                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
+                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    mixBlendMode: "normal",
                   }}
                 ></div>
                 <button
@@ -355,7 +348,7 @@ export default function Faq() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor={arrowConfig.mobile.hoverColor}
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={`${arrowConfig.mobile.className} relative z-20`}
+                    className={`${arrowConfig.mobile.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                   />
                 </button>
               </div>
@@ -375,21 +368,19 @@ export default function Faq() {
             {/* Right arrow */}
             <div className={layoutConfig.mobile.arrowCell.className}>
               <div
-                className={combineStyles(
-                  "cursor-pointer absolute inset-0 flex items-center justify-center"
-                )}
+                className="w-full h-full"
                 style={{
-                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
+                  background:
+                    " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                 }}
               >
                 <div
-                  className="absolute inset-0 z-0"
+                  className="w-full h-full absolute top-0 left-0 z-10"
                   style={{
-                    background:
-                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%);",
+                    backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    mixBlendMode: "normal",
                   }}
                 ></div>
                 <button
@@ -402,7 +393,7 @@ export default function Faq() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor={arrowConfig.mobile.hoverColor}
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={`${arrowConfig.mobile.className} relative z-20`}
+                    className={`${arrowConfig.mobile.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                   />
                 </button>
               </div>
@@ -457,21 +448,21 @@ export default function Faq() {
           >
             <div
               className={combineStyles(
-                "cursor-pointer absolute inset-0 flex items-center justify-center group"
+                "w-full h-full cursor-pointer absolute inset-0 flex items-center justify-center group"
               )}
               style={{
-                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
+                background:
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
               }}
               onClick={handlePrevious}
             >
               <div
-                className="absolute inset-0 z-0"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
-                  background:
-                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
                 }}
               ></div>
               <Arrow
@@ -504,21 +495,30 @@ export default function Faq() {
           >
             <div
               className={combineStyles(
-                "cursor-pointer absolute inset-0 flex items-center justify-center group"
+                "w-full h-full cursor-pointer absolute inset-0 flex items-center justify-center group"
               )}
               style={{
-                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
+                background:
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
               onClick={handleNext}
             >
               <div
-                className="absolute inset-0 z-0"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
-                  background:
-                      "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <div
+                className="w-full h-full absolute top-0 left-0 z-10"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
                 }}
               ></div>
               <Arrow

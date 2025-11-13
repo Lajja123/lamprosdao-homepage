@@ -345,27 +345,26 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         >
           <GridCell />
           <GridCell className={layoutConfig.mobile.clipImageCell.className}>
-            <div className="relative">
+            <div
+              className="w-full h-full"
+              style={{
+                background:
+                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+              }}
+            >
               <div
-                className="absolute inset-0 z-0"
+                className="w-full h-full absolute top-0 left-0 z-10"
                 style={{
-                  backgroundImage: `url(${backgroundImages.clipImage.src})`,
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                   backgroundSize: "cover",
-                  backgroundPosition: "top center",
                   backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <div
-                className="absolute inset-0 z-10"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  mixBlendMode: "normal",
                 }}
               ></div>
               <Image
                 src={images.clip.src}
                 alt={images.clip.alt}
-                className={`${images.clip.className} relative z-20`}
+                className={`${images.clip.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
               />
             </div>
           </GridCell>
@@ -429,7 +428,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             {/* Arbitrum Button */}
             <div className="bg-[#1A1A1A] flex items-center justify-center p-5 border-r border-white">
               <div
-                className={`${layoutConfig.mobile.chainSelection.button.baseClassName} ${
+                className={`${
+                  layoutConfig.mobile.chainSelection.button.baseClassName
+                } ${
                   activeChain === "arbitrum"
                     ? layoutConfig.mobile.chainSelection.button.activeClassName
                     : layoutConfig.mobile.chainSelection.button
@@ -460,7 +461,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
             {/* Optimism Button */}
             <div className="bg-[#1A1A1A] flex items-center p-5 justify-center">
               <div
-                className={`${layoutConfig.mobile.chainSelection.button.baseClassName} ${
+                className={`${
+                  layoutConfig.mobile.chainSelection.button.baseClassName
+                } ${
                   activeChain === "optimism"
                     ? layoutConfig.mobile.chainSelection.button.activeClassName
                     : layoutConfig.mobile.chainSelection.button
@@ -567,27 +570,26 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <GridCell />
         <GridCell />
         <GridCell className={layoutConfig.desktop.clipImageCell.className}>
-          <div className="relative">
+          <div
+            className="w-full h-full"
+            style={{
+              background:
+                " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+            }}
+          >
             <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full absolute top-0 left-0 z-10"
               style={{
-                backgroundImage: `url(${backgroundImages.clipImage.src})`,
+                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
-                backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-10"
-              style={{
-                background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                mixBlendMode: "normal",
               }}
             ></div>
             <Image
               src={images.clip.src}
               alt={images.clip.alt}
-              className="relative w-full h-full object-contain p-5 mx-auto z-20"
+              className={`${images.clip.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
             />
           </div>
         </GridCell>
@@ -654,7 +656,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           }
         >
           <div
-            className={`${layoutConfig.desktop.chainSelection.button.baseClassName} ${
+            className={`${
+              layoutConfig.desktop.chainSelection.button.baseClassName
+            } ${
               activeChain === "arbitrum"
                 ? layoutConfig.desktop.chainSelection.button.activeClassName
                 : layoutConfig.desktop.chainSelection.button.inactiveClassName
@@ -694,7 +698,9 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           }
         >
           <div
-            className={`will-change-transform ${layoutConfig.desktop.chainSelection.button.baseClassName} my-10 ${
+            className={`will-change-transform ${
+              layoutConfig.desktop.chainSelection.button.baseClassName
+            } my-10 ${
               activeChain === "optimism"
                 ? layoutConfig.desktop.chainSelection.button.activeClassName
                 : layoutConfig.desktop.chainSelection.button.inactiveClassName

@@ -64,6 +64,7 @@ export const useContributionsHeroConfig = () => {
 
     const backgroundImages: Record<string, StaticImageData> = {
       clipImage: bgImage,
+      arrowBg: bgImage,
     };
     // Text configuration
     const textConfig: ContributionsHeroTextConfig = {

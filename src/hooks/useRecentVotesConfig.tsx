@@ -22,7 +22,7 @@ export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
   const config = useMemo(() => {
     // Image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      VoteBg: bgImage,
+      arrowBg: bgImage,
     };
     const images: RecentVotesImageConfig = {
       voteIcon: {
