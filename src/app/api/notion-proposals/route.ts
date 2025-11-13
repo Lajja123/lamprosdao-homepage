@@ -2,6 +2,7 @@ import { Client } from "@notionhq/client";
 import { NextRequest } from "next/server";
 
 // Cache this route for 1 hour (ISR)
+// This uses Next.js Data Cache - responses are cached for 3600 seconds
 export const revalidate = 3600;
 
 // Types for Notion API
@@ -173,6 +174,8 @@ export async function GET(request: NextRequest): Promise<Response> {
 
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
+      // Add cache headers for client-side caching
+      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
     };
 
     // Helper function to parse dates for sorting

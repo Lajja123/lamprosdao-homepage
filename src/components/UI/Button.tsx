@@ -80,7 +80,7 @@ export const Button: React.FC<ButtonProps> = ({
     const handleMouseEnter = () => {
       gsap.to(button, {
         scale: 1.05,
-        duration: 0.3,
+        duration: 0.1,
         ease: "power2.out",
       });
     };
@@ -88,7 +88,7 @@ export const Button: React.FC<ButtonProps> = ({
     const handleMouseLeave = () => {
       gsap.to(button, {
         scale: 1,
-        duration: 0.3,
+        duration: 0.1,
         ease: "power2.out",
       });
     };
@@ -214,7 +214,7 @@ export const Button: React.FC<ButtonProps> = ({
 
       <div className="flex items-center gap-2 relative z-10">
         <Typography
-          variant="button"
+          variant="body2"
           color={
             typographyColor as
               | "primary"
@@ -230,7 +230,7 @@ export const Button: React.FC<ButtonProps> = ({
           align="center"
           weight="bold"
           className={[
-            "pointer-events-none select-none text-sm sm:text-base transition-colors duration-500",
+            "pointer-events-none select-none transition-colors duration-500",
             getHoverTextColor(),
             variantClasses,
           ].join(" ")}

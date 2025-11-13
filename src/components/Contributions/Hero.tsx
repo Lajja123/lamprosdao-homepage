@@ -347,18 +347,25 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
           <GridCell className={layoutConfig.mobile.clipImageCell.className}>
             <div className="relative">
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 z-0"
                 style={{
-                  backgroundImage: `url(${backgroundImages.bgImage.src})`,
+                  backgroundImage: `url(${backgroundImages.clipImage.src})`,
                   backgroundSize: "cover",
                   backgroundPosition: "top center",
                   backgroundRepeat: "no-repeat",
                 }}
               ></div>
+              <div
+                className="absolute inset-0 z-10"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                }}
+              ></div>
               <Image
                 src={images.clip.src}
                 alt={images.clip.alt}
-                className={images.clip.className}
+                className={`${images.clip.className} relative z-20`}
               />
             </div>
           </GridCell>
@@ -562,18 +569,25 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <GridCell className={layoutConfig.desktop.clipImageCell.className}>
           <div className="relative">
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
-                backgroundImage: `url(${backgroundImages.bgImage.src})`,
+                backgroundImage: `url(${backgroundImages.clipImage.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+              }}
+            ></div>
             <Image
               src={images.clip.src}
               alt={images.clip.alt}
-              className="relative w-full h-full object-contain p-5 mx-auto"
+              className="relative w-full h-full object-contain p-5 mx-auto z-20"
             />
           </div>
         </GridCell>

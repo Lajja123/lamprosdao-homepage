@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import bgImage1 from "@/assests/Governance/reportbg.png";
+import bgImage from "@/assests/common/bg.png";
 import contributionsData from "@/data/contributionsContent.json";
 import type {
   ContributionsReportsImageConfig,
@@ -13,7 +13,7 @@ export const useContributionsReportsConfig = () => {
   const config = useMemo(() => {
     // Image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      reportsBg: bgImage1,
+      reportsImage: bgImage,
     };
 
     // Text configuration

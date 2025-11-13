@@ -172,11 +172,11 @@ export default function Research() {
       );
     };
 
-    const rafId = requestAnimationFrame(animate);
+    // Start animation immediately
+    animate();
 
     return () => {
       isMounted = false;
-      cancelAnimationFrame(rafId);
       scrollTriggers.forEach((trigger) => {
         trigger.kill();
       });
@@ -302,7 +302,10 @@ export default function Research() {
           {/* Content section - spans 3 columns, 4 rows */}
           <GridCell type="researchContent">
             <div className={layoutConfig.desktop.contentCell.className}>
-              <div ref={desktopTitleRef}>
+              <div
+                ref={desktopTitleRef}
+                style={{ opacity: 0, transform: "translateY(40px)" }}
+              >
                 <Typography
                   variant="h2"
                   weight="normal"
@@ -317,7 +320,10 @@ export default function Research() {
                 </Typography>
               </div>
 
-              <div ref={desktopDescriptionRef}>
+              <div
+                ref={desktopDescriptionRef}
+                style={{ opacity: 0, transform: "translateY(40px)" }}
+              >
                 <Typography
                   variant="subtitle2"
                   weight="normal"
@@ -328,7 +334,10 @@ export default function Research() {
                 </Typography>
               </div>
 
-              <div ref={desktopButtonRef}>
+              <div
+                ref={desktopButtonRef}
+                style={{ opacity: 0, transform: "translateY(30px)" }}
+              >
                 <Link
                   href={currentItem.link}
                   target="_blank"
@@ -350,12 +359,19 @@ export default function Research() {
             className={layoutConfig.desktop.iconCell.className}
           >
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             ></div>
             <button
@@ -367,7 +383,7 @@ export default function Research() {
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
                 hoverColor="#DFF48D"
-                className={arrowConfig.desktop.className}
+                className={`${arrowConfig.desktop.className} relative z-20`}
               />
             </button>
           </GridCell>
@@ -391,12 +407,19 @@ export default function Research() {
             className="col-start-6 row-start-5 relative overflow-hidden"
           >
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             ></div>
             <button
@@ -408,7 +431,7 @@ export default function Research() {
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
                 hoverColor="#DFF48D"
-                className={arrowConfig.desktop.className}
+                className={`${arrowConfig.desktop.className} relative z-20`}
               />
             </button>
           </GridCell>
@@ -434,7 +457,10 @@ export default function Research() {
             {/* Row 1 - Main content spanning all columns */}
             <div className={layoutConfig.mobile.contentCell.className}>
               <div className="space-y-6 sm:space-y-8 py-8 sm:py-12">
-                <div ref={mobileTitleRef}>
+                <div
+                  ref={mobileTitleRef}
+                  style={{ opacity: 0, transform: "translateY(40px)" }}
+                >
                   <Typography
                     variant="h2"
                     weight="normal"
@@ -449,7 +475,10 @@ export default function Research() {
                   </Typography>
                 </div>
 
-                <div ref={mobileDescriptionRef}>
+                <div
+                  ref={mobileDescriptionRef}
+                  style={{ opacity: 0, transform: "translateY(40px)" }}
+                >
                   <Typography
                     variant="subtitle2"
                     weight="normal"
@@ -463,6 +492,7 @@ export default function Research() {
                 <div
                   ref={mobileButtonRef}
                   className="flex justify-center sm:justify-start"
+                  style={{ opacity: 0, transform: "translateY(30px)" }}
                 >
                   <Link
                     href={currentItem.link}
@@ -484,12 +514,19 @@ export default function Research() {
               {/* Left arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 z-0"
                   style={{
                     backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 z-10"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                 ></div>
                 <button
@@ -502,7 +539,7 @@ export default function Research() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor="#DFF48D"
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={arrowConfig.mobile.className}
+                    className={`${arrowConfig.mobile.className} relative z-20`}
                   />
                 </button>
               </div>
@@ -521,12 +558,19 @@ export default function Research() {
               {/* Right arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 z-0"
                   style={{
                     backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <div
+                  className="absolute inset-0 z-10"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                 ></div>
                 <button
@@ -539,7 +583,7 @@ export default function Research() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor="#DFF48D"
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={arrowConfig.mobile.className}
+                    className={`${arrowConfig.mobile.className} relative z-20`}
                   />
                 </button>
               </div>

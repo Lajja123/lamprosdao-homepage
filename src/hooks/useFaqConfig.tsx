@@ -3,7 +3,7 @@ import top from "@/assests/Faq/top.svg";
 import bottom from "@/assests/Faq/bottom.svg";
 import question from "@/assests/Faq/question.svg";
 import clip from "@/assests/Faq/clip.svg";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
+import bgImage from "@/assests/common/bg.png";
 import type { StaticImageData } from "next/image";
 import type {
   FaqImageConfig,
@@ -61,7 +61,7 @@ export const useFaqConfig = () => {
 
     // Background image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      arrowBg: bgImage2,
+      arrowBg: bgImage,
     };
 
     // Text configurations

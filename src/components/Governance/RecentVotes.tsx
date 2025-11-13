@@ -177,8 +177,13 @@ const RecentVotes = React.memo(function RecentVotes() {
 
         const { postId, postNumber } = parsed;
 
+        // Fetch with caching - browser will respect Cache-Control headers from API route
+        // The API route has revalidate=3600 and Cache-Control headers for optimal caching
         const response = await fetch(
-          `/api/fetch-forum-post?postId=${postId}&postNumber=${postNumber}&protocol=${protocol.toLowerCase()}`
+          `/api/fetch-forum-post?postId=${postId}&postNumber=${postNumber}&protocol=${protocol.toLowerCase()}`,
+          {
+            cache: "default", // Use browser cache (respects Cache-Control headers)
+          }
         );
 
         if (!response.ok) {
@@ -244,7 +249,11 @@ const RecentVotes = React.memo(function RecentVotes() {
           activeTab || "all protocols"
         }, request ID: ${thisRequestId}`
       );
-      const response = await fetch(`/api/notion-proposals${queryString}`);
+      // Fetch with caching - browser will respect Cache-Control headers from API route
+      // The API route has revalidate=3600 and Cache-Control headers for optimal caching
+      const response = await fetch(`/api/notion-proposals${queryString}`, {
+        cache: "default", // Use browser cache (respects Cache-Control headers)
+      });
 
       const data = await response.json();
       console.log("data", data);
@@ -688,7 +697,7 @@ const RecentVotes = React.memo(function RecentVotes() {
             backgroundColor: layoutConfig.mobile.header.backgroundColor,
           }}
         >
-          <div ref={mobileHeaderRef}>
+          <div>
             <Typography
               variant={textConfig.titleMobile.variant}
               color={textConfig.titleMobile.color as `#${string}` | "primary"}
@@ -698,10 +707,7 @@ const RecentVotes = React.memo(function RecentVotes() {
               Recent Votes
             </Typography>
           </div>
-          <div
-            className="flex items-center gap-2 flex-wrap justify-center"
-            ref={mobileProtocolButtonsRef}
-          >
+          <div className="flex items-center gap-2 flex-wrap justify-center">
             {protocols.map((protocol) => (
               <ProtocolButton
                 key={protocol.name}
@@ -833,15 +839,22 @@ const RecentVotes = React.memo(function RecentVotes() {
                         className={`${layoutConfig.mobile.arrowCell.className} relative overflow-hidden`}
                       >
                         <div
-                          className="absolute inset-0 opacity-20"
+                          className="absolute inset-0 z-0 opacity-20"
                           style={{
-                            backgroundImage: `url(${backgroundImages.reportsBg.src})`,
+                            backgroundImage: backgroundImages?.VoteBg?.src ? `url(${backgroundImages.VoteBg.src})` : "none",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                           }}
                         ></div>
-                        <div className="relative z-10">
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            background:
+                              "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%);",
+                          }}
+                        ></div>
+                        <div className="relative z-20">
                           <Arrow
                             direction={expandedItem === index ? "up" : "down"}
                             color="#FFFFFF"
@@ -1054,7 +1067,7 @@ const RecentVotes = React.memo(function RecentVotes() {
           colSpan={layoutConfig.desktop.headerCell.colSpan}
           className={layoutConfig.desktop.headerCell.className}
         >
-          <div ref={desktopHeaderRef}>
+          <div>
             <Typography
               variant={textConfig.titleDesktop.variant}
               color={textConfig.titleDesktop.color as `#${string}` | "primary"}
@@ -1064,10 +1077,7 @@ const RecentVotes = React.memo(function RecentVotes() {
               Recent Votes
             </Typography>
           </div>
-          <div
-            ref={desktopProtocolButtonsRef}
-            className="flex items-center gap-2"
-          >
+          <div className="flex items-center gap-2">
             {protocols.map((protocol) => (
               <ProtocolButton
                 key={protocol.name}
@@ -1281,12 +1291,19 @@ const RecentVotes = React.memo(function RecentVotes() {
                   }
                 >
                   <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 z-0"
                     style={{
-                      backgroundImage: `url(${backgroundImages.reportsBg.src})`,
+                      backgroundImage: backgroundImages?.VoteBg?.src ? `url(${backgroundImages.VoteBg.src})` : "none",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                     }}
                   ></div>
                   <div
@@ -1297,6 +1314,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                     <Arrow
                       direction={expandedItem === index ? "up" : "down"}
                       hoverColor="#DFF48D"
+                      className={`relative z-20`}
                     />
                   </div>
                 </GridCell>

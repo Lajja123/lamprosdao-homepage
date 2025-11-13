@@ -23,13 +23,11 @@ export default function Hero() {
   const mobileClipImageRef = useRef<HTMLDivElement>(null);
   const mobileDescriptionRef = useRef<HTMLDivElement>(null);
   const mobileTeamHeaderRef = useRef<HTMLDivElement>(null);
-  const mobileTeamMemberRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Desktop refs
   const desktopClipImageRef = useRef<HTMLDivElement>(null);
   const desktopDescriptionRef = useRef<HTMLDivElement>(null);
   const desktopTeamHeaderRef = useRef<HTMLDivElement>(null);
-  const desktopTeamMemberRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const scrollTriggers: ScrollTrigger[] = [];
@@ -142,37 +140,6 @@ export default function Hero() {
       }
     }
 
-    // Mobile team member images animation
-    mobileTeamMemberRefs.current.forEach((ref, index) => {
-      if (ref) {
-        gsap.set(ref, {
-          opacity: 0,
-          scale: 0.8,
-          y: 20,
-        });
-
-        const memberAnimation = gsap.to(ref, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          delay: 0.1 * index,
-          scrollTrigger: {
-            trigger: ref,
-            start: "top 85%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
-
-        if (memberAnimation.scrollTrigger) {
-          scrollTriggers.push(memberAnimation.scrollTrigger);
-        }
-      }
-    });
-
     // Desktop clip image animation
     if (desktopClipImageRef.current) {
       gsap.set(desktopClipImageRef.current, {
@@ -253,37 +220,6 @@ export default function Hero() {
         scrollTriggers.push(teamHeaderAnimation.scrollTrigger);
       }
     }
-
-    // Desktop team member images animation
-    desktopTeamMemberRefs.current.forEach((ref, index) => {
-      if (ref) {
-        gsap.set(ref, {
-          opacity: 0,
-          scale: 0.8,
-          y: 20,
-        });
-
-        const memberAnimation = gsap.to(ref, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          delay: 0.1 * index,
-          scrollTrigger: {
-            trigger: ref,
-            start: "top 85%",
-            end: "bottom 20%",
-            toggleActions: "play none none none",
-            once: true,
-          },
-        });
-
-        if (memberAnimation.scrollTrigger) {
-          scrollTriggers.push(memberAnimation.scrollTrigger);
-        }
-      }
-    });
 
     return () => {
       scrollTriggers.forEach((trigger) => {
@@ -392,12 +328,7 @@ export default function Hero() {
                   layoutConfig.mobile.mainContent.teamMemberCard.className
                 }
               >
-                <div
-                  ref={(el) => {
-                    mobileTeamMemberRefs.current[index] = el;
-                  }}
-                  className="flex flex-col items-center justify-between w-full"
-                >
+                <div className="flex flex-col items-center justify-between w-full">
                   <div
                     className={
                       layoutConfig.mobile.mainContent.teamMemberCard
@@ -612,12 +543,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={layoutConfig.desktop.teamMemberLink.className}
             >
-              <div
-                ref={(el) => {
-                  desktopTeamMemberRefs.current[index] = el;
-                }}
-                className="flex items-center gap-4"
-              >
+              <div className="flex items-center gap-4">
                 <div className="p-4">
                   <Image
                     src={member.src}

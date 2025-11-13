@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import hand from "@/assests/HeroSection2/hand.svg";
 import hugeicon from "@/assests/HeroSection2/hugeicons.svg";
-import bgImage1 from "@/assests/HeroSection2/arrow-bg.png";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
+import bgImage from "@/assests/common/bg.png";
 import clip from "@/assests/HeroSection2/clip.png";
 import arrow from "@/assests/HeroSection2/arrow.svg";
 import mobileBgImage from "@/assests/HeroSection2/m-bg.png";
@@ -59,8 +58,8 @@ export const useSection2Config = () => {
 
     // Background image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      arrowBg: bgImage1,
-      hugeiconBg: bgImage2,
+      arrowBg: bgImage,
+      hugeiconBg: bgImage,
       mobileBg: mobileBgImage,
     };
 

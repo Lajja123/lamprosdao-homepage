@@ -10,6 +10,7 @@ interface NumberCellProps {
   rowStart?: string;
   className?: string;
   numberClassName?: string;
+  numberRef?: (el: HTMLDivElement | null) => void;
   numberColor?:
     | "primary"
     | "secondary"
@@ -31,6 +32,7 @@ export const NumberCell = ({
   rowStart,
   className,
   numberClassName,
+  numberRef,
   numberColor = "primary",
 }: NumberCellProps) => (
   <div
@@ -40,7 +42,9 @@ export const NumberCell = ({
       className || ""
     )}
   >
+    <div ref={numberRef}>
     <Typography
+    
       variant="h5"
       color={numberColor}
       weight="semibold"
@@ -49,8 +53,9 @@ export const NumberCell = ({
         "font-psygen text-xs sm:text-sm md:text-base lg:text-lg"
       }
     >
-      {number}
-    </Typography>
+        {number}
+      </Typography>
+    </div>
   </div>
 );
 
@@ -82,7 +87,7 @@ interface IconCellProps {
   rowStart?: string;
   onClick?: () => void;
   isExpanded?: boolean;
-  iconRef?: React.RefObject<HTMLDivElement>;
+  iconRef?: (el: HTMLDivElement | null) => void;
   expandIcon?: FaqImageConfig;
   collapseIcon?: FaqImageConfig;
   className?: string;
@@ -105,7 +110,6 @@ export const IconCell = ({
 
   return (
     <div
-      ref={iconRef}
       className={combineStyles(
         "col-span-2 sm:col-span-1 border-b md:border border-black p-4 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex items-center justify-center cursor-pointer group hover:bg-opacity-10 transition-all duration-300",
         rowStart ? `row-start-${rowStart}` : "",
@@ -113,6 +117,7 @@ export const IconCell = ({
       )}
       onClick={onClick}
     >
+      <div ref={iconRef}>
       <Image
         src={icon.src}
         alt={icon.alt}
@@ -122,8 +127,9 @@ export const IconCell = ({
         className={combineStyles(
           " p-2 rounded-lg w-7 h-7 md:w-10 md:h-10 ",
           iconClassName || ""
-        )}
-      />
+          )}
+        />{" "}
+      </div>
     </div>
   );
 };

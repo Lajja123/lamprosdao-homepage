@@ -28,6 +28,7 @@ export default function Faq() {
   // Refs for animations
   const answerRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const questionRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+
   const isInitialMountRef = useRef(true);
 
   // Function to set answer ref
@@ -47,6 +48,9 @@ export default function Faq() {
       questionRefs.current.delete(itemId);
     }
   };
+
+  
+  
 
   const handlePrevious = () => {
     setCurrentSection((prev) => (prev > 0 ? prev - 1 : totalSections - 1));
@@ -176,12 +180,12 @@ export default function Faq() {
       return;
     }
 
-    // Wait for React to update DOM, then animate in new questions
+    // Wait for React to update DOM, then animate in new questions, numbers, and icons
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const inTimeline = gsap.timeline();
 
-        // Animate in all new questions simultaneously
+        // Animate in all new questions, numbers, and icons simultaneously
         currentItems.forEach((item) => {
           const questionElement = questionRefs.current.get(item.id);
           if (questionElement) {
@@ -203,6 +207,8 @@ export default function Faq() {
               0
             );
           }
+
+         
         });
       });
     });
@@ -225,6 +231,7 @@ export default function Faq() {
           numberColor={textConfig.numberColor as `#${string}` | "primary"}
           numberClassName={textConfig.numberClassName}
         />
+        
         <ContentCell
           rowStart={applyRowStart && index > 0 ? String(index + 1) : undefined}
         >
@@ -331,6 +338,13 @@ export default function Faq() {
                   backgroundRepeat: "no-repeat",
                 }}
               >
+                <div
+                  className="absolute inset-0 z-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%);",
+                  }}
+                ></div>
                 <button
                   onClick={handlePrevious}
                   className="w-full h-full flex items-center justify-center group"
@@ -341,7 +355,7 @@ export default function Faq() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor={arrowConfig.mobile.hoverColor}
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={arrowConfig.mobile.className}
+                    className={`${arrowConfig.mobile.className} relative z-20`}
                   />
                 </button>
               </div>
@@ -371,6 +385,13 @@ export default function Faq() {
                   backgroundRepeat: "no-repeat",
                 }}
               >
+                <div
+                  className="absolute inset-0 z-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%);",
+                  }}
+                ></div>
                 <button
                   onClick={handleNext}
                   className="w-full h-full flex items-center justify-center group"
@@ -381,7 +402,7 @@ export default function Faq() {
                     hoverScale={arrowConfig.mobile.hoverScale}
                     hoverColor={arrowConfig.mobile.hoverColor}
                     transitionDuration={arrowConfig.mobile.transitionDuration}
-                    className={arrowConfig.mobile.className}
+                    className={`${arrowConfig.mobile.className} relative z-20`}
                   />
                 </button>
               </div>
@@ -446,13 +467,20 @@ export default function Faq() {
               }}
               onClick={handlePrevious}
             >
+              <div
+                className="absolute inset-0 z-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                }}
+              ></div>
               <Arrow
                 direction="left"
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
                 hoverColor={arrowConfig.desktop.hoverColor}
                 transitionDuration={arrowConfig.desktop.transitionDuration}
-                className={arrowConfig.desktop.className}
+                className={`${arrowConfig.desktop.className} relative z-20`}
               />
             </div>
           </div>
@@ -486,13 +514,20 @@ export default function Faq() {
               }}
               onClick={handleNext}
             >
+              <div
+                className="absolute inset-0 z-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                }}
+              ></div>
               <Arrow
                 direction="right"
                 size={arrowConfig.desktop.size}
                 hoverScale={arrowConfig.desktop.hoverScale}
                 hoverColor={arrowConfig.desktop.hoverColor}
                 transitionDuration={arrowConfig.desktop.transitionDuration}
-                className={arrowConfig.desktop.className}
+                className={`${arrowConfig.desktop.className} relative z-20`}
               />
             </div>
           </div>

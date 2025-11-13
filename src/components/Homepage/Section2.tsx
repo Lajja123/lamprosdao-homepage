@@ -218,18 +218,24 @@ export default function Section2() {
 
           <GridCell type="arrow">
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
-                backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
             ></div>
             <Image
               src={images.arrow.src}
               alt={images.arrow.alt}
-              className={images.arrow.className}
+              className={`${images.arrow.className} relative z-20`}
               width={images.arrow.width}
               height={images.arrow.height}
               loading="lazy"
@@ -244,7 +250,7 @@ export default function Section2() {
           <GridCell type="withHeight"></GridCell>
           <GridCell className={layoutConfig.desktop.iconCell.className}>
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
                 backgroundSize: "cover",
@@ -252,10 +258,17 @@ export default function Section2() {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+              }}
+            ></div>
             <Image
               src={images.hugeicon.src}
               alt={images.hugeicon.alt}
-              className={images.hugeicon.className}
+              className={`${images.hugeicon.className} relative z-20`}
               width={images.hugeicon.width}
               height={images.hugeicon.height}
               loading="lazy"
@@ -273,7 +286,7 @@ export default function Section2() {
           <div className="border border-black ">1</div>
           <div className={layoutConfig.mobile.arrowCell.className}>
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.mobileBg.src})`,
                 backgroundSize: "cover",
@@ -281,10 +294,17 @@ export default function Section2() {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+              }}
+            ></div>
             <Image
               src={images.mobileArrow.src}
               alt={images.mobileArrow.alt}
-              className={images.mobileArrow.className}
+              className={`${images.mobileArrow.className} relative z-20`}
               width={images.mobileArrow.width}
               height={images.mobileArrow.height}
               loading="lazy"
@@ -298,7 +318,7 @@ export default function Section2() {
           <div className="col-start-1 row-start-5 border border-black">8</div>
           <div className={layoutConfig.mobile.iconCell.className}>
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-0"
               style={{
                 backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
                 backgroundSize: "cover",
@@ -306,10 +326,17 @@ export default function Section2() {
                 backgroundRepeat: "no-repeat",
               }}
             ></div>
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+              }}
+            ></div>
             <Image
               src={images.hugeicon.src}
               alt={images.hugeicon.alt}
-              className={images.hugeicon.className}
+              className={`${images.hugeicon.className} relative z-20`}
               width={images.hugeicon.width}
               height={images.hugeicon.height}
               loading="lazy"

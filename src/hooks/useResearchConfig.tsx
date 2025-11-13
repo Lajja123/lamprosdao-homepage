@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import Clip from "@/assests/HeroSection3/Clip.svg";
 import Clip2 from "@/assests/HeroSection3/Clip2.svg";
-import bgImage2 from "@/assests/HeroSection2/hugeicon-bg.png";
+import bgImage from "@/assests/common/bg.png";
 import type { StaticImageData } from "next/image";
 import type {
   ResearchImageConfig,
@@ -52,7 +52,7 @@ export const useResearchConfig = () => {
 
     // Background image configurations
     const backgroundImages: Record<string, StaticImageData> = {
-      arrowBg: bgImage2,
+      arrowBg: bgImage,
     };
 
     // Text configurations

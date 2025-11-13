@@ -5,7 +5,7 @@ import op from "@/assests/Governance/optimism.svg";
 import uniswap from "@/assests/Governance/uniswap.svg";
 import superfluid from "@/assests/Governance/superfluid_green.svg";
 import scroll from "@/assests/Governance/scroll.png";
-import bgImage1 from "@/assests/Governance/reportbg.png";
+import bgImage from "@/assests/common/bg.png";
 import linkLight from "@/assests/Governance/link-light.png";
 import voterIcon from "@/assests/Governance/voter.svg";
 import type {
@@ -19,19 +19,18 @@ import { colors } from "@/theme";
 import { StaticImageData } from "next/image";
 
 export const useRecentVotesConfig = (): RecentVotesConfigHookReturn => {
-  // Image configurations
-  const backgroundImages: Record<string, StaticImageData> = {
-    reportsBg: bgImage1,
-  };
   const config = useMemo(() => {
     // Image configurations
+    const backgroundImages: Record<string, StaticImageData> = {
+      VoteBg: bgImage,
+    };
     const images: RecentVotesImageConfig = {
       voteIcon: {
         src: vote1,
         alt: "vote1",
       },
       bgImage: {
-        src: bgImage1,
+        src: bgImage,
         alt: "background",
       },
       voterIcon: {

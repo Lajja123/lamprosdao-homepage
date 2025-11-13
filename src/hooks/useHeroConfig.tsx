@@ -69,14 +69,14 @@ export const useHeroConfig = () => {
         lines: [
           {
             text: "THE BEACON",
-            wavyLetters: [{ letter: "a", position: 7 }],
+            wavyLetters: [{ letter: "a", position: 6 }],
           },
           {
             text: "OF BLOCKCHAIN",
             wavyLetters: [
-              { letter: "l", position: 3 },
-              { letter: "a", position: 9 },
-              { letter: "i", position: 10 },
+              { letter: "l", position: 4 },
+              { letter: "a", position: 10 },
+              { letter: "i", position: 11 },
             ],
           },
         ],
