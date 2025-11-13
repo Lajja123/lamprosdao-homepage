@@ -342,7 +342,7 @@ export default function Faq() {
                   className="absolute inset-0 z-0"
                   style={{
                     background:
-                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%);",
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                 ></div>
                 <button

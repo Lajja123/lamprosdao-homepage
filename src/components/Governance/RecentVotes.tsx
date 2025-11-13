@@ -851,7 +851,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                           className="absolute inset-0"
                           style={{
                             background:
-                              "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%);",
+                              "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                           }}
                         ></div>
                         <div className="relative z-20">
