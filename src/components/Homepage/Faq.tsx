@@ -499,7 +499,7 @@ export default function Faq() {
               )}
               style={{
                 background:
-                  " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
+                  "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
               }}
               onClick={handleNext}
             >
