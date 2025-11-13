@@ -297,7 +297,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
               <li key={item.href}>
                 <Link href={item.href} className="group">
                   <Typography
-                    variant="button"
+                    variant="body2"
                     weight="medium"
                     color={isActive ? "accent" : "primary"}
                     className={`uppercase tracking-wide transition-aljl duration-300 hover:scale-105 ${

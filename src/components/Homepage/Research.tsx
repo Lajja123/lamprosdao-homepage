@@ -370,8 +370,7 @@ export default function Research() {
             <div
               className="absolute inset-0 z-10"
               style={{
-                background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
               }}
             ></div>
             <button
@@ -418,8 +417,7 @@ export default function Research() {
             <div
               className="absolute inset-0 z-10"
               style={{
-                background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
               }}
             ></div>
             <button
@@ -525,8 +523,7 @@ export default function Research() {
                 <div
                   className="absolute inset-0 z-10"
                   style={{
-                    background:
-                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
                   }}
                 ></div>
                 <button
@@ -569,8 +566,7 @@ export default function Research() {
                 <div
                   className="absolute inset-0 z-10"
                   style={{
-                    background:
-                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
                   }}
                 ></div>
                 <button
