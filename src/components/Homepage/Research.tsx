@@ -359,7 +359,7 @@ export default function Research() {
             className={layoutConfig.desktop.iconCell.className}
           >
             <div
-              className="absolute inset-0 z-0"
+              className="absolute inset-0 z-10"
               style={{
                 backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
@@ -368,9 +368,10 @@ export default function Research() {
               }}
             ></div>
             <div
-              className="absolute inset-0 z-10"
+              className="absolute inset-0 z-0"
               style={{
-                background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             ></div>
             <button
@@ -406,7 +407,7 @@ export default function Research() {
             className="col-start-6 row-start-5 relative overflow-hidden"
           >
             <div
-              className="absolute inset-0 z-0"
+              className="absolute inset-0 z-10"
               style={{
                 backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                 backgroundSize: "cover",
@@ -415,9 +416,10 @@ export default function Research() {
               }}
             ></div>
             <div
-              className="absolute inset-0 z-10"
+              className="absolute inset-0 z-0"
               style={{
-                background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
               }}
             ></div>
             <button
@@ -512,7 +514,7 @@ export default function Research() {
               {/* Left arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0 z-0"
+                  className="absolute inset-0 z-10"
                   style={{
                     backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
@@ -521,9 +523,10 @@ export default function Research() {
                   }}
                 ></div>
                 <div
-                  className="absolute inset-0 z-10"
+                  className="absolute inset-0 z-0"
                   style={{
-                    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                 ></div>
                 <button
@@ -555,7 +558,7 @@ export default function Research() {
               {/* Right arrow */}
               <div className="col-span-1 border border-white relative min-h-[80px] flex items-center justify-center">
                 <div
-                  className="absolute inset-0 z-0"
+                  className="absolute inset-0 z-10"
                   style={{
                     backgroundImage: `url(${backgroundImages.arrowBg.src})`,
                     backgroundSize: "cover",
@@ -564,9 +567,10 @@ export default function Research() {
                   }}
                 ></div>
                 <div
-                  className="absolute inset-0 z-10"
+                  className="absolute inset-0 z-0"
                   style={{
-                    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",  
+                    background:
+                      "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                 ></div>
                 <button

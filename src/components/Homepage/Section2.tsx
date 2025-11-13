@@ -218,28 +218,34 @@ export default function Section2() {
 
           <GridCell type="arrow">
             <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
-                backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-10"
-              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
                 background:
                   "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
-            ></div>
-            <Image
-              src={images.arrow.src}
-              alt={images.arrow.alt}
-              className={`${images.arrow.className} relative z-20`}
-              width={images.arrow.width}
-              height={images.arrow.height}
-              loading="lazy"
-            />
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <Image
+                src={images.arrow.src}
+                alt={images.arrow.alt}
+                className={`${images.arrow.className} relative z-20`}
+                width={images.arrow.width}
+                height={images.arrow.height}
+                loading="lazy"
+              />
+            </div>
           </GridCell>
 
           <GridCell type="withHeight"></GridCell>
@@ -250,29 +256,34 @@ export default function Section2() {
           <GridCell type="withHeight"></GridCell>
           <GridCell className={layoutConfig.desktop.iconCell.className}>
             <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
-                backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-10"
-              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
-            ></div>
-            <Image
-              src={images.hugeicon.src}
-              alt={images.hugeicon.alt}
-              className={`${images.hugeicon.className} relative z-20`}
-              width={images.hugeicon.width}
-              height={images.hugeicon.height}
-              loading="lazy"
-            />
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <Image
+                src={images.hugeicon.src}
+                alt={images.hugeicon.alt}
+                className={`${images.hugeicon.className} relative z-20`}
+                width={images.hugeicon.width}
+                height={images.hugeicon.height}
+                loading="lazy"
+              />
+            </div>
           </GridCell>
           <GridCell type="withHeight"></GridCell>
           <GridCell type="withHeight"></GridCell>
@@ -286,29 +297,34 @@ export default function Section2() {
           <div className="border border-black ">1</div>
           <div className={layoutConfig.mobile.arrowCell.className}>
             <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
-                backgroundImage: `url(${backgroundImages.mobileBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-10"
-              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
                 background:
                   "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
-            ></div>
-            <Image
-              src={images.mobileArrow.src}
-              alt={images.mobileArrow.alt}
-              className={`${images.mobileArrow.className} relative z-20`}
-              width={images.mobileArrow.width}
-              height={images.mobileArrow.height}
-              loading="lazy"
-            />
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <Image
+                src={images.mobileArrow.src}
+                alt={images.mobileArrow.alt}
+                className={`${images.mobileArrow.className} relative z-20`}
+                width={images.mobileArrow.width}
+                height={images.mobileArrow.height}
+                loading="lazy"
+              />
+            </div>
           </div>
           <div className="col-start-4 border border-black">3</div>
           <div className="col-start-5 border border-black">4</div>
@@ -318,29 +334,34 @@ export default function Section2() {
           <div className="col-start-1 row-start-5 border border-black">8</div>
           <div className={layoutConfig.mobile.iconCell.className}>
             <div
-              className="absolute inset-0 z-0"
+              className="w-full h-full"
               style={{
-                backgroundImage: `url(${backgroundImages.hugeiconBg.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div
-              className="absolute inset-0 z-10"
-              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
                 background:
-                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.87) 29.5%, #000000 49.5%, rgba(0, 0, 0, 0.7) 76.5%, #FFFFFF 100%)",
               }}
-            ></div>
-            <Image
-              src={images.hugeicon.src}
-              alt={images.hugeicon.alt}
-              className={`${images.hugeicon.className} relative z-20`}
-              width={images.hugeicon.width}
-              height={images.hugeicon.height}
-              loading="lazy"
-            />
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  mixBlendMode: "normal",
+                }}
+              ></div>
+              <Image
+                src={images.hugeicon.src}
+                alt={images.hugeicon.alt}
+                className={`${images.hugeicon.className} `}
+                width={images.hugeicon.width}
+                height={images.hugeicon.height}
+                loading="lazy"
+              />
+            </div>
           </div>
           <div className="col-start-1 row-start-7 border border-black">10</div>
           <div className="col-start-1 row-start-8 border border-black ">11</div>
@@ -374,7 +395,9 @@ export default function Section2() {
                     variant={textConfig.variant}
                     color={textConfig.color}
                     weight={textConfig.weight}
-                    className={`${textConfig.className} ${index === 1 ? "py-5" : ""}`}
+                    className={`${textConfig.className} ${
+                      index === 1 ? "py-5" : ""
+                    }`}
                   >
                     {paragraph}
                   </Typography>
