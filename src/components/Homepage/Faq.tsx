@@ -326,7 +326,7 @@ export default function Faq() {
                 className="w-full h-full"
                 style={{
                   background:
-                    "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
                 }}
               >
                 <div
@@ -371,7 +371,7 @@ export default function Faq() {
                 className="w-full h-full"
                 style={{
                   background:
-                    " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                    "linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #FFFFFF 100%)",
                 }}
               >
                 <div

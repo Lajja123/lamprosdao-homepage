@@ -571,10 +571,10 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
         <GridCell />
         <GridCell className={layoutConfig.desktop.clipImageCell.className}>
           <div
-            className="w-full h-full"
+            className="w-full h-full relative"
             style={{
               background:
-                " linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
             }}
           >
             <div

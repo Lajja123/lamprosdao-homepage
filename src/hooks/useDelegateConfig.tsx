@@ -159,7 +159,7 @@ export const useDelegateConfig = () => {
           className: "grid grid-cols-2 border border-white",
         },
         buttonCell: {
-          className: "flex items-center gap-3 p-4 bg-[#1A1A1A] justify-center",
+          className: "flex items-center gap-3 p-4 bg-[#1A1A1A] justify-center ",
           backgroundColor: colors.primary.dark,
         },
         button: {

@@ -303,7 +303,7 @@ export default function Section2() {
               <Image
                 src={images.mobileArrow.src}
                 alt={images.mobileArrow.alt}
-                className={`${images.mobileArrow.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                className={`${images.mobileArrow.className} absolute top-1/2 left-15 -translate-x-1/2 -translate-y-1/2 z-20`}
                 width={images.mobileArrow.width}
                 height={images.mobileArrow.height}
               />

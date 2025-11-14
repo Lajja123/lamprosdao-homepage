@@ -327,9 +327,11 @@ export default function Delegate() {
                   key={protocol.name}
                   href={protocol.href}
                   target="_blank"
-                  className={`${layoutConfig.mobile.buttonCell.className} border ${
-                    isLeft ? "border-r" : ""
-                  } ${isFirstRow ? "border-b" : ""} border-white`}
+                  className={`${
+                    layoutConfig.mobile.buttonCell.className
+                  }  border ${isLeft ? "border-r" : ""} ${
+                    isFirstRow ? "border-b" : ""
+                  } border-white`}
                   style={{
                     backgroundColor:
                       layoutConfig.mobile.buttonCell.backgroundColor,

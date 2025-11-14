@@ -29,7 +29,7 @@ export const useSection2Config = () => {
       hugeicon: {
         src: hugeicon,
         alt: "hugeicon",
-        className: "relative mx-auto w-full h-full object-contain p-5",
+        className: "relative mx-auto w-full h-full object-contain p-3",
         width: 500,
         height: 500,
       },
@@ -52,7 +52,7 @@ export const useSection2Config = () => {
         src: mobileArrow,
         alt: "arrow",
         className: "relative mx-auto object-contain p-5 flex justify-center",
-        width: 100,
+        width: 120,
       },
     };
 

@@ -80,20 +80,6 @@ export default function Navbar({ centerContent }: NavbarProps) {
           delay: 0.2,
         }
       );
-
-      // Add wavy animation to special letters
-      // wavyLettersRef.current.forEach((letter, index) => {
-      //   if (letter) {
-      //     gsap.to(letter, {
-      //       y: -8,
-      //       duration: 0.6,
-      //       ease: "power2.inOut",
-      //       repeat: -1,
-      //       yoyo: true,
-      //       delay: 1 + index * 0.1,
-      //     });
-      //   }
-      // });
     }, navbarRef);
 
     return () => ctx.revert();
@@ -166,7 +152,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
           variant="h1"
           weight="normal"
           color="primary"
-          className=" p-10 text-center uppercase"
+          className=" py-10 px-0 text-center uppercase"
         >
           {finalCenterContent?.title
             ? (() => {
@@ -290,7 +276,7 @@ export default function Navbar({ centerContent }: NavbarProps) {
         ref={menuRef}
         className="hidden md:flex justify-end p-5 relative z-20"
       >
-        <ul className="flex flex-col items-end gap-2 bg-[#FFFFFF] rounded-lg">
+        <ul className="flex flex-col items-end gap-1 bg-[#FFFFFF] rounded-lg">
           {navigationItems.map((item, index) => {
             const isActive = isActiveRoute(item.href);
             return (

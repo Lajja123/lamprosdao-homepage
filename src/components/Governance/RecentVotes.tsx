@@ -838,9 +838,9 @@ const RecentVotes = React.memo(function RecentVotes() {
                         }
                         style={{
                           background:
-                            " linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                            "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                         }}
-                        className={`${layoutConfig.mobile.arrowCell.className} w-full h-full`}
+                        className={`${layoutConfig.mobile.arrowCell.className} relative `}
                       >
                         <div
                           className="w-full h-full absolute top-0 left-0 z-10"
@@ -1284,19 +1284,13 @@ const RecentVotes = React.memo(function RecentVotes() {
                   rowStart={baseRow}
                   className={layoutConfig.desktop.proposalArrowCell.className}
                   style={{
-                    backgroundColor:
-                      layoutConfig.desktop.proposalArrowCell.backgroundColor,
+                    background:
+                      "linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
                   }}
                   onClick={() =>
                     setExpandedItem(expandedItem === index ? null : index)
                   }
                 >
-                  <div
-                    style={{
-                      background:
-                        " linear-gradient(270deg, #FFFFFF 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
-                    }}
-                  ></div>
                   <div
                     className="w-full h-full absolute top-0 left-0 z-10"
                     style={{
