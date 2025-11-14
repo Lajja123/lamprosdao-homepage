@@ -209,10 +209,10 @@ export const useGovernanceHeroConfig = () => {
             className:
               "flex flex-col items-center justify-between  border-r last:border-r-0 border-black hover:opacity-80 transition-opacity duration-300",
             imageContainer: {
-              className: "w-full flex items-center justify-center ",
+              className: "p-3 w-full flex items-center justify-center ",
             },
             image: {
-              className: "w-14 h-14 rounded-full border-1 border-black",
+              className: "w-13 h-13 rounded-full border-1 border-black",
             },
             nameContainer: {
               className:

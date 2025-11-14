@@ -332,10 +332,6 @@ export default function Delegate() {
                   }  border ${isLeft ? "border-r" : ""} ${
                     isFirstRow ? "border-b" : ""
                   } border-white`}
-                  style={{
-                    backgroundColor:
-                      layoutConfig.mobile.buttonCell.backgroundColor,
-                  }}
                 >
                   <Image
                     src={protocol.img}

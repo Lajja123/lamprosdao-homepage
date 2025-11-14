@@ -98,23 +98,22 @@ export const useResearchConfig = () => {
       "Our Journey & Impact": {
         text: "Our Journey & Impact",
         wavyLetters: [
-          { letter: "O", position: 0 },
-          { letter: "J", position: 10 },
-          { letter: "I", position: 22 },
+          { letter: "U", position: 7 },
+          { letter: "A", position: 18 },
         ],
       },
       "Governance & Research": {
         text: "Governance & Research",
         wavyLetters: [
-          { letter: "G", position: 0 },
-          { letter: "R", position: 16 },
+          { letter: "A", position: 6 },
+          { letter: "A", position: 17 },
         ],
       },
       "Workshops & Education": {
         text: "Workshops & Education",
         wavyLetters: [
-          { letter: "W", position: 0 },
-          { letter: "E", position: 12 },
+          { letter: "H", position: 5 },
+          { letter: "A", position: 16 },
         ],
       },
     };

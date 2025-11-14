@@ -411,19 +411,20 @@ export default function Reports({ activeChain }: ReportsProps) {
                       opacity: 0.5,
                     }}
                   >
-                    <Typography
-                      variant={textConfig.itemNumberDesktop.variant}
-                      color={
-                        textConfig.itemNumberDesktop.color as
-                          | `#${string}`
-                          | "white"
-                      }
-                      weight={textConfig.itemNumberDesktop.weight}
-                      className={`${textConfig.itemNumberDesktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
-                    >
-                      {leftNumber}
-                    </Typography>
+                    {" "}
                   </div>
+                  <Typography
+                    variant={textConfig.itemNumberDesktop.variant}
+                    color={
+                      textConfig.itemNumberDesktop.color as
+                        | `#${string}`
+                        | "white"
+                    }
+                    weight={textConfig.itemNumberDesktop.weight}
+                    className={`${textConfig.itemNumberDesktop.className} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
+                  >
+                    {leftNumber}
+                  </Typography>
                 </GridCell>
                 <GridCell
                   key={`title-left-${i}`}
