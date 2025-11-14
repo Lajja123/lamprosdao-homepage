@@ -7,8 +7,14 @@ import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import DelegationPopup from "./DelegationPopup";
 
 export default function FloatingCTA() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [showPopup, setShowPopup] = useState(true);
+  const [buttonPosition, setButtonPosition] = useState<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } | null>(null);
   const router = useRouter();
   const pathname = usePathname();
   const ctaRef = React.useRef<HTMLDivElement>(null);
@@ -24,15 +30,23 @@ export default function FloatingCTA() {
   }, []);
 
   useEffect(() => {
-    // Check if popup has been shown before (using localStorage for first-time visit)
-    const hasShownPopup = localStorage.getItem("delegation-popup-shown");
-
-    // Show popup immediately on first visit
-    if (!hasShownPopup) {
-      setShowPopup(true);
-      localStorage.setItem("delegation-popup-shown", "true");
+    // Capture button position when button becomes visible
+    if (isVisible && showPopup && !buttonPosition && buttonRef.current) {
+      // Wait for button animation to complete, then capture position and show popup
+      const timer = setTimeout(() => {
+        if (buttonRef.current) {
+          const rect = buttonRef.current.getBoundingClientRect();
+          setButtonPosition({
+            x: rect.left,
+            y: rect.top,
+            width: rect.width,
+            height: rect.height,
+          });
+        }
+      }, 900); // Wait for button animation (0.8s) + small buffer
+      return () => clearTimeout(timer);
     }
-  }, []);
+  }, [isVisible, showPopup, buttonPosition]);
 
   useEffect(() => {
     if (isVisible && ctaRef.current) {
@@ -138,7 +152,11 @@ export default function FloatingCTA() {
           </div>
         </div>
       </div>
-      <DelegationPopup isOpen={showPopup} onClose={() => setShowPopup(false)} />
+      <DelegationPopup
+        isOpen={showPopup}
+        onClose={() => setShowPopup(false)}
+        buttonPosition={buttonPosition}
+      />
     </>
   );
 }
