@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Typography } from "./Typography";
 import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import Image from "next/image";
-import logoIcon from "../../assests/footer/logo-light.png";
+import logoIcon from "../../assests/Footer/logo-light.png";
 
 interface DelegationPopupProps {
   isOpen: boolean;
