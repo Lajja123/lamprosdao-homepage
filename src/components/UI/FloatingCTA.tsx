@@ -8,7 +8,7 @@ import DelegationPopup from "./DelegationPopup";
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(true);
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
   const [buttonPosition, setButtonPosition] = useState<{
     x: number;
     y: number;
@@ -19,6 +19,16 @@ export default function FloatingCTA() {
   const pathname = usePathname();
   const ctaRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLDivElement>(null);
+
+  // Check if popup was already dismissed
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const dismissed = localStorage.getItem("delegationPopupDismissed");
+      if (!dismissed) {
+        setShowPopup(true);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     // Show CTA after a short delay
@@ -135,7 +145,6 @@ export default function FloatingCTA() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {/* Handshake Icon */}
             <div className="flex items-center gap-2">
               <span className="font-bold text-sm tracking-wide">
                 Delegate to Us

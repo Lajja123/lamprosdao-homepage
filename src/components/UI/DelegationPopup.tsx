@@ -4,7 +4,6 @@ import { Typography } from "./Typography";
 import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import Image from "next/image";
 import logoIcon from "../../assests/Footer/logo-light.png";
-import { gsap } from "gsap";
 
 interface DelegationPopupProps {
   isOpen: boolean;
@@ -38,78 +37,11 @@ export default function DelegationPopup({
     };
   }, [isOpen]);
 
-  // Animate popup reveal from button position or left to center smoothly
-  useEffect(() => {
-    if (!isOpen || !popupRef.current || !overlayRef.current) return;
-
-    const popup = popupRef.current;
-    const overlay = overlayRef.current;
-
-    gsap.set(overlay, {
-      opacity: 0,
-    });
-
-    if (buttonPosition) {
-      // Calculate center position of button
-      const buttonCenterX = buttonPosition.x + buttonPosition.width / 2;
-      const buttonCenterY = buttonPosition.y + buttonPosition.height / 2;
-
-      // Calculate final center position (viewport center)
-      const finalX = window.innerWidth / 2;
-      const finalY = window.innerHeight / 2;
-
-      // Set initial position at button center
-      gsap.set(popup, {
-        x: buttonCenterX - finalX,
-        y: buttonCenterY - finalY,
-        scale: 0,
-        opacity: 0,
-      });
-
-      // Animate smoothly from button position to center
-      gsap.to(popup, {
-        x: 0,
-        y: 0,
-        scale: 1,
-        opacity: 1,
-        duration: 0.7,
-        ease: "power3.out",
-      });
-    } else {
-      // Fallback: animate from left to center
-      const viewportWidth = window.innerWidth;
-      const popupWidth = popup.offsetWidth || 512; // max-w-lg is typically 512px
-      const startX = -(viewportWidth / 2 + popupWidth / 2 + 100); // Start off-screen to the left
-
-      // Set initial position off-screen to the left
-      gsap.set(popup, {
-        x: startX,
-        y: 0,
-        opacity: 0,
-        scale: 0.9,
-      });
-
-      // Animate smoothly from left to center
-      gsap.to(popup, {
-        x: 0,
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.7,
-        ease: "power3.out",
-      });
-    }
-
-    // Animate overlay
-    gsap.to(overlay, {
-      opacity: 1,
-      duration: 0.5,
-      ease: "power2.out",
-    });
-  }, [isOpen, buttonPosition]);
-
   const handleDelegateClick = () => {
-    // Keep the localStorage flag so popup doesn't show again (user is going to delegate section)
+    // Store flag in localStorage so popup doesn't show again
+    if (typeof window !== "undefined") {
+      localStorage.setItem("delegationPopupDismissed", "true");
+    }
     onClose();
     smoothScrollToSection("/governance", "delegate");
   };
@@ -190,7 +122,7 @@ export default function DelegationPopup({
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] opacity-100"
         onClick={onClose}
       />
 

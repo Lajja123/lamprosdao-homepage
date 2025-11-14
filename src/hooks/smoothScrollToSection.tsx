@@ -3,20 +3,17 @@
 import { useEffect } from "react";
 
 export function smoothScrollToSection(pagePath: string, sectionId: string) {
+  if (typeof window === "undefined") return;
+
   // If we're already on the target page, just scroll to the section
-  if (typeof window !== "undefined" && window.location.pathname === pagePath) {
+  if (window.location.pathname === pagePath) {
     scrollToSection(sectionId);
     return;
   }
 
-  // If we need to navigate to a different page, use Next.js router
-  if (typeof window !== "undefined") {
-    // Store the section ID in sessionStorage for after navigation
-    sessionStorage.setItem("scrollToSection", sectionId);
-
-    // Navigate to the page
-    window.location.href = pagePath;
-  }
+  // Navigate to the page with hash for better mobile compatibility
+  // This is more reliable than sessionStorage on mobile devices
+  window.location.href = `${pagePath}#${sectionId}`;
 }
 
 function scrollToSection(sectionId: string) {
@@ -24,10 +21,26 @@ function scrollToSection(sectionId: string) {
 
   const element = document.getElementById(sectionId);
   if (element) {
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    // Check if mobile (viewport width < 768px, which is md breakpoint in Tailwind)
+    const isMobile = window.innerWidth < 768;
+    const offset = isMobile ? -50 : 0;
+
+    if (offset !== 0) {
+      // Use manual scroll calculation for offset
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset + offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    } else {
+      // Use native scrollIntoView for desktop
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   }
 }
 
@@ -53,25 +66,82 @@ export function useSmoothScrollOnLoad() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Check if there's a section to scroll to from sessionStorage
-    const sectionId = sessionStorage.getItem("scrollToSection");
-    if (sectionId) {
-      // Clear the stored section ID
-      sessionStorage.removeItem("scrollToSection");
-
-      // Wait for the page to fully load, then scroll
-      setTimeout(() => {
-        scrollToSection(sectionId);
-      }, 500);
-    }
-
-    // Also check for hash in URL
+    // Check for hash in URL (primary method - more reliable on mobile)
     const hash = window.location.hash;
     if (hash) {
       const sectionIdFromHash = hash.substring(1); // Remove the # symbol
-      setTimeout(() => {
-        scrollToSection(sectionIdFromHash);
-      }, 300);
+
+      // Wait for DOM to be ready, with multiple attempts for mobile
+      const attemptScroll = (attempts = 0) => {
+        const element = document.getElementById(sectionIdFromHash);
+        if (element) {
+          // Element found, scroll to it with mobile offset
+          const isMobile = window.innerWidth < 768;
+          const offset = isMobile ? -50 : 0;
+
+          if (offset !== 0) {
+            // Use manual scroll calculation for offset
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset + offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          } else {
+            // Use native scrollIntoView for desktop
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        } else if (attempts < 10) {
+          // Element not found yet, try again after a short delay
+          // This is important for mobile where page load timing can vary
+          setTimeout(() => attemptScroll(attempts + 1), 100);
+        }
+      };
+
+      // Start attempting to scroll after initial delay
+      setTimeout(() => attemptScroll(), 300);
+    }
+
+    // Fallback: Check sessionStorage (for backward compatibility)
+    const sectionId = sessionStorage.getItem("scrollToSection");
+    if (sectionId) {
+      sessionStorage.removeItem("scrollToSection");
+
+      const attemptScroll = (attempts = 0) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          // Apply mobile offset
+          const isMobile = window.innerWidth < 768;
+          const offset = isMobile ? -50 : 0;
+
+          if (offset !== 0) {
+            // Use manual scroll calculation for offset
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset + offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          } else {
+            // Use native scrollIntoView for desktop
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        } else if (attempts < 10) {
+          setTimeout(() => attemptScroll(attempts + 1), 100);
+        }
+      };
+
+      setTimeout(() => attemptScroll(), 500);
     }
   }, []);
 }
