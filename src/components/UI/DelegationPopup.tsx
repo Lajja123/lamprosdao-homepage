@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Typography } from "./Typography";
 import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import Image from "next/image";
-import logoIcon from "@/assests/footer/logo-light.png";
+import logoIcon from "../../assests/footer/logo-light.png";
 
 interface DelegationPopupProps {
   isOpen: boolean;
@@ -145,7 +145,7 @@ export default function DelegationPopup({
                 alt="logoIcon"
                 width={100}
                 height={100}
-                className="w-20 h-20"
+                className="md:w-20 md:h-20 w-10 h-10 object-contain"
               />
             </div>
 
