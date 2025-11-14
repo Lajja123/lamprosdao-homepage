@@ -231,6 +231,7 @@ export default function Section2() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Image
@@ -264,6 +265,7 @@ export default function Section2() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Image
@@ -298,6 +300,7 @@ export default function Section2() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Image
@@ -330,6 +333,7 @@ export default function Section2() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Image

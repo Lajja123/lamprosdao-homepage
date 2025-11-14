@@ -95,7 +95,7 @@ export const useContributionsReportsConfig = () => {
           },
           numberCell: {
             className:
-              "w-14 md:w-16 p-4 border-r border-white relative flex items-center justify-center",
+              "w-14 md:w-16 border-r border-white relative flex items-center justify-center",
           },
           titleCell: {
             className: "flex-1 p-4",

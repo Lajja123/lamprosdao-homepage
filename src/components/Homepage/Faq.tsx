@@ -381,6 +381,7 @@ export default function Faq() {
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     mixBlendMode: "normal",
+                    opacity: 0.5,
                   }}
                 ></div>
                 <button
@@ -463,6 +464,7 @@ export default function Faq() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Arrow
@@ -510,6 +512,7 @@ export default function Faq() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.3,
                 }}
               ></div>
               <div
@@ -519,6 +522,7 @@ export default function Faq() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Arrow

@@ -256,6 +256,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         mixBlendMode: "normal",
+                        opacity: 0.5,
                       }}
                     ></div>
                     <Typography
@@ -395,23 +396,21 @@ export default function Reports({ activeChain }: ReportsProps) {
                   key={`num-left-${i}`}
                   rowStart={rowBase}
                   className={layoutConfig.desktop.item.numberCell.className}
+                  style={{
+                    background:
+                      " linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                  }}
                 >
                   <div
-                    className="w-full h-full"
+                    className="w-full h-full absolute top-0 left-0 z-10"
                     style={{
-                      background:
-                        " linear-gradient(270deg, #606060 0%, rgba(0, 0, 0, 0.78) 35.5%, #000000 66%, #000000 100%)",
+                      backgroundImage: `url(${backgroundImages.arrowBg.src})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      mixBlendMode: "normal",
+                      opacity: 0.5,
                     }}
                   >
-                    <div
-                      className="w-full h-full absolute top-0 left-0 z-10"
-                      style={{
-                        backgroundImage: `url(${backgroundImages.arrowBg.src})`,
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        mixBlendMode: "normal",
-                      }}
-                    ></div>
                     <Typography
                       variant={textConfig.itemNumberDesktop.variant}
                       color={
@@ -467,6 +466,7 @@ export default function Reports({ activeChain }: ReportsProps) {
                           backgroundSize: "cover",
                           backgroundRepeat: "no-repeat",
                           mixBlendMode: "normal",
+                          opacity: 0.5,
                         }}
                       ></div>
                       <Typography

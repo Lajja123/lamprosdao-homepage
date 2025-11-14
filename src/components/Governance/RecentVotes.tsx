@@ -849,6 +849,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                             mixBlendMode: "normal",
+                            opacity: 0.5,
                           }}
                         ></div>
 
@@ -1298,6 +1299,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       mixBlendMode: "normal",
+                      opacity: 0.5,
                     }}
                   ></div>
                   <div

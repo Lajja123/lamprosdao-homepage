@@ -359,6 +359,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <Image
@@ -584,6 +585,7 @@ export default function Hero({ activeChain, onChainChange }: HeroProps) {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 mixBlendMode: "normal",
+                opacity: 0.5,
               }}
             ></div>
             <Image

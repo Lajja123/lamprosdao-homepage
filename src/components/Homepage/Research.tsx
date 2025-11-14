@@ -372,6 +372,7 @@ export default function Research() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <button
@@ -421,6 +422,7 @@ export default function Research() {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   mixBlendMode: "normal",
+                  opacity: 0.5,
                 }}
               ></div>
               <button
@@ -529,6 +531,7 @@ export default function Research() {
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       mixBlendMode: "normal",
+                      opacity: 0.5,
                     }}
                   ></div>
                   <button
@@ -574,6 +577,7 @@ export default function Research() {
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       mixBlendMode: "normal",
+                      opacity: 0.5,
                     }}
                   ></div>
                   <button
