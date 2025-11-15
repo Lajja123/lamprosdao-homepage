@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Typography } from "./Typography";
 import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import Image from "next/image";
@@ -26,6 +26,7 @@ export default function DelegationPopup({
   const overlayRef = useRef<HTMLDivElement>(null);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const buttonPositionRef = useRef(buttonPosition);
+  const hasAnimatedRef = useRef(false);
 
   // Prevent body scroll when popup is open
   useEffect(() => {
@@ -47,126 +48,210 @@ export default function DelegationPopup({
     }
   }, [buttonPosition]);
 
+  // Reset animation flag when popup closes
+  useEffect(() => {
+    if (!isOpen) {
+      hasAnimatedRef.current = false;
+    }
+  }, [isOpen]);
+
+  // Helper function to start the animation
+  const startAnimation = useCallback(
+    (
+      popup: HTMLDivElement,
+      overlay: HTMLDivElement,
+      position: { x: number; y: number; width: number; height: number } | null
+    ) => {
+      // Check if mobile screen (less than 768px - md breakpoint)
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+      // On mobile, always use center animation regardless of position
+      if (position && !isMobile) {
+        // Calculate center position
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        // Calculate button center position
+        const buttonCenterX = position.x + position.width / 2;
+        const buttonCenterY = position.y + position.height / 2;
+
+        // Calculate initial offset from center (same logic as close animation)
+        const initialX = buttonCenterX - centerX;
+        const initialY = buttonCenterY - centerY;
+
+        // Calculate initial scale based on button size (same logic as close animation)
+        const popupWidth =
+          popup.offsetWidth || popup.getBoundingClientRect().width;
+        const popupHeight =
+          popup.offsetHeight || popup.getBoundingClientRect().height;
+
+        const initialScale =
+          popupWidth > 0 && popupHeight > 0
+            ? Math.min(
+                position.width / popupWidth,
+                position.height / popupHeight,
+                0.3
+              )
+            : 0.3;
+
+        // Set initial state (start from button position)
+        gsap.set(popup, {
+          x: initialX,
+          y: initialY,
+          scale: initialScale,
+          opacity: 0,
+        });
+
+        gsap.set(overlay, {
+          opacity: 0,
+        });
+
+        // Animate to final state (center) - reverse of close animation
+        const tl = gsap.timeline();
+
+        // Fade in overlay smoothly
+        tl.to(overlay, {
+          opacity: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        })
+          // Start fading in popup slightly before overlay completes
+          .to(
+            popup,
+            {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          )
+          // Smoothly animate position and scale to center (reverse of close)
+          .to(
+            popup,
+            {
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 0.9,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          );
+      } else {
+        // Fallback: simple fade-in and scale animation from center
+        gsap.set(popup, {
+          scale: 0.8,
+          opacity: 0,
+        });
+
+        gsap.set(overlay, {
+          opacity: 0,
+        });
+
+        const tl = gsap.timeline();
+
+        tl.to(overlay, {
+          opacity: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        })
+          .to(
+            popup,
+            {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          )
+          .to(
+            popup,
+            {
+              scale: 1,
+              duration: 0.7,
+              ease: "power3.out",
+            },
+            "-=0.2"
+          );
+      }
+    },
+    []
+  );
+
   // Animate popup reveal from button position to center
   useEffect(() => {
-    if (isOpen && popupRef.current && overlayRef.current && !isAnimatingOut) {
+    if (
+      isOpen &&
+      popupRef.current &&
+      overlayRef.current &&
+      !isAnimatingOut &&
+      !hasAnimatedRef.current
+    ) {
       const popup = popupRef.current;
       const overlay = overlayRef.current;
 
-      // Reset animation state
-      setIsAnimatingOut(false);
+      // Check if mobile screen (less than 768px - md breakpoint)
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-      // Use requestAnimationFrame to ensure DOM is ready
+      // On mobile, skip button position and use center animation
+      if (isMobile) {
+        hasAnimatedRef.current = true;
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            startAnimation(popup, overlay, null);
+          });
+        });
+        return () => {
+          gsap.killTweensOf([popup, overlay]);
+        };
+      }
+
+      // Use buttonPosition prop directly if available, otherwise use ref
+      const position = buttonPosition || buttonPositionRef.current;
+
+      // If no position yet, wait a bit and check again (button might still be animating)
+      if (!position) {
+        const checkPosition = setInterval(() => {
+          const currentPosition = buttonPosition || buttonPositionRef.current;
+          if (currentPosition && popupRef.current && overlayRef.current) {
+            clearInterval(checkPosition);
+            // Trigger animation with the position
+            hasAnimatedRef.current = true;
+            startAnimation(
+              popupRef.current,
+              overlayRef.current,
+              currentPosition
+            );
+          }
+        }, 100);
+
+        // Fallback: if no position after 2 seconds, use center animation
+        const fallbackTimer = setTimeout(() => {
+          clearInterval(checkPosition);
+          if (
+            !hasAnimatedRef.current &&
+            popupRef.current &&
+            overlayRef.current
+          ) {
+            hasAnimatedRef.current = true;
+            startAnimation(popupRef.current, overlayRef.current, null);
+          }
+        }, 2000);
+
+        return () => {
+          clearInterval(checkPosition);
+          clearTimeout(fallbackTimer);
+        };
+      }
+
+      // Mark as animated to prevent re-running
+      hasAnimatedRef.current = true;
+
+      // Use double requestAnimationFrame to ensure DOM and dimensions are ready
       requestAnimationFrame(() => {
-        if (buttonPosition) {
-          // Calculate center position
-          const centerX = window.innerWidth / 2;
-          const centerY = window.innerHeight / 2;
-
-          // Calculate button center position
-          const buttonCenterX = buttonPosition.x + buttonPosition.width / 2;
-          const buttonCenterY = buttonPosition.y + buttonPosition.height / 2;
-
-          // Calculate initial offset from center
-          const initialX = buttonCenterX - centerX;
-          const initialY = buttonCenterY - centerY;
-
-          // Calculate initial scale based on button size (make it start small)
-          // Ensure popup has dimensions before calculating
-          const popupWidth =
-            popup.offsetWidth || popup.getBoundingClientRect().width;
-          const popupHeight =
-            popup.offsetHeight || popup.getBoundingClientRect().height;
-
-          const initialScale =
-            popupWidth > 0 && popupHeight > 0
-              ? Math.min(
-                  buttonPosition.width / popupWidth,
-                  buttonPosition.height / popupHeight,
-                  0.3
-                )
-              : 0.3;
-
-          // Set initial state
-          gsap.set(popup, {
-            x: initialX,
-            y: initialY,
-            scale: initialScale,
-            opacity: 0,
-          });
-
-          gsap.set(overlay, {
-            opacity: 0,
-          });
-
-          // Animate to final state with smooth, fluid motion
-          const tl = gsap.timeline();
-
-          // Fade in overlay smoothly
-          tl.to(overlay, {
-            opacity: 0.5,
-            duration: 0.5,
-            ease: "power2.out",
-          })
-            // Start fading in popup slightly before overlay completes
-            .to(
-              popup,
-              {
-                opacity: 1,
-                duration: 0.4,
-                ease: "power2.out",
-              },
-              "-=0.3"
-            )
-            // Smoothly animate position and scale with gentle easing
-            .to(
-              popup,
-              {
-                x: 0,
-                y: 0,
-                scale: 1,
-                duration: 0.9,
-                ease: "power3.out",
-              },
-              "-=0.2"
-            );
-        } else {
-          // Fallback: simple fade-in and scale animation from center
-          gsap.set(popup, {
-            scale: 0.8,
-            opacity: 0,
-          });
-
-          gsap.set(overlay, {
-            opacity: 0,
-          });
-
-          const tl = gsap.timeline();
-
-          tl.to(overlay, {
-            opacity: 0.5,
-            duration: 0.5,
-            ease: "power2.out",
-          })
-            .to(
-              popup,
-              {
-                opacity: 1,
-                duration: 0.4,
-                ease: "power2.out",
-              },
-              "-=0.3"
-            )
-            .to(
-              popup,
-              {
-                scale: 1,
-                duration: 0.7,
-                ease: "power3.out",
-              },
-              "-=0.2"
-            );
-        }
+        requestAnimationFrame(() => {
+          startAnimation(popup, overlay, position);
+        });
       });
 
       return () => {
@@ -174,7 +259,7 @@ export default function DelegationPopup({
         gsap.killTweensOf([popup, overlay]);
       };
     }
-  }, [isOpen, buttonPosition, isAnimatingOut]);
+  }, [isOpen, buttonPosition, startAnimation]);
 
   // Handle close with reverse animation
   const handleClose = () => {
@@ -185,9 +270,37 @@ export default function DelegationPopup({
     setIsAnimatingOut(true);
     const popup = popupRef.current;
     const overlay = overlayRef.current;
+
+    // Check if mobile screen (less than 768px - md breakpoint)
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     const position = buttonPositionRef.current;
 
-    if (position) {
+    // On mobile, use simple fade-out animation from center
+    if (isMobile || !position) {
+      // Fallback: simple fade-out animation with smooth motion
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsAnimatingOut(false);
+          onClose();
+        },
+      });
+
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      }).to(
+        popup,
+        {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
+    } else {
+      // Desktop: animate back to button position
       // Calculate center position
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -251,29 +364,6 @@ export default function DelegationPopup({
           },
           "-=0.5"
         );
-    } else {
-      // Fallback: simple fade-out animation with smooth motion
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setIsAnimatingOut(false);
-          onClose();
-        },
-      });
-
-      tl.to(overlay, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      }).to(
-        popup,
-        {
-          scale: 0.8,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
     }
   };
 
