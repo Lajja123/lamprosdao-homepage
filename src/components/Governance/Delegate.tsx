@@ -233,6 +233,7 @@ export default function Delegate() {
     <>
       {/* Mobile Layout */}
       <div
+        id="delegate"
         className={layoutConfig.mobile.container.className}
         style={{
           backgroundColor: layoutConfig.mobile.container.backgroundColor,
