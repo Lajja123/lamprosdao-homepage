@@ -62,79 +62,11 @@ export default function DelegationPopup({
       overlay: HTMLDivElement,
       position: { x: number; y: number; width: number; height: number } | null
     ) => {
-      if (position) {
-        // Calculate center position
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
+      // Check if mobile (less than 768px - md breakpoint)
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-        // Calculate button center position
-        const buttonCenterX = position.x + position.width / 2;
-        const buttonCenterY = position.y + position.height / 2;
-
-        // Calculate initial offset from center (same logic as close animation)
-        const initialX = buttonCenterX - centerX;
-        const initialY = buttonCenterY - centerY;
-
-        // Calculate initial scale based on button size (same logic as close animation)
-        const popupWidth =
-          popup.offsetWidth || popup.getBoundingClientRect().width;
-        const popupHeight =
-          popup.offsetHeight || popup.getBoundingClientRect().height;
-
-        const initialScale =
-          popupWidth > 0 && popupHeight > 0
-            ? Math.min(
-                position.width / popupWidth,
-                position.height / popupHeight,
-                0.3
-              )
-            : 0.3;
-
-        // Set initial state (start from button position)
-        gsap.set(popup, {
-          x: initialX,
-          y: initialY,
-          scale: initialScale,
-          opacity: 0,
-        });
-
-        gsap.set(overlay, {
-          opacity: 0,
-        });
-
-        // Animate to final state (center) - reverse of close animation
-        const tl = gsap.timeline();
-
-        // Fade in overlay smoothly
-        tl.to(overlay, {
-          opacity: 0.5,
-          duration: 0.5,
-          ease: "power2.out",
-        })
-          // Start fading in popup slightly before overlay completes
-          .to(
-            popup,
-            {
-              opacity: 1,
-              duration: 0.4,
-              ease: "power2.out",
-            },
-            "-=0.3"
-          )
-          // Smoothly animate position and scale to center (reverse of close)
-          .to(
-            popup,
-            {
-              x: 0,
-              y: 0,
-              scale: 1,
-              duration: 0.9,
-              ease: "power2.out",
-            },
-            "-=0.3"
-          );
-      } else {
-        // Fallback: simple fade-in and scale animation from center
+      // On mobile, always use simple center animation
+      if (isMobile) {
         gsap.set(popup, {
           scale: 0.8,
           opacity: 0,
@@ -169,6 +101,167 @@ export default function DelegationPopup({
             },
             "-=0.2"
           );
+        return;
+      }
+
+      // Desktop: use enhanced 3D animations
+      if (position) {
+        // Calculate center position
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        // Calculate button center position
+        const buttonCenterX = position.x + position.width / 2;
+        const buttonCenterY = position.y + position.height / 2;
+
+        // Calculate initial offset from center (same logic as close animation)
+        const initialX = buttonCenterX - centerX;
+        const initialY = buttonCenterY - centerY;
+
+        // Calculate initial scale based on button size (same logic as close animation)
+        const popupWidth =
+          popup.offsetWidth || popup.getBoundingClientRect().width;
+        const popupHeight =
+          popup.offsetHeight || popup.getBoundingClientRect().height;
+
+        const initialScale =
+          popupWidth > 0 && popupHeight > 0
+            ? Math.min(
+                position.width / popupWidth,
+                position.height / popupHeight,
+                0.3
+              )
+            : 0.3;
+
+        // Set initial state (start from button position with 3D transforms)
+        gsap.set(popup, {
+          x: initialX,
+          y: initialY,
+          scale: initialScale,
+          opacity: 0,
+          rotationX: -45,
+          rotationY: 15,
+          rotationZ: -10,
+          skewX: 5,
+          transformPerspective: 1000,
+          transformOrigin: "center center",
+        });
+
+        gsap.set(overlay, {
+          opacity: 0,
+        });
+
+        // Animate to final state (center) with appealing 3D effects
+        const tl = gsap.timeline();
+
+        // Fade in overlay smoothly
+        tl.to(overlay, {
+          opacity: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        })
+          // Start fading in popup with 3D rotation
+          .to(
+            popup,
+            {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          )
+          // Smoothly animate position, scale, rotation, and skew to center
+          .to(
+            popup,
+            {
+              x: 0,
+              y: 0,
+              scale: 1,
+              rotationX: 0,
+              rotationY: 0,
+              rotationZ: 0,
+              skewX: 0,
+              duration: 1.0,
+              ease: "back.out(1.2)",
+            },
+            "-=0.3"
+          )
+          // Add a subtle bounce effect at the end
+          .to(
+            popup,
+            {
+              scale: 1.02,
+              duration: 0.15,
+              ease: "power2.out",
+            },
+            "-=0.1"
+          )
+          .to(popup, {
+            scale: 1,
+            duration: 0.2,
+            ease: "power2.inOut",
+          });
+      } else {
+        // Fallback: enhanced fade-in and scale animation from center with 3D effects
+        gsap.set(popup, {
+          scale: 0.8,
+          opacity: 0,
+          rotationX: -30,
+          rotationY: 10,
+          rotationZ: -5,
+          skewX: 3,
+          transformPerspective: 1000,
+          transformOrigin: "center center",
+        });
+
+        gsap.set(overlay, {
+          opacity: 0,
+        });
+
+        const tl = gsap.timeline();
+
+        tl.to(overlay, {
+          opacity: 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        })
+          .to(
+            popup,
+            {
+              opacity: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            },
+            "-=0.3"
+          )
+          .to(
+            popup,
+            {
+              scale: 1,
+              rotationX: 0,
+              rotationY: 0,
+              rotationZ: 0,
+              skewX: 0,
+              duration: 0.8,
+              ease: "back.out(1.1)",
+            },
+            "-=0.2"
+          )
+          // Add subtle bounce
+          .to(
+            popup,
+            {
+              scale: 1.02,
+              duration: 0.15,
+              ease: "power2.out",
+            },
+            "-=0.1"
+          )
+          .to(popup, {
+            scale: 1,
+            duration: 0.2,
+            ease: "power2.inOut",
+          });
       }
     },
     []
@@ -209,6 +302,33 @@ export default function DelegationPopup({
     ) {
       const popup = popupRef.current;
       const overlay = overlayRef.current;
+
+      // Check if mobile (less than 768px - md breakpoint)
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+      // On mobile, skip button position and use center animation
+      if (isMobile) {
+        hasAnimatedRef.current = true;
+
+        // Make visible before starting animation
+        gsap.set([popup, overlay], {
+          visibility: "visible",
+        });
+
+        // Use double requestAnimationFrame to ensure DOM and dimensions are ready
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            startAnimation(popup, overlay, null);
+          });
+        });
+
+        return () => {
+          // Cleanup animation on unmount
+          gsap.killTweensOf([popup, overlay]);
+        };
+      }
+
+      // Desktop: use button position
       // Use buttonPosition prop directly if available, otherwise use ref
       const position = buttonPosition || buttonPositionRef.current;
 
@@ -270,6 +390,36 @@ export default function DelegationPopup({
     const overlay = overlayRef.current;
     const position = buttonPositionRef.current;
 
+    // Check if mobile (less than 768px - md breakpoint)
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    // On mobile, use simple center fade-out animation
+    if (isMobile) {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsAnimatingOut(false);
+          onClose();
+        },
+      });
+
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      }).to(
+        popup,
+        {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
+      return;
+    }
+
+    // Desktop: use enhanced 3D animations
     if (position) {
       // Calculate center position
       const centerX = window.innerWidth / 2;
@@ -298,7 +448,7 @@ export default function DelegationPopup({
             )
           : 0.3;
 
-      // Animate back to button position with ultra-smooth motion
+      // Animate back to button position with enhanced 3D effects
       const tl = gsap.timeline({
         onComplete: () => {
           setIsAnimatingOut(false);
@@ -312,15 +462,19 @@ export default function DelegationPopup({
         duration: 0.5,
         ease: "power2.out",
       })
-        // Animate position and scale back to button with smooth deceleration
+        // Animate position, scale, rotation, and skew back to button with 3D effects
         .to(
           popup,
           {
             x: finalX,
             y: finalY,
             scale: finalScale,
+            rotationX: -45,
+            rotationY: 15,
+            rotationZ: -10,
+            skewX: 5,
             duration: 0.9,
-            ease: "power2.out",
+            ease: "power2.in",
           },
           "-=0.3"
         )
@@ -335,7 +489,7 @@ export default function DelegationPopup({
           "-=0.5"
         );
     } else {
-      // Fallback: simple fade-out animation with smooth motion
+      // Fallback: enhanced fade-out animation with 3D effects
       const tl = gsap.timeline({
         onComplete: () => {
           setIsAnimatingOut(false);
@@ -351,9 +505,13 @@ export default function DelegationPopup({
         popup,
         {
           scale: 0.8,
+          rotationX: -30,
+          rotationY: 10,
+          rotationZ: -5,
+          skewX: 3,
           opacity: 0,
           duration: 0.6,
-          ease: "power2.out",
+          ease: "power2.in",
         },
         "-=0.3"
       );
@@ -458,7 +616,12 @@ export default function DelegationPopup({
       <div
         ref={popupRef}
         className="fixed top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-lg origin-center"
-        style={{ opacity: 0, visibility: "hidden" }}
+        style={{
+          opacity: 0,
+          visibility: "hidden",
+          perspective: "1000px",
+          transformStyle: "preserve-3d",
+        }}
       >
         <div className="relative bg-gradient-to-br from-[#0B0B0B] via-[#1a1a1a] to-[#0B0B0B] rounded-2xl p-8 shadow-2xl ">
           {/* Close button */}
