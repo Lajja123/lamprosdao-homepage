@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Typography } from "./Typography";
 import { smoothScrollToSection } from "@/hooks/smoothScrollToSection";
 import Image from "next/image";
 import logoIcon from "../../assests/Footer/logo-light.png";
+import { gsap } from "gsap";
 
 interface DelegationPopupProps {
   isOpen: boolean;
@@ -23,6 +24,8 @@ export default function DelegationPopup({
 }: DelegationPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  const buttonPositionRef = useRef(buttonPosition);
 
   // Prevent body scroll when popup is open
   useEffect(() => {
@@ -37,13 +40,253 @@ export default function DelegationPopup({
     };
   }, [isOpen]);
 
+  // Store button position in ref for close animation
+  useEffect(() => {
+    if (buttonPosition) {
+      buttonPositionRef.current = buttonPosition;
+    }
+  }, [buttonPosition]);
+
+  // Animate popup reveal from button position to center
+  useEffect(() => {
+    if (isOpen && popupRef.current && overlayRef.current && !isAnimatingOut) {
+      const popup = popupRef.current;
+      const overlay = overlayRef.current;
+
+      // Reset animation state
+      setIsAnimatingOut(false);
+
+      // Use requestAnimationFrame to ensure DOM is ready
+      requestAnimationFrame(() => {
+        if (buttonPosition) {
+          // Calculate center position
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+
+          // Calculate button center position
+          const buttonCenterX = buttonPosition.x + buttonPosition.width / 2;
+          const buttonCenterY = buttonPosition.y + buttonPosition.height / 2;
+
+          // Calculate initial offset from center
+          const initialX = buttonCenterX - centerX;
+          const initialY = buttonCenterY - centerY;
+
+          // Calculate initial scale based on button size (make it start small)
+          // Ensure popup has dimensions before calculating
+          const popupWidth =
+            popup.offsetWidth || popup.getBoundingClientRect().width;
+          const popupHeight =
+            popup.offsetHeight || popup.getBoundingClientRect().height;
+
+          const initialScale =
+            popupWidth > 0 && popupHeight > 0
+              ? Math.min(
+                  buttonPosition.width / popupWidth,
+                  buttonPosition.height / popupHeight,
+                  0.3
+                )
+              : 0.3;
+
+          // Set initial state
+          gsap.set(popup, {
+            x: initialX,
+            y: initialY,
+            scale: initialScale,
+            opacity: 0,
+          });
+
+          gsap.set(overlay, {
+            opacity: 0,
+          });
+
+          // Animate to final state with smooth, fluid motion
+          const tl = gsap.timeline();
+
+          // Fade in overlay smoothly
+          tl.to(overlay, {
+            opacity: 0.5,
+            duration: 0.5,
+            ease: "power2.out",
+          })
+            // Start fading in popup slightly before overlay completes
+            .to(
+              popup,
+              {
+                opacity: 1,
+                duration: 0.4,
+                ease: "power2.out",
+              },
+              "-=0.3"
+            )
+            // Smoothly animate position and scale with gentle easing
+            .to(
+              popup,
+              {
+                x: 0,
+                y: 0,
+                scale: 1,
+                duration: 0.9,
+                ease: "power3.out",
+              },
+              "-=0.2"
+            );
+        } else {
+          // Fallback: simple fade-in and scale animation from center
+          gsap.set(popup, {
+            scale: 0.8,
+            opacity: 0,
+          });
+
+          gsap.set(overlay, {
+            opacity: 0,
+          });
+
+          const tl = gsap.timeline();
+
+          tl.to(overlay, {
+            opacity: 0.5,
+            duration: 0.5,
+            ease: "power2.out",
+          })
+            .to(
+              popup,
+              {
+                opacity: 1,
+                duration: 0.4,
+                ease: "power2.out",
+              },
+              "-=0.3"
+            )
+            .to(
+              popup,
+              {
+                scale: 1,
+                duration: 0.7,
+                ease: "power3.out",
+              },
+              "-=0.2"
+            );
+        }
+      });
+
+      return () => {
+        // Cleanup animation on unmount
+        gsap.killTweensOf([popup, overlay]);
+      };
+    }
+  }, [isOpen, buttonPosition, isAnimatingOut]);
+
+  // Handle close with reverse animation
+  const handleClose = () => {
+    if (!popupRef.current || !overlayRef.current || isAnimatingOut) {
+      return;
+    }
+
+    setIsAnimatingOut(true);
+    const popup = popupRef.current;
+    const overlay = overlayRef.current;
+    const position = buttonPositionRef.current;
+
+    if (position) {
+      // Calculate center position
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      // Calculate button center position
+      const buttonCenterX = position.x + position.width / 2;
+      const buttonCenterY = position.y + position.height / 2;
+
+      // Calculate final offset from center
+      const finalX = buttonCenterX - centerX;
+      const finalY = buttonCenterY - centerY;
+
+      // Calculate final scale based on button size
+      const popupWidth =
+        popup.offsetWidth || popup.getBoundingClientRect().width;
+      const popupHeight =
+        popup.offsetHeight || popup.getBoundingClientRect().height;
+
+      const finalScale =
+        popupWidth > 0 && popupHeight > 0
+          ? Math.min(
+              position.width / popupWidth,
+              position.height / popupHeight,
+              0.3
+            )
+          : 0.3;
+
+      // Animate back to button position with ultra-smooth motion
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsAnimatingOut(false);
+          onClose();
+        },
+      });
+
+      // Start fading overlay first, very smoothly
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+        // Animate position and scale back to button with smooth deceleration
+        .to(
+          popup,
+          {
+            x: finalX,
+            y: finalY,
+            scale: finalScale,
+            duration: 0.9,
+            ease: "power2.out",
+          },
+          "-=0.3"
+        )
+        // Fade out popup smoothly, starting slightly after movement begins
+        .to(
+          popup,
+          {
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        );
+    } else {
+      // Fallback: simple fade-out animation with smooth motion
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsAnimatingOut(false);
+          onClose();
+        },
+      });
+
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      }).to(
+        popup,
+        {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
+    }
+  };
+
   const handleDelegateClick = () => {
     // Store flag in localStorage so popup doesn't show again
     if (typeof window !== "undefined") {
       localStorage.setItem("delegationPopupDismissed", "true");
     }
-    onClose();
-    smoothScrollToSection("/governance", "delegate");
+    handleClose();
+    // Delay navigation slightly to allow animation to start
+    setTimeout(() => {
+      smoothScrollToSection("/governance", "delegate");
+    }, 100);
   };
 
   // Render title with wavy letters
@@ -115,26 +358,27 @@ export default function DelegationPopup({
     );
   };
 
-  if (!isOpen) return null;
+  // Keep component mounted during close animation
+  if (!isOpen && !isAnimatingOut) return null;
 
   return (
     <>
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] opacity-100"
-        onClick={onClose}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+        onClick={handleClose}
       />
 
       {/* Popup - Fixed center, not scrollable */}
       <div
         ref={popupRef}
-        className="fixed top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-lg"
+        className="fixed top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-lg origin-center"
       >
-        <div className="relative bg-gradient-to-br from-[#0B0B0B] via-[#1a1a1a] to-[#0B0B0B] rounded-2xl p-8 shadow-2xl border-2 border-[#DFF48D]/30">
+        <div className="relative bg-gradient-to-br from-[#0B0B0B] via-[#1a1a1a] to-[#0B0B0B] rounded-2xl p-8 shadow-2xl ">
           {/* Close button */}
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#DFF48D]/20 hover:bg-[#DFF48D]/40 transition-colors duration-200 group"
             aria-label="Close popup"
           >
