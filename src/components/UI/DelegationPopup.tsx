@@ -26,6 +26,7 @@ export default function DelegationPopup({
   const overlayRef = useRef<HTMLDivElement>(null);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const buttonPositionRef = useRef(buttonPosition);
+  const hasAnimatedInRef = useRef(false);
 
   // Prevent body scroll when popup is open
   useEffect(() => {
@@ -49,12 +50,18 @@ export default function DelegationPopup({
 
   // Animate popup reveal from button position to center
   useEffect(() => {
-    if (isOpen && popupRef.current && overlayRef.current && !isAnimatingOut) {
+    if (
+      isOpen &&
+      popupRef.current &&
+      overlayRef.current &&
+      !isAnimatingOut &&
+      !hasAnimatedInRef.current
+    ) {
       const popup = popupRef.current;
       const overlay = overlayRef.current;
 
-      // Reset animation state
-      setIsAnimatingOut(false);
+      // Mark that we've started the animation
+      hasAnimatedInRef.current = true;
 
       // Use requestAnimationFrame to ensure DOM is ready
       requestAnimationFrame(() => {
@@ -173,8 +180,11 @@ export default function DelegationPopup({
         // Cleanup animation on unmount
         gsap.killTweensOf([popup, overlay]);
       };
+    } else if (!isOpen) {
+      // Reset animation flag when popup is closed
+      hasAnimatedInRef.current = false;
     }
-  }, [isOpen, buttonPosition, isAnimatingOut]);
+  }, [isOpen, buttonPosition]);
 
   // Handle close with reverse animation
   const handleClose = () => {
