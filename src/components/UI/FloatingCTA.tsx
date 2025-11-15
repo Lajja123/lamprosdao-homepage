@@ -20,16 +20,6 @@ export default function FloatingCTA() {
   const ctaRef = React.useRef<HTMLDivElement>(null);
   const buttonRef = React.useRef<HTMLDivElement>(null);
 
-  // Check if popup was already dismissed
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const dismissed = localStorage.getItem("delegationPopupDismissed");
-      if (!dismissed) {
-        setShowPopup(true);
-      }
-    }
-  }, []);
-
   useEffect(() => {
     // Show CTA after a short delay
     const timer = setTimeout(() => {
@@ -40,9 +30,9 @@ export default function FloatingCTA() {
   }, []);
 
   useEffect(() => {
-    // Capture button position when button becomes visible
-    if (isVisible && showPopup && !buttonPosition && buttonRef.current) {
-      // Wait for button animation to complete, then capture position and show popup
+    // Capture button position when button becomes visible, then show popup
+    if (isVisible && !buttonPosition && buttonRef.current) {
+      // Wait for button animation to complete, then capture position
       const timer = setTimeout(() => {
         if (buttonRef.current) {
           const rect = buttonRef.current.getBoundingClientRect();
@@ -52,11 +42,19 @@ export default function FloatingCTA() {
             width: rect.width,
             height: rect.height,
           });
+          
+          // Only show popup after button position is captured and if not dismissed
+          if (typeof window !== "undefined") {
+            const dismissed = localStorage.getItem("delegationPopupDismissed");
+            if (!dismissed) {
+              setShowPopup(true);
+            }
+          }
         }
       }, 900); // Wait for button animation (0.8s) + small buffer
       return () => clearTimeout(timer);
     }
-  }, [isVisible, showPopup, buttonPosition]);
+  }, [isVisible, buttonPosition]);
 
   useEffect(() => {
     if (isVisible && ctaRef.current) {

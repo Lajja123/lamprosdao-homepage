@@ -62,11 +62,7 @@ export default function DelegationPopup({
       overlay: HTMLDivElement,
       position: { x: number; y: number; width: number; height: number } | null
     ) => {
-      // Check if mobile screen (less than 768px - md breakpoint)
-      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-      // On mobile, always use center animation regardless of position
-      if (position && !isMobile) {
+      if (position) {
         // Calculate center position
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
@@ -178,6 +174,30 @@ export default function DelegationPopup({
     []
   );
 
+  // Set initial hidden state immediately when popup opens
+  useEffect(() => {
+    if (
+      isOpen &&
+      popupRef.current &&
+      overlayRef.current &&
+      !hasAnimatedRef.current
+    ) {
+      const popup = popupRef.current;
+      const overlay = overlayRef.current;
+
+      // Immediately hide popup and overlay before animation starts
+      gsap.set(popup, {
+        opacity: 0,
+        visibility: "hidden",
+      });
+
+      gsap.set(overlay, {
+        opacity: 0,
+        visibility: "hidden",
+      });
+    }
+  }, [isOpen]);
+
   // Animate popup reveal from button position to center
   useEffect(() => {
     if (
@@ -189,23 +209,6 @@ export default function DelegationPopup({
     ) {
       const popup = popupRef.current;
       const overlay = overlayRef.current;
-
-      // Check if mobile screen (less than 768px - md breakpoint)
-      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-      // On mobile, skip button position and use center animation
-      if (isMobile) {
-        hasAnimatedRef.current = true;
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            startAnimation(popup, overlay, null);
-          });
-        });
-        return () => {
-          gsap.killTweensOf([popup, overlay]);
-        };
-      }
-
       // Use buttonPosition prop directly if available, otherwise use ref
       const position = buttonPosition || buttonPositionRef.current;
 
@@ -215,6 +218,10 @@ export default function DelegationPopup({
           const currentPosition = buttonPosition || buttonPositionRef.current;
           if (currentPosition && popupRef.current && overlayRef.current) {
             clearInterval(checkPosition);
+            // Make visible before starting animation
+            gsap.set([popupRef.current, overlayRef.current], {
+              visibility: "visible",
+            });
             // Trigger animation with the position
             hasAnimatedRef.current = true;
             startAnimation(
@@ -225,27 +232,18 @@ export default function DelegationPopup({
           }
         }, 100);
 
-        // Fallback: if no position after 2 seconds, use center animation
-        const fallbackTimer = setTimeout(() => {
-          clearInterval(checkPosition);
-          if (
-            !hasAnimatedRef.current &&
-            popupRef.current &&
-            overlayRef.current
-          ) {
-            hasAnimatedRef.current = true;
-            startAnimation(popupRef.current, overlayRef.current, null);
-          }
-        }, 2000);
-
         return () => {
           clearInterval(checkPosition);
-          clearTimeout(fallbackTimer);
         };
       }
 
       // Mark as animated to prevent re-running
       hasAnimatedRef.current = true;
+
+      // Make visible before starting animation
+      gsap.set([popup, overlay], {
+        visibility: "visible",
+      });
 
       // Use double requestAnimationFrame to ensure DOM and dimensions are ready
       requestAnimationFrame(() => {
@@ -270,37 +268,9 @@ export default function DelegationPopup({
     setIsAnimatingOut(true);
     const popup = popupRef.current;
     const overlay = overlayRef.current;
-
-    // Check if mobile screen (less than 768px - md breakpoint)
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     const position = buttonPositionRef.current;
 
-    // On mobile, use simple fade-out animation from center
-    if (isMobile || !position) {
-      // Fallback: simple fade-out animation with smooth motion
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setIsAnimatingOut(false);
-          onClose();
-        },
-      });
-
-      tl.to(overlay, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      }).to(
-        popup,
-        {
-          scale: 0.8,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        },
-        "-=0.3"
-      );
-    } else {
-      // Desktop: animate back to button position
+    if (position) {
       // Calculate center position
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
@@ -364,6 +334,29 @@ export default function DelegationPopup({
           },
           "-=0.5"
         );
+    } else {
+      // Fallback: simple fade-out animation with smooth motion
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsAnimatingOut(false);
+          onClose();
+        },
+      });
+
+      tl.to(overlay, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      }).to(
+        popup,
+        {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
     }
   };
 
@@ -457,6 +450,7 @@ export default function DelegationPopup({
       <div
         ref={overlayRef}
         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+        style={{ opacity: 0, visibility: "hidden" }}
         onClick={handleClose}
       />
 
@@ -464,6 +458,7 @@ export default function DelegationPopup({
       <div
         ref={popupRef}
         className="fixed top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-lg origin-center"
+        style={{ opacity: 0, visibility: "hidden" }}
       >
         <div className="relative bg-gradient-to-br from-[#0B0B0B] via-[#1a1a1a] to-[#0B0B0B] rounded-2xl p-8 shadow-2xl ">
           {/* Close button */}
