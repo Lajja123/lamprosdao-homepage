@@ -28,19 +28,6 @@ export default function DelegationPopup({
   const buttonPositionRef = useRef(buttonPosition);
   const hasAnimatedRef = useRef(false);
 
-  // Prevent body scroll when popup is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
   // Store button position in ref for close animation
   useEffect(() => {
     if (buttonPosition) {
