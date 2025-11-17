@@ -858,6 +858,7 @@ const RecentVotes = React.memo(function RecentVotes() {
                           color="#FFFFFF"
                           rounded={true}
                           size={24}
+                          hoverColor="#DFF48D"
                           className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                         />
                       </button>
@@ -1310,6 +1311,8 @@ const RecentVotes = React.memo(function RecentVotes() {
                     <Arrow
                       direction={expandedItem === index ? "up" : "down"}
                       hoverColor="#DFF48D"
+                      hoverScale={1.15}
+                      color="#FFFFFF"
                       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20`}
                     />
                   </div>
