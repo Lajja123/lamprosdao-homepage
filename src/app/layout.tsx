@@ -4,6 +4,7 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import Marquee from "@/components/UI/Marquee";
 import Navbar from "@/components/Navbar/Navbar";
+import { getNonce } from "@/lib/nonce";
 
 // Lazy load non-critical components
 const Footer = dynamic(() => import("@/components/Footer/Footer"), {
@@ -58,13 +59,15 @@ const Psygen = localFont({
   preload: false, // Less critical font, don't preload
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = await getNonce();
+  
   return (
-    <html lang="en">
+    <html lang="en" nonce={nonce || undefined}>
       <body
         className={`${CSBohemian.variable} ${PPMori.variable} ${Psygen.variable} flex flex-col justify-between`}
       >
